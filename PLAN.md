@@ -41,7 +41,7 @@ Dylan's design standard as one installable package, so any future project starts
 | Phase | Scope | Dylan's time | Output | Status |
 | --- | --- | --- | --- | --- |
 | R | Research: inspiration audit, agentic standards, Figma workflow, Phase 5 sites | done | `research/` | done |
-| 0 | Scaffold: Next 15, Tailwind v4, Base UI, shadcn CLI, Lora + Geist Mono, 8/24 grid overlay, `@shadcn/lint` on, reference skills installed, `/lab` route, `decisions.md` | none | running localhost, first push | pending |
+| 0 | Scaffold: Next 16, Tailwind v4, Base UI, shadcn CLI, Lora + Geist Mono, 8/24 grid overlay, `@shadcn/lint` on, reference skills installed, `/lab` route, `decisions.md` | none | running localhost, first push | done |
 | 1 | Color and surfaces lab: neutral ramp with roles, three accents at matched OKLCH L/C shown in context, three shadow recipes; accent revisited after dark-mode shadows. Baseline = dylanfdl.com tokens | ~45 min | `tokens.css` colors | pending |
 | 1b | Fork mini before/after with candidate tokens | ~15 min | screenshot pair in `research/` | pending |
 | 2 | Type, rhythm and shape lab: role scale vs weight-carries-hierarchy, serif scope, radius with concentric nesting, article and dense panel under each. Baseline = current sites | ~45 min | `tokens.css` type, radius | pending |
@@ -61,5 +61,7 @@ Populated after Phase 5 from what the restyles actually needed. Until then the c
 Google `DESIGN.md`. Code Connect on Pro. Cloudflare deploy until asked. Copying Emil, Jakub or Figma skills into the dfdl skill (hand off by name). Framework migrations on the three sites. 150 components or multiple themes. Pushing to any repo other than `dfdl-ui`.
 
 ## Log
+
+- 2026-09-15: Phase 0 done. Next 16.3 (create-next-app resolved to 16, not 15), Tailwind v4, Base UI via shadcn `base-nova`. Interim `tokens.css` lifted from dylanfdl.com as the Lab 1 baseline. Grid overlay ported and shipped as a dev tool (`g`, `?grid=1`). `@shadcn/lint` 0.1.0 pinned exactly (one day old, source audited: no install scripts, no network); policy in `design-system.lint.json`; lint and typecheck clean. Motion utilities added so the linter's arbitrary-value rule holds even for durations and transition sets. 27 reference skills vendored under `.agents/skills/` at pinned commits. `AGENTS.md` written.
 
 - 2026-09-15: Research complete and pushed. Figma MCP connected and verified on the Pro Full seat. GitHub repo created. Plan approved with seven amendments (baseline candidate in every lab, Fork checkpoints after labs 1 and 3, interim motion declared, shape folded into lab 2, consumer rule for components, system-ui gap accepted, adoption recipe tested in Phase 8).

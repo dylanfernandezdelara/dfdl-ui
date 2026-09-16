@@ -1,0 +1,36 @@
+{
+  "$comment": "dfdl design-system lint policy. Mechanical rules live here; judgment lives in the skill. Consumers extend this file. Contracts are added per component as each one ships.",
+  "rules": {
+    "shadcn/no-raw-colors": [
+      "error",
+      {
+        "message": "Use a dfdl semantic color (bg-surface, text-secondary, border-default, accent-solid, ...) from {{file}}. Primitives and Tailwind palette colors are not allowed in components."
+      }
+    ],
+    "shadcn/no-arbitrary-values": [
+      "error",
+      {
+        "message": "Stay on the dfdl scale. Spacing is multiples of 8 (minor) and 24 (major); radii are radius-sm/md/lg/xl/full; add a token if a value is genuinely missing."
+      }
+    ],
+    "shadcn/no-inline-styles": "error",
+    "shadcn/no-restyle": [
+      "error",
+      {
+        "allow": ["layout"],
+        "message": {
+          "spacing": "{{component}} owns its padding. Use a size ({{sizes}}) or put margin/gap on the parent.",
+          "typography": "{{component}} owns its type. Pick a variant or size instead of overriding font classes.",
+          "color": "{{component}} owns its color. Use a variant; add one in the component only if the design calls for it."
+        },
+        "contracts": []
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": ["src/components/ui/**", "src/app/lab/**"],
+      "rules": { "shadcn/no-restyle": "off" }
+    }
+  ]
+}

@@ -1,0 +1,166 @@
+/*
+  dfdl tokens. Single source of truth for the design standard.
+
+  Two tiers:
+    primitives  named by hue and step (--neutral-3, --accent-9). Never used in components.
+    semantics   named by role (--color-bg-surface, --color-text-secondary). The only tier components touch.
+
+  Light and dark repoint the semantic tier; primitives stay fixed.
+  Grammar: --color-{role}-{variant}-{state}. `accent` is the brand hue; `primary` is never a color name.
+
+  STATUS: interim. Primitives are lifted from dylanfdl.com (Sep 2026) as the baseline candidate
+  for Lab 1. They will be recomputed as proper 12-step ramps with a color library during Lab 1.
+  See decisions.md.
+*/
+
+:root {
+  /* ---- Rhythm ---- */
+  --space-minor: 0.5rem; /* 8px */
+  --space-major: 1.5rem; /* 24px */
+
+  /* ---- Radius (interim, Lab 2) ---- */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-full: 9999px;
+
+  /* ---- Motion (interim, Lab 3; Emil's defaults) ---- */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+  --duration-instant: 100ms;
+  --duration-fast: 150ms;
+  --duration-normal: 200ms;
+  --duration-slow: 300ms;
+  --press-scale: 0.97;
+
+  /* ---- Primitives: light neutral (warm cream surfaces, cool slate text) ---- */
+  --neutral-light-1: oklch(99.61% 0.008 98.87);
+  --neutral-light-2: oklch(97.85% 0.0108 95.16);
+  --neutral-light-3: oklch(96.07% 0.0136 92.98);
+  --neutral-light-4: oklch(94.49% 0.0175 96.11);
+  --neutral-light-5: oklch(92.9% 0.0215 98.13);
+  --neutral-light-6: oklch(90% 0.02 96);
+  --neutral-light-7: oklch(86% 0.018 94);
+  --neutral-light-8: oklch(78% 0.016 92);
+  --neutral-light-9: oklch(71.37% 0.0192 261.32);
+  --neutral-light-10: oklch(55.1% 0.0234 264.36);
+  --neutral-light-11: oklch(44.61% 0.0263 256.8);
+  --neutral-light-12: oklch(37.29% 0.0306 259.73);
+  --neutral-light-13: oklch(9.69% 0 0);
+
+  /* ---- Primitives: dark neutral (warm charcoal) ---- */
+  --neutral-dark-1: oklch(22.2% 0.007 75);
+  --neutral-dark-2: oklch(24% 0.008 75);
+  --neutral-dark-3: oklch(26.2% 0.009 75);
+  --neutral-dark-4: oklch(29.5% 0.011 75);
+  --neutral-dark-5: oklch(32.8% 0.012 78);
+  --neutral-dark-6: oklch(36% 0.013 78);
+  --neutral-dark-7: oklch(40% 0.014 78);
+  --neutral-dark-8: oklch(48% 0.015 78);
+  --neutral-dark-9: oklch(58% 0.015 78);
+  --neutral-dark-10: oklch(68% 0.018 78);
+  --neutral-dark-11: oklch(82% 0.016 82);
+  --neutral-dark-12: oklch(88.5% 0.014 85);
+  --neutral-dark-13: oklch(93.5% 0.012 85);
+
+  /* ---- Primitives: accent (dylanfdl blue) ---- */
+  --accent-light-3: oklch(95% 0.03 281);
+  --accent-light-6: oklch(85% 0.07 281);
+  --accent-light-9: oklch(52.4% 0.1237 281.25);
+  --accent-light-10: oklch(47% 0.13 281);
+  --accent-light-11: oklch(45% 0.12 281);
+  --accent-dark-3: oklch(30% 0.05 278);
+  --accent-dark-6: oklch(42% 0.09 278);
+  --accent-dark-9: oklch(72% 0.12 278);
+  --accent-dark-10: oklch(78% 0.11 278);
+  --accent-dark-11: oklch(82% 0.1 278);
+
+  /* ---- Primitives: status ---- */
+  --red-light-9: oklch(57.83% 0.1041 20.77);
+  --green-light-9: oklch(58.26% 0.0749 144.54);
+  --yellow-light-9: oklch(65.22% 0.0736 65.93);
+  --red-dark-9: oklch(62% 0.11 20);
+  --green-dark-9: oklch(62% 0.08 145);
+  --yellow-dark-9: oklch(72% 0.09 75);
+
+  /* ---- Semantics: light ---- */
+  --color-bg-page: var(--neutral-light-1);
+  --color-bg-subtle: var(--neutral-light-2);
+  --color-bg-surface: var(--neutral-light-1);
+  --color-bg-surface-hover: var(--neutral-light-3);
+  --color-bg-surface-active: var(--neutral-light-4);
+  --color-bg-sunken: var(--neutral-light-3);
+  --color-bg-raised: oklch(100% 0 0);
+  --color-bg-overlay: oklch(20% 0.01 75 / 0.12);
+
+  --color-text-primary: var(--neutral-light-12);
+  --color-text-secondary: var(--neutral-light-10);
+  --color-text-tertiary: var(--neutral-light-9);
+  --color-text-strong: var(--neutral-light-13);
+  --color-text-disabled: var(--neutral-light-8);
+  --color-text-inverse: var(--neutral-light-1);
+  --color-text-on-accent: var(--neutral-light-1);
+
+  --color-border-subtle: var(--neutral-light-5);
+  --color-border-default: var(--neutral-light-6);
+  --color-border-strong: var(--neutral-light-8);
+  --color-border-separator: var(--neutral-light-4);
+  --color-border-focus: var(--accent-light-9);
+
+  --color-accent-bg: var(--accent-light-3);
+  --color-accent-border: var(--accent-light-6);
+  --color-accent-solid: var(--accent-light-9);
+  --color-accent-solid-hover: var(--accent-light-10);
+  --color-accent-text: var(--accent-light-11);
+
+  --color-danger-solid: var(--red-light-9);
+  --color-success-solid: var(--green-light-9);
+  --color-warning-solid: var(--yellow-light-9);
+
+  --shadow-raised: 0 0 0 1px oklch(0 0 0 / 0.06), 0 1px 2px -1px oklch(0 0 0 / 0.06),
+    0 2px 4px oklch(0 0 0 / 0.04);
+  --shadow-floating: 0 0 0 1px oklch(0 0 0 / 0.06), 0 10px 15px -3px oklch(0 0 0 / 0.08),
+    0 4px 6px -4px oklch(0 0 0 / 0.08);
+  --outline-image: oklch(0 0 0 / 0.1);
+}
+
+.dark {
+  --color-bg-page: var(--neutral-dark-1);
+  --color-bg-subtle: var(--neutral-dark-2);
+  --color-bg-surface: var(--neutral-dark-2);
+  --color-bg-surface-hover: var(--neutral-dark-3);
+  --color-bg-surface-active: var(--neutral-dark-4);
+  --color-bg-sunken: var(--neutral-dark-1);
+  --color-bg-raised: var(--neutral-dark-3);
+  --color-bg-overlay: oklch(0% 0 0 / 0.5);
+
+  --color-text-primary: var(--neutral-dark-12);
+  --color-text-secondary: var(--neutral-dark-10);
+  --color-text-tertiary: var(--neutral-dark-9);
+  --color-text-strong: var(--neutral-dark-13);
+  --color-text-disabled: var(--neutral-dark-8);
+  --color-text-inverse: var(--neutral-dark-1);
+  --color-text-on-accent: var(--neutral-dark-1);
+
+  --color-border-subtle: var(--neutral-dark-4);
+  --color-border-default: var(--neutral-dark-5);
+  --color-border-strong: var(--neutral-dark-7);
+  --color-border-separator: var(--neutral-dark-4);
+  --color-border-focus: var(--accent-dark-9);
+
+  --color-accent-bg: var(--accent-dark-3);
+  --color-accent-border: var(--accent-dark-6);
+  --color-accent-solid: var(--accent-dark-9);
+  --color-accent-solid-hover: var(--accent-dark-10);
+  --color-accent-text: var(--accent-dark-11);
+
+  --color-danger-solid: var(--red-dark-9);
+  --color-success-solid: var(--green-dark-9);
+  --color-warning-solid: var(--yellow-dark-9);
+
+  --shadow-raised: inset 0 0 0 1px oklch(100% 0 0 / 0.04), 0 1px 1px oklch(0 0 0 / 0.24);
+  --shadow-floating: inset 0 0 0 1px oklch(100% 0 0 / 0.06), 0 16px 40px oklch(0 0 0 / 0.45);
+  --outline-image: oklch(100% 0 0 / 0.1);
+}

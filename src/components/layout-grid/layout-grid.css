@@ -1,0 +1,59 @@
+[data-layout-grid-overlay] {
+  --layout-grid-minor: var(--space-minor);
+  --layout-grid-major: var(--space-major);
+  --layout-grid-line: 1px;
+  --layout-grid-minor-color: color-mix(in oklab, var(--color-danger-solid) 22%, transparent);
+  --layout-grid-major-color: color-mix(in oklab, var(--color-danger-solid) 48%, transparent);
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  pointer-events: none;
+  background-image:
+    repeating-linear-gradient(
+      to bottom,
+      var(--layout-grid-major-color) 0 var(--layout-grid-line),
+      transparent var(--layout-grid-line) var(--layout-grid-major)
+    ),
+    repeating-linear-gradient(
+      to right,
+      var(--layout-grid-major-color) 0 var(--layout-grid-line),
+      transparent var(--layout-grid-line) var(--layout-grid-major)
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      var(--layout-grid-minor-color) 0 var(--layout-grid-line),
+      transparent var(--layout-grid-line) var(--layout-grid-minor)
+    ),
+    repeating-linear-gradient(
+      to right,
+      var(--layout-grid-minor-color) 0 var(--layout-grid-line),
+      transparent var(--layout-grid-line) var(--layout-grid-minor)
+    );
+}
+
+[data-layout-grid-toolbar] {
+  position: fixed;
+  right: max(var(--space-minor), env(safe-area-inset-right, 0px));
+  bottom: max(var(--space-minor), env(safe-area-inset-bottom, 0px));
+  z-index: 41;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--space-minor);
+}
+
+[data-layout-grid-legend] {
+  pointer-events: none;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  color: color-mix(in oklab, var(--color-danger-solid) 72%, var(--color-text-primary));
+}
+
+@media print {
+  [data-layout-grid-overlay],
+  [data-layout-grid-toolbar] {
+    display: none;
+  }
+}

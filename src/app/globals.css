@@ -1,0 +1,145 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "../styles/tokens.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+  Tailwind surface for dfdl tokens.
+  Components use the semantic utilities (bg-surface, text-secondary, border-default, ring-focus).
+  Primitives are deliberately not exposed as utilities; that is what keeps them out of components.
+*/
+@theme inline {
+  --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", "Noto Color Emoji";
+  --font-serif: var(--font-lora), ui-serif, Georgia, serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-heading: var(--font-sans);
+
+  --spacing-minor: var(--space-minor);
+  --spacing-major: var(--space-major);
+  --container-reading: 33rem;
+  --container-content: 64rem;
+
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+  --radius-full: var(--radius-full);
+
+  --ease-out: var(--ease-out);
+  --ease-in-out: var(--ease-in-out);
+  --ease-drawer: var(--ease-drawer);
+  --blur-icon: 4px;
+
+  --color-page: var(--color-bg-page);
+  --color-subtle: var(--color-bg-subtle);
+  --color-surface: var(--color-bg-surface);
+  --color-surface-hover: var(--color-bg-surface-hover);
+  --color-surface-active: var(--color-bg-surface-active);
+  --color-sunken: var(--color-bg-sunken);
+  --color-raised: var(--color-bg-raised);
+  --color-overlay: var(--color-bg-overlay);
+
+  --color-primary-text: var(--color-text-primary);
+  --color-secondary-text: var(--color-text-secondary);
+  --color-tertiary-text: var(--color-text-tertiary);
+  --color-strong-text: var(--color-text-strong);
+  --color-disabled-text: var(--color-text-disabled);
+  --color-inverse-text: var(--color-text-inverse);
+  --color-on-accent: var(--color-text-on-accent);
+
+  --color-border-subtle: var(--color-border-subtle);
+  --color-border-default: var(--color-border-default);
+  --color-border-strong: var(--color-border-strong);
+  --color-separator: var(--color-border-separator);
+  --color-focus: var(--color-border-focus);
+
+  --color-accent-bg: var(--color-accent-bg);
+  --color-accent-border: var(--color-accent-border);
+  --color-accent-solid: var(--color-accent-solid);
+  --color-accent-solid-hover: var(--color-accent-solid-hover);
+  --color-accent-text: var(--color-accent-text);
+
+  --color-danger: var(--color-danger-solid);
+  --color-success: var(--color-success-solid);
+  --color-warning: var(--color-warning-solid);
+
+  --shadow-raised: var(--shadow-raised);
+  --shadow-floating: var(--shadow-floating);
+
+  /* shadcn compatibility layer: their names, our values. Lets stock Base UI components render on dfdl tokens. */
+  --color-background: var(--color-bg-page);
+  --color-foreground: var(--color-text-primary);
+  --color-card: var(--color-bg-surface);
+  --color-card-foreground: var(--color-text-primary);
+  --color-popover: var(--color-bg-raised);
+  --color-popover-foreground: var(--color-text-strong);
+  --color-primary: var(--color-accent-solid);
+  --color-primary-foreground: var(--color-text-on-accent);
+  --color-secondary: var(--color-bg-subtle);
+  --color-secondary-foreground: var(--color-text-primary);
+  --color-muted: var(--color-bg-sunken);
+  --color-muted-foreground: var(--color-text-secondary);
+  --color-accent: var(--color-bg-surface-active);
+  --color-accent-foreground: var(--color-text-strong);
+  --color-destructive: var(--color-danger-solid);
+  --color-border: var(--color-border-default);
+  --color-input: var(--color-border-default);
+  --color-ring: var(--color-border-focus);
+}
+
+:root {
+  --radius: var(--radius-md);
+}
+
+/*
+  Motion utilities. Tailwind has no theme namespace for durations or transition-property sets,
+  so these give the dfdl motion tokens real class names. Transition only what changes.
+*/
+@utility duration-instant {
+  transition-duration: var(--duration-instant);
+}
+@utility duration-fast {
+  transition-duration: var(--duration-fast);
+}
+@utility duration-normal {
+  transition-duration: var(--duration-normal);
+}
+@utility duration-slow {
+  transition-duration: var(--duration-slow);
+}
+/* Interactive controls: color and surface change plus press feedback. */
+@utility transition-interactive {
+  transition-property: color, background-color, border-color, box-shadow, scale;
+}
+/* Icon swaps: cross-fade with opacity, scale and blur, never visibility. */
+@utility transition-icon {
+  transition-property: opacity, scale, filter;
+}
+@utility press {
+  &:active {
+    scale: var(--press-scale);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border-default outline-focus/50;
+  }
+  html {
+    color-scheme: light;
+  }
+  html.dark {
+    color-scheme: dark;
+  }
+  body {
+    @apply bg-page text-primary-text font-sans antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection {
+    background: var(--color-accent-bg);
+  }
+  /* Reduced motion is handled per component: keep opacity and color, drop movement. No blanket kill switch. */
+}
