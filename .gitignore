@@ -1,0 +1,10 @@
+node_modules/
+.next/
+out/
+dist/
+.env
+.env.local
+.dev.vars
+.devin/mcp_config.local.json
+.DS_Store
+*.log
