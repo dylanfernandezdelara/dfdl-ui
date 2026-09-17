@@ -15,20 +15,20 @@ export default function LabIndexPage() {
     <>
       <SiteHeader />
       <main className="mx-auto w-full max-w-content px-major py-12">
-        <h1 className="font-serif text-2xl leading-8 text-strong-text">Lab</h1>
-        <p className="mt-minor max-w-reading text-base leading-6 text-secondary-text">
+        <h1 className="font-serif text-2xl leading-8 text-fg-strong">Lab</h1>
+        <p className="mt-minor max-w-reading text-base leading-6 text-fg-secondary">
           Where the foundations get decided. Every lab shows the current values as a baseline beside two alternatives.
-          Press <kbd className="rounded-sm border border-border-default bg-sunken px-1 font-mono text-xs">g</kbd> for the grid.
+          Press <kbd className="rounded-sm border border-line bg-sunken px-1 font-mono text-xs">g</kbd> for the grid.
         </p>
         <ul className="mt-12 divide-y divide-separator border-y border-separator">
           {labs.map((lab) => (
             <li key={lab.slug} className="flex items-baseline gap-major py-major">
-              <span className="w-24 shrink-0 font-mono text-xs uppercase tracking-wider text-tertiary-text">{lab.status}</span>
+              <span className="w-24 shrink-0 font-mono text-xs uppercase tracking-wider text-fg-tertiary">{lab.status}</span>
               <div className="flex-1">
-                <h2 className="text-base font-medium leading-6 text-strong-text">{lab.title}</h2>
-                <p className="mt-1 text-sm leading-6 text-secondary-text">{lab.summary}</p>
+                <h2 className="text-base font-medium leading-6 text-fg-strong">{lab.title}</h2>
+                <p className="mt-1 text-sm leading-6 text-fg-secondary">{lab.summary}</p>
               </div>
-              <span className="text-sm text-tertiary-text">/lab/{lab.slug}</span>
+              <span className="text-sm text-fg-tertiary">/lab/{lab.slug}</span>
             </li>
           ))}
         </ul>

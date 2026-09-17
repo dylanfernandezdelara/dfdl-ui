@@ -2,38 +2,53 @@
   dfdl tokens. Single source of truth for the design standard.
 
   Two tiers:
-    primitives  named by hue and step (--neutral-3, --accent-9). Never used in components.
-    semantics   named by role (--color-bg-surface, --color-text-secondary). The only tier components touch.
+    primitives  named by hue and step (--neutral-light-3, --accent-dark-9). Never used in components.
+    semantics   named by role (--bg-surface, --fg-secondary, --border-default, --accent-solid).
+                The only tier components touch, through the Tailwind utilities in globals.css.
 
   Light and dark repoint the semantic tier; primitives stay fixed.
-  Grammar: --color-{role}-{variant}-{state}. `accent` is the brand hue; `primary` is never a color name.
+
+  Naming grammar for semantics: --{group}-{variant}-{state}
+    bg        page, subtle, surface, surface-hover, surface-active, sunken, raised, overlay
+    fg        default (--fg), secondary, tertiary, strong, disabled, inverse, on-accent
+    border    subtle, default, strong, separator, focus
+    accent    bg, border, solid, solid-hover, text
+    status    danger, success, warning (solid only for now)
+    rounded   sm, md, lg, xl, full
+    motion    ease-out, ease-in-out, ease-drawer, instant, fast, normal, slow, press
+    elevation raised, floating
+
+  Source token names never collide with Tailwind theme keys (--color-*, --radius-*, --ease-*, --shadow-*);
+  globals.css maps them. A source name equal to a theme key produces a self-referential variable.
 
   STATUS: interim. Primitives are lifted from dylanfdl.com (Sep 2026) as the baseline candidate
-  for Lab 1. They will be recomputed as proper 12-step ramps with a color library during Lab 1.
-  See decisions.md.
+  for Lab 1 and will be recomputed as proper 12-step ramps with a color library. See decisions.md.
 */
 
 :root {
   /* ---- Rhythm ---- */
   --space-minor: 0.5rem; /* 8px */
   --space-major: 1.5rem; /* 24px */
+  --measure-reading: 33rem;
+  --measure-content: 64rem;
 
-  /* ---- Radius (interim, Lab 2) ---- */
-  --radius-sm: 4px;
-  --radius-md: 6px;
-  --radius-lg: 12px;
-  --radius-xl: 16px;
-  --radius-full: 9999px;
+  /* ---- Rounded (interim, Lab 2) ---- */
+  --rounded-sm: 4px;
+  --rounded-md: 6px;
+  --rounded-lg: 12px;
+  --rounded-xl: 16px;
+  --rounded-full: 9999px;
 
   /* ---- Motion (interim, Lab 3; Emil's defaults) ---- */
-  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
-  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
-  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
-  --duration-instant: 100ms;
-  --duration-fast: 150ms;
-  --duration-normal: 200ms;
-  --duration-slow: 300ms;
-  --press-scale: 0.97;
+  --motion-ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --motion-ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --motion-ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+  --motion-instant: 100ms;
+  --motion-fast: 150ms;
+  --motion-normal: 200ms;
+  --motion-slow: 300ms;
+  --motion-press: 0.97;
+  --motion-icon-blur: 4px;
 
   /* ---- Primitives: light neutral (warm cream surfaces, cool slate text) ---- */
   --neutral-light-1: oklch(99.61% 0.008 98.87);
@@ -86,81 +101,81 @@
   --yellow-dark-9: oklch(72% 0.09 75);
 
   /* ---- Semantics: light ---- */
-  --color-bg-page: var(--neutral-light-1);
-  --color-bg-subtle: var(--neutral-light-2);
-  --color-bg-surface: var(--neutral-light-1);
-  --color-bg-surface-hover: var(--neutral-light-3);
-  --color-bg-surface-active: var(--neutral-light-4);
-  --color-bg-sunken: var(--neutral-light-3);
-  --color-bg-raised: oklch(100% 0 0);
-  --color-bg-overlay: oklch(20% 0.01 75 / 0.12);
+  --bg-page: var(--neutral-light-1);
+  --bg-subtle: var(--neutral-light-2);
+  --bg-surface: var(--neutral-light-1);
+  --bg-surface-hover: var(--neutral-light-3);
+  --bg-surface-active: var(--neutral-light-4);
+  --bg-sunken: var(--neutral-light-3);
+  --bg-raised: oklch(100% 0 0);
+  --bg-overlay: oklch(20% 0.01 75 / 0.12);
 
-  --color-text-primary: var(--neutral-light-12);
-  --color-text-secondary: var(--neutral-light-10);
-  --color-text-tertiary: var(--neutral-light-9);
-  --color-text-strong: var(--neutral-light-13);
-  --color-text-disabled: var(--neutral-light-8);
-  --color-text-inverse: var(--neutral-light-1);
-  --color-text-on-accent: var(--neutral-light-1);
+  --fg: var(--neutral-light-12);
+  --fg-secondary: var(--neutral-light-10);
+  --fg-tertiary: var(--neutral-light-9);
+  --fg-strong: var(--neutral-light-13);
+  --fg-disabled: var(--neutral-light-8);
+  --fg-inverse: var(--neutral-light-1);
+  --fg-on-accent: var(--neutral-light-1);
 
-  --color-border-subtle: var(--neutral-light-5);
-  --color-border-default: var(--neutral-light-6);
-  --color-border-strong: var(--neutral-light-8);
-  --color-border-separator: var(--neutral-light-4);
-  --color-border-focus: var(--accent-light-9);
+  --border-subtle: var(--neutral-light-5);
+  --border-default: var(--neutral-light-6);
+  --border-strong: var(--neutral-light-8);
+  --border-separator: var(--neutral-light-4);
+  --border-focus: var(--accent-light-9);
 
-  --color-accent-bg: var(--accent-light-3);
-  --color-accent-border: var(--accent-light-6);
-  --color-accent-solid: var(--accent-light-9);
-  --color-accent-solid-hover: var(--accent-light-10);
-  --color-accent-text: var(--accent-light-11);
+  --accent-bg: var(--accent-light-3);
+  --accent-border: var(--accent-light-6);
+  --accent-solid: var(--accent-light-9);
+  --accent-solid-hover: var(--accent-light-10);
+  --accent-text: var(--accent-light-11);
 
-  --color-danger-solid: var(--red-light-9);
-  --color-success-solid: var(--green-light-9);
-  --color-warning-solid: var(--yellow-light-9);
+  --status-danger: var(--red-light-9);
+  --status-success: var(--green-light-9);
+  --status-warning: var(--yellow-light-9);
 
-  --shadow-raised: 0 0 0 1px oklch(0 0 0 / 0.06), 0 1px 2px -1px oklch(0 0 0 / 0.06),
+  --elevation-raised: 0 0 0 1px oklch(0 0 0 / 0.06), 0 1px 2px -1px oklch(0 0 0 / 0.06),
     0 2px 4px oklch(0 0 0 / 0.04);
-  --shadow-floating: 0 0 0 1px oklch(0 0 0 / 0.06), 0 10px 15px -3px oklch(0 0 0 / 0.08),
+  --elevation-floating: 0 0 0 1px oklch(0 0 0 / 0.06), 0 10px 15px -3px oklch(0 0 0 / 0.08),
     0 4px 6px -4px oklch(0 0 0 / 0.08);
   --outline-image: oklch(0 0 0 / 0.1);
 }
 
 .dark {
-  --color-bg-page: var(--neutral-dark-1);
-  --color-bg-subtle: var(--neutral-dark-2);
-  --color-bg-surface: var(--neutral-dark-2);
-  --color-bg-surface-hover: var(--neutral-dark-3);
-  --color-bg-surface-active: var(--neutral-dark-4);
-  --color-bg-sunken: var(--neutral-dark-1);
-  --color-bg-raised: var(--neutral-dark-3);
-  --color-bg-overlay: oklch(0% 0 0 / 0.5);
+  --bg-page: var(--neutral-dark-1);
+  --bg-subtle: var(--neutral-dark-2);
+  --bg-surface: var(--neutral-dark-2);
+  --bg-surface-hover: var(--neutral-dark-3);
+  --bg-surface-active: var(--neutral-dark-4);
+  --bg-sunken: var(--neutral-dark-1);
+  --bg-raised: var(--neutral-dark-3);
+  --bg-overlay: oklch(0% 0 0 / 0.5);
 
-  --color-text-primary: var(--neutral-dark-12);
-  --color-text-secondary: var(--neutral-dark-10);
-  --color-text-tertiary: var(--neutral-dark-9);
-  --color-text-strong: var(--neutral-dark-13);
-  --color-text-disabled: var(--neutral-dark-8);
-  --color-text-inverse: var(--neutral-dark-1);
-  --color-text-on-accent: var(--neutral-dark-1);
+  --fg: var(--neutral-dark-12);
+  --fg-secondary: var(--neutral-dark-10);
+  --fg-tertiary: var(--neutral-dark-9);
+  --fg-strong: var(--neutral-dark-13);
+  --fg-disabled: var(--neutral-dark-8);
+  --fg-inverse: var(--neutral-dark-1);
+  --fg-on-accent: var(--neutral-dark-1);
 
-  --color-border-subtle: var(--neutral-dark-4);
-  --color-border-default: var(--neutral-dark-5);
-  --color-border-strong: var(--neutral-dark-7);
-  --color-border-separator: var(--neutral-dark-4);
-  --color-border-focus: var(--accent-dark-9);
+  --border-subtle: var(--neutral-dark-4);
+  --border-default: var(--neutral-dark-5);
+  --border-strong: var(--neutral-dark-7);
+  --border-separator: var(--neutral-dark-4);
+  --border-focus: var(--accent-dark-9);
 
-  --color-accent-bg: var(--accent-dark-3);
-  --color-accent-border: var(--accent-dark-6);
-  --color-accent-solid: var(--accent-dark-9);
-  --color-accent-solid-hover: var(--accent-dark-10);
-  --color-accent-text: var(--accent-dark-11);
+  --accent-bg: var(--accent-dark-3);
+  --accent-border: var(--accent-dark-6);
+  --accent-solid: var(--accent-dark-9);
+  --accent-solid-hover: var(--accent-dark-10);
+  --accent-text: var(--accent-dark-11);
 
-  --color-danger-solid: var(--red-dark-9);
-  --color-success-solid: var(--green-dark-9);
-  --color-warning-solid: var(--yellow-dark-9);
+  --status-danger: var(--red-dark-9);
+  --status-success: var(--green-dark-9);
+  --status-warning: var(--yellow-dark-9);
 
-  --shadow-raised: inset 0 0 0 1px oklch(100% 0 0 / 0.04), 0 1px 1px oklch(0 0 0 / 0.24);
-  --shadow-floating: inset 0 0 0 1px oklch(100% 0 0 / 0.06), 0 16px 40px oklch(0 0 0 / 0.45);
+  --elevation-raised: inset 0 0 0 1px oklch(100% 0 0 / 0.04), 0 1px 1px oklch(0 0 0 / 0.24);
+  --elevation-floating: inset 0 0 0 1px oklch(100% 0 0 / 0.06), 0 16px 40px oklch(0 0 0 / 0.45);
   --outline-image: oklch(100% 0 0 / 0.1);
 }

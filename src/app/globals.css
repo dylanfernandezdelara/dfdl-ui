@@ -7,8 +7,22 @@
 
 /*
   Tailwind surface for dfdl tokens.
-  Components use the semantic utilities (bg-surface, text-secondary, border-default, ring-focus).
+
+  Components use only these utilities:
+    surfaces   bg-page bg-subtle bg-surface bg-surface-hover bg-surface-active bg-sunken bg-raised bg-overlay
+    text       text-fg text-fg-secondary text-fg-tertiary text-fg-strong text-fg-disabled text-fg-inverse text-fg-on-accent
+    borders    border-line border-line-subtle border-line-strong divide-separator, outline-focus / ring-focus
+    accent     bg-accent-bg border-accent-border bg-accent-solid hover:bg-accent-solid-hover text-accent-text
+    status     text-danger bg-success ... (solid only for now)
+    rounded    rounded-sm rounded-md rounded-lg rounded-xl rounded-full
+    elevation  shadow-raised shadow-floating
+    motion     ease-out ease-in-out ease-drawer, duration-instant/fast/normal/slow, transition-interactive, transition-icon, press
+    measure    max-w-reading max-w-content
+    rhythm     p-minor p-major gap-minor gap-major (8px / 24px)
+
   Primitives are deliberately not exposed as utilities; that is what keeps them out of components.
+  Theme keys map to differently named source tokens on purpose: a theme key that equals its source
+  name compiles to a self-referential CSS variable.
 */
 @theme inline {
   --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
@@ -19,79 +33,80 @@
 
   --spacing-minor: var(--space-minor);
   --spacing-major: var(--space-major);
-  --container-reading: 33rem;
-  --container-content: 64rem;
+  --container-reading: var(--measure-reading);
+  --container-content: var(--measure-content);
 
-  --radius-sm: var(--radius-sm);
-  --radius-md: var(--radius-md);
-  --radius-lg: var(--radius-lg);
-  --radius-xl: var(--radius-xl);
-  --radius-full: var(--radius-full);
+  --radius-sm: var(--rounded-sm);
+  --radius-md: var(--rounded-md);
+  --radius-lg: var(--rounded-lg);
+  --radius-xl: var(--rounded-xl);
+  --radius-full: var(--rounded-full);
 
-  --ease-out: var(--ease-out);
-  --ease-in-out: var(--ease-in-out);
-  --ease-drawer: var(--ease-drawer);
-  --blur-icon: 4px;
+  --ease-out: var(--motion-ease-out);
+  --ease-in-out: var(--motion-ease-in-out);
+  --ease-drawer: var(--motion-ease-drawer);
+  --blur-icon: var(--motion-icon-blur);
 
-  --color-page: var(--color-bg-page);
-  --color-subtle: var(--color-bg-subtle);
-  --color-surface: var(--color-bg-surface);
-  --color-surface-hover: var(--color-bg-surface-hover);
-  --color-surface-active: var(--color-bg-surface-active);
-  --color-sunken: var(--color-bg-sunken);
-  --color-raised: var(--color-bg-raised);
-  --color-overlay: var(--color-bg-overlay);
+  --color-page: var(--bg-page);
+  --color-subtle: var(--bg-subtle);
+  --color-surface: var(--bg-surface);
+  --color-surface-hover: var(--bg-surface-hover);
+  --color-surface-active: var(--bg-surface-active);
+  --color-sunken: var(--bg-sunken);
+  --color-raised: var(--bg-raised);
+  --color-overlay: var(--bg-overlay);
 
-  --color-primary-text: var(--color-text-primary);
-  --color-secondary-text: var(--color-text-secondary);
-  --color-tertiary-text: var(--color-text-tertiary);
-  --color-strong-text: var(--color-text-strong);
-  --color-disabled-text: var(--color-text-disabled);
-  --color-inverse-text: var(--color-text-inverse);
-  --color-on-accent: var(--color-text-on-accent);
+  --color-fg: var(--fg);
+  --color-fg-secondary: var(--fg-secondary);
+  --color-fg-tertiary: var(--fg-tertiary);
+  --color-fg-strong: var(--fg-strong);
+  --color-fg-disabled: var(--fg-disabled);
+  --color-fg-inverse: var(--fg-inverse);
+  --color-fg-on-accent: var(--fg-on-accent);
 
-  --color-border-subtle: var(--color-border-subtle);
-  --color-border-default: var(--color-border-default);
-  --color-border-strong: var(--color-border-strong);
-  --color-separator: var(--color-border-separator);
-  --color-focus: var(--color-border-focus);
+  --color-line: var(--border-default);
+  --color-line-subtle: var(--border-subtle);
+  --color-line-strong: var(--border-strong);
+  --color-separator: var(--border-separator);
+  --color-focus: var(--border-focus);
 
-  --color-accent-bg: var(--color-accent-bg);
-  --color-accent-border: var(--color-accent-border);
-  --color-accent-solid: var(--color-accent-solid);
-  --color-accent-solid-hover: var(--color-accent-solid-hover);
-  --color-accent-text: var(--color-accent-text);
+  --color-accent-bg: var(--accent-bg);
+  --color-accent-border: var(--accent-border);
+  --color-accent-solid: var(--accent-solid);
+  --color-accent-solid-hover: var(--accent-solid-hover);
+  --color-accent-text: var(--accent-text);
 
-  --color-danger: var(--color-danger-solid);
-  --color-success: var(--color-success-solid);
-  --color-warning: var(--color-warning-solid);
+  --color-danger: var(--status-danger);
+  --color-success: var(--status-success);
+  --color-warning: var(--status-warning);
 
-  --shadow-raised: var(--shadow-raised);
-  --shadow-floating: var(--shadow-floating);
+  --shadow-raised: var(--elevation-raised);
+  --shadow-floating: var(--elevation-floating);
 
-  /* shadcn compatibility layer: their names, our values. Lets stock Base UI components render on dfdl tokens. */
-  --color-background: var(--color-bg-page);
-  --color-foreground: var(--color-text-primary);
-  --color-card: var(--color-bg-surface);
-  --color-card-foreground: var(--color-text-primary);
-  --color-popover: var(--color-bg-raised);
-  --color-popover-foreground: var(--color-text-strong);
-  --color-primary: var(--color-accent-solid);
-  --color-primary-foreground: var(--color-text-on-accent);
-  --color-secondary: var(--color-bg-subtle);
-  --color-secondary-foreground: var(--color-text-primary);
-  --color-muted: var(--color-bg-sunken);
-  --color-muted-foreground: var(--color-text-secondary);
-  --color-accent: var(--color-bg-surface-active);
-  --color-accent-foreground: var(--color-text-strong);
-  --color-destructive: var(--color-danger-solid);
-  --color-border: var(--color-border-default);
-  --color-input: var(--color-border-default);
-  --color-ring: var(--color-border-focus);
+  /* shadcn compatibility: their names, our values, so stock Base UI components render on dfdl tokens.
+     `primary` here is shadcn's word for the accent fill. For body text use text-fg, never text-primary. */
+  --color-background: var(--bg-page);
+  --color-foreground: var(--fg);
+  --color-card: var(--bg-surface);
+  --color-card-foreground: var(--fg);
+  --color-popover: var(--bg-raised);
+  --color-popover-foreground: var(--fg-strong);
+  --color-primary: var(--accent-solid);
+  --color-primary-foreground: var(--fg-on-accent);
+  --color-secondary: var(--bg-subtle);
+  --color-secondary-foreground: var(--fg);
+  --color-muted: var(--bg-sunken);
+  --color-muted-foreground: var(--fg-secondary);
+  --color-accent: var(--bg-surface-active);
+  --color-accent-foreground: var(--fg-strong);
+  --color-destructive: var(--status-danger);
+  --color-border: var(--border-default);
+  --color-input: var(--border-default);
+  --color-ring: var(--border-focus);
 }
 
 :root {
-  --radius: var(--radius-md);
+  --radius: var(--rounded-md);
 }
 
 /*
@@ -99,16 +114,16 @@
   so these give the dfdl motion tokens real class names. Transition only what changes.
 */
 @utility duration-instant {
-  transition-duration: var(--duration-instant);
+  transition-duration: var(--motion-instant);
 }
 @utility duration-fast {
-  transition-duration: var(--duration-fast);
+  transition-duration: var(--motion-fast);
 }
 @utility duration-normal {
-  transition-duration: var(--duration-normal);
+  transition-duration: var(--motion-normal);
 }
 @utility duration-slow {
-  transition-duration: var(--duration-slow);
+  transition-duration: var(--motion-slow);
 }
 /* Interactive controls: color and surface change plus press feedback. */
 @utility transition-interactive {
@@ -118,15 +133,21 @@
 @utility transition-icon {
   transition-property: opacity, scale, filter;
 }
+/* Press feedback. Scale is movement, so it is dropped under reduced motion; color and shadow changes still carry the state. */
 @utility press {
   &:active {
-    scale: var(--press-scale);
+    scale: var(--motion-press);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    &:active {
+      scale: none;
+    }
   }
 }
 
 @layer base {
   * {
-    @apply border-border-default outline-focus/50;
+    @apply border-line outline-focus/50;
   }
   html {
     color-scheme: light;
@@ -135,11 +156,11 @@
     color-scheme: dark;
   }
   body {
-    @apply bg-page text-primary-text font-sans antialiased;
+    @apply bg-page font-sans text-fg antialiased;
     text-rendering: optimizeLegibility;
   }
   ::selection {
-    background: var(--color-accent-bg);
+    background: var(--accent-bg);
   }
   /* Reduced motion is handled per component: keep opacity and color, drop movement. No blanket kill switch. */
 }

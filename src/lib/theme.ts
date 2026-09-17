@@ -14,7 +14,9 @@ export function readTheme(): Theme {
 /** Swaps theme with transitions suppressed for one frame so the page snaps instead of smearing. */
 export function applyTheme(theme: Theme) {
   const style = document.createElement("style")
-  style.textContent = "*,*::before,*::after{transition:none !important}"
+  // Everything snaps except the control that triggered the switch, whose icon swap is the feedback.
+  style.textContent =
+    ":where(*:not([data-theme-toggle],[data-theme-toggle] *)),:where(*:not([data-theme-toggle] *))::before,:where(*:not([data-theme-toggle] *))::after{transition:none !important}"
   document.head.appendChild(style)
   document.documentElement.classList.toggle("dark", theme === "dark")
   document.documentElement.classList.toggle("light", theme === "light")

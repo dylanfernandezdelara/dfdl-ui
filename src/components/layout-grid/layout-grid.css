@@ -2,8 +2,8 @@
   --layout-grid-minor: var(--space-minor);
   --layout-grid-major: var(--space-major);
   --layout-grid-line: 1px;
-  --layout-grid-minor-color: color-mix(in oklab, var(--color-danger-solid) 22%, transparent);
-  --layout-grid-major-color: color-mix(in oklab, var(--color-danger-solid) 48%, transparent);
+  --layout-grid-minor-color: color-mix(in oklab, var(--status-danger) 22%, transparent);
+  --layout-grid-major-color: color-mix(in oklab, var(--status-danger) 48%, transparent);
   position: fixed;
   inset: 0;
   z-index: 40;
@@ -48,7 +48,7 @@
   font-size: 10px;
   line-height: 1;
   letter-spacing: 0.04em;
-  color: color-mix(in oklab, var(--color-danger-solid) 72%, var(--color-text-primary));
+  color: color-mix(in oklab, var(--status-danger) 72%, var(--fg));
 }
 
 @media print {

@@ -49,11 +49,11 @@ export function LayoutGridHost({ children }: { children: ReactNode }) {
           type="button"
           onClick={toggleLayoutGrid}
           className={cn(
-            "flex size-8 shrink-0 items-center justify-center rounded-md border border-border-default bg-surface shadow-raised",
+            "flex size-8 shrink-0 items-center justify-center rounded-md border border-line bg-surface shadow-raised",
             "transition-interactive duration-fast ease-out press",
             "hover:bg-surface-hover",
             "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus",
-            enabled ? "text-strong-text" : "text-secondary-text hover:text-primary-text",
+            enabled ? "text-fg-strong" : "text-fg-secondary hover:text-fg",
           )}
           aria-label={enabled ? "Hide layout grid" : "Show layout grid"}
           aria-pressed={enabled}

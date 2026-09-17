@@ -34,7 +34,9 @@ Next 16 (App Router, Turbopack), React 19, Tailwind v4, Base UI via shadcn (`bas
 
 ## Rules
 
-- Use semantic utilities only: `bg-surface`, `text-secondary-text`, `border-default`, `accent-solid`, `shadow-raised`. No Tailwind palette colors, no arbitrary values, no primitives in components. The linter enforces this.
+- Use semantic utilities only: `bg-surface`, `text-fg-secondary`, `border-line`, `bg-accent-solid`, `shadow-raised`. The full list is at the top of `globals.css`. No Tailwind palette colors, no arbitrary values, no primitives in components. The linter enforces this.
+- `text-primary` is shadcn's name for the accent fill, kept only so stock components render. Body text is `text-fg`.
+- Source tokens in `tokens.css` (`--bg-*`, `--fg-*`, `--border-*`, `--rounded-*`, `--motion-*`, `--elevation-*`) never share a name with a Tailwind theme key (`--color-*`, `--radius-*`, `--ease-*`, `--shadow-*`). A shared name compiles to a self-referential variable; check compiled CSS, not the source, when in doubt.
 - Everything lands on the 8/24 grid. Check with `g`.
 - Transition only what changes: `transition-interactive` for controls, `transition-icon` for icon swaps. Never `transition-all`. Press feedback is `press` (scale `var(--press-scale)`).
 - Reduced motion is handled per component (keep opacity and color, drop movement). There is no blanket kill switch.
