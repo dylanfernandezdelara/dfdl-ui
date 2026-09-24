@@ -35,6 +35,7 @@ Next 16 (App Router, Turbopack), React 19, Tailwind v4, Base UI via shadcn (`bas
 ## Rules
 
 - Use semantic utilities only: `bg-surface`, `text-fg-secondary`, `border-line`, `bg-accent-solid`, `elevation-raised`. The full list is at the top of `globals.css`. No Tailwind palette colors, no arbitrary values, no primitives in components. The linter enforces this.
+- The accent is chosen once per product: `<html data-accent="ember">` (default) or `indigo`. Never mix accents inside one product; add a third only with a decision in `decisions.md`.
 - `text-primary` is shadcn's name for the accent fill, kept only so stock components render. Body text is `text-fg`.
 - Source tokens in `tokens.css` (`--bg-*`, `--fg-*`, `--border-*`, `--rounded-*`, `--motion-*`, `--elevation-*`) never share a name with a Tailwind theme key (`--color-*`, `--radius-*`, `--ease-*`, `--shadow-*`). A shared name compiles to a self-referential variable; check compiled CSS, not the source, when in doubt.
 - Everything lands on the 8/24 grid. Check with `g`.
