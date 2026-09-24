@@ -47,9 +47,9 @@ Dylan's design standard as one installable package, so any future project starts
 | 2 | Type, rhythm and shape lab: role scale vs weight-carries-hierarchy, serif scope, radius with concentric nesting, article and dense panel under each. Baseline = current sites | ~45 min | `tokens.css` type, radius | done: weight-led 15px, Lora on all headings, round radius |
 | 3 | Motion lab, browser only: two curves at 10% speed, symmetric vs 75% exits, press 0.96/0.97/none, pop-in origin, spring vs curve on drawer, reduced-motion variants, all probe-verified. Baseline = Fork's current motion | ~60 min | `--ease-*`, `--duration-*` | done: strong ease-out, exits 75%, press 0.97 |
 | 3b | Fork mini before/after with motion tokens | ~15 min | screenshot pair | done: probe table + filmstrip in `research/fork-3b/`, Phase 5 motion fixes listed |
-| 5 | Before/after on Fork, then trackcongress, then dylanfdl. Branch in a worktree, tokens and first components only, captured before/after into Figma. Loop back to the lab that is off. Nothing merges. Then first draft of `SKILL.md` and lint contracts from `decisions.md` | one longer review per site | skill v0, lint policy v0 | pending |
+| 5 | Before/after on trackcongress, then dylanfdl (Fork deferred by Dylan, 2026-09-24). Branch in a worktree, tokens and first components only, captured before/after into Figma. Loop back to the lab that is off. Nothing merges. Then first draft of `SKILL.md` and lint contracts from `decisions.md`. trackcongress is React 18 + Tailwind v3.4 + Vite with its own `DESIGN_LANGUAGE.md` and `qa:web` viewport checks; tokens apply as CSS variables through a v3 config extension, no migration | one longer review per site | skill v0, lint policy v0 | pending |
 | 6 | Figma library via `figma-generate-library` into scratch; review; promote to `dfdl` and publish | review the file | deliverable 1 | pending |
-| 7 | Components, one per unit: source, registry item, contract, docs page with every state and slow-motion toggle, motion spec verified by probe, Figma component. Only components with a consumer. Core first, then app patterns, AI-native (Fork's pieces as seeds), expressive | review each like a PR | deliverables 3, 6 | pending |
+| 7 | Components, one per unit: source, registry item, contract, docs page with every state and slow-motion toggle, motion spec verified by probe, Figma component. Only components with a consumer: the first set is what trackcongress and dylanfdl use. AI-native (Fork's pieces) is backlog until Fork is in scope | review each like a PR | deliverables 3, 6 | pending |
 | 8 | Sanity check, once: (a) fresh agent with and without the skill, (b) a Figma mockup built from the library handed to an agent, (c) adopt one outside component via the recipe | ~20 min | pass/fail notes | pending |
 
 ## Component backlog
@@ -61,6 +61,8 @@ Populated after Phase 5 from what the restyles actually needed. Until then the c
 Google `DESIGN.md`. Code Connect on Pro. Cloudflare deploy until asked. Copying Emil, Jakub or Figma skills into the dfdl skill (hand off by name). Framework migrations on the three sites. 150 components or multiple themes. Pushing to any repo other than `dfdl-ui`.
 
 ## Log
+
+- 2026-09-24: Scope change from Dylan: Phase 5 applies to trackcongress and dylanfdl only; Fork is deferred. Indigo remains an approved accent for when Fork or another product claims it; the Fork worktree stays as reference. Component scope follows the consumers. trackcongress stack recorded: React 18, Tailwind v3.4, Vite 7, `DESIGN_LANGUAGE.md`, `qa:web` across four viewports in both themes.
 
 - 2026-09-24: 3b done. Fork motion retokened in the worktree (ten CSS declarations to tokens, menu pop-in and press added through the mapping file). Probe: before, the chat menu and buttons had no animation at all; after, menu pops in 200ms on the approved curve from its trigger and presses scale 0.97 at 150ms. Five motion defects logged for Phase 5 (sidebar animates width, `transition-all` on buttons, keyframe dialog, unmounting menu, animated `top`).
 
