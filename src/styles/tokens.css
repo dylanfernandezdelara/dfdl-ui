@@ -24,7 +24,8 @@
   Color is GENERATED: run `node scripts/color/build-tokens.mts` after changing the config there.
   Lab 1 (2026-09-19): unified warm neutral (hue 80), ember accent (hue 48) at the previous indigo's
   relative vividness, ring-and-lift elevation. Status hues held >15 degrees from the accent.
-  Rhythm, rounded and motion below are hand-authored; rounded and motion are interim until Labs 2 and 3.
+  Lab 2 (2026-09-24): weight-led type at 15px, Lora on every heading, round radius family.
+  Rhythm, rounded, type and motion below are hand-authored; motion is interim until Lab 3.
 */
 
 :root {
@@ -34,39 +35,41 @@
   --measure-reading: 33rem;
   --measure-content: 64rem;
 
-  /* ---- Rounded (interim, Lab 2). Concentric: outer = inner + padding. ---- */
-  --rounded-xs: 4px;
-  --rounded-sm: 6px;
-  --rounded-md: 8px;
-  --rounded-lg: 12px;
-  --rounded-xl: 16px;
+  /* ---- Rounded (Lab 2, approved 2026-09-24: "Round", Fork's 0.625rem family). Concentric: outer = inner + padding. ---- */
+  --rounded-xs: 8px;
+  --rounded-sm: 10px;
+  --rounded-md: 12px;
+  --rounded-lg: 16px;
+  --rounded-xl: 24px;
   --rounded-full: 9999px;
 
-  /* ---- Type roles (interim, Lab 2). Values are the current sites: dylanfdl.com body and small, Lora display. ---- */
+  /* ---- Type roles (Lab 2, approved 2026-09-24: weight-led, serif on every heading).
+     Body, heading and title share 15px; hierarchy comes from weight 550, family and color.
+     Display 32 and all headings are Lora. UI 13px at 450 for dense surfaces. Controls 28px. ---- */
   --font-display-family: var(--font-lora), ui-serif, Georgia, serif;
-  --font-heading-family: ui-sans-serif, system-ui, sans-serif;
-  --type-display-size: 1.5rem;
-  --type-display-leading: 2rem;
+  --font-heading-family: var(--font-lora), ui-serif, Georgia, serif;
+  --type-display-size: 2rem;
+  --type-display-leading: 2.5rem;
   --type-display-weight: 400;
-  --type-display-tracking: 0;
-  --type-title-size: 1.25rem;
-  --type-title-leading: 1.75rem;
-  --type-title-weight: 500;
-  --type-title-tracking: -0.01em;
-  --type-heading-size: 1rem;
+  --type-display-tracking: -0.01em;
+  --type-title-size: 0.9375rem;
+  --type-title-leading: 1.5rem;
+  --type-title-weight: 550;
+  --type-title-tracking: 0;
+  --type-heading-size: 0.9375rem;
   --type-heading-leading: 1.5rem;
-  --type-heading-weight: 500;
+  --type-heading-weight: 550;
   --type-heading-tracking: 0;
-  --type-body-size: 1rem;
+  --type-body-size: 0.9375rem;
   --type-body-leading: 1.5rem;
   --type-body-weight: 400;
-  --type-ui-size: 0.875rem;
+  --type-ui-size: 0.8125rem;
   --type-ui-leading: 1.25rem;
-  --type-ui-weight: 400;
+  --type-ui-weight: 450;
   --type-caption-size: 0.75rem;
   --type-caption-leading: 1rem;
-  --type-caption-weight: 400;
-  --type-control-height: 2rem;
+  --type-caption-weight: 450;
+  --type-control-height: 1.75rem;
 
   /* ---- Motion (interim, Lab 3; Emil's defaults) ---- */
   --motion-ease-out: cubic-bezier(0.23, 1, 0.32, 1);

@@ -1,17 +1,19 @@
 /*
   Lab 2 candidates. A on every axis is tokens.css itself (current sites). Hand-authored; small enough not to generate.
 
-  scale   a Current    dylanfdl.com today: 16/24 body, 14/20 UI, Lora 24 display, one heading size
-          b Roles      Jakub's role scale: Display 36, Title 24, Heading 18, Body 16, UI 14, Caption 13. Hierarchy from size.
-          c Weight-led jakub.kr / benji.org: body and headings share 15px, hierarchy from weight 550 and color; display 32 serif only
+  Approved 2026-09-24 (now A = tokens.css): scale weight-led, serif on all headings, radius round.
 
-  serif   a Display    serif on the page title and pull quotes only (current)
-          b Headings   serif on every heading level (dylanfdl article feel)
+  scale   a Approved   weight-led: body, heading and title 15px, weight 550 carries hierarchy; UI 13 at 450; display 32
+          b Roles      Jakub's role scale: Display 36, Title 24, Heading 18, Body 16, UI 14, Caption 13. Hierarchy from size.
+          c Previous   dylanfdl.com before Lab 2: 16/24 body, 14/20 UI, Lora 24 display, one heading size
+
+  serif   a Approved   serif on every heading level
+          b Display    serif on the page title and pull quotes only (previous)
           c None       sans everywhere; serif only for italic emphasis words
 
-  radius  a Current    xs 4 · sm 6 · md 8 · lg 12 · xl 16
-          b Soft       xs 6 · sm 8 · md 10 · lg 14 · xl 20, pills for chips and segmented
-          c Round      xs 8 · sm 10 · md 12 · lg 16 · xl 24 (Fork's 0.625rem family)
+  radius  a Approved   xs 8 · sm 10 · md 12 · lg 16 · xl 24 (Fork's 0.625rem family)
+          b Soft       xs 6 · sm 8 · md 10 · lg 14 · xl 20
+          c Previous   xs 4 · sm 6 · md 8 · lg 12 · xl 16
 */
 
 /* ---------- scale ---------- */
@@ -41,33 +43,33 @@
 }
 
 [data-scale="c"] {
-  --type-display-size: 2rem;
-  --type-display-leading: 2.5rem;
+  --type-display-size: 1.5rem;
+  --type-display-leading: 2rem;
   --type-display-weight: 400;
-  --type-display-tracking: -0.01em;
-  --type-title-size: 0.9375rem;
-  --type-title-leading: 1.5rem;
-  --type-title-weight: 550;
-  --type-title-tracking: 0;
-  --type-heading-size: 0.9375rem;
+  --type-display-tracking: 0;
+  --type-title-size: 1.25rem;
+  --type-title-leading: 1.75rem;
+  --type-title-weight: 500;
+  --type-title-tracking: -0.01em;
+  --type-heading-size: 1rem;
   --type-heading-leading: 1.5rem;
-  --type-heading-weight: 550;
+  --type-heading-weight: 500;
   --type-heading-tracking: 0;
-  --type-body-size: 0.9375rem;
+  --type-body-size: 1rem;
   --type-body-leading: 1.5rem;
   --type-body-weight: 400;
-  --type-ui-size: 0.8125rem;
+  --type-ui-size: 0.875rem;
   --type-ui-leading: 1.25rem;
-  --type-ui-weight: 450;
+  --type-ui-weight: 400;
   --type-caption-size: 0.75rem;
   --type-caption-leading: 1rem;
-  --type-caption-weight: 450;
-  --type-control-height: 1.75rem;
+  --type-caption-weight: 400;
+  --type-control-height: 2rem;
 }
 
 /* ---------- serif scope ---------- */
 [data-serif="b"] {
-  --font-heading-family: var(--font-lora), ui-serif, Georgia, serif;
+  --font-heading-family: ui-sans-serif, system-ui, sans-serif;
 }
 
 [data-serif="c"] {
@@ -85,9 +87,9 @@
 }
 
 [data-radius="c"] {
-  --rounded-xs: 8px;
-  --rounded-sm: 10px;
-  --rounded-md: 12px;
-  --rounded-lg: 16px;
-  --rounded-xl: 24px;
+  --rounded-xs: 4px;
+  --rounded-sm: 6px;
+  --rounded-md: 8px;
+  --rounded-lg: 12px;
+  --rounded-xl: 16px;
 }

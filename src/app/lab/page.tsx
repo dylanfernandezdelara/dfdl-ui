@@ -8,8 +8,8 @@ import { SiteHeader } from "@/components/site-header"
  */
 const labs = [
   { slug: "color", title: "Color and surfaces", status: "done", summary: "Neutral ramp, three accents in context, depth recipes." },
-  { slug: "type", title: "Type, rhythm and shape", status: "open", summary: "Scale, serif scope, radius with concentric nesting." },
-  { slug: "motion", title: "Motion", status: "pending", summary: "Curves, durations by frequency, exits, press, springs." },
+  { slug: "type", title: "Type, rhythm and shape", status: "done", summary: "Scale, serif scope, radius with concentric nesting." },
+  { slug: "motion", title: "Motion", status: "next", summary: "Curves, durations by frequency, exits, press, springs." },
 ]
 
 export default function LabIndexPage() {

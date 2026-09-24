@@ -12,19 +12,19 @@ const axes: AxisDef<Axis>[] = [
 
 const meta: Record<Axis, Record<CandidateId, { name: string; note: string }>> = {
   scale: {
-    a: { name: "Current", note: "dylanfdl.com today: 16/24 body, 14/20 UI, Lora 24 display at weight 400, one heading size at 500." },
+    a: { name: "Weight-led", note: "Approved in Lab 2. Body, headings and titles share 15px; hierarchy from weight 550, family and color. UI 13px at 450. Display 32 serif." },
     b: { name: "Roles", note: "Jakub's role scale: Display 36, Title 24, Heading 18, Body 16, UI 14, Caption 13. Hierarchy comes from size; headings at 600 with negative tracking." },
-    c: { name: "Weight-led", note: "jakub.kr and benji.org: body, headings and titles share 15px; hierarchy from weight 550 and color. UI 13px at 450. Display 32 stays serif." },
+    c: { name: "Previous", note: "dylanfdl.com before Lab 2: 16/24 body, 14/20 UI, Lora 24 display at weight 400, one heading size at 500." },
   },
   serif: {
-    a: { name: "Display only", note: "Lora on the page title, pull quotes and italic emphasis. Headings inside content are sans." },
-    b: { name: "All headings", note: "Lora on every heading level. The article reads more editorial; the app panel's section headers go serif too." },
+    a: { name: "All headings", note: "Approved in Lab 2. Lora on every heading level, including section headers inside app panels." },
+    b: { name: "Display only", note: "Lora on the page title, pull quotes and italic emphasis. Headings inside content are sans. The previous scope." },
     c: { name: "None", note: "Sans everywhere, including the title. Lora survives only as italic emphasis inside a sentence." },
   },
   radius: {
-    a: { name: "Current", note: "xs 4 · sm 6 · md 8 · lg 12 · xl 16. Buttons and inputs at sm, cards at lg." },
-    b: { name: "Soft", note: "xs 6 · sm 8 · md 10 · lg 14 · xl 20. Kitze's family; noticeably friendlier at control size." },
-    c: { name: "Round", note: "xs 8 · sm 10 · md 12 · lg 16 · xl 24. Fork's 0.625rem family; closest to ChatGPT and Linear." },
+    a: { name: "Round", note: "Approved in Lab 2. xs 8 · sm 10 · md 12 · lg 16 · xl 24. Fork's 0.625rem family; closest to ChatGPT and Linear." },
+    b: { name: "Soft", note: "xs 6 · sm 8 · md 10 · lg 14 · xl 20. Kitze's family." },
+    c: { name: "Previous", note: "xs 4 · sm 6 · md 8 · lg 12 · xl 16. The interim values before Lab 2." },
   },
 }
 
