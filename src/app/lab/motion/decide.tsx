@@ -15,15 +15,15 @@ import { CandidateScope, IDS, type AxisDef, type CandidateId, type Selection } f
 
 type Axis = "curve" | "exit" | "press"
 
-export const RECOMMENDED: Selection<Axis> = { curve: "b", exit: "b", press: "b" }
+export const RECOMMENDED: Selection<Axis> = { curve: "a", exit: "a", press: "a" }
 
 export const WHY: Record<Axis, string> = {
   curve:
-    "B. Emil's curve spends most of the distance in the first third, so the menu is already where it is going by the time you look; A (Fork's `ease`) starts slow, which reads as lag. C is a softer version of B. Every reference site in the audit uses a strong ease-out.",
+    "A, approved. Emil's curve spends most of the distance in the first third, so the menu is already where it is going by the time you look; B (Fork's previous `ease`) starts slow, which reads as lag. C is a softer version of A. Every reference site in the audit uses a strong ease-out.",
   exit:
-    "B. Leaving should be quicker than arriving: the user has already decided. 75% keeps the path symmetric so a menu closes into its trigger. C's fade-only exit is what you want for toasts, and it is the reduced-motion behaviour, but as the default it loses the sense of where things went.",
+    "A, approved. Leaving should be quicker than arriving: the user has already decided. 75% keeps the path symmetric so a menu closes into its trigger. C's fade-only exit is what you want for toasts, and it is the reduced-motion behaviour, but as the default it loses the sense of where things went.",
   press:
-    "B. 0.97 is the smallest scale that still registers as a press; most people cannot name it but miss it when it is gone. 0.94 is visible on icon buttons, which is too much for something that fires tens of times a day. None is fine, but B is the whole audit's consensus.",
+    "A, approved. 0.97 is the smallest scale that still registers as a press; most people cannot name it but miss it when it is gone. 0.94 is visible on icon buttons, which is too much for something that fires tens of times a day. None is fine, but 0.97 is the whole audit's consensus.",
 }
 
 /** Cubic bezier sampled for an SVG path. */
@@ -40,8 +40,8 @@ function bezierPath(x1: number, y1: number, x2: number, y2: number, w: number, h
 }
 
 const CURVES: Record<CandidateId, { label: string; enter: [number, number, number, number] }> = {
-  a: { label: "0.25, 0.1, 0.25, 1", enter: [0.25, 0.1, 0.25, 1] },
-  b: { label: "0.23, 1, 0.32, 1", enter: [0.23, 1, 0.32, 1] },
+  a: { label: "0.23, 1, 0.32, 1", enter: [0.23, 1, 0.32, 1] },
+  b: { label: "0.25, 0.1, 0.25, 1", enter: [0.25, 0.1, 0.25, 1] },
   c: { label: "0, 0, 0.2, 1", enter: [0, 0, 0.2, 1] },
 }
 
@@ -58,7 +58,7 @@ export function CurvePlot({ id }: { id: CandidateId }) {
         <path d={bezierPath(...c.enter, w, h)} fill="none" className="stroke-accent-solid" strokeWidth="2" />
       </svg>
       <figcaption className="font-mono text-caption text-fg-tertiary">
-        {id === "a" ? "ease = " : ""}cubic-bezier({c.label})
+        {id === "b" ? "ease = " : ""}cubic-bezier({c.label})
         <br />
         <span className="text-fg-secondary">dashed line = first third of the time</span>
       </figcaption>

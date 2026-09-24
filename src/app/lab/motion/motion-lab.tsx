@@ -18,18 +18,18 @@ const axes: AxisDef<Axis>[] = [
 
 const meta: Record<Axis, Record<CandidateId, { name: string; note: string }>> = {
   curve: {
-    a: { name: "Fork today", note: "Built-in `ease` on everything, drawers included. Symmetric S-curve; starts slow, which is the part Emil objects to." },
-    b: { name: "Strong out", note: "Emil's cubic-bezier(0.23, 1, 0.32, 1): almost all the distance in the first third, long settle. Drawers on the iOS curve (0.32, 0.72, 0, 1)." },
+    a: { name: "Strong out", note: "Approved. Emil's cubic-bezier(0.23, 1, 0.32, 1): almost all the distance in the first third, long settle. Drawers on the iOS curve (0.32, 0.72, 0, 1)." },
+    b: { name: "Fork before", note: "Built-in `ease` on everything, drawers included. Symmetric S-curve; starts slow, which is the part Emil objects to." },
     c: { name: "Decelerate", note: "Material's cubic-bezier(0, 0, 0.2, 1): decelerating but gentler than B. Drawers on the same curve." },
   },
   exit: {
-    a: { name: "Symmetric", note: "Exits take as long as enters and reverse the same path." },
-    b: { name: "Shorter", note: "Exits at 75% of the enter duration, same path. The audit found most reference sites run exits a quarter shorter." },
+    a: { name: "Shorter", note: "Approved. Exits at 75% of the enter duration, same path. The audit found most reference sites run exits a quarter shorter." },
+    b: { name: "Symmetric", note: "Exits take as long as enters and reverse the same path." },
     c: { name: "Fade out", note: "Exits at 50%, opacity only. Nothing scales or moves on the way out; enters are unchanged." },
   },
   press: {
-    a: { name: "None", note: "Color change only on press. Fork today." },
-    b: { name: "0.97", note: "Emil's default. Reads as a physical press without looking like a toy." },
+    a: { name: "0.97", note: "Approved. Emil's default. Reads as a physical press without looking like a toy." },
+    b: { name: "None", note: "Color change only on press. Fork before." },
     c: { name: "0.94", note: "Deeper press, kitze-like. Noticeable on large buttons, heavy on icon buttons." },
   },
 }

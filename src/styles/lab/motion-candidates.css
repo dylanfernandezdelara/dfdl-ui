@@ -1,17 +1,16 @@
 /*
-  Lab 3 candidates. Unlike Labs 1 and 2, A here is Fork today (built-in `ease`, symmetric, no press scale),
-  not tokens.css, because the tokens hold Emil's interim defaults and the baseline rule says A = existing sites.
+  Lab 3 candidates. Approved 2026-09-24; A on every axis is now tokens.css. Fork's previous motion kept as B.
 
-  curve  a Fork today   built-in `ease` everywhere, drawers too
-         b Strong out   Emil: cubic-bezier(0.23, 1, 0.32, 1); drawers cubic-bezier(0.32, 0.72, 0, 1)
+  curve  a Approved     Emil: cubic-bezier(0.23, 1, 0.32, 1); drawers cubic-bezier(0.32, 0.72, 0, 1)
+         b Fork before  built-in `ease` everywhere, drawers too
          c Decelerate   Material: cubic-bezier(0, 0, 0.2, 1); gentler tail, drawers same
 
-  exit   a Symmetric    exits take as long as enters and reverse the same path
-         b Shorter      exits at 75% of the enter duration, same path
+  exit   a Approved     exits at 75% of the enter duration, same path
+         b Symmetric    exits take as long as enters and reverse the same path
          c Fade out     exits at 50%, opacity only; nothing scales or moves on the way out
 
-  press  a None         color change only (Fork today)
-         b 0.97         Emil's default press
+  press  a Approved     0.97
+         b None         color change only (Fork before)
          c 0.94         deeper press, kitze-like
 
   Lab-only controls, not decisions:
@@ -22,14 +21,14 @@
 */
 
 [data-curve="a"] {
-  --motion-ease-out: ease;
-  --motion-ease-in-out: ease;
-  --motion-ease-drawer: ease;
-}
-[data-curve="b"] {
   --motion-ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   --motion-ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
   --motion-ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+}
+[data-curve="b"] {
+  --motion-ease-out: ease;
+  --motion-ease-in-out: ease;
+  --motion-ease-drawer: ease;
 }
 [data-curve="c"] {
   --motion-ease-out: cubic-bezier(0, 0, 0.2, 1);
@@ -38,11 +37,11 @@
 }
 
 [data-exit="a"] {
-  --motion-exit-factor: 1;
+  --motion-exit-factor: 0.75;
   --motion-exit-scale: 1;
 }
 [data-exit="b"] {
-  --motion-exit-factor: 0.75;
+  --motion-exit-factor: 1;
   --motion-exit-scale: 1;
 }
 [data-exit="c"] {
@@ -51,10 +50,10 @@
 }
 
 [data-press="a"] {
-  --motion-press: 1;
+  --motion-press: 0.97;
 }
 [data-press="b"] {
-  --motion-press: 0.97;
+  --motion-press: 1;
 }
 [data-press="c"] {
   --motion-press: 0.94;
