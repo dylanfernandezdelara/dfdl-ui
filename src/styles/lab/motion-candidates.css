@@ -60,6 +60,13 @@
   --motion-press: 0.94;
 }
 
+[data-speed="quarter"] {
+  --motion-instant: 400ms;
+  --motion-fast: 600ms;
+  --motion-normal: 800ms;
+  --motion-slow: 1200ms;
+  --motion-slower: 2000ms;
+}
 [data-speed="slow"] {
   --motion-instant: 1000ms;
   --motion-fast: 1500ms;

@@ -15,29 +15,34 @@ import "./specimens.css"
 const control =
   "spec-press inline-flex h-control items-center justify-center gap-1.5 whitespace-nowrap rounded-sm px-3 text-ui font-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
 
-export function PressRow() {
+export function PressRow({ pressed }: { pressed?: boolean }) {
+  const p = pressed ? "" : undefined
   return (
     <div className="flex flex-wrap items-center gap-2">
-      <button type="button" className={cn(control, "bg-accent-solid text-fg-on-accent hover:bg-accent-solid-hover")}>Save changes</button>
-      <button type="button" className={cn(control, "border border-line bg-surface text-fg elevation-raised hover:bg-surface-hover")}>Cancel</button>
-      <button type="button" className={cn(control, "text-fg-secondary hover:bg-surface-hover hover:text-fg")}>Learn more</button>
-      <button type="button" aria-label="Copy" className={cn(control, "w-7 border border-line bg-surface px-0 text-fg-secondary elevation-raised hover:bg-surface-hover hover:text-fg")}>
+      <button type="button" data-pressed={p} className={cn(control, "bg-accent-solid text-fg-on-accent hover:bg-accent-solid-hover")}>Save changes</button>
+      <button type="button" data-pressed={p} className={cn(control, "border border-line bg-surface text-fg elevation-raised hover:bg-surface-hover")}>Cancel</button>
+      <button type="button" data-pressed={p} className={cn(control, "text-fg-secondary hover:bg-surface-hover hover:text-fg")}>Learn more</button>
+      <button type="button" data-pressed={p} aria-label="Copy" className={cn(control, "w-7 border border-line bg-surface px-0 text-fg-secondary elevation-raised hover:bg-surface-hover hover:text-fg")}>
         <Copy className="size-4" strokeWidth={1.5} aria-hidden />
       </button>
-      <span className="text-caption text-fg-tertiary">Press and hold to see the scale.</span>
+      {pressed === undefined ? <span className="text-caption text-fg-tertiary">Press and hold to see the scale.</span> : null}
     </div>
   )
 }
 
-function useOpen(initial = false) {
-  const [open, setOpen] = useState(initial)
-  return { open, toggle: () => setOpen((o) => !o), set: setOpen }
+/** Local open state unless a parent drives it (synchronized comparisons). */
+function useOpen(controlled?: boolean) {
+  const [local, setLocal] = useState(false)
+  const open = controlled ?? local
+  return { open, toggle: () => setLocal((o) => !o), set: setLocal }
 }
 
-export function PopoverSpec({ id }: { id?: string }) {
-  const { open, toggle, set } = useOpen()
+export type Controlled = { open?: boolean }
+
+export function PopoverSpec({ open: controlled }: Controlled) {
+  const { open, toggle, set } = useOpen(controlled)
   return (
-    <div className="relative inline-block" data-spec={id}>
+    <div className="relative inline-block">
       <button type="button" onClick={toggle} aria-expanded={open} className={cn(control, "border border-line bg-surface text-fg elevation-raised hover:bg-surface-hover")}>
         Chat options <ChevronDown className="size-4 text-fg-tertiary" strokeWidth={1.5} aria-hidden />
       </button>
@@ -84,8 +89,8 @@ export function TooltipSpec() {
 }
 
 /** Dialog constrained to a frame so it can sit inline on the lab page. */
-export function DialogSpec() {
-  const { open, toggle, set } = useOpen()
+export function DialogSpec({ open: controlled }: Controlled) {
+  const { open, toggle, set } = useOpen(controlled)
   return (
     <div className="relative h-56 overflow-hidden rounded-lg border border-line bg-page">
       <div className="p-major">
@@ -108,8 +113,8 @@ export function DialogSpec() {
 }
 
 /** Bottom sheet inside a phone-shaped frame. */
-export function DrawerSpec() {
-  const { open, toggle, set } = useOpen()
+export function DrawerSpec({ open: controlled }: Controlled) {
+  const { open, toggle, set } = useOpen(controlled)
   return (
     <div className="relative h-72 w-44 overflow-hidden rounded-xl border border-line bg-page">
       <div className="p-minor">
@@ -186,13 +191,13 @@ export function SwitchSpec() {
   )
 }
 
-export function ToastSpec() {
-  const { open, set } = useOpen()
+export function ToastSpec({ open: controlled }: Controlled) {
+  const { open, set } = useOpen(controlled)
   useEffect(() => {
-    if (!open) return
+    if (!open || controlled !== undefined) return
     const t = setTimeout(() => set(false), 2400)
     return () => clearTimeout(t)
-  }, [open, set])
+  }, [open, controlled, set])
   return (
     <div className="relative h-24 overflow-hidden rounded-lg border border-line bg-page p-minor">
       <button type="button" onClick={() => set(true)} className={cn(control, "border border-line bg-surface text-fg elevation-raised hover:bg-surface-hover")}>

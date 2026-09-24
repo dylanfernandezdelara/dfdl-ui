@@ -139,7 +139,8 @@
     background-color var(--motion-fast) var(--motion-ease-out),
     color var(--motion-fast) var(--motion-ease-out);
 }
-.spec-press:active {
+.spec-press:active,
+.spec-press[data-pressed] {
   scale: var(--motion-press);
 }
 

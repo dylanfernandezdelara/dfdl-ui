@@ -1,11 +1,12 @@
 "use client"
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
-import { useCallback } from "react"
+import { useCallback, useState } from "react"
 
 import { cn } from "@/lib/utils"
 
-import { CandidateScope, Compare, IDS, PinButton, Section, Segmented, Shortlist, Toolbar, describe, useSelection, type AxisDef, type CandidateId, type Selection } from "../_shared/candidates"
+import { CandidateScope, Compare, IDS, PinButton, Section, Segmented, Shortlist, Toolbar, describe, encode, useSelection, type AxisDef, type CandidateId, type Selection } from "../_shared/candidates"
+import { CurvePlot, RECOMMENDED, SyncRow, WHY } from "./decide"
 import { DialogSpec, DrawerSpec, PopoverSpec, PressRow, SwitchSpec, TabsSpec, ToastSpec, TooltipSpec } from "./specimens"
 
 type Axis = "curve" | "exit" | "press"
@@ -110,6 +111,61 @@ function Everything({ dark }: { dark: boolean }) {
   )
 }
 
+function Decide({ selection, load }: { selection: Selection<Axis>; load: (s: Selection<Axis>) => void }) {
+  const [speed, setSpeed] = useState<"normal" | "quarter" | "slow">("quarter")
+  const isRec = encode(axes, selection) === encode(axes, RECOMMENDED)
+  return (
+    <Section title="Decide" lede="Three questions, each with all three answers firing at once. If you cannot tell them apart at ¼×, that is itself the answer: take the recommendation. It is the audit's consensus and every value is measured, not guessed.">
+      <div className="mb-12 flex flex-wrap items-center gap-major rounded-lg border border-accent-border bg-accent-bg px-major py-minor">
+        <p className="text-ui text-accent-text">
+          Recommended: <span className="font-medium">{describe(axes, RECOMMENDED, meta)}</span>, popover from the trigger, drawer on the curve, spring reserved for gestures.
+        </p>
+        <button
+          type="button"
+          onClick={() => load(RECOMMENDED)}
+          disabled={isRec}
+          className={cn(
+            "ml-auto h-control rounded-sm bg-accent-solid px-3 text-ui font-medium text-fg-on-accent transition-interactive duration-fast ease-out press disabled:opacity-60",
+            "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus",
+          )}
+        >
+          {isRec ? "Recommended is selected" : "Accept recommended"}
+        </button>
+      </div>
+
+      <div className="flex flex-col gap-12">
+        <div>
+          <h3 className="font-heading text-heading text-fg-strong">1. Curve: how the distance is spent</h3>
+          <p className="mt-1 mb-minor max-w-reading text-ui text-fg-secondary">{WHY.curve}</p>
+          <SyncRow axis="curve" axes={axes} selection={selection} meta={meta.curve} recommended={RECOMMENDED.curve} speed={speed} onSpeed={setSpeed} playLabel="Open all three menus" hold={900}>
+            {(s, open) => (
+              <div className="flex flex-col gap-major">
+                <CurvePlot id={s.curve} />
+                <PopoverSpec open={open} />
+                <div className="h-44" />
+              </div>
+            )}
+          </SyncRow>
+        </div>
+        <div>
+          <h3 className="font-heading text-heading text-fg-strong">2. Exit: how things leave</h3>
+          <p className="mt-1 mb-minor max-w-reading text-ui text-fg-secondary">{WHY.exit}</p>
+          <SyncRow axis="exit" axes={axes} selection={selection} meta={meta.exit} recommended={RECOMMENDED.exit} speed={speed} onSpeed={setSpeed} playLabel="Open and close all three dialogs" hold={900}>
+            {(s, open) => <DialogSpec open={open} />}
+          </SyncRow>
+        </div>
+        <div>
+          <h3 className="font-heading text-heading text-fg-strong">3. Press: what a click feels like</h3>
+          <p className="mt-1 mb-minor max-w-reading text-ui text-fg-secondary">{WHY.press}</p>
+          <SyncRow axis="press" axes={axes} selection={selection} meta={meta.press} recommended={RECOMMENDED.press} speed={speed} onSpeed={setSpeed} playLabel="Press all three" hold={500}>
+            {(s, open) => <PressRow pressed={open} />}
+          </SyncRow>
+        </div>
+      </div>
+    </Section>
+  )
+}
+
 export function MotionLab() {
   const { selection, set, load, pins, pin, unpin, isPinned } = useSelection(axes)
   const { knobs, set: setKnob } = useKnobs()
@@ -128,6 +184,8 @@ export function MotionLab() {
           <Knob label="Reduced" value={knobs.reduced} options={[["off", "Off"], ["on", "Preview"]]} onChange={(v) => setKnob("reduced", v, "off")} />
         </div>
       </Toolbar>
+
+      <Decide selection={selection} load={load} />
 
       <Section title="Together" lede={`Current selection: ${describe(axes, selection, meta)}. Click everything. Set speed to 0.1× to see the curve; at 1× judge only how it feels. The bottom row of knobs are questions, not candidates: popover origin, drawer physics, and what reduced motion should keep.`}>
         <div className="grid grid-cols-2 gap-major">
