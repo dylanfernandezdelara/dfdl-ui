@@ -47,7 +47,7 @@ Next 16 (App Router, Turbopack), React 19, Tailwind v4, Base UI via shadcn (`bas
 
 ## Figma
 
-Remote MCP is connected in Devin CLI at user scope (`figma`). Work only in the `DFDL Studio` team (Pro, Full seat). Agents write to `dfdl — scratch`, never the published `dfdl` library. Do not add Figma's desktop server (`127.0.0.1:3845`) to the CLI; it shadows the remote write tools. Load `figma-use` before any `use_figma` call.
+Remote MCP is connected in Devin CLI at user scope (`figma`). Work only in the `DFDL Studio` team (Pro, Full seat). Agents write to `dfdl — scratch`, never the published `dfdl` library. Do not add Figma's desktop server (`127.0.0.1:3845`) to the CLI; it shadows the remote write tools. Load `figma-use` before any `use_figma` call. Lab captures live in `dfdl — lab` (`slkV1ZgOSG2hBKNI3dBsU5`). To push a page: `generate_figma_design` for a capture id, open `http://localhost:<port>/<route>#figmacapture=<id>&figmaendpoint=<encoded endpoint>&figmadelay=2500` in agent-browser (the capture script is already in the dev layout), then poll. Set `localStorage.theme` before opening to capture dark.
 
 ## Git
 

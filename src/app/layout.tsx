@@ -37,6 +37,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html lang="en" className={`${lora.variable} ${geistMono.variable} h-full`} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+        {/* Figma code-to-canvas capture hook. Development only; inert unless the page is opened with #figmacapture=. */}
+        {process.env.NODE_ENV !== "production" ? <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async /> : null}
       </head>
       <body className="flex min-h-full flex-col">
         <LayoutGridHost>{children}</LayoutGridHost>
