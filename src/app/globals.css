@@ -15,7 +15,7 @@
     accent     bg-accent-bg border-accent-border bg-accent-solid hover:bg-accent-solid-hover text-accent-text
     status     text-danger bg-success ... (solid only for now)
     rounded    rounded-sm rounded-md rounded-lg rounded-xl rounded-full
-    elevation  shadow-raised shadow-floating
+    elevation  elevation-raised elevation-floating
     motion     ease-out ease-in-out ease-drawer, duration-instant/fast/normal/slow, transition-interactive, transition-icon, press
     measure    max-w-reading max-w-content
     rhythm     p-minor p-major gap-minor gap-major (8px / 24px)
@@ -80,8 +80,6 @@
   --color-success: var(--status-success);
   --color-warning: var(--status-warning);
 
-  --shadow-raised: var(--elevation-raised);
-  --shadow-floating: var(--elevation-floating);
 
   /* shadcn compatibility: their names, our values, so stock Base UI components render on dfdl tokens.
      `primary` here is shadcn's word for the accent fill. For body text use text-fg, never text-primary. */
@@ -132,6 +130,14 @@
 /* Icon swaps: cross-fade with opacity, scale and blur, never visibility. */
 @utility transition-icon {
   transition-property: opacity, scale, filter;
+}
+/* Elevation. Plain box-shadow utilities rather than Tailwind's shadow-* namespace, which @shadcn/lint 0.1.0
+   cannot distinguish from shadow-<color> and flags as a raw color. */
+@utility elevation-raised {
+  box-shadow: var(--elevation-raised);
+}
+@utility elevation-floating {
+  box-shadow: var(--elevation-floating);
 }
 /* Press feedback. Scale is movement, so it is dropped under reduced motion; color and shadow changes still carry the state. */
 @utility press {

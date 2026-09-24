@@ -49,7 +49,7 @@ export function LayoutGridHost({ children }: { children: ReactNode }) {
           type="button"
           onClick={toggleLayoutGrid}
           className={cn(
-            "flex size-8 shrink-0 items-center justify-center rounded-md border border-line bg-surface shadow-raised",
+            "flex size-8 shrink-0 items-center justify-center rounded-md border border-line bg-surface elevation-raised",
             "transition-interactive duration-fast ease-out press",
             "hover:bg-surface-hover",
             "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus",

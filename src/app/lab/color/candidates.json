@@ -1,0 +1,294 @@
+{
+  "brandProportion": 0.452,
+  "neutrals": {
+    "b": {
+      "name": "Unified warm",
+      "note": "Surfaces and text share one warm hue (kitze's approach, but warm instead of green). Text stops being cool slate.",
+      "hue": 80,
+      "chroma": 0.014,
+      "light": {
+        "ramp": [
+          "#fffcf7",
+          "#fdf8f1",
+          "#f4efe7",
+          "#ede7df",
+          "#e6e0d7",
+          "#ded8cf",
+          "#d1cbc2",
+          "#bbb6ad",
+          "#928d86",
+          "#86817a",
+          "#66625c",
+          "#1a1814"
+        ],
+        "contrast": {
+          "fgOnPage": 10.08,
+          "fgSecondaryOnPage": 4.73,
+          "fgTertiaryOnPage": 2.48,
+          "fgStrongOnPage": 19.84,
+          "fgOnSurface": 10.08
+        }
+      },
+      "dark": {
+        "ramp": [
+          "#13110c",
+          "#1b1813",
+          "#25221c",
+          "#2d2922",
+          "#353029",
+          "#3e3932",
+          "#4c4740",
+          "#645f58",
+          "#726e66",
+          "#7f7b73",
+          "#b8b3ac",
+          "#f1eee8"
+        ],
+        "contrast": {
+          "fgOnPage": 13.35,
+          "fgSecondaryOnPage": 6.55,
+          "fgTertiaryOnPage": 4.4,
+          "fgStrongOnPage": 15.59,
+          "fgOnSurface": 12.51
+        }
+      }
+    },
+    "c": {
+      "name": "Near neutral",
+      "note": "A trace of warmth only (jakub, benji, dialkit). Reads technical and quiet; the accent does all the color work.",
+      "hue": 80,
+      "chroma": 0.003,
+      "light": {
+        "ramp": [
+          "#fdfcfb",
+          "#f9f9f7",
+          "#f1f0ee",
+          "#e9e8e6",
+          "#e2e1df",
+          "#dad8d6",
+          "#cdccca",
+          "#b7b6b4",
+          "#8f8e8c",
+          "#838280",
+          "#646361",
+          "#181817"
+        ],
+        "contrast": {
+          "fgOnPage": 10.07,
+          "fgSecondaryOnPage": 4.72,
+          "fgTertiaryOnPage": 2.48,
+          "fgStrongOnPage": 19.84,
+          "fgOnSurface": 10.07
+        }
+      },
+      "dark": {
+        "ramp": [
+          "#121110",
+          "#191817",
+          "#232221",
+          "#2a2928",
+          "#32312f",
+          "#3b3a38",
+          "#494846",
+          "#61605e",
+          "#6f6e6d",
+          "#7c7b79",
+          "#b5b4b2",
+          "#efeeed"
+        ],
+        "contrast": {
+          "fgOnPage": 13.36,
+          "fgSecondaryOnPage": 6.55,
+          "fgTertiaryOnPage": 4.4,
+          "fgStrongOnPage": 15.59,
+          "fgOnSurface": 12.51
+        }
+      }
+    },
+    "a": {
+      "name": "Current",
+      "note": "dylanfdl.com today: warm cream surfaces, cool slate text.",
+      "light": {
+        "contrast": {
+          "fgOnPage": 10.2,
+          "fgSecondaryOnPage": 4.78,
+          "fgTertiaryOnPage": 2.51,
+          "fgStrongOnPage": 20.41,
+          "fgOnSurface": 9.7
+        }
+      },
+      "dark": {
+        "contrast": {
+          "fgOnPage": 12.2,
+          "fgSecondaryOnPage": 5.98,
+          "fgTertiaryOnPage": 4.02,
+          "fgStrongOnPage": 14.24,
+          "fgOnSurface": 11.65
+        }
+      }
+    }
+  },
+  "accents": {
+    "a": {
+      "name": "Indigo",
+      "note": "Current dylanfdl.com blue, pinned exactly on the solid step.",
+      "hue": 281.25,
+      "light": {
+        "solid": "oklch(52.40% 0.1237 281.25)",
+        "ramp": [
+          "#fcfcff",
+          "#f7f7ff",
+          "#eceeff",
+          "#e0e3ff",
+          "#d1d5ff",
+          "#bfc3ff",
+          "#aaaef8",
+          "#8e91e2",
+          "#5f5faf",
+          "#5453a2",
+          "#434186",
+          "#151337"
+        ],
+        "contrast": {
+          "onAccentOnSolid": 5.55,
+          "accentTextOnAccentBg": 7.79,
+          "accentTextOnPage": 8.89
+        }
+      },
+      "dark": {
+        "solid": "oklch(72.00% 0.1200 278.00)",
+        "ramp": [
+          "#12131d",
+          "#1a1a28",
+          "#26273a",
+          "#2f3048",
+          "#393a55",
+          "#454766",
+          "#585a7d",
+          "#6e7196",
+          "#939cef",
+          "#aaaed4",
+          "#d2d5f4",
+          "#f3f4ff"
+        ],
+        "contrast": {
+          "onAccentOnSolid": 6.79,
+          "accentTextOnAccentBg": 10.17,
+          "accentTextOnPage": 11.94
+        }
+      }
+    },
+    "b": {
+      "name": "Ember",
+      "note": "The warm hue already in the site's rainbow word and in Interface Craft's cards. Same lightness, same relative vividness.",
+      "hue": 48,
+      "light": {
+        "solid": "oklch(52.40% 0.0645 48.00)",
+        "ramp": [
+          "#fffcfb",
+          "#fdf7f4",
+          "#f9ece6",
+          "#f4e0d6",
+          "#edd2c5",
+          "#e3c1b0",
+          "#d4ac98",
+          "#bb907a",
+          "#895f49",
+          "#7d533e",
+          "#65422f",
+          "#26140a"
+        ],
+        "contrast": {
+          "onAccentOnSolid": 5.48,
+          "accentTextOnAccentBg": 7.68,
+          "accentTextOnPage": 8.77
+        }
+      },
+      "dark": {
+        "solid": "oklch(72.00% 0.0725 48.00)",
+        "ramp": [
+          "#1d100a",
+          "#28170e",
+          "#3a2215",
+          "#482a1a",
+          "#563320",
+          "#673f2a",
+          "#7e513a",
+          "#98674f",
+          "#cb977d",
+          "#d6a48b",
+          "#f7ceb9",
+          "#fff2ec"
+        ],
+        "contrast": {
+          "onAccentOnSolid": 6.8,
+          "accentTextOnAccentBg": 10.15,
+          "accentTextOnPage": 11.84
+        }
+      }
+    },
+    "c": {
+      "name": "Moss",
+      "note": "A calm green near kitze's lime family, desaturated to match. Same lightness, same relative vividness.",
+      "hue": 150,
+      "light": {
+        "solid": "oklch(52.40% 0.0652 150.00)",
+        "ramp": [
+          "#fbfdfc",
+          "#f5faf5",
+          "#e8f2e9",
+          "#d9eadc",
+          "#c9e0cc",
+          "#b5d2ba",
+          "#9dc0a3",
+          "#80a687",
+          "#4e7556",
+          "#43694b",
+          "#33553a",
+          "#0c1e10"
+        ],
+        "contrast": {
+          "onAccentOnSolid": 5.2,
+          "accentTextOnAccentBg": 7.38,
+          "accentTextOnPage": 8.35
+        }
+      },
+      "dark": {
+        "solid": "oklch(72.00% 0.0762 150.00)",
+        "ramp": [
+          "#0b170d",
+          "#0f2013",
+          "#172f1d",
+          "#1c3b24",
+          "#23462b",
+          "#2d5536",
+          "#3d6947",
+          "#53815d",
+          "#82b28b",
+          "#90bf99",
+          "#bee3c4",
+          "#ebfaed"
+        ],
+        "contrast": {
+          "onAccentOnSolid": 7.17,
+          "accentTextOnAccentBg": 10.21,
+          "accentTextOnPage": 12.26
+        }
+      }
+    }
+  },
+  "depths": {
+    "b": {
+      "name": "Hairline only",
+      "note": "No shadows anywhere. Structure from 1px borders and one-step surface shifts (benji, kitze)."
+    },
+    "c": {
+      "name": "Lit edge",
+      "note": "Dialkit's inset top highlight on raised surfaces, a soft long drop only on floating ones."
+    },
+    "a": {
+      "name": "Ring and lift",
+      "note": "Current: jakub's 1px ring plus a small lift in light; gooey's inset white ring in dark."
+    }
+  }
+}

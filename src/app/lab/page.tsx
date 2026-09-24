@@ -1,3 +1,5 @@
+import Link from "next/link"
+
 import { SiteHeader } from "@/components/site-header"
 
 /**
@@ -5,7 +7,7 @@ import { SiteHeader } from "@/components/site-header"
  * Dylan picks, the choice lands in decisions.md and tokens.css.
  */
 const labs = [
-  { slug: "color", title: "Color and surfaces", status: "next", summary: "Neutral ramp, three accents in context, depth recipes." },
+  { slug: "color", title: "Color and surfaces", status: "open", summary: "Neutral ramp, three accents in context, depth recipes." },
   { slug: "type", title: "Type, rhythm and shape", status: "pending", summary: "Scale, serif scope, radius with concentric nesting." },
   { slug: "motion", title: "Motion", status: "pending", summary: "Curves, durations by frequency, exits, press, springs." },
 ]
@@ -28,7 +30,7 @@ export default function LabIndexPage() {
                 <h2 className="text-base font-medium leading-6 text-fg-strong">{lab.title}</h2>
                 <p className="mt-1 text-sm leading-6 text-fg-secondary">{lab.summary}</p>
               </div>
-              <span className="text-sm text-fg-tertiary">/lab/{lab.slug}</span>
+              <Link href={`/lab/${lab.slug}`} className="text-sm text-accent-text underline decoration-accent-border underline-offset-2">/lab/{lab.slug}</Link>
             </li>
           ))}
         </ul>
