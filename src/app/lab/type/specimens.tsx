@@ -111,14 +111,14 @@ export function ConcentricCard() {
       <p className="font-mono text-caption uppercase tracking-wider text-fg-tertiary">Invite</p>
       <h3 className="mt-1 font-heading text-heading text-fg-strong">Share this chat</h3>
       <div className="mt-minor flex h-control items-center gap-1 rounded-md border border-line bg-page p-1 pl-2">
-        <span className="flex h-6 items-center gap-1 rounded-xs bg-accent-bg px-1.5 text-caption text-accent-text">dylan@fork.app</span>
-        <span className="flex-1 text-ui text-fg-tertiary">Add people…</span>
-        <span className="flex h-6 items-center rounded-xs bg-accent-solid px-2 text-caption font-medium text-fg-on-accent">Send</span>
+        <span className="flex h-6 shrink-0 items-center gap-1 whitespace-nowrap rounded-xs bg-accent-bg px-1.5 text-caption text-accent-text">dylan@fork.app</span>
+        <span className="min-w-0 flex-1 truncate text-ui text-fg-tertiary">Add people…</span>
+        <span className="flex h-6 shrink-0 items-center whitespace-nowrap rounded-xs bg-accent-solid px-2 text-caption font-medium text-fg-on-accent">Send</span>
       </div>
-      <div className="mt-minor flex gap-2">
-        <span className="flex h-control items-center rounded-sm bg-accent-solid px-3 text-ui font-medium text-fg-on-accent">Copy link</span>
-        <span className="flex h-control items-center rounded-sm border border-line bg-surface px-3 text-ui text-fg">Cancel</span>
-        <span className="ml-auto flex h-control items-center rounded-full border border-line px-3 text-ui text-fg-secondary">Anyone with link</span>
+      <div className="mt-minor flex flex-wrap gap-2">
+        <span className="flex h-control items-center whitespace-nowrap rounded-sm bg-accent-solid px-3 text-ui font-medium text-fg-on-accent">Copy link</span>
+        <span className="flex h-control items-center whitespace-nowrap rounded-sm border border-line bg-surface px-3 text-ui text-fg">Cancel</span>
+        <span className="ml-auto flex h-control items-center whitespace-nowrap rounded-full border border-line px-3 text-ui text-fg-secondary">Anyone with link</span>
       </div>
     </div>
   )

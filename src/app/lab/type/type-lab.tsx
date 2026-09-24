@@ -1,6 +1,6 @@
 "use client"
 
-import { CandidateScope, Compare, IDS, Section, Segmented, Toolbar, useSelection, type AxisDef, type CandidateId } from "../_shared/candidates"
+import { CandidateScope, Compare, IDS, PinButton, Section, Segmented, Shortlist, Toolbar, describe, useSelection, type AxisDef, type CandidateId, type Selection } from "../_shared/candidates"
 import { Article, ConcentricCard, DensePanel, TypeSpecimen } from "./specimens"
 
 type Axis = "scale" | "serif" | "radius"
@@ -28,33 +28,48 @@ const meta: Record<Axis, Record<CandidateId, { name: string; note: string }>> = 
   },
 }
 
+function Everything({ dark }: { dark: boolean }) {
+  return (
+    <>
+      <span className="font-mono text-caption uppercase tracking-wider text-fg-tertiary">{dark ? "Dark" : "Light"}</span>
+      <div className="mt-major">
+        <Article />
+      </div>
+      <div className="mt-12">
+        <DensePanel />
+      </div>
+      <div className="mt-major max-w-sm">
+        <ConcentricCard />
+      </div>
+    </>
+  )
+}
+
 export function TypeLab() {
-  const { selection, set } = useSelection(axes)
+  const { selection, set, load, pins, pin, unpin, isPinned } = useSelection(axes)
   return (
     <>
       <Toolbar>
         {axes.map(({ axis, label }) => (
-          <Segmented key={axis} label={label} value={selection[axis]} options={IDS.map((id) => ({ id, name: meta[axis][id].name }))} onChange={(id) => set(axis, id)} />
+          <Segmented key={axis} label={label} value={selection[axis]} options={IDS.map((id) => ({ id, name: meta[axis][id].name, note: meta[axis][id].note }))} onChange={(id) => set(axis, id)} />
         ))}
+        <PinButton pinned={isPinned} onPin={pin} />
       </Toolbar>
 
-      <Section title="Together" lede="The current selection on an article and a dense app panel, light and dark. Press g to check the rhythm; every line-height is a multiple of 8 or sits on a 4 half-step.">
+      <Section title="Together" lede={`Current selection: ${describe(axes, selection, meta)}. Hover a control for what each candidate changes. Press g to check the rhythm.`}>
         <div className="grid grid-cols-2 gap-major">
           {[false, true].map((dark) => (
             <CandidateScope key={String(dark)} selection={selection} dark={dark} className="rounded-xl border border-line bg-page p-major text-fg">
-              <span className="font-mono text-caption uppercase tracking-wider text-fg-tertiary">{dark ? "Dark" : "Light"}</span>
-              <div className="mt-major">
-                <Article />
-              </div>
-              <div className="mt-12">
-                <DensePanel />
-              </div>
-              <div className="mt-major max-w-sm">
-                <ConcentricCard />
-              </div>
+              <Everything dark={dark} />
             </CandidateScope>
           ))}
         </div>
+      </Section>
+
+      <Section title="Shortlist" lede="Pin the combinations you want to weigh against each other. Each renders in full, light and dark, and the list travels in the URL, so pasting it back is your answer.">
+        <Shortlist axes={axes} pins={pins} meta={meta} current={selection} onLoad={(s: Selection<Axis>) => load(s)} onUnpin={unpin}>
+          {(_, dark) => <Everything dark={dark} />}
+        </Shortlist>
       </Section>
 
       <Section title="Scale" lede="Same content, three ways of building hierarchy. B leans on size, C leans on weight. Look at the dense panel especially: that is where 13px versus 14px and weight 450 versus 400 show up.">
