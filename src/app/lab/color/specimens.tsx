@@ -85,9 +85,9 @@ export function StatusBadges() {
     <div className="flex flex-wrap items-center gap-2">
       <span className={cn(b, "bg-accent-bg text-accent-text")}>Selected</span>
       <span className={cn(b, "border border-line text-fg-secondary")}>Draft</span>
-      <span className={cn(b, "text-success")}>Passed</span>
-      <span className={cn(b, "text-danger")}>Failed</span>
-      <span className={cn(b, "text-warning")}>Pending</span>
+      <span className={cn(b, "text-success-text")}>Passed</span>
+      <span className={cn(b, "text-danger-text")}>Failed</span>
+      <span className={cn(b, "text-warning-text")}>Pending</span>
     </div>
   )
 }
@@ -99,7 +99,7 @@ export function DataRow() {
       <div className="flex-1">
         <h3 className="text-base font-medium leading-6 text-fg-strong">Local Communities & Bird Habitat Stewardship Act</h3>
         <p className="mt-0.5 text-sm text-fg-secondary">
-          <span className="text-success">Passed</span> · 345–60 · House · H.R. 3276
+          <span className="text-success-text">Passed</span> · 345–60 · House · H.R. 3276
         </p>
         <p className="mt-1 text-sm leading-6 text-fg">
           Provides statutory authority for the Urban Bird Treaty Program, administered by the Fish and Wildlife Service.
@@ -133,7 +133,7 @@ export function FloatingCard() {
         </div>
       ))}
       <div className="my-1 border-t border-separator" />
-      <div className="flex h-8 items-center rounded-sm px-2 text-sm text-danger">Delete</div>
+      <div className="flex h-8 items-center rounded-sm px-2 text-sm text-danger-text">Delete</div>
     </div>
   )
 }

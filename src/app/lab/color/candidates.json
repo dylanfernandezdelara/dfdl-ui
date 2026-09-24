@@ -106,81 +106,32 @@
       }
     },
     "a": {
-      "name": "Current",
-      "note": "dylanfdl.com today: warm cream surfaces, cool slate text.",
+      "name": "Approved",
+      "note": "Approved in Lab 1: unified warm neutral (hue 80). Before Lab 1 this was dylanfdl.com’s cream surfaces with cool slate text.",
       "light": {
         "contrast": {
-          "fgOnPage": 10.2,
-          "fgSecondaryOnPage": 4.78,
-          "fgTertiaryOnPage": 2.51,
-          "fgStrongOnPage": 20.41,
-          "fgOnSurface": 9.7
+          "fgOnPage": 10.08,
+          "fgSecondaryOnPage": 4.73,
+          "fgTertiaryOnPage": 2.48,
+          "fgStrongOnPage": 19.84,
+          "fgOnSurface": 10.08
         }
       },
       "dark": {
         "contrast": {
-          "fgOnPage": 12.2,
-          "fgSecondaryOnPage": 5.98,
-          "fgTertiaryOnPage": 4.02,
-          "fgStrongOnPage": 14.24,
-          "fgOnSurface": 11.65
+          "fgOnPage": 13.35,
+          "fgSecondaryOnPage": 6.55,
+          "fgTertiaryOnPage": 4.4,
+          "fgStrongOnPage": 15.59,
+          "fgOnSurface": 12.51
         }
       }
     }
   },
   "accents": {
     "a": {
-      "name": "Indigo",
-      "note": "Current dylanfdl.com blue, pinned exactly on the solid step.",
-      "hue": 281.25,
-      "light": {
-        "solid": "oklch(52.40% 0.1237 281.25)",
-        "ramp": [
-          "#fcfcff",
-          "#f7f7ff",
-          "#eceeff",
-          "#e0e3ff",
-          "#d1d5ff",
-          "#bfc3ff",
-          "#aaaef8",
-          "#8e91e2",
-          "#5f5faf",
-          "#5453a2",
-          "#434186",
-          "#151337"
-        ],
-        "contrast": {
-          "onAccentOnSolid": 5.55,
-          "accentTextOnAccentBg": 7.79,
-          "accentTextOnPage": 8.89
-        }
-      },
-      "dark": {
-        "solid": "oklch(72.00% 0.1200 278.00)",
-        "ramp": [
-          "#12131d",
-          "#1a1a28",
-          "#26273a",
-          "#2f3048",
-          "#393a55",
-          "#454766",
-          "#585a7d",
-          "#6e7196",
-          "#939cef",
-          "#aaaed4",
-          "#d2d5f4",
-          "#f3f4ff"
-        ],
-        "contrast": {
-          "onAccentOnSolid": 6.79,
-          "accentTextOnAccentBg": 10.17,
-          "accentTextOnPage": 11.94
-        }
-      }
-    },
-    "b": {
       "name": "Ember",
-      "note": "The warm hue already in the site's rainbow word and in Interface Craft's cards. Same lightness, same relative vividness.",
+      "note": "Approved in Lab 1. Hue 48 at the previous indigo’s relative vividness.",
       "hue": 48,
       "light": {
         "solid": "oklch(52.40% 0.0645 48.00)",
@@ -224,6 +175,55 @@
           "onAccentOnSolid": 6.8,
           "accentTextOnAccentBg": 10.15,
           "accentTextOnPage": 11.84
+        }
+      }
+    },
+    "b": {
+      "name": "Indigo",
+      "note": "The previous dylanfdl.com blue, for reference.",
+      "hue": 281.25,
+      "light": {
+        "solid": "oklch(52.40% 0.1237 281.25)",
+        "ramp": [
+          "#fcfcff",
+          "#f7f7ff",
+          "#eceeff",
+          "#e0e3ff",
+          "#d1d5ff",
+          "#bfc3ff",
+          "#aaaef8",
+          "#8e91e2",
+          "#5f5faf",
+          "#5453a2",
+          "#434186",
+          "#151337"
+        ],
+        "contrast": {
+          "onAccentOnSolid": 5.55,
+          "accentTextOnAccentBg": 7.79,
+          "accentTextOnPage": 8.89
+        }
+      },
+      "dark": {
+        "solid": "oklch(72.00% 0.1200 278.00)",
+        "ramp": [
+          "#12131d",
+          "#1a1a28",
+          "#26273a",
+          "#2f3048",
+          "#393a55",
+          "#454766",
+          "#585a7d",
+          "#6e7196",
+          "#939cef",
+          "#aaaed4",
+          "#d2d5f4",
+          "#f3f4ff"
+        ],
+        "contrast": {
+          "onAccentOnSolid": 6.79,
+          "accentTextOnAccentBg": 10.17,
+          "accentTextOnPage": 11.94
         }
       }
     },

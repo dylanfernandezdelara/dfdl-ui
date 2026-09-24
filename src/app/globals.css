@@ -13,7 +13,7 @@
     text       text-fg text-fg-secondary text-fg-tertiary text-fg-strong text-fg-disabled text-fg-inverse text-fg-on-accent
     borders    border-line border-line-subtle border-line-strong divide-separator, outline-focus / ring-focus
     accent     bg-accent-bg border-accent-border bg-accent-solid hover:bg-accent-solid-hover text-accent-text
-    status     text-danger bg-success ... (solid only for now)
+    status     {danger,success,warning}: bg-*-bg border-*-border bg-* text-*-text
     rounded    rounded-sm rounded-md rounded-lg rounded-xl rounded-full
     elevation  elevation-raised elevation-floating
     motion     ease-out ease-in-out ease-drawer, duration-instant/fast/normal/slow, transition-interactive, transition-icon, press
@@ -77,8 +77,17 @@
   --color-accent-text: var(--accent-text);
 
   --color-danger: var(--status-danger);
+  --color-danger-bg: var(--status-danger-bg);
+  --color-danger-border: var(--status-danger-border);
+  --color-danger-text: var(--status-danger-text);
   --color-success: var(--status-success);
+  --color-success-bg: var(--status-success-bg);
+  --color-success-border: var(--status-success-border);
+  --color-success-text: var(--status-success-text);
   --color-warning: var(--status-warning);
+  --color-warning-bg: var(--status-warning-bg);
+  --color-warning-border: var(--status-warning-border);
+  --color-warning-text: var(--status-warning-text);
 
 
   /* shadcn compatibility: their names, our values, so stock Base UI components render on dfdl tokens.

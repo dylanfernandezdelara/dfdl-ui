@@ -111,8 +111,8 @@ const brandProportion = brand.c! / maxChroma(brand.l, brand.h!)
 
 type AccentCandidate = { id: "a" | "b" | "c"; name: string; note: string; hue: number }
 const accents: AccentCandidate[] = [
-  { id: "a", name: "Indigo", note: "Current dylanfdl.com blue, pinned exactly on the solid step.", hue: brand.h! },
-  { id: "b", name: "Ember", note: "The warm hue already in the site's rainbow word and in Interface Craft's cards. Same lightness, same relative vividness.", hue: 48 },
+  { id: "a", name: "Ember", note: "Approved in Lab 1. Hue 48 at the previous indigo\u2019s relative vividness.", hue: 48 },
+  { id: "b", name: "Indigo", note: "The previous dylanfdl.com blue, for reference.", hue: brand.h! },
   { id: "c", name: "Moss", note: "A calm green near kitze's lime family, desaturated to match. Same lightness, same relative vividness.", hue: 150 },
 ]
 
@@ -120,8 +120,8 @@ function accentVars(c: AccentCandidate, appearance: Appearance, neutralPage: str
   const proportion = appearance === "light" ? brandProportion : brandProportion * 0.85
   const solidL = appearance === "light" ? brand.l : baseline.dark.accentSolid.l
   let ramp: Ramp = buildRamp({ kind: "accent", appearance, hue: c.hue, chroma: proportion, solidL })
-  if (c.id === "a" && appearance === "light") ramp = pinSolid(ramp, brand)
-  if (c.id === "a" && appearance === "dark") ramp = pinSolid(ramp, baseline.dark.accentSolid)
+  if (c.id === "b" && appearance === "light") ramp = pinSolid(ramp, brand)
+  if (c.id === "b" && appearance === "dark") ramp = pinSolid(ramp, baseline.dark.accentSolid)
   const vars: Record<string, string> = {
     "--accent-bg": toCss(ramp[3]),
     "--accent-border": toCss(ramp[6]),
@@ -180,10 +180,10 @@ for (const n of neutrals) {
   }
 }
 ;(report.neutrals as Record<string, unknown>).a = {
-  name: "Current",
-  note: "dylanfdl.com today: warm cream surfaces, cool slate text.",
-  light: { contrast: measureNeutral(baseline.light) },
-  dark: { contrast: measureNeutral(baseline.dark) },
+  name: "Approved",
+  note: "Approved in Lab 1: unified warm neutral (hue 80). Before Lab 1 this was dylanfdl.com\u2019s cream surfaces with cool slate text.",
+  light: { contrast: measureNeutral(neutralVars(neutrals[0], "light").measured) },
+  dark: { contrast: measureNeutral(neutralVars(neutrals[0], "dark").measured) },
 }
 
 for (const a of accents) {

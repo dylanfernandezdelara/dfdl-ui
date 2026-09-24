@@ -81,21 +81,21 @@
   --border-separator: oklch(28.30% 0.0029 80.00);
 }
 [data-accent="b"] {
-  --accent-bg: oklch(95.20% 0.0161 48.00);
-  --accent-border: oklch(83.60% 0.0452 48.00);
-  --accent-solid: oklch(52.40% 0.0645 48.00);
-  --accent-solid-hover: oklch(48.40% 0.0645 48.00);
-  --accent-text: oklch(41.40% 0.0581 48.00);
-  --border-focus: oklch(52.40% 0.0645 48.00);
+  --accent-bg: oklch(95.20% 0.0233 281.25);
+  --accent-border: oklch(83.60% 0.0832 281.25);
+  --accent-solid: oklch(52.40% 0.1237 281.25);
+  --accent-solid-hover: oklch(48.40% 0.1237 281.25);
+  --accent-text: oklch(41.40% 0.1113 281.25);
+  --border-focus: oklch(52.40% 0.1237 281.25);
   --fg-on-accent: var(--bg-page);
 }
 .dark [data-accent="b"], [data-accent="b"].dark {
-  --accent-bg: oklch(28.00% 0.0435 48.00);
-  --accent-border: oklch(41.00% 0.0652 48.00);
-  --accent-solid: oklch(72.00% 0.0725 48.00);
-  --accent-solid-hover: oklch(76.00% 0.0689 48.00);
-  --accent-text: oklch(88.00% 0.0544 48.00);
-  --border-focus: oklch(72.00% 0.0725 48.00);
+  --accent-bg: oklch(28.00% 0.0344 281.25);
+  --accent-border: oklch(41.00% 0.0515 281.25);
+  --accent-solid: oklch(72.00% 0.1200 278.00);
+  --accent-solid-hover: oklch(76.00% 0.0544 281.25);
+  --accent-text: oklch(88.00% 0.0430 281.25);
+  --border-focus: oklch(72.00% 0.1200 278.00);
   --fg-on-accent: var(--bg-page);
 }
 [data-accent="c"] {
