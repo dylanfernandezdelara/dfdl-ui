@@ -45,7 +45,7 @@ Dylan's design standard as one installable package, so any future project starts
 | 1 | Color and surfaces lab: neutral ramp with roles, three accents at matched OKLCH L/C shown in context, three shadow recipes; accent revisited after dark-mode shadows. Baseline = dylanfdl.com tokens | ~45 min | `tokens.css` colors | done (accent vividness confirmed in 1b) |
 | 1b | Fork mini before/after with candidate tokens | ~15 min | screenshot pair in `research/` | done: ember 60%, indigo kept as a second approved accent |
 | 2 | Type, rhythm and shape lab: role scale vs weight-carries-hierarchy, serif scope, radius with concentric nesting, article and dense panel under each. Baseline = current sites | ~45 min | `tokens.css` type, radius | done: weight-led 15px, Lora on all headings, round radius |
-| 3 | Motion lab, browser only: two curves at 10% speed, symmetric vs 75% exits, press 0.96/0.97/none, pop-in origin, spring vs curve on drawer, reduced-motion variants, all probe-verified. Baseline = Fork's current motion | ~60 min | `--ease-*`, `--duration-*` | pending |
+| 3 | Motion lab, browser only: two curves at 10% speed, symmetric vs 75% exits, press 0.96/0.97/none, pop-in origin, spring vs curve on drawer, reduced-motion variants, all probe-verified. Baseline = Fork's current motion | ~60 min | `--ease-*`, `--duration-*` | built at `/lab/motion`, probe-verified, awaiting Dylan's pick |
 | 3b | Fork mini before/after with motion tokens | ~15 min | screenshot pair | pending |
 | 5 | Before/after on Fork, then trackcongress, then dylanfdl. Branch in a worktree, tokens and first components only, captured before/after into Figma. Loop back to the lab that is off. Nothing merges. Then first draft of `SKILL.md` and lint contracts from `decisions.md` | one longer review per site | skill v0, lint policy v0 | pending |
 | 6 | Figma library via `figma-generate-library` into scratch; review; promote to `dfdl` and publish | review the file | deliverable 1 | pending |
@@ -61,6 +61,8 @@ Populated after Phase 5 from what the restyles actually needed. Until then the c
 Google `DESIGN.md`. Code Connect on Pro. Cloudflare deploy until asked. Copying Emil, Jakub or Figma skills into the dfdl skill (hand off by name). Framework migrations on the three sites. 150 components or multiple themes. Pushing to any repo other than `dfdl-ui`.
 
 ## Log
+
+- 2026-09-24: Lab 3 built at `/lab/motion`: curve (Fork's `ease` / Emil strong-out / Material decelerate), exit (symmetric / 75% / fade-only 50%), press (none / 0.97 / 0.94), plus lab knobs for 0.1x speed, popover origin, drawer spring vs curve and a reduced-motion preview. Specimens are real transitions with `@starting-style` enters and `allow-discrete` display, so enter and exit can differ. Every transition probe-verified with `getAnimations()`: durations, curves and from/to values match the tokens. Fork's current motion measured as the baseline: built-in `ease` at 120–300ms, no press scale.
 
 - 2026-09-24: Lab 2 decided (`?s=c&f=b&r=c`): weight-led scale (15px body/heading/title, weight 550, UI 13 at 450, display 32), Lora on every heading, round radius (8/10/12/16/24). Written to `tokens.css`; lab A relabeled to the approved set with the previous values kept as an alternative.
 

@@ -71,15 +71,23 @@
   --type-caption-weight: 450;
   --type-control-height: 1.75rem;
 
-  /* ---- Motion (interim, Lab 3; Emil's defaults) ---- */
+  /* ---- Motion (interim, Lab 3; Emil's defaults) ----
+     Durations by frequency: instant for tooltips and things seen tens of times a day, fast for hover and
+     press, normal for menus and popovers, slow for dialogs, slower for drawers. Exits run at
+     --motion-exit-factor of the enter duration; --motion-exit-scale 0 makes exits fade without scaling. */
   --motion-ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   --motion-ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
   --motion-ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+  --motion-ease-spring: linear(0, 0.102, 0.303, 0.509, 0.681, 0.808, 0.895, 0.949, 0.98, 0.996, 1.004, 1.006, 1.006, 1.005, 1.004, 1.002, 1.001, 1.001, 1, 1, 1, 1, 1, 1, 1);
   --motion-instant: 100ms;
   --motion-fast: 150ms;
   --motion-normal: 200ms;
   --motion-slow: 300ms;
+  --motion-slower: 500ms;
+  --motion-exit-factor: 1;
+  --motion-exit-scale: 1;
   --motion-press: 0.97;
+  --motion-pop-scale: 0.95;
   --motion-icon-blur: 4px;
 }
 

@@ -72,6 +72,7 @@
   --ease-out: var(--motion-ease-out);
   --ease-in-out: var(--motion-ease-in-out);
   --ease-drawer: var(--motion-ease-drawer);
+  --ease-spring: var(--motion-ease-spring);
   --blur-icon: var(--motion-icon-blur);
 
   --color-page: var(--bg-page);
@@ -158,6 +159,9 @@
 }
 @utility duration-slow {
   transition-duration: var(--motion-slow);
+}
+@utility duration-slower {
+  transition-duration: var(--motion-slower);
 }
 /* Interactive controls: color and surface change plus press feedback. */
 @utility transition-interactive {

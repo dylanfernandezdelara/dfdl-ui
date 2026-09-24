@@ -1,0 +1,168 @@
+/*
+  Motion specimen styles. Transitions, never keyframes, so a second click retargets from the current value.
+  Everything stays mounted; open and closed are states. Only transform and opacity animate.
+  Enter uses the element's duration; exit uses duration x --motion-exit-factor.
+  Enter start values live in @starting-style, exit targets in [data-state="closed"], so enter and exit can differ
+  (a fade-only exit still pops in). display flips with transition-behavior: allow-discrete.
+*/
+
+/* ---- Popover / menu: pop in from the trigger ---- */
+.spec-popover {
+  --enter: var(--motion-normal);
+  transform-origin: var(--lab-popover-origin, top left);
+  display: block;
+  opacity: 1;
+  scale: 1;
+  transition:
+    opacity var(--enter) var(--motion-ease-out),
+    scale var(--enter) var(--motion-ease-out),
+    display var(--enter) allow-discrete;
+}
+@starting-style {
+  .spec-popover[data-state="open"] {
+    opacity: 0;
+    scale: var(--motion-pop-scale);
+  }
+}
+.spec-popover[data-state="closed"] {
+  display: none;
+  opacity: 0;
+  /* --motion-exit-scale 0 collapses the scale part of the exit, so it fades in place. */
+  scale: calc(1 - (1 - var(--motion-pop-scale)) * var(--motion-exit-scale));
+  transition-duration: calc(var(--enter) * var(--motion-exit-factor));
+}
+
+/* ---- Tooltip: same shape, faster ---- */
+.spec-tooltip {
+  --enter: var(--motion-instant);
+  transform-origin: bottom center;
+  display: block;
+  opacity: 1;
+  scale: 1;
+  transition:
+    opacity var(--enter) var(--motion-ease-out),
+    scale var(--enter) var(--motion-ease-out),
+    display var(--enter) allow-discrete;
+}
+@starting-style {
+  .spec-tooltip[data-state="open"] {
+    opacity: 0;
+    scale: 0.97;
+  }
+}
+.spec-tooltip[data-state="closed"] {
+  display: none;
+  opacity: 0;
+  scale: calc(1 - 0.03 * var(--motion-exit-scale));
+  transition-duration: calc(var(--enter) * var(--motion-exit-factor));
+}
+
+/* ---- Dialog: centered, backdrop fades with it ---- */
+.spec-backdrop {
+  --enter: var(--motion-slow);
+  display: block;
+  opacity: 1;
+  transition:
+    opacity var(--enter) var(--motion-ease-out),
+    display var(--enter) allow-discrete;
+}
+@starting-style {
+  .spec-backdrop[data-state="open"] {
+    opacity: 0;
+  }
+}
+.spec-backdrop[data-state="closed"] {
+  display: none;
+  opacity: 0;
+  transition-duration: calc(var(--enter) * var(--motion-exit-factor));
+}
+.spec-dialog {
+  --enter: var(--motion-slow);
+  transform-origin: center;
+  display: block;
+  opacity: 1;
+  scale: 1;
+  transition:
+    opacity var(--enter) var(--motion-ease-out),
+    scale var(--enter) var(--motion-ease-out),
+    display var(--enter) allow-discrete;
+}
+@starting-style {
+  .spec-dialog[data-state="open"] {
+    opacity: 0;
+    scale: var(--lab-dialog-scale, 0.96);
+  }
+}
+.spec-dialog[data-state="closed"] {
+  display: none;
+  opacity: 0;
+  scale: calc(1 - 0.04 * var(--motion-exit-scale));
+  transition-duration: calc(var(--enter) * var(--motion-exit-factor));
+}
+
+/* ---- Drawer / sheet: translate by its own height ---- */
+.spec-drawer {
+  --enter: var(--motion-slower);
+  translate: 0 0;
+  opacity: 1;
+  transition:
+    translate var(--enter) var(--lab-drawer-ease, var(--motion-ease-drawer)),
+    opacity var(--enter) var(--motion-ease-out);
+}
+.spec-drawer[data-state="closed"] {
+  translate: var(--lab-drawer-closed, 0 100%);
+  opacity: var(--lab-drawer-closed-opacity, 1);
+  transition-duration: calc(var(--enter) * var(--motion-exit-factor));
+}
+
+/* ---- Tabs: indicator moves with transform, never left/width ---- */
+.spec-tab-indicator {
+  translate: var(--tab-x, 0) 0;
+  width: var(--tab-w, 0);
+  transition:
+    translate var(--lab-tab-duration, var(--motion-normal)) var(--motion-ease-in-out),
+    width var(--lab-tab-duration, var(--motion-normal)) var(--motion-ease-in-out);
+}
+
+/* ---- Switch ---- */
+.spec-switch-thumb {
+  transition: translate var(--motion-fast) var(--motion-ease-out);
+}
+.spec-switch {
+  transition: background-color var(--motion-fast) var(--motion-ease-out);
+}
+
+/* ---- Press ---- */
+.spec-press {
+  transition:
+    scale var(--motion-fast) var(--motion-ease-out),
+    background-color var(--motion-fast) var(--motion-ease-out),
+    color var(--motion-fast) var(--motion-ease-out);
+}
+.spec-press:active {
+  scale: var(--motion-press);
+}
+
+/* ---- Toast: slides in from the bottom, leaves the same way ---- */
+.spec-toast {
+  --enter: var(--motion-normal);
+  display: block;
+  translate: 0 0;
+  opacity: 1;
+  transition:
+    translate var(--enter) var(--motion-ease-out),
+    opacity var(--enter) var(--motion-ease-out),
+    display var(--enter) allow-discrete;
+}
+@starting-style {
+  .spec-toast[data-state="open"] {
+    translate: 0 16px;
+    opacity: 0;
+  }
+}
+.spec-toast[data-state="closed"] {
+  display: none;
+  translate: 0 calc(16px * var(--motion-exit-scale));
+  opacity: 0;
+  transition-duration: calc(var(--enter) * var(--motion-exit-factor));
+}
