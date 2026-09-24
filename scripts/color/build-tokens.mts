@@ -13,7 +13,9 @@ import { fileURLToPath } from "node:url"
 import { buildRamp, contrast, maxChroma, parse, toCss, type Appearance, type Ramp } from "./ramps.mts"
 
 const here = dirname(fileURLToPath(import.meta.url))
-const tokensPath = resolve(here, "../../src/styles/tokens.css")
+const tokensPath = process.env.DFDL_TOKENS_OUT ?? resolve(here, "../../src/styles/tokens.css")
+/* DFDL_ACCENT_PROPORTION overrides the accent vividness for experiments (1b). The approved value stays in config. */
+const accentProportionOverride = process.env.DFDL_ACCENT_PROPORTION ? Number(process.env.DFDL_ACCENT_PROPORTION) : undefined
 
 /* ---------- Approved configuration (Lab 1, 2026-09-19) ---------- */
 export const config = {
@@ -27,7 +29,7 @@ export const config = {
     hue: 48,
     /* Relative vividness inherited from the previous indigo: 0.452 of the hue's maximum at the solid step.
        Dark appearance runs at 85% of that. Pending the Fork check for whether to raise it. */
-    proportion: 0.452,
+    proportion: accentProportionOverride ?? 0.452,
     darkFactor: 0.85,
     solidL: { light: 0.524, dark: 0.72 },
   },

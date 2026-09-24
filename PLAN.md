@@ -43,7 +43,7 @@ Dylan's design standard as one installable package, so any future project starts
 | R | Research: inspiration audit, agentic standards, Figma workflow, Phase 5 sites | done | `research/` | done |
 | 0 | Scaffold: Next 16, Tailwind v4, Base UI, shadcn CLI, Lora + Geist Mono, 8/24 grid overlay, `@shadcn/lint` on, reference skills installed, `/lab` route, `decisions.md` | none | running localhost, first push | done |
 | 1 | Color and surfaces lab: neutral ramp with roles, three accents at matched OKLCH L/C shown in context, three shadow recipes; accent revisited after dark-mode shadows. Baseline = dylanfdl.com tokens | ~45 min | `tokens.css` colors | done (accent vividness confirmed in 1b) |
-| 1b | Fork mini before/after with candidate tokens | ~15 min | screenshot pair in `research/` | pending |
+| 1b | Fork mini before/after with candidate tokens | ~15 min | screenshot pair in `research/` | boards ready in `research/fork-1b/`, awaiting vividness pick |
 | 2 | Type, rhythm and shape lab: role scale vs weight-carries-hierarchy, serif scope, radius with concentric nesting, article and dense panel under each. Baseline = current sites | ~45 min | `tokens.css` type, radius | pending |
 | 3 | Motion lab, browser only: two curves at 10% speed, symmetric vs 75% exits, press 0.96/0.97/none, pop-in origin, spring vs curve on drawer, reduced-motion variants, all probe-verified. Baseline = Fork's current motion | ~60 min | `--ease-*`, `--duration-*` | pending |
 | 3b | Fork mini before/after with motion tokens | ~15 min | screenshot pair | pending |
