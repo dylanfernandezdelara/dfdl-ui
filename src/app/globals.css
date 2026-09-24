@@ -14,7 +14,8 @@
     borders    border-line border-line-subtle border-line-strong divide-separator, outline-focus / ring-focus
     accent     bg-accent-bg border-accent-border bg-accent-solid hover:bg-accent-solid-hover text-accent-text
     status     {danger,success,warning}: bg-*-bg border-*-border bg-* text-*-text
-    rounded    rounded-sm rounded-md rounded-lg rounded-xl rounded-full
+    rounded    rounded-xs rounded-sm rounded-md rounded-lg rounded-xl rounded-full (concentric: outer = inner + padding)
+    type       text-display text-title text-heading text-body text-ui text-caption (size + leading + weight); font-display font-heading font-sans font-mono; h-control
     elevation  elevation-raised elevation-floating
     motion     ease-out ease-in-out ease-drawer, duration-instant/fast/normal/slow, transition-interactive, transition-icon, press
     measure    max-w-reading max-w-content
@@ -29,13 +30,39 @@
     "Segoe UI Symbol", "Noto Color Emoji";
   --font-serif: var(--font-lora), ui-serif, Georgia, serif;
   --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
-  --font-heading: var(--font-sans);
+  --font-heading: var(--font-heading-family);
+  --font-display: var(--font-display-family);
+
+  /* Type roles. text-display / text-title / text-heading / text-body / text-ui / text-caption set size, leading and weight together. */
+  --text-display: var(--type-display-size);
+  --text-display--line-height: var(--type-display-leading);
+  --text-display--font-weight: var(--type-display-weight);
+  --text-display--letter-spacing: var(--type-display-tracking);
+  --text-title: var(--type-title-size);
+  --text-title--line-height: var(--type-title-leading);
+  --text-title--font-weight: var(--type-title-weight);
+  --text-title--letter-spacing: var(--type-title-tracking);
+  --text-heading: var(--type-heading-size);
+  --text-heading--line-height: var(--type-heading-leading);
+  --text-heading--font-weight: var(--type-heading-weight);
+  --text-heading--letter-spacing: var(--type-heading-tracking);
+  --text-body: var(--type-body-size);
+  --text-body--line-height: var(--type-body-leading);
+  --text-body--font-weight: var(--type-body-weight);
+  --text-ui: var(--type-ui-size);
+  --text-ui--line-height: var(--type-ui-leading);
+  --text-ui--font-weight: var(--type-ui-weight);
+  --text-caption: var(--type-caption-size);
+  --text-caption--line-height: var(--type-caption-leading);
+  --text-caption--font-weight: var(--type-caption-weight);
+  --spacing-control: var(--type-control-height);
 
   --spacing-minor: var(--space-minor);
   --spacing-major: var(--space-major);
   --container-reading: var(--measure-reading);
   --container-content: var(--measure-content);
 
+  --radius-xs: var(--rounded-xs);
   --radius-sm: var(--rounded-sm);
   --radius-md: var(--rounded-md);
   --radius-lg: var(--rounded-lg);

@@ -7,8 +7,8 @@ import { SiteHeader } from "@/components/site-header"
  * Dylan picks, the choice lands in decisions.md and tokens.css.
  */
 const labs = [
-  { slug: "color", title: "Color and surfaces", status: "open", summary: "Neutral ramp, three accents in context, depth recipes." },
-  { slug: "type", title: "Type, rhythm and shape", status: "pending", summary: "Scale, serif scope, radius with concentric nesting." },
+  { slug: "color", title: "Color and surfaces", status: "done", summary: "Neutral ramp, three accents in context, depth recipes." },
+  { slug: "type", title: "Type, rhythm and shape", status: "open", summary: "Scale, serif scope, radius with concentric nesting." },
   { slug: "motion", title: "Motion", status: "pending", summary: "Curves, durations by frequency, exits, press, springs." },
 ]
 

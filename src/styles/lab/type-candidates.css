@@ -1,0 +1,93 @@
+/*
+  Lab 2 candidates. A on every axis is tokens.css itself (current sites). Hand-authored; small enough not to generate.
+
+  scale   a Current    dylanfdl.com today: 16/24 body, 14/20 UI, Lora 24 display, one heading size
+          b Roles      Jakub's role scale: Display 36, Title 24, Heading 18, Body 16, UI 14, Caption 13. Hierarchy from size.
+          c Weight-led jakub.kr / benji.org: body and headings share 15px, hierarchy from weight 550 and color; display 32 serif only
+
+  serif   a Display    serif on the page title and pull quotes only (current)
+          b Headings   serif on every heading level (dylanfdl article feel)
+          c None       sans everywhere; serif only for italic emphasis words
+
+  radius  a Current    xs 4 · sm 6 · md 8 · lg 12 · xl 16
+          b Soft       xs 6 · sm 8 · md 10 · lg 14 · xl 20, pills for chips and segmented
+          c Round      xs 8 · sm 10 · md 12 · lg 16 · xl 24 (Fork's 0.625rem family)
+*/
+
+/* ---------- scale ---------- */
+[data-scale="b"] {
+  --type-display-size: 2.25rem;
+  --type-display-leading: 2.5rem;
+  --type-display-weight: 600;
+  --type-display-tracking: -0.02em;
+  --type-title-size: 1.5rem;
+  --type-title-leading: 2rem;
+  --type-title-weight: 600;
+  --type-title-tracking: -0.015em;
+  --type-heading-size: 1.125rem;
+  --type-heading-leading: 1.5rem;
+  --type-heading-weight: 600;
+  --type-heading-tracking: -0.01em;
+  --type-body-size: 1rem;
+  --type-body-leading: 1.5rem;
+  --type-body-weight: 400;
+  --type-ui-size: 0.875rem;
+  --type-ui-leading: 1.25rem;
+  --type-ui-weight: 400;
+  --type-caption-size: 0.8125rem;
+  --type-caption-leading: 1rem;
+  --type-caption-weight: 400;
+  --type-control-height: 2rem;
+}
+
+[data-scale="c"] {
+  --type-display-size: 2rem;
+  --type-display-leading: 2.5rem;
+  --type-display-weight: 400;
+  --type-display-tracking: -0.01em;
+  --type-title-size: 0.9375rem;
+  --type-title-leading: 1.5rem;
+  --type-title-weight: 550;
+  --type-title-tracking: 0;
+  --type-heading-size: 0.9375rem;
+  --type-heading-leading: 1.5rem;
+  --type-heading-weight: 550;
+  --type-heading-tracking: 0;
+  --type-body-size: 0.9375rem;
+  --type-body-leading: 1.5rem;
+  --type-body-weight: 400;
+  --type-ui-size: 0.8125rem;
+  --type-ui-leading: 1.25rem;
+  --type-ui-weight: 450;
+  --type-caption-size: 0.75rem;
+  --type-caption-leading: 1rem;
+  --type-caption-weight: 450;
+  --type-control-height: 1.75rem;
+}
+
+/* ---------- serif scope ---------- */
+[data-serif="b"] {
+  --font-heading-family: var(--font-lora), ui-serif, Georgia, serif;
+}
+
+[data-serif="c"] {
+  --font-display-family: ui-sans-serif, system-ui, sans-serif;
+  --font-heading-family: ui-sans-serif, system-ui, sans-serif;
+}
+
+/* ---------- radius ---------- */
+[data-radius="b"] {
+  --rounded-xs: 6px;
+  --rounded-sm: 8px;
+  --rounded-md: 10px;
+  --rounded-lg: 14px;
+  --rounded-xl: 20px;
+}
+
+[data-radius="c"] {
+  --rounded-xs: 8px;
+  --rounded-sm: 10px;
+  --rounded-md: 12px;
+  --rounded-lg: 16px;
+  --rounded-xl: 24px;
+}

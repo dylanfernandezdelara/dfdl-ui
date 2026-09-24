@@ -34,12 +34,39 @@
   --measure-reading: 33rem;
   --measure-content: 64rem;
 
-  /* ---- Rounded (interim, Lab 2) ---- */
-  --rounded-sm: 4px;
-  --rounded-md: 6px;
+  /* ---- Rounded (interim, Lab 2). Concentric: outer = inner + padding. ---- */
+  --rounded-xs: 4px;
+  --rounded-sm: 6px;
+  --rounded-md: 8px;
   --rounded-lg: 12px;
   --rounded-xl: 16px;
   --rounded-full: 9999px;
+
+  /* ---- Type roles (interim, Lab 2). Values are the current sites: dylanfdl.com body and small, Lora display. ---- */
+  --font-display-family: var(--font-lora), ui-serif, Georgia, serif;
+  --font-heading-family: ui-sans-serif, system-ui, sans-serif;
+  --type-display-size: 1.5rem;
+  --type-display-leading: 2rem;
+  --type-display-weight: 400;
+  --type-display-tracking: 0;
+  --type-title-size: 1.25rem;
+  --type-title-leading: 1.75rem;
+  --type-title-weight: 500;
+  --type-title-tracking: -0.01em;
+  --type-heading-size: 1rem;
+  --type-heading-leading: 1.5rem;
+  --type-heading-weight: 500;
+  --type-heading-tracking: 0;
+  --type-body-size: 1rem;
+  --type-body-leading: 1.5rem;
+  --type-body-weight: 400;
+  --type-ui-size: 0.875rem;
+  --type-ui-leading: 1.25rem;
+  --type-ui-weight: 400;
+  --type-caption-size: 0.75rem;
+  --type-caption-leading: 1rem;
+  --type-caption-weight: 400;
+  --type-control-height: 2rem;
 
   /* ---- Motion (interim, Lab 3; Emil's defaults) ---- */
   --motion-ease-out: cubic-bezier(0.23, 1, 0.32, 1);

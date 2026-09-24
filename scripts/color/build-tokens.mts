@@ -89,7 +89,6 @@ const D = { n: neutral("dark"), a: accent(defaultAccent, "dark"), danger: status
 
 function semantics(appearance: Appearance) {
   const x = appearance === "light" ? L : D
-  const r = x.n.ramp
   const light = appearance === "light"
   const p = (k: string) => `var(--${k})`
   const nk = (step: number) => p(`neutral-${appearance}-${step}`)

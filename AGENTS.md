@@ -38,8 +38,10 @@ Next 16 (App Router, Turbopack), React 19, Tailwind v4, Base UI via shadcn (`bas
 - The accent is chosen once per product: `<html data-accent="ember">` (default) or `indigo`. Never mix accents inside one product; add a third only with a decision in `decisions.md`.
 - `text-primary` is shadcn's name for the accent fill, kept only so stock components render. Body text is `text-fg`.
 - Source tokens in `tokens.css` (`--bg-*`, `--fg-*`, `--border-*`, `--rounded-*`, `--motion-*`, `--elevation-*`) never share a name with a Tailwind theme key (`--color-*`, `--radius-*`, `--ease-*`, `--shadow-*`). A shared name compiles to a self-referential variable; check compiled CSS, not the source, when in doubt.
+- Type is set with role utilities: `text-display`, `text-title`, `text-heading`, `text-body`, `text-ui`, `text-caption` (each carries size, leading and weight). Never combine `text-sm` with `leading-*` by hand.
+- `cn` (`src/lib/utils.ts`) is configured with the dfdl vocabulary so custom `text-<role>`, `font-<family>`, elevation and motion classes merge correctly. Add any new custom utility there too, or a later `text-fg` will silently drop it.
 - Everything lands on the 8/24 grid. Check with `g`.
-- Shadows are `elevation-raised` / `elevation-floating`, not `shadow-*`: `@shadcn/lint` 0.1.0 reads `shadow-<name>` as a color utility and flags it.
+- Shadows are `elevation-raised` / `elevation-floating` utilities (convention; `@shadcn/lint` 0.1.0 misread `shadow-<name>` as a color, fixed in 0.2.0, but the names stayed).
 - Transition only what changes: `transition-interactive` for controls, `transition-icon` for icon swaps. Never `transition-all`. Press feedback is `press` (scale `var(--press-scale)`).
 - Reduced motion is handled per component (keep opacity and color, drop movement). There is no blanket kill switch.
 - Motion is verified in the browser, at 10% speed, with `document.getAnimations()` after the interaction, not by reading CSS.

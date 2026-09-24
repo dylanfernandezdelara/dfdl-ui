@@ -44,7 +44,7 @@ Dylan's design standard as one installable package, so any future project starts
 | 0 | Scaffold: Next 16, Tailwind v4, Base UI, shadcn CLI, Lora + Geist Mono, 8/24 grid overlay, `@shadcn/lint` on, reference skills installed, `/lab` route, `decisions.md` | none | running localhost, first push | done |
 | 1 | Color and surfaces lab: neutral ramp with roles, three accents at matched OKLCH L/C shown in context, three shadow recipes; accent revisited after dark-mode shadows. Baseline = dylanfdl.com tokens | ~45 min | `tokens.css` colors | done (accent vividness confirmed in 1b) |
 | 1b | Fork mini before/after with candidate tokens | ~15 min | screenshot pair in `research/` | done: ember 60%, indigo kept as a second approved accent |
-| 2 | Type, rhythm and shape lab: role scale vs weight-carries-hierarchy, serif scope, radius with concentric nesting, article and dense panel under each. Baseline = current sites | ~45 min | `tokens.css` type, radius | pending |
+| 2 | Type, rhythm and shape lab: role scale vs weight-carries-hierarchy, serif scope, radius with concentric nesting, article and dense panel under each. Baseline = current sites | ~45 min | `tokens.css` type, radius | built at `/lab/type`, awaiting Dylan's pick |
 | 3 | Motion lab, browser only: two curves at 10% speed, symmetric vs 75% exits, press 0.96/0.97/none, pop-in origin, spring vs curve on drawer, reduced-motion variants, all probe-verified. Baseline = Fork's current motion | ~60 min | `--ease-*`, `--duration-*` | pending |
 | 3b | Fork mini before/after with motion tokens | ~15 min | screenshot pair | pending |
 | 5 | Before/after on Fork, then trackcongress, then dylanfdl. Branch in a worktree, tokens and first components only, captured before/after into Figma. Loop back to the lab that is off. Nothing merges. Then first draft of `SKILL.md` and lint contracts from `decisions.md` | one longer review per site | skill v0, lint policy v0 | pending |
@@ -61,6 +61,8 @@ Populated after Phase 5 from what the restyles actually needed. Until then the c
 Google `DESIGN.md`. Code Connect on Pro. Cloudflare deploy until asked. Copying Emil, Jakub or Figma skills into the dfdl skill (hand off by name). Framework migrations on the three sites. 150 components or multiple themes. Pushing to any repo other than `dfdl-ui`.
 
 ## Log
+
+- 2026-09-24: Lab 2 built at `/lab/type`: scale (current / roles / weight-led), serif scope (display / all headings / none), radius (current / soft / round) on an article, a dense panel and a concentric card. Type roles are now tokens (`text-display … text-caption` carry size, leading and weight together). Two system bugs found on the way: `cn` dropped custom `text-<role>` classes as colors (fixed by registering the vocabulary in `lib/utils.ts`), and `@shadcn/lint` 0.1.0 flagged `text-<role>` as raw colors (fixed upstream in 0.2.0, upgraded and pinned). Candidate switcher moved to `lab/_shared`.
 
 - 2026-09-24: 1b done. Two approved accents (ember default at 60% vividness, indigo for Fork), selected per product with `data-accent`. Dark vividness set per accent after finding blue’s chroma ceiling halves at high lightness. Fork before/after boards in `research/fork-1b/`; the Fork worktree `../treeGPT-dfdl-tokens` keeps the mapping file for Phase 5.
 

@@ -5,7 +5,7 @@ import type { ReactNode } from "react"
 import { cn } from "@/lib/utils"
 
 import candidates from "./candidates.json"
-import { AXES, CandidateScope, Segmented, useSelection, type Axis, type CandidateId, type Selection } from "./candidate-switcher"
+import { CandidateScope, IDS, Section as SharedSection, Segmented, Toolbar, useSelection, type AxisDef, type CandidateId, type Selection as SharedSelection } from "../_shared/candidates"
 import {
   DataRow,
   FloatingCard,
@@ -25,20 +25,15 @@ type Contrast = Record<string, number>
 type CandidateMeta = { name: string; note: string; light?: { contrast?: Contrast; solid?: string }; dark?: { contrast?: Contrast; solid?: string } }
 const meta = candidates as unknown as { neutrals: Record<CandidateId, CandidateMeta>; accents: Record<CandidateId, CandidateMeta>; depths: Record<CandidateId, CandidateMeta> }
 
-const ids: CandidateId[] = ["a", "b", "c"]
+type Axis = "neutral" | "accent" | "depth"
+type Selection = SharedSelection<Axis>
+const AXES: AxisDef<Axis>[] = [
+  { axis: "neutral", param: "n", label: "Neutral" },
+  { axis: "accent", param: "a", label: "Accent" },
+  { axis: "depth", param: "d", label: "Depth" },
+]
+const ids = IDS
 const byAxis: Record<Axis, Record<CandidateId, CandidateMeta>> = { neutral: meta.neutrals, accent: meta.accents, depth: meta.depths }
-
-function Section({ title, lede, children }: { title: string; lede: string; children: ReactNode }) {
-  return (
-    <section className="border-t border-separator py-12">
-      <div className="mb-major flex items-baseline gap-major">
-        <h2 className="w-48 shrink-0 font-serif text-xl leading-6 text-fg-strong">{title}</h2>
-        <p className="max-w-reading text-sm leading-6 text-fg-secondary">{lede}</p>
-      </div>
-      {children}
-    </section>
-  )
-}
 
 function Ratio({ value, floor = 4.5 }: { value?: number; floor?: number }) {
   if (value === undefined) return null
@@ -157,23 +152,23 @@ function Compare({ axis, selection, children, both }: { axis: Axis; selection: S
 }
 
 export function ColorLab() {
-  const { selection, set } = useSelection()
+  const { selection, set } = useSelection(AXES)
   return (
     <>
-      <div className="sticky top-0 z-10 -mx-major flex flex-wrap items-center gap-major border-b border-separator bg-page/90 px-major py-minor backdrop-blur">
+      <Toolbar>
         {AXES.map(({ axis, label }) => (
           <Segmented key={axis} label={label} value={selection[axis]} options={ids.map((id) => ({ id, name: byAxis[axis][id].name }))} onChange={(id) => set(axis, id)} />
         ))}
-      </div>
+      </Toolbar>
 
-      <Section title="Together" lede="The current selection applied to everything, light and dark at once. This is the view to judge; the sections below isolate one decision at a time.">
+      <SharedSection title="Together" lede="The current selection applied to everything, light and dark at once. This is the view to judge; the sections below isolate one decision at a time.">
         <div className="grid grid-cols-2 gap-major">
           <Panel selection={selection} dark={false} />
           <Panel selection={selection} dark />
         </div>
-      </Section>
+      </SharedSection>
 
-      <Section title="Neutral" lede="Temperature of the surfaces and text. Text lightness is held constant across candidates so only the hue moves. A is dylanfdl.com today: warm cream surfaces with cool slate text.">
+      <SharedSection title="Neutral" lede="Temperature of the surfaces and text. Text lightness is held constant across candidates so only the hue moves. A is dylanfdl.com today: warm cream surfaces with cool slate text.">
         <Compare axis="neutral" selection={selection}>
           {() => (
             <div className="flex flex-col gap-major">
@@ -191,9 +186,9 @@ export function ColorLab() {
             </div>
           )}
         </Compare>
-      </Section>
+      </SharedSection>
 
-      <Section title="Accent" lede="Three hues at identical lightness and identical relative vividness, so the comparison is hue alone. Shown both ways: solid fill with light text (shadcn) and tinted fill with dark text (kitze).">
+      <SharedSection title="Accent" lede="Three hues at identical lightness and identical relative vividness, so the comparison is hue alone. Shown both ways: solid fill with light text (shadcn) and tinted fill with dark text (kitze).">
         <Compare axis="accent" selection={selection}>
           {() => (
             <div className="flex flex-col gap-major">
@@ -207,9 +202,9 @@ export function ColorLab() {
             </div>
           )}
         </Compare>
-      </Section>
+      </SharedSection>
 
-      <Section title="Depth" lede="How raised and floating surfaces separate from the page. A is the current recipe: jakub's ring and lift in light, gooey's inset ring in dark. Each candidate is shown light over dark.">
+      <SharedSection title="Depth" lede="How raised and floating surfaces separate from the page. A is the current recipe: jakub's ring and lift in light, gooey's inset ring in dark. Each candidate is shown light over dark.">
         <Compare axis="depth" selection={selection} both>
           {() => (
             <div className="flex flex-col gap-major">
@@ -218,7 +213,7 @@ export function ColorLab() {
             </div>
           )}
         </Compare>
-      </Section>
+      </SharedSection>
     </>
   )
 }
