@@ -70,12 +70,12 @@
         {
           "path": "scripts/probes/grid.js",
           "type": "registry:file",
-          "target": "scripts/probes/grid.js"
+          "target": "~/scripts/probes/grid.js"
         },
         {
           "path": "scripts/probes/animations.js",
           "type": "registry:file",
-          "target": "scripts/probes/animations.js"
+          "target": "~/scripts/probes/animations.js"
         }
       ]
     },
