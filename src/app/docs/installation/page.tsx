@@ -27,13 +27,26 @@ export default function InstallationPage() {
         <Step id="theme" n={2} title="Add the theme">
           <p className="text-body text-fg-secondary">Tokens, the Tailwind mapping and the class merger.</p>
           <Command className="mt-major">{addCommand("theme")}</Command>
-          <p className="mt-major text-body text-fg-secondary">Then import both files in your global CSS, after Tailwind:</p>
+          <p className="mt-major text-body text-fg-secondary">
+            Replace the contents of your global CSS with these imports. The theme already maps shadcn&apos;s color names, and the
+            block shadcn init wrote would override it.
+          </p>
           <CodeBlock
             className="mt-major"
             lang="css"
             code={`@import "tailwindcss";
+@import "tw-animate-css";
 @import "../styles/dfdl/tokens.css";
 @import "../styles/dfdl/theme.css";`}
+          />
+          <p className="mt-major text-body text-fg-secondary">Headings use Lora. Load it with next/font as the --font-lora variable:</p>
+          <CodeBlock
+            className="mt-major"
+            code={`import { Lora } from "next/font/google"
+
+const lora = Lora({ subsets: ["latin"], variable: "--font-lora" })
+
+<html className={lora.variable}>`}
           />
         </Step>
 

@@ -5,7 +5,8 @@
   "author": "Dylan Fernandez de Lara",
   "description": "Tokens, the Tailwind v4 mapping and motion utilities, and cn configured with the dfdl vocabulary. Install this before any component.",
   "dependencies": [
-    "cn"
+    "cn",
+    "tw-animate-css"
   ],
   "files": [
     {
@@ -26,7 +27,7 @@
       "type": "registry:lib"
     }
   ],
-  "docs": "Import both files from your global CSS, after tailwindcss: @import \"../styles/dfdl/tokens.css\"; @import \"../styles/dfdl/theme.css\"; Set the accent on <html data-accent=\"ember\"> or \"indigo\".",
+  "docs": "Replace the contents of your global CSS with: @import \"tailwindcss\"; @import \"tw-animate-css\"; @import \"../styles/dfdl/tokens.css\"; @import \"../styles/dfdl/theme.css\"; The theme maps shadcn's color names, and the block shadcn init wrote would override it. Load Lora with next/font as --font-lora. Set the accent on <html data-accent=\"ember\"> or \"indigo\".",
   "categories": [
     "foundations"
   ],
