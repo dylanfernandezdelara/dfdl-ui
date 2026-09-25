@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "card",
+  "title": "Card",
+  "author": "Dylan Fernandez de Lara",
+  "description": "Groups related content on a raised surface.",
+  "registryDependencies": [
+    "https://dfdl-ui.fernandezdelaradylan.workers.dev/r/theme.json"
+  ],
+  "files": [
+    {
+      "path": "src/components/ui/card.tsx",
+      "content": "import type { ComponentProps } from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\nfunction Card({ className, ...props }: ComponentProps<\"div\">) {\n  return <div data-slot=\"card\" className={cn(\"flex flex-col gap-major rounded-lg bg-surface p-major elevation-raised\", className)} {...props} />\n}\n\nfunction CardHeader({ className, ...props }: ComponentProps<\"div\">) {\n  return <div data-slot=\"card-header\" className={cn(\"flex flex-col gap-1\", className)} {...props} />\n}\n\nfunction CardTitle({ className, ...props }: ComponentProps<\"h3\">) {\n  return <h3 data-slot=\"card-title\" className={cn(\"font-heading text-heading text-fg-strong\", className)} {...props} />\n}\n\nfunction CardDescription({ className, ...props }: ComponentProps<\"p\">) {\n  return <p data-slot=\"card-description\" className={cn(\"text-ui text-fg-secondary\", className)} {...props} />\n}\n\nfunction CardContent({ className, ...props }: ComponentProps<\"div\">) {\n  return <div data-slot=\"card-content\" className={cn(\"text-body text-fg\", className)} {...props} />\n}\n\nfunction CardFooter({ className, ...props }: ComponentProps<\"div\">) {\n  return <div data-slot=\"card-footer\" className={cn(\"flex items-center gap-minor\", className)} {...props} />\n}\n\nexport { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "categories": [
+    "components"
+  ],
+  "type": "registry:ui"
+}

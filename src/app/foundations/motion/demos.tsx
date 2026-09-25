@@ -17,7 +17,7 @@ export function MotionDemos() {
   return (
     <div data-speed={speed}>
       <div className="mb-major flex items-center gap-minor">
-        <span className="w-16 font-mono text-caption uppercase tracking-wider text-fg-tertiary">Speed</span>
+        <span className="w-16 text-ui text-fg-tertiary">Speed</span>
         <div role="radiogroup" aria-label="Speed" onKeyDown={radioGroupKeys(SPEEDS, speed, setSpeed)} className="flex h-8 rounded-md bg-sunken p-1 hairline">
           {SPEEDS.map((v) => (
             <button

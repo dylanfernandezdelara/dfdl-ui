@@ -13,7 +13,7 @@ const ROLES: Record<number, string> = {
 export function Ramp({ steps, name, roles = true, className }: { steps: Step[]; name: string; roles?: boolean; className?: string }) {
   return (
     <figure className={className}>
-      <figcaption className="flex h-6 items-center font-mono text-caption uppercase tracking-wider text-fg-tertiary">{name}</figcaption>
+      <figcaption className="flex h-6 items-center text-ui text-fg-tertiary">{name}</figcaption>
       <div className="mt-minor grid grid-cols-12 gap-1">
         {steps.map((s) => (
           <div key={s.step} className="min-w-0">

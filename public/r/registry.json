@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
   "name": "dfdl",
-  "homepage": "https://ui.dylanfdl.com",
+  "homepage": "https://dfdl-ui.fernandezdelaradylan.workers.dev",
   "items": [
     {
       "name": "tokens",
@@ -9,15 +9,289 @@
       "title": "dfdl tokens",
       "description": "The dfdl design tokens: OKLCH primitives and semantics, light and dark, two approved accents, quiet mode. tokens.css for Tailwind v4 projects; tokens.hsl.css (HSL channel triples) for Tailwind v3. Generated from decisions in dylanfernandezdelara/dfdl-ui.",
       "author": "Dylan Fernandez de Lara",
-      "categories": ["foundations"],
-      "files": [
-        { "path": "src/styles/tokens.css", "type": "registry:file", "target": "~/styles/dfdl/tokens.css" },
-        { "path": "src/styles/tokens.hsl.css", "type": "registry:file", "target": "~/styles/dfdl/tokens.hsl.css" }
+      "categories": [
+        "foundations"
       ],
-      "css": {
-        "@import './styles/dfdl/tokens.css'": {}
-      },
-      "docs": "Set the accent once on the root: <html data-accent=\"ember\"> (default) or \"indigo\". Add data-quiet for data-dense products. Tailwind v4: map the semantics into @theme inline as in https://github.com/dylanfernandezdelara/dfdl-ui/blob/main/src/app/globals.css. Tailwind v3: point your theme colors at hsl(var(--hsl-bg-page) / <alpha-value>) from tokens.hsl.css. Guide: https://ui.dylanfdl.com/guide"
+      "files": [
+        {
+          "path": "src/styles/tokens.css",
+          "type": "registry:file",
+          "target": "styles/dfdl/tokens.css"
+        },
+        {
+          "path": "src/styles/tokens.hsl.css",
+          "type": "registry:file",
+          "target": "styles/dfdl/tokens.hsl.css"
+        }
+      ],
+      "docs": "Import styles/dfdl/tokens.css from your global CSS. Tailwind v3: point theme colors at hsl(var(--hsl-bg-page) / <alpha-value>) from tokens.hsl.css. Tailwind v4: install https://dfdl-ui.fernandezdelaradylan.workers.dev/r/theme.json instead."
+    },
+    {
+      "name": "theme",
+      "type": "registry:item",
+      "title": "dfdl theme",
+      "description": "Tokens, the Tailwind v4 mapping and motion utilities, and cn configured with the dfdl vocabulary. Install this before any component.",
+      "author": "Dylan Fernandez de Lara",
+      "categories": [
+        "foundations"
+      ],
+      "dependencies": [
+        "cn"
+      ],
+      "files": [
+        {
+          "path": "src/styles/tokens.css",
+          "type": "registry:file",
+          "target": "styles/dfdl/tokens.css"
+        },
+        {
+          "path": "src/styles/theme.css",
+          "type": "registry:file",
+          "target": "styles/dfdl/theme.css"
+        },
+        {
+          "path": "src/lib/utils.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "docs": "Import both files from your global CSS, after tailwindcss: @import \"../styles/dfdl/tokens.css\"; @import \"../styles/dfdl/theme.css\"; Set the accent on <html data-accent=\"ember\"> or \"indigo\"."
+    },
+    {
+      "name": "badge",
+      "type": "registry:ui",
+      "title": "Badge",
+      "description": "A short status label.",
+      "author": "Dylan Fernandez de Lara",
+      "categories": [
+        "components"
+      ],
+      "registryDependencies": [
+        "https://dfdl-ui.fernandezdelaradylan.workers.dev/r/theme.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/badge.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "class-variance-authority"
+      ]
+    },
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "title": "Button",
+      "description": "Triggers an action.",
+      "author": "Dylan Fernandez de Lara",
+      "categories": [
+        "components"
+      ],
+      "registryDependencies": [
+        "https://dfdl-ui.fernandezdelaradylan.workers.dev/r/theme.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/button.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority"
+      ]
+    },
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "title": "Card",
+      "description": "Groups related content on a raised surface.",
+      "author": "Dylan Fernandez de Lara",
+      "categories": [
+        "components"
+      ],
+      "registryDependencies": [
+        "https://dfdl-ui.fernandezdelaradylan.workers.dev/r/theme.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/card.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "dialog",
+      "type": "registry:ui",
+      "title": "Dialog",
+      "description": "A modal window for a decision that interrupts the flow.",
+      "author": "Dylan Fernandez de Lara",
+      "categories": [
+        "components"
+      ],
+      "registryDependencies": [
+        "https://dfdl-ui.fernandezdelaradylan.workers.dev/r/theme.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/dialog.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react"
+      ]
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "title": "Input",
+      "description": "A single-line text field.",
+      "author": "Dylan Fernandez de Lara",
+      "categories": [
+        "components"
+      ],
+      "registryDependencies": [
+        "https://dfdl-ui.fernandezdelaradylan.workers.dev/r/theme.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/input.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react"
+      ]
+    },
+    {
+      "name": "kbd",
+      "type": "registry:ui",
+      "title": "Kbd",
+      "description": "A keyboard key or shortcut.",
+      "author": "Dylan Fernandez de Lara",
+      "categories": [
+        "components"
+      ],
+      "registryDependencies": [
+        "https://dfdl-ui.fernandezdelaradylan.workers.dev/r/theme.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/kbd.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "menu",
+      "type": "registry:ui",
+      "title": "Menu",
+      "description": "A list of actions that opens from a button.",
+      "author": "Dylan Fernandez de Lara",
+      "categories": [
+        "components"
+      ],
+      "registryDependencies": [
+        "https://dfdl-ui.fernandezdelaradylan.workers.dev/r/theme.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/menu.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react"
+      ]
+    },
+    {
+      "name": "segmented-control",
+      "type": "registry:ui",
+      "title": "Segmented control",
+      "description": "One choice from a few options, all visible.",
+      "author": "Dylan Fernandez de Lara",
+      "categories": [
+        "components"
+      ],
+      "registryDependencies": [
+        "https://dfdl-ui.fernandezdelaradylan.workers.dev/r/theme.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/segmented-control.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react"
+      ]
+    },
+    {
+      "name": "switch",
+      "type": "registry:ui",
+      "title": "Switch",
+      "description": "Turns a setting on or off, effective immediately.",
+      "author": "Dylan Fernandez de Lara",
+      "categories": [
+        "components"
+      ],
+      "registryDependencies": [
+        "https://dfdl-ui.fernandezdelaradylan.workers.dev/r/theme.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/switch.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react"
+      ]
+    },
+    {
+      "name": "tabs",
+      "type": "registry:ui",
+      "title": "Tabs",
+      "description": "Switches between views in the same place.",
+      "author": "Dylan Fernandez de Lara",
+      "categories": [
+        "components"
+      ],
+      "registryDependencies": [
+        "https://dfdl-ui.fernandezdelaradylan.workers.dev/r/theme.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/tabs.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react"
+      ]
+    },
+    {
+      "name": "tooltip",
+      "type": "registry:ui",
+      "title": "Tooltip",
+      "description": "Labels a control that has no visible text.",
+      "author": "Dylan Fernandez de Lara",
+      "categories": [
+        "components"
+      ],
+      "registryDependencies": [
+        "https://dfdl-ui.fernandezdelaradylan.workers.dev/r/theme.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/tooltip.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react"
+      ]
     }
   ]
 }

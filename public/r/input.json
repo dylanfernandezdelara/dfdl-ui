@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input",
+  "title": "Input",
+  "author": "Dylan Fernandez de Lara",
+  "description": "A single-line text field.",
+  "dependencies": [
+    "@base-ui/react"
+  ],
+  "registryDependencies": [
+    "https://dfdl-ui.fernandezdelaradylan.workers.dev/r/theme.json"
+  ],
+  "files": [
+    {
+      "path": "src/components/ui/input.tsx",
+      "content": "import { Input as BaseInput } from \"@base-ui/react/input\"\nimport type { ComponentProps } from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\nfunction Input({ className, ...props }: ComponentProps<typeof BaseInput>) {\n  return (\n    <BaseInput\n      data-slot=\"input\"\n      className={cn(\n        \"h-control w-full min-w-0 rounded-sm bg-page px-2.5 text-ui text-fg hairline transition-interactive duration-fast ease-out\",\n        \"placeholder:text-fg-tertiary focus-visible:outline-2 focus-visible:outline-offset-0 focus-visible:outline-focus\",\n        \"data-disabled:cursor-not-allowed data-disabled:opacity-50 aria-invalid:outline-2 aria-invalid:outline-danger\",\n        className,\n      )}\n      {...props}\n    />\n  )\n}\n\nexport { Input }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "categories": [
+    "components"
+  ],
+  "type": "registry:ui"
+}

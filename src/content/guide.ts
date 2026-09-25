@@ -2,6 +2,8 @@
  * The guide, as data. Rendered at /guide and serialized into /llms.txt so people and agents read the same text.
  * v0, written from decisions.md after Phase 5. The dfdl-ui skill will be drafted from this.
  */
+import { addCommand } from "@/lib/site"
+
 export type GuideSection = { id: string; title: string; body: string[]; code?: string }
 
 export const GUIDE: GuideSection[] = [
@@ -17,10 +19,10 @@ export const GUIDE: GuideSection[] = [
     id: "install",
     title: "Install",
     body: [
-      "Tailwind v4 projects take tokens.css directly. Tailwind v3 projects take tokens.hsl.css and point their config at the --hsl-* channels. Set the accent once on the root, and quiet mode if the product is data-dense.",
+      "Tailwind v4 projects install the theme item. Tailwind v3 projects take tokens.hsl.css from the tokens item and point their config at the --hsl-* channels. Set the accent once on the root, and quiet mode if the product is data-dense.",
     ],
-    code: `npx shadcn add https://ui.dylanfdl.com/r/tokens.json   # tokens + globals mapping
-npx skills add dylanfernandezdelara/dfdl-ui              # the skill, for agents
+    code: `${addCommand("theme")}    # tokens, Tailwind mapping, cn
+${addCommand("button")}   # any component
 
 <html data-accent="ember">          <!-- or "indigo" -->
 <html data-accent="ember" data-quiet>  <!-- data-dense product -->`,

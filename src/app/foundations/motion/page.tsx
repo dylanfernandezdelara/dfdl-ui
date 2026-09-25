@@ -25,10 +25,10 @@ export default function MotionPage() {
         <PageTitle
           eyebrow="Foundations"
           title="Motion"
-          lede="Motion is feedback, not decoration. One strong ease-out for anything entering or leaving, a strong ease-in-out for things that move on screen, the iOS curve for drawers, a spring only for gestures. Durations follow frequency. Exits take 75% of the enter along the same path. Every value here was verified by reading the running animations back, not the CSS."
+          lede="Strong ease-out, durations by frequency, exits a quarter shorter than enters."
         />
 
-        <Section title="Curves" lede="Built-in `ease` starts slow, which reads as lag. The approved curve spends most of the distance in the first third; the element is where it is going by the time the eye lands.">
+        <Section title="Curves" lede="The approved curve covers most of the distance in the first third.">
           <div className="grid gap-major sm:grid-cols-3">
             <div>
               <CurvePlot id="a" />
@@ -48,7 +48,7 @@ export default function MotionPage() {
           </div>
         </Section>
 
-        <Section title="Durations by frequency" lede="How often something happens decides how long it may take. Things that happen hundreds of times a day, including anything keyboard-triggered, do not animate at all.">
+        <Section title="Durations by frequency" lede="The more often it happens, the shorter it is. Keyboard actions do not animate.">
           <ul className="max-w-reading">
             {durations.map(([k, v, use]) => (
               <li key={k} className="flex h-8 items-center gap-major text-ui">
@@ -61,11 +61,11 @@ export default function MotionPage() {
           <Code>{`exit duration  = enter × ${m["motion-exit-factor"]}\npress          = scale(${m["motion-press"]}) over motion-fast, :active only, dropped under reduced motion\npop-in         = opacity 0→1 + scale ${m["motion-pop-scale"]}→1 from the trigger's transform-origin\ndialog         = opacity + scale 0.96→1 from center, backdrop fades in step\ndrawer         = translateY(100%)→0 on ease-drawer\ntoast          = translateY(16px)→0, leaves the way it came`}</Code>
         </Section>
 
-        <Section title="Live" lede="Real transitions, not videos. Set the speed to a quarter to see the curve; at full speed judge only how it feels.">
+        <Section title="Live" lede="Real transitions. Slow them down to see the curve.">
           <MotionDemos />
         </Section>
 
-        <Section title="Rules" lede="The ones a reviewer blocks on.">
+        <Section title="Rules" lede="What review blocks on.">
           <ul className="max-w-reading list-disc space-y-minor pl-5 text-ui text-fg">
             <li>Only `transform`, `translate`, `scale` and `opacity` animate. Never `width`, `height`, `top`, `left`, `margin`.</li>
             <li>Name the properties: `transition-interactive`, `transition-icon`. Never `transition: all`.</li>

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "segmented-control",
+  "title": "Segmented control",
+  "author": "Dylan Fernandez de Lara",
+  "description": "One choice from a few options, all visible.",
+  "dependencies": [
+    "@base-ui/react"
+  ],
+  "registryDependencies": [
+    "https://dfdl-ui.fernandezdelaradylan.workers.dev/r/theme.json"
+  ],
+  "files": [
+    {
+      "path": "src/components/ui/segmented-control.tsx",
+      "content": "\"use client\"\n\nimport { Toggle } from \"@base-ui/react/toggle\"\nimport { ToggleGroup } from \"@base-ui/react/toggle-group\"\nimport type { ComponentProps } from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\n/** One choice from a few, shown all at once. Single selection; the pressed item cannot be unpressed. */\nfunction SegmentedControl({\n  className,\n  value,\n  defaultValue,\n  onValueChange,\n  ...props\n}: Omit<ComponentProps<typeof ToggleGroup>, \"value\" | \"defaultValue\" | \"onValueChange\" | \"multiple\"> & {\n  value?: string\n  defaultValue?: string\n  onValueChange?: (value: string) => void\n}) {\n  return (\n    <ToggleGroup\n      data-slot=\"segmented-control\"\n      value={value === undefined ? undefined : [value]}\n      defaultValue={defaultValue === undefined ? undefined : [defaultValue]}\n      onValueChange={(v) => v[0] !== undefined && onValueChange?.(v[0] as string)}\n      className={cn(\"inline-flex h-control items-center gap-0.5 rounded-sm bg-sunken p-0.5 hairline\", className)}\n      {...props}\n    />\n  )\n}\n\nfunction SegmentedControlItem({ className, ...props }: ComponentProps<typeof Toggle>) {\n  return (\n    <Toggle\n      data-slot=\"segmented-control-item\"\n      className={cn(\n        \"inline-flex h-7 items-center gap-1.5 rounded-xs px-2.5 text-ui text-fg-secondary transition-interactive duration-fast ease-out select-none\",\n        \"hover:text-fg-strong data-pressed:bg-surface data-pressed:text-fg-strong data-pressed:elevation-raised [&_svg]:size-4\",\n        className,\n      )}\n      {...props}\n    />\n  )\n}\n\nexport { SegmentedControl, SegmentedControlItem }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "categories": [
+    "components"
+  ],
+  "type": "registry:ui"
+}

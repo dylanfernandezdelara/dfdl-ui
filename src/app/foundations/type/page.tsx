@@ -27,17 +27,17 @@ export default function TypePage() {
         <PageTitle
           eyebrow="Foundations"
           title="Type"
-          lede="Hierarchy comes from weight, family and color, not size. Body, headings and titles share 16px; Lora at weight 550 marks a heading, system sans at 400 is prose, 13px at 450 is interface. Every role carries its size, leading and weight together, so there is exactly one way to set text."
+          lede="Hierarchy from weight, family and color. Body, headings and titles share 16px."
         />
 
-        <Section title="Roles" lede="Six roles. Use the utility; never combine a size class with a leading class by hand.">
-          <div className="rounded-lg bg-surface p-major hairline">
+        <Section title="Roles" lede="Six roles, each with its size, leading and weight.">
+          <div data-product-type className="rounded-lg bg-surface p-major hairline">
             <TypeSpecimen />
           </div>
           <div className="mt-major overflow-x-auto">
             <table className="w-full text-ui">
               <thead>
-                <tr className="text-left font-mono text-caption uppercase tracking-wider text-fg-tertiary">
+                <tr className="text-left text-ui text-fg-tertiary">
                   <th className="h-8 font-normal">role</th>
                   <th className="h-8 font-normal">size / leading</th>
                   <th className="h-8 font-normal">weight</th>
@@ -60,25 +60,23 @@ export default function TypePage() {
           </div>
         </Section>
 
-        <Section title="Families" lede="System sans for body and interface (zero font cost, matches the OS). Lora for display and every heading. Geist Mono for code, identifiers and metadata.">
+        <Section title="Families" lede="System sans for text, Lora for headings, Geist Mono for code.">
           <Code>{`font-sans      ui-sans-serif, system-ui, sans-serif\nfont-display   Lora (display role)\nfont-heading   Lora (title and heading roles); system sans under data-quiet\nfont-mono      Geist Mono`}</Code>
-          <p className="mt-major max-w-reading text-ui text-fg-secondary">
-            Weight 550 needs a variable font. SF Pro and Segoe UI Variable have it; static Segoe UI snaps to 600, which is acceptable.
-            Figma renders Inter where the browser renders the system font; that gap is accepted and documented on the library cover.
-          </p>
         </Section>
 
-        <Section title="Reading" lede="An article at the reading measure (33rem). Headings are the same size as body; the family and weight change is the hierarchy.">
-          <div className="rounded-lg bg-page p-major hairline">
+        <Section title="Reading" lede="An article at the 33rem reading measure.">
+          <div data-product-type className="rounded-lg bg-page p-major hairline">
             <Article />
           </div>
         </Section>
 
-        <Section title="Dense" lede="The same roles on a data panel. 13px interface text at weight 450 holds up at density; tabular numerals on every figure.">
-          <DensePanel />
+        <Section title="Dense" lede="The same roles on a data panel.">
+          <div data-product-type>
+            <DensePanel />
+          </div>
         </Section>
 
-        <Section title="Rules" lede="Short, and the linter and probe check most of them.">
+        <Section title="Rules" lede="Most are checked by the linter.">
           <ul className="max-w-reading list-disc space-y-minor pl-5 text-ui text-fg">
             <li>Set text only with a role utility. `text-sm leading-6` by hand is a defect.</li>
             <li>Line-heights are pixel multiples of 4 (24, 20, 16, 40). Never unitless.</li>

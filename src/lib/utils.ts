@@ -14,7 +14,7 @@ export const cn = createCn({
       "font-family": [{ font: ["display", "heading"] }],
       shadow: ["elevation-raised", "elevation-floating", "hairline", "hairline-t", "hairline-b", "hairline-r", "hairline-l"],
       h: ["h-below-header"],
-      "transition-property": ["transition-interactive", "transition-icon"],
+      "transition-property": ["transition-interactive", "transition-icon", "motion-pop", "motion-tooltip", "motion-dialog", "motion-fade"],
       duration: ["duration-instant", "duration-fast", "duration-normal", "duration-slow", "duration-slower"],
       ease: [{ ease: ["spring", "drawer"] }],
       blur: [{ blur: ["icon"] }],

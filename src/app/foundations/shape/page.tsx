@@ -33,10 +33,10 @@ export default function ShapePage() {
         <PageTitle
           eyebrow="Foundations"
           title="Shape and rhythm"
-          lede="Round corners in one family, nested concentrically. Everything sits on an 8px grid with a 24px major beat, and the grid is measured by a probe rather than judged by eye."
+          lede="One round radius family and an 8px grid."
         />
 
-        <Section title="Radius" lede="Six values. Concentric nesting is the rule: an inner radius equals the outer radius minus the padding between them, so curves stay parallel.">
+        <Section title="Radius" lede="Six values. Nested corners stay concentric: inner radius = outer radius − padding.">
           <div className="grid grid-cols-3 gap-major sm:grid-cols-6">
             {radii.map(([k, cls]) => (
               <div key={k} className="min-w-0">
@@ -67,9 +67,9 @@ export default function ShapePage() {
           </div>
         </Section>
 
-        <Section title="Rhythm" lede="8px minor, 24px major. Spacing utilities are `minor` and `major`, plus the Tailwind 4px scale for internal padding. Vertical space between blocks is always a multiple of 8.">
+        <Section title="Rhythm" lede="8px minor, 24px major.">
           <Code>{`gap-minor  p-minor  mt-minor   8px\ngap-major  p-major  mt-major  24px\npy-12                         48px (two majors)\nmax-w-reading                 33rem, the article measure\nmax-w-content                 64rem`}</Code>
-          <p className="mt-major flex h-6 items-center font-mono text-caption uppercase tracking-wider text-fg-tertiary">control heights</p>
+          <p className="mt-major flex h-6 items-center text-ui text-fg-tertiary">control heights</p>
           <ul className="mt-minor max-w-reading text-ui text-fg-secondary">
             {heights.map(([h, use]) => (
               <li key={h} className="flex h-8 items-center gap-major">
@@ -80,7 +80,7 @@ export default function ShapePage() {
           </ul>
         </Section>
 
-        <Section title="Staying on the grid" lede="Press g on any page of this site for the grid, Shift+G for the audit: every block whose top, height or left edge misses the grid is outlined with the reason. A component page ships at zero.">
+        <Section title="Staying on the grid" lede="Press g for the grid and Shift+G to outline anything off it.">
           <ul className="max-w-reading list-disc space-y-minor pl-5 text-ui text-fg">
             <li>Control heights from the list above; never `h-7`, `h-9`, `h-11`.</li>
             <li>`items-center` in rows, not `items-baseline`. Baseline alignment of two line-heights lands on half pixels.</li>

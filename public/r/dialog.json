@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "dialog",
+  "title": "Dialog",
+  "author": "Dylan Fernandez de Lara",
+  "description": "A modal window for a decision that interrupts the flow.",
+  "dependencies": [
+    "@base-ui/react"
+  ],
+  "registryDependencies": [
+    "https://dfdl-ui.fernandezdelaradylan.workers.dev/r/theme.json"
+  ],
+  "files": [
+    {
+      "path": "src/components/ui/dialog.tsx",
+      "content": "\"use client\"\n\nimport { Dialog as BaseDialog } from \"@base-ui/react/dialog\"\nimport type { ComponentProps } from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\nconst Dialog = BaseDialog.Root\nconst DialogTrigger = BaseDialog.Trigger\nconst DialogClose = BaseDialog.Close\n\nfunction DialogContent({ className, ...props }: ComponentProps<typeof BaseDialog.Popup>) {\n  return (\n    <BaseDialog.Portal>\n      <BaseDialog.Backdrop className=\"motion-fade fixed inset-0 z-50 bg-overlay\" />\n      <BaseDialog.Popup\n        data-slot=\"dialog\"\n        className={cn(\n          \"motion-dialog fixed top-1/2 left-1/2 z-50 flex w-full max-w-md -translate-x-1/2 -translate-y-1/2 flex-col gap-major rounded-lg bg-raised p-major elevation-floating outline-none\",\n          className,\n        )}\n        {...props}\n      />\n    </BaseDialog.Portal>\n  )\n}\n\nfunction DialogHeader({ className, ...props }: ComponentProps<\"div\">) {\n  return <div data-slot=\"dialog-header\" className={cn(\"flex flex-col gap-1\", className)} {...props} />\n}\n\nfunction DialogTitle({ className, ...props }: ComponentProps<typeof BaseDialog.Title>) {\n  return <BaseDialog.Title data-slot=\"dialog-title\" className={cn(\"font-heading text-heading text-fg-strong\", className)} {...props} />\n}\n\nfunction DialogDescription({ className, ...props }: ComponentProps<typeof BaseDialog.Description>) {\n  return <BaseDialog.Description data-slot=\"dialog-description\" className={cn(\"text-ui text-fg-secondary\", className)} {...props} />\n}\n\nfunction DialogFooter({ className, ...props }: ComponentProps<\"div\">) {\n  return <div data-slot=\"dialog-footer\" className={cn(\"flex justify-end gap-minor\", className)} {...props} />\n}\n\nexport { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "categories": [
+    "components"
+  ],
+  "type": "registry:ui"
+}

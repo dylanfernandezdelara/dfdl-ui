@@ -33,7 +33,7 @@ const semantic: [string, string, string][] = [
 function InContext({ dark }: { dark: boolean }) {
   return (
     <div className={dark ? "dark rounded-lg bg-page p-major text-fg hairline" : "rounded-lg bg-page p-major text-fg hairline"}>
-      <p className="flex h-6 items-center font-mono text-caption uppercase tracking-wider text-fg-tertiary">{dark ? "Dark" : "Light"}</p>
+      <p className="flex h-6 items-center text-ui text-fg-tertiary">{dark ? "Dark" : "Light"}</p>
       <div className="mt-major flex flex-wrap items-center gap-minor">
         <SolidButton>Save changes</SolidButton>
         <TintedButton>Fork</TintedButton>
@@ -71,16 +71,16 @@ export default function ColorPage() {
         <PageTitle
           eyebrow="Foundations"
           title="Color"
-          lede={`One warm neutral (hue ${tokens.neutral.hue}, chroma ${tokens.neutral.chroma}) carries surfaces and text in both appearances. One accent per product marks the primary action and selection. Status hues sit at least 30 degrees from either accent. Everything is OKLCH, generated, and contrast is measured.`}
+          lede="One warm neutral, one accent per product, three status hues. OKLCH, generated, contrast measured."
         />
 
-        <Section title="Neutral" lede="Twelve steps on Radix's lightness spine, tint held across the light steps so the warmth survives on the page background. Text is not a step of the ramp: body sits at 37% lightness, headings at 12%, so a page reads soft with ink headings.">
+        <Section title="Neutral" lede="Twelve steps. Text sits outside the ramp: body at 37% lightness, headings at 12%.">
           <Ramp steps={L.neutral} name="neutral · light" />
           <Ramp steps={D.neutral} name="neutral · dark" className="mt-major" />
           <div className="mt-major grid gap-major sm:grid-cols-2">
             {(["light", "dark"] as const).map((a) => (
               <div key={a} className={a === "dark" ? "dark rounded-lg bg-page p-major hairline" : "rounded-lg bg-page p-major hairline"}>
-                <p className="flex h-6 items-center font-mono text-caption uppercase tracking-wider text-fg-tertiary">text on page · {a}</p>
+                <p className="flex h-6 items-center text-ui text-fg-tertiary">text on page · {a}</p>
                 <ul className="mt-minor">
                   {Object.entries(tokens[a].text).map(([k, v]) => (
                     <li key={k} className="flex h-8 items-center justify-between gap-major">
@@ -94,7 +94,7 @@ export default function ColorPage() {
           </div>
         </Section>
 
-        <Section title="Accents" lede="Two approved accents at the same solid lightness (52.4% light, 72% dark), so they are interchangeable. Vividness is a proportion of each hue's own gamut ceiling, set per appearance. Ember is the default; indigo is for products that already own blue.">
+        <Section title="Accents" lede="Ember by default, indigo for products that already own blue. Same lightness, interchangeable.">
           {Object.entries(L.accents).map(([name, a]) => (
             <div key={name} className="mb-major">
               <Ramp steps={a.ramp} name={`${name} · light · hue ${a.hue} · on solid ${a.onSolid.toFixed(1)}:1`} roles={false} />
@@ -104,7 +104,7 @@ export default function ColorPage() {
           <Code>{`<html data-accent="ember">   <!-- default -->\n<html data-accent="indigo">  <!-- a product that already owns blue -->\n<html data-quiet>            <!-- data-dense product: sans headings, no accent -->`}</Code>
         </Section>
 
-        <Section title="Status" lede="Danger, success and warning, each a full ramp with bg (3), border (6), solid (9) and text (11) steps. Hues 18, 150 and 88: all at least 30 degrees from ember and from indigo, so a red button never reads as the primary action.">
+        <Section title="Status" lede="Each hue is at least 30 degrees from both accents.">
           <div className="grid gap-major lg:grid-cols-3">
             {Object.entries(L.status).map(([k, s]) => (
               <Ramp key={k} steps={s.ramp} name={`${k} · hue ${s.hue}`} roles={false} />
@@ -112,7 +112,7 @@ export default function ColorPage() {
           </div>
         </Section>
 
-        <Section title="Semantic roles" lede="Components use only these. Primitives are never exposed as utilities; that is what keeps them out of components. Each swatch is the live token in the current theme.">
+        <Section title="Semantic roles" lede="The only colors components use. Each swatch is the live token.">
           <div className="grid gap-minor sm:grid-cols-2 lg:grid-cols-3">
             {semantic.map(([name, cls, note]) => (
               <RoleSwatch key={name} name={name} className={cls} note={note} />
@@ -120,14 +120,14 @@ export default function ColorPage() {
           </div>
         </Section>
 
-        <Section title="In context" lede="The same specimens the color lab used to decide. Both appearances at once.">
-          <div className="grid gap-major xl:grid-cols-2">
+        <Section title="In context" lede="Light and dark side by side.">
+          <div data-product-type className="grid gap-major xl:grid-cols-2">
             <InContext dark={false} />
             <InContext dark />
           </div>
         </Section>
 
-        <Section title="Depth" lede="Light: a 1px ring at 6% plus a small lift (jakub.kr). Dark: an inset ring of white at 4% and a 24% shadow (gooey). Floating surfaces add a longer drop. Hairlines are shadows, not borders, so they never shift the grid.">
+        <Section title="Depth" lede="A ring and a small lift. Hairlines are shadows, so they never shift the grid.">
           <div className="grid gap-major sm:grid-cols-2">
             <div className="rounded-lg bg-surface p-major elevation-raised">
               <p className="font-heading text-heading text-fg-strong">elevation-raised</p>

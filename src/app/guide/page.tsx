@@ -11,9 +11,9 @@ export default function GuidePage() {
     <DocsShell>
       <div className="max-w-content">
         <PageTitle
-          eyebrow="Start"
+          eyebrow="Getting started"
           title="Guide"
-          lede="How to build here, for people and for agents. This is the same text served at /llms.txt. Every value comes from a recorded decision; the reasoning lives in decisions.md."
+          lede="The rules for building with dfdl. Also served as /llms.txt."
         />
         <nav aria-label="On this page" className="mb-12 flex flex-wrap gap-x-major gap-y-minor text-ui">
           {GUIDE.map((s) => (

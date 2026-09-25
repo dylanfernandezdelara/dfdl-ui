@@ -1,37 +1,31 @@
-"use client"
-
-import { Check, Copy } from "lucide-react"
-import { useState } from "react"
-
+import { highlight, type Lang } from "@/lib/highlight"
 import { cn } from "@/lib/utils"
 
-/** One-line command with a copy button. */
-export function Command({ children, className }: { children: string; className?: string }) {
-  const [copied, setCopied] = useState(false)
+import { CopyButton } from "./copy-button"
+
+/** Highlighted code with a copy button. Server component; highlighting happens at build. */
+export async function CodeBlock({ code, lang = "tsx", className }: { code: string; lang?: Lang; className?: string }) {
+  const html = await highlight(code, lang)
   return (
-    <div className={cn("flex h-10 items-center gap-minor rounded-md bg-sunken pr-1 pl-3 font-mono text-ui text-fg hairline", className)}>
-      <span className="min-w-0 flex-1 truncate">{children}</span>
-      <button
-        type="button"
-        onClick={() => {
-          void navigator.clipboard.writeText(children)
-          setCopied(true)
-          setTimeout(() => setCopied(false), 1200)
-        }}
-        aria-label={copied ? "Copied" : "Copy"}
-        className="relative flex size-8 items-center justify-center rounded-sm text-fg-secondary transition-interactive duration-fast ease-out press hover:bg-surface-hover hover:text-fg"
-      >
-        <Copy className={cn("absolute size-4 transition-icon duration-normal ease-out", copied ? "scale-25 opacity-0 blur-icon" : "opacity-100")} strokeWidth={1.5} aria-hidden />
-        <Check className={cn("absolute size-4 text-success transition-icon duration-normal ease-out", copied ? "opacity-100" : "scale-25 opacity-0 blur-icon")} strokeWidth={2} aria-hidden />
-      </button>
+    <div className={cn("relative rounded-md bg-subtle hairline", className)}>
+      <div className="code overflow-x-auto p-major pr-12 font-mono text-ui" dangerouslySetInnerHTML={{ __html: html }} />
+      <CopyButton value={code} className="absolute top-2 right-2" />
     </div>
   )
 }
 
-export function Code({ children }: { children: string }) {
+/** One-line shell command. */
+export async function Command({ children, className }: { children: string; className?: string }) {
+  const html = await highlight(children, "bash")
   return (
-    <pre className="overflow-x-auto rounded-md bg-sunken p-major font-mono text-ui text-fg hairline">
-      <code>{children}</code>
-    </pre>
+    <div className={cn("flex h-11 items-center gap-minor rounded-md bg-subtle pr-2 pl-4 hairline", className)}>
+      <div className="code min-w-0 flex-1 overflow-x-auto font-mono text-ui whitespace-nowrap" dangerouslySetInnerHTML={{ __html: html }} />
+      <CopyButton value={children} className="size-7" />
+    </div>
   )
+}
+
+/** Plain code block, kept for pages that show short snippets without highlighting needs. */
+export async function Code({ children, lang = "tsx" }: { children: string; lang?: Lang }) {
+  return <CodeBlock code={children} lang={lang} />
 }

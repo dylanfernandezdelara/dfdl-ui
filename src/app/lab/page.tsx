@@ -1,6 +1,6 @@
 import Link from "next/link"
 
-import { DocsShell } from "@/components/docs/shell"
+import { DocsShell, PageTitle } from "@/components/docs/shell"
 
 /**
  * Lab index. Each lab is a route under /lab. Labs show bounded candidates side by side;
@@ -17,18 +17,13 @@ export default function LabIndexPage() {
     <>
       <DocsShell>
       <div className="max-w-content">
-        <p className="flex h-6 items-center font-mono text-caption uppercase tracking-wider text-fg-tertiary">Process</p>
-        <h1 className="mt-minor font-display text-display text-fg-strong">Labs</h1>
-        <p className="mt-minor max-w-reading text-body text-fg-secondary">
-          Where the foundations get decided. Every lab shows the current values as a baseline beside two alternatives.
-          Press <kbd className="rounded-xs bg-sunken px-1 font-mono text-caption hairline">g</kbd> for the grid.
-        </p>
-        <ul className="mt-12">
+        <PageTitle eyebrow="Resources" title="Labs" lede="Where each foundation was decided, with the alternatives it beat." />
+        <ul>
           {labs.map((lab) => (
             <li key={lab.slug} className="flex items-start gap-major py-major hairline-t">
-              <span className="flex h-6 w-24 shrink-0 items-center font-mono text-caption uppercase tracking-wider text-fg-tertiary">{lab.status}</span>
+              <span className="flex h-6 w-24 shrink-0 items-center text-ui text-fg-tertiary">{lab.status}</span>
               <div className="flex-1">
-                <h2 className="font-heading text-heading text-fg-strong">{lab.title}</h2>
+                <h2 className="text-heading font-semibold text-fg-strong">{lab.title}</h2>
                 <p className="text-ui text-fg-secondary">{lab.summary}</p>
               </div>
               <Link href={`/lab/${lab.slug}`} className="flex h-6 items-center text-ui text-accent-text underline decoration-accent-border underline-offset-2">/lab/{lab.slug}</Link>

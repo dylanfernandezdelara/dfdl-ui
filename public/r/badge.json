@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "badge",
+  "title": "Badge",
+  "author": "Dylan Fernandez de Lara",
+  "description": "A short status label.",
+  "dependencies": [
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "https://dfdl-ui.fernandezdelaradylan.workers.dev/r/theme.json"
+  ],
+  "files": [
+    {
+      "path": "src/components/ui/badge.tsx",
+      "content": "import { cva, type VariantProps } from \"class-variance-authority\"\nimport type { ComponentProps } from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\nconst badgeVariants = cva(\"inline-flex h-6 items-center gap-1 rounded-full px-2 text-caption whitespace-nowrap [&_svg]:size-3\", {\n  variants: {\n    variant: {\n      neutral: \"bg-sunken text-fg-secondary\",\n      accent: \"bg-accent-bg text-accent-text\",\n      success: \"bg-success-bg text-success-text\",\n      warning: \"bg-warning-bg text-warning-text\",\n      danger: \"bg-danger-bg text-danger-text\",\n    },\n  },\n  defaultVariants: { variant: \"neutral\" },\n})\n\nfunction Badge({ className, variant, ...props }: ComponentProps<\"span\"> & VariantProps<typeof badgeVariants>) {\n  return <span data-slot=\"badge\" className={cn(badgeVariants({ variant }), className)} {...props} />\n}\n\nexport { Badge, badgeVariants }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "categories": [
+    "components"
+  ],
+  "type": "registry:ui"
+}

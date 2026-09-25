@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tabs",
+  "title": "Tabs",
+  "author": "Dylan Fernandez de Lara",
+  "description": "Switches between views in the same place.",
+  "dependencies": [
+    "@base-ui/react"
+  ],
+  "registryDependencies": [
+    "https://dfdl-ui.fernandezdelaradylan.workers.dev/r/theme.json"
+  ],
+  "files": [
+    {
+      "path": "src/components/ui/tabs.tsx",
+      "content": "\"use client\"\n\nimport { Tabs as BaseTabs } from \"@base-ui/react/tabs\"\nimport { useEffect, useRef, type ComponentProps } from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\nfunction Tabs({ className, ...props }: ComponentProps<typeof BaseTabs.Root>) {\n  return <BaseTabs.Root data-slot=\"tabs\" className={cn(\"flex flex-col gap-major\", className)} {...props} />\n}\n\n/*\n  The indicator is a 1px bar scaled to the active tab's width and translated to its left edge, so only transform\n  animates. Measured here rather than read from Base UI's --active-tab-* lengths, because scale needs a number.\n*/\nfunction TabsList({ className, children, ...props }: ComponentProps<typeof BaseTabs.List>) {\n  const list = useRef<HTMLDivElement>(null)\n  const bar = useRef<HTMLSpanElement>(null)\n  useEffect(() => {\n    const el = list.current\n    if (!el) return\n    const measure = () => {\n      const tab = el.querySelector<HTMLElement>(\"[data-active]\")\n      if (!tab || !bar.current) return\n      bar.current.style.setProperty(\"--tab-x\", `${tab.offsetLeft}px`)\n      bar.current.style.setProperty(\"--tab-w\", `${tab.offsetWidth}`)\n      bar.current.dataset.ready = \"\"\n    }\n    measure()\n    document.fonts.ready.then(measure)\n    const resize = new ResizeObserver(measure)\n    resize.observe(el)\n    const mutate = new MutationObserver(measure)\n    mutate.observe(el, { attributes: true, subtree: true, attributeFilter: [\"data-active\"] })\n    return () => {\n      resize.disconnect()\n      mutate.disconnect()\n    }\n  }, [])\n  return (\n    <BaseTabs.List ref={list} data-slot=\"tabs-list\" className={cn(\"relative flex items-center gap-1 hairline-b\", className)} {...props}>\n      {children}\n      <span ref={bar} aria-hidden className=\"tabs-indicator absolute bottom-0 left-0 h-0.5 bg-fg-strong\" />\n    </BaseTabs.List>\n  )\n}\n\nfunction TabsTab({ className, ...props }: ComponentProps<typeof BaseTabs.Tab>) {\n  return (\n    <BaseTabs.Tab\n      data-slot=\"tabs-tab\"\n      className={cn(\n        \"inline-flex h-control items-center gap-1.5 rounded-xs px-2 text-ui text-fg-secondary transition-interactive duration-fast ease-out select-none\",\n        \"hover:text-fg-strong data-active:text-fg-strong data-disabled:opacity-50 [&_svg]:size-4\",\n        className,\n      )}\n      {...props}\n    />\n  )\n}\n\nfunction TabsPanel({ className, ...props }: ComponentProps<typeof BaseTabs.Panel>) {\n  return <BaseTabs.Panel data-slot=\"tabs-panel\" className={cn(\"text-body text-fg\", className)} {...props} />\n}\n\nexport { Tabs, TabsList, TabsPanel, TabsTab }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "categories": [
+    "components"
+  ],
+  "type": "registry:ui"
+}

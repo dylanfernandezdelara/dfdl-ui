@@ -24,6 +24,8 @@
     if (r.width < 2 || r.height < 2) continue
     // Inline text runs are judged via their parent block; skip pure inline elements.
     if (cs.display === 'inline') continue
+    // Decoration placed out of flow (an aria-hidden absolute indicator) cannot shift anything.
+    if (cs.position === 'absolute' && el.getAttribute('aria-hidden') === 'true') continue
     checked++
     const top = r.top + window.scrollY
     const why = []

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tooltip",
+  "title": "Tooltip",
+  "author": "Dylan Fernandez de Lara",
+  "description": "Labels a control that has no visible text.",
+  "dependencies": [
+    "@base-ui/react"
+  ],
+  "registryDependencies": [
+    "https://dfdl-ui.fernandezdelaradylan.workers.dev/r/theme.json"
+  ],
+  "files": [
+    {
+      "path": "src/components/ui/tooltip.tsx",
+      "content": "\"use client\"\n\nimport { Tooltip as BaseTooltip } from \"@base-ui/react/tooltip\"\nimport type { ComponentProps, ReactNode } from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\nconst TooltipProvider = BaseTooltip.Provider\n\n/** A short label for a control that has no visible one. Put one TooltipProvider near the root so tooltips share a delay. */\nfunction Tooltip({\n  content,\n  side = \"top\",\n  children,\n  className,\n  ...props\n}: ComponentProps<typeof BaseTooltip.Root> & { content: ReactNode; side?: \"top\" | \"bottom\" | \"left\" | \"right\"; children: ComponentProps<typeof BaseTooltip.Trigger>[\"render\"]; className?: string }) {\n  return (\n    <BaseTooltip.Root {...props}>\n      <BaseTooltip.Trigger render={children} />\n      <BaseTooltip.Portal>\n        <BaseTooltip.Positioner side={side} sideOffset={6}>\n          <BaseTooltip.Popup data-slot=\"tooltip\" className={cn(\"motion-tooltip rounded-xs bg-fg-strong px-2 py-1 text-caption text-fg-inverse\", className)}>\n            {content}\n          </BaseTooltip.Popup>\n        </BaseTooltip.Positioner>\n      </BaseTooltip.Portal>\n    </BaseTooltip.Root>\n  )\n}\n\nexport { Tooltip, TooltipProvider }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "categories": [
+    "components"
+  ],
+  "type": "registry:ui"
+}

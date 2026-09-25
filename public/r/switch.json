@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "switch",
+  "title": "Switch",
+  "author": "Dylan Fernandez de Lara",
+  "description": "Turns a setting on or off, effective immediately.",
+  "dependencies": [
+    "@base-ui/react"
+  ],
+  "registryDependencies": [
+    "https://dfdl-ui.fernandezdelaradylan.workers.dev/r/theme.json"
+  ],
+  "files": [
+    {
+      "path": "src/components/ui/switch.tsx",
+      "content": "\"use client\"\n\nimport { Switch as BaseSwitch } from \"@base-ui/react/switch\"\nimport type { ComponentProps } from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\nfunction Switch({ className, ...props }: ComponentProps<typeof BaseSwitch.Root>) {\n  return (\n    <BaseSwitch.Root\n      data-slot=\"switch\"\n      className={cn(\n        \"inline-flex h-5 w-8 shrink-0 items-center rounded-full bg-line-strong p-0.5 transition-interactive duration-fast ease-out\",\n        \"data-checked:bg-accent-solid data-disabled:cursor-not-allowed data-disabled:opacity-50\",\n        className,\n      )}\n      {...props}\n    >\n      <BaseSwitch.Thumb className=\"size-4 rounded-full bg-page elevation-raised transition-transform duration-fast ease-out data-checked:translate-x-3\" />\n    </BaseSwitch.Root>\n  )\n}\n\nexport { Switch }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "categories": [
+    "components"
+  ],
+  "type": "registry:ui"
+}

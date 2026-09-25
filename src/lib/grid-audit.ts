@@ -21,6 +21,8 @@ export function auditGrid(root: ParentNode = document.body): { checked: number; 
     if (SKIP.has(el.tagName.toUpperCase()) || el.closest("[data-layout-grid-overlay],[data-layout-grid-toolbar],[data-grid-ignore]")) continue
     const cs = getComputedStyle(el)
     if (cs.display === "none" || cs.display === "inline" || cs.visibility === "hidden" || parseFloat(cs.opacity) === 0) continue
+    // Decoration placed out of flow (an aria-hidden absolute indicator) cannot shift anything.
+    if (cs.position === "absolute" && el.getAttribute("aria-hidden") === "true") continue
     const r = el.getBoundingClientRect()
     if (r.width < 2 || r.height < 2) continue
     checked++

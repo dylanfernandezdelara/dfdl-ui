@@ -13,7 +13,7 @@ export default function MotionLabPage() {
   return (
     <>
       <DocsShell>
-      <div className="max-w-site pb-12">
+      <div data-product-type className="max-w-site pb-12">
         <div className="pb-12">
           <p className="flex h-6 items-center font-mono text-caption uppercase tracking-wider text-fg-tertiary">Lab 3</p>
           <h1 className="mt-minor font-display text-display text-fg-strong">Motion</h1>
