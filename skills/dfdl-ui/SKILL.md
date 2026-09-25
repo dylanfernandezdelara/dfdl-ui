@@ -1,0 +1,105 @@
+---
+name: dfdl-ui
+description: Build or restyle UI in Dylan Fernandez de Lara's products (dylanfdl.com, trackcongress, Fork, new apps) with the dfdl design system. Use for any component, page, layout, color, type, spacing or motion work in a project that uses dfdl tokens (styles/dfdl/tokens.css, data-accent on <html>), or when asked to make something "look like Dylan's".
+---
+
+# dfdl ui
+
+Dylan's design system: tokens, React components on Base UI, a lint policy, and probes that measure the result.
+Docs: https://dfdl-ui.fernandezdelaradylan.workers.dev · Plain text for agents: /llms.txt · Source: github.com/dylanfernandezdelara/dfdl-ui
+
+The feel, in one line: warm and quiet. One neutral family, one accent, hierarchy from weight, round corners, motion you do not notice, everything on an 8px grid.
+If a screen looks like a competent generic dashboard, it is wrong.
+
+## Before you write UI
+
+1. Check the project has dfdl: `styles/dfdl/tokens.css` and `styles/dfdl/theme.css` imported from the global CSS, and `data-accent` on `<html>`. If not, install it (see Setup) before anything else.
+2. Look for an existing component. Never hand-build something the registry has:
+
+| Need | Component | Add |
+| --- | --- | --- |
+| Action | Button (`primary` `secondary` `ghost` `danger`; `sm` 28, `md` 32, `lg` 40, `icon`) | `button` |
+| Status label | Badge | `badge` |
+| Grouped content | Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter | `card` |
+| Decision that interrupts | Dialog | `dialog` |
+| Text field | Input | `input` |
+| Shortcut | Kbd | `kbd` |
+| List of actions | Menu | `menu` |
+| One of a few, all visible | SegmentedControl | `segmented-control` |
+| Setting on/off | Switch | `switch` |
+| Views in one place | Tabs | `tabs` |
+| Label for an icon-only control | Tooltip | `tooltip` |
+
+   `npx shadcn@latest add https://dfdl-ui.fernandezdelaradylan.workers.dev/r/<name>.json`
+
+   If the registry lacks it, build on the matching Base UI part and follow "Adopt a component" below.
+
+## Setup (once per project)
+
+```bash
+npx shadcn@latest add https://dfdl-ui.fernandezdelaradylan.workers.dev/r/theme.json
+```
+
+Replace the global CSS with these imports. shadcn init's own theme block overrides page color and radius if it stays.
+
+```css
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "../styles/dfdl/tokens.css";
+@import "../styles/dfdl/theme.css";
+```
+
+Add the probes the Verify steps use (they land in `scripts/probes/`):
+
+```bash
+npx shadcn@latest add https://dfdl-ui.fernandezdelaradylan.workers.dev/r/probes.json
+```
+
+Load Lora with next/font as `--font-lora`. Set `<html data-accent="ember">` (default) or `"indigo"` for products that already own blue. Tailwind v3 projects use the `tokens` item and `tokens.hsl.css` instead.
+
+## Values
+
+Use utilities, never raw values. The linter rejects palette colors, arbitrary values, inline styles and restyled components.
+
+- **Surfaces:** `bg-page` `bg-subtle` `bg-surface` `bg-surface-hover` `bg-surface-active` `bg-sunken` `bg-raised` `bg-overlay`
+- **Text:** `text-fg` (body) `text-fg-secondary` `text-fg-tertiary` `text-fg-strong` (headings) `text-fg-on-accent`. `text-primary` is shadcn's accent fill, never body text.
+- **Lines:** `hairline` `hairline-t` `hairline-b` `hairline-r` (shadows, take no space), `border-line` only where the box already accounts for 1px.
+- **Accent:** `bg-accent-solid` `bg-accent-bg` `text-accent-text` `border-accent-border`. **Status:** `bg-danger` `bg-danger-bg` `text-danger-text`, same for `success`, `warning`.
+- **Depth:** `elevation-raised` (cards, secondary buttons), `elevation-floating` (menus, dialogs).
+- **Type roles:** `text-display` 32/40, `text-title` and `text-heading` 16/24 at 550 in Lora, `text-body` 16/24, `text-ui` 13/20 at 450, `text-caption` 12/16. Pair a role with `font-heading` or `font-display` for Lora. Never a size class plus a leading class.
+- **Radius:** `rounded-xs` 8 (chips), `rounded-sm` 10 (controls), `rounded-md` 12 (fields, popovers), `rounded-lg` 16 (cards), `rounded-xl` 24 (sheets). Nested corners: inner = outer − padding.
+- **Space:** `gap-minor`/`p-minor` 8, `gap-major`/`p-major` 24. Control heights 24, 28, 32 (default), 40, 48.
+- **Motion:** `transition-interactive` for controls, `transition-icon` for icon swaps, `press` for press feedback, `duration-fast` (150) and friends, `ease-out`. Popups use `motion-pop`, `motion-dialog`, `motion-tooltip`, `motion-fade`.
+
+## Judgment (what the linter cannot check)
+
+- **One primary button per view.** The accent marks the primary action and the current selection, nothing else: no accent headings, icons or decorative fills.
+- **Hierarchy from weight and family, not size.** Headings are the same 16px as body; Lora at 550 and `text-fg-strong` make them headings. Only a page title uses `text-display`.
+- **Quiet mode** (`<html data-quiet>`) for data-dense products where color already carries data: headings go sans, the accent collapses into the neutrals. trackcongress runs quiet.
+- **Density:** 32px controls by default; 28 (`size="sm"`) in dense rows and tables; 40 for touch-first surfaces.
+- **Should it animate?** Not if it is keyboard-triggered or happens hundreds of times a day. Hover and press are near-imperceptible. Menus, dialogs and drawers get the standard treatment. If you can describe the animation, it is too much.
+- **Copy:** short and plain. One line per description. No marketing voice, no mono or uppercase labels for decoration.
+- **Warmth:** never pure white or pure black; the neutrals already carry the warmth. Do not add tints.
+
+## Verify (every UI change)
+
+1. `npm run lint`. Zero errors; each message says what to use instead.
+2. Grid: run `scripts/probes/grid.js` in the page (`agent-browser eval "$(cat scripts/probes/grid.js)"`) and fix until offenders are 0. One 2px slip shifts every row below it; fix the first cause.
+3. Motion: trigger the interaction, then read `document.getAnimations()` (`scripts/probes/animations.js`). Check property, duration and curve against the spec. Reading the CSS is not proof.
+4. Look at it in light and dark, and at 390px wide with no horizontal scroll.
+
+## Adopt a component
+
+1. Bring the source in (a shadcn registry URL, or copy), on Base UI if it has a matching part.
+2. Retoken every color, radius, space and motion value until the linter is quiet.
+3. Add a height contract in `design-system.lint.json` if it is a control.
+4. Motion spec: curve, duration, exit at 75%, reduced motion keeps opacity and drops movement. Verify with the probe.
+5. Registry item with dependencies; docs page with every state.
+
+## Never
+
+Pure white or black surfaces · a second accent in one product · `transition: all` · `ease-in` · animating width, height, top or left · a size between roles · unitless line-heights · a border that pushes content off the grid · a value that is not a token.
+
+## Hand-offs
+
+For deeper craft, load the vendored skills by name rather than restating them: `emil-design-eng` and `animate` (motion), `better-typography`, `better-colors`, `better-layout`, `better-accessibility`. Where they disagree with this skill, dfdl wins; the reason is in `decisions.md`.

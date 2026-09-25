@@ -60,7 +60,7 @@ ${addCommand("button")}   # any component
       "First ask whether it should animate. Keyboard-triggered and 100+/day actions do not. Hover and press are near-imperceptible. Occasional things (menus, dialogs, drawers) get the standard treatment.",
       "Curves: ease-out cubic-bezier(0.23, 1, 0.32, 1) for enter and exit; ease-in-out cubic-bezier(0.77, 0, 0.175, 1) for movement on screen; ease-drawer cubic-bezier(0.32, 0.72, 0, 1) for drawers; ease-spring only for gestures. Never ease-in, never built-in ease.",
       "Durations: instant 100 (tooltips), fast 150 (hover, press), normal 200 (menus, toasts), slow 300 (dialogs), slower 500 (drawers). Exits at 75% of the enter, same path. Press is scale 0.97.",
-      "Only transform, translate, scale and opacity. Name the properties (transition-interactive, transition-icon), never transition: all. Popovers scale 0.95 from the trigger; dialogs 0.96 from center. Enters in @starting-style, exits in the closed state, display with allow-discrete. Reduced motion keeps opacity and color and drops movement.",
+      "Only transform, translate, scale and opacity. Name the properties (transition-interactive, transition-icon), never transition: all. Popovers scale 0.95 from the trigger; dialogs 0.96 from center. Base UI popups take motion-pop, motion-dialog, motion-tooltip or motion-fade, which read its data-starting-style and data-ending-style. Reduced motion keeps opacity and color and drops movement.",
       "Verify by reading document.getAnimations() after the interaction (scripts/probes/animations.js). The CSS is not the proof.",
     ],
   },
@@ -83,7 +83,7 @@ ${addCommand("button")}   # any component
     id: "adopt",
     title: "Adopt an outside component",
     body: [
-      "1. Bring the source in (npx shadcn add <url>, or copy). 2. Retoken: replace every color, radius, spacing and motion value with a semantic token until the linter is quiet. 3. Write the no-restyle contract: what callers may override. 4. Write the motion spec: purpose, curve, duration, exit, reduced-motion; verify with the probe. 5. Add it to registry.json with its dependencies and provenance. 6. Docs page with every state; Figma component. Core tier requires all six; expressive and app-pattern tiers may enter with 1 to 5.",
+      "1. Bring the source in (npx shadcn add <url>, or copy). 2. Retoken: replace every color, radius, spacing and motion value with a semantic token until the linter is quiet. 3. Write the no-restyle contract: what callers may override (controls deny h-* and size-*). 4. Write the motion spec: purpose, curve, duration, exit, reduced-motion; verify with the probe. 5. Add it to registry.json with its dependencies and provenance. 6. Docs page with every state. Controls also get a height contract in design-system.lint.json.",
     ],
   },
   {

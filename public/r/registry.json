@@ -58,6 +58,28 @@
       "docs": "Replace the contents of your global CSS with: @import \"tailwindcss\"; @import \"tw-animate-css\"; @import \"../styles/dfdl/tokens.css\"; @import \"../styles/dfdl/theme.css\"; The theme maps shadcn's color names, and the block shadcn init wrote would override it. Load Lora with next/font as --font-lora. Set the accent on <html data-accent=\"ember\"> or \"indigo\"."
     },
     {
+      "name": "probes",
+      "type": "registry:item",
+      "title": "dfdl probes",
+      "description": "Browser probes that measure the result: grid alignment and running animations. Paste into the console or run with agent-browser eval.",
+      "author": "Dylan Fernandez de Lara",
+      "categories": [
+        "tooling"
+      ],
+      "files": [
+        {
+          "path": "scripts/probes/grid.js",
+          "type": "registry:file",
+          "target": "scripts/probes/grid.js"
+        },
+        {
+          "path": "scripts/probes/animations.js",
+          "type": "registry:file",
+          "target": "scripts/probes/animations.js"
+        }
+      ]
+    },
+    {
       "name": "badge",
       "type": "registry:ui",
       "title": "Badge",

@@ -27,6 +27,7 @@ export default async function ComponentPage({ params }: PageProps<"/components/[
     { id: "installation", label: "Installation" },
     { id: "usage", label: "Usage" },
     ...(doc.examples.length ? [{ id: "examples", label: "Examples" }, ...doc.examples.map((e) => ({ id: e.name, label: e.title, depth: 2 as const }))] : []),
+    ...(doc.motion ? [{ id: "motion", label: "Motion" }] : []),
     { id: "api", label: "API" },
   ]
   return (
@@ -66,6 +67,12 @@ export default async function ComponentPage({ params }: PageProps<"/components/[
                 </div>
               ))}
             </div>
+          </DocSection>
+        ) : null}
+
+        {doc.motion ? (
+          <DocSection id="motion" title="Motion">
+            <p className="max-w-reading text-body text-fg-secondary">{doc.motion}</p>
           </DocSection>
         ) : null}
 

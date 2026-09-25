@@ -1,5 +1,5 @@
 {
-  "$comment": "dfdl design-system lint policy. Mechanical rules live here; judgment lives in the skill. Consumers extend this file. Contracts are added per component as each one ships.",
+  "$comment": "dfdl design-system lint policy. Mechanical rules live here; judgment lives in the skill. Consumers extend this file. Contracts: controls keep the height scale (24/28/32/40/48); pick a size instead of setting a height.",
   "rules": {
     "shadcn/no-raw-colors": [
       "error",
@@ -17,20 +17,127 @@
     "shadcn/no-restyle": [
       "error",
       {
-        "allow": ["layout"],
+        "allow": [
+          "layout"
+        ],
         "message": {
           "spacing": "{{component}} owns its padding. Use a size ({{sizes}}) or put margin/gap on the parent.",
           "typography": "{{component}} owns its type. Pick a variant or size instead of overriding font classes.",
           "color": "{{component}} owns its color. Use a variant; add one in the component only if the design calls for it."
         },
-        "contracts": []
+        "contracts": [
+          {
+            "pattern": "^Button$",
+            "allow": [
+              "layout"
+            ],
+            "deny": [
+              "h-*",
+              "min-h-*",
+              "max-h-*",
+              "size-*"
+            ]
+          },
+          {
+            "pattern": "^Input$",
+            "allow": [
+              "layout"
+            ],
+            "deny": [
+              "h-*",
+              "min-h-*",
+              "max-h-*",
+              "size-*"
+            ]
+          },
+          {
+            "pattern": "^(SegmentedControl|SegmentedControlItem)$",
+            "allow": [
+              "layout"
+            ],
+            "deny": [
+              "h-*",
+              "min-h-*",
+              "max-h-*",
+              "size-*"
+            ]
+          },
+          {
+            "pattern": "^Switch$",
+            "allow": [
+              "layout"
+            ],
+            "deny": [
+              "h-*",
+              "min-h-*",
+              "max-h-*",
+              "size-*",
+              "w-*",
+              "min-w-*",
+              "max-w-*"
+            ]
+          },
+          {
+            "pattern": "^TabsTab$",
+            "allow": [
+              "layout"
+            ],
+            "deny": [
+              "h-*",
+              "min-h-*",
+              "max-h-*",
+              "size-*"
+            ]
+          },
+          {
+            "pattern": "^(MenuItem|MenuLabel)$",
+            "allow": [
+              "layout"
+            ],
+            "deny": [
+              "h-*",
+              "min-h-*",
+              "max-h-*",
+              "size-*"
+            ]
+          },
+          {
+            "pattern": "^(Badge|Kbd)$",
+            "allow": [
+              "layout"
+            ],
+            "deny": [
+              "h-*",
+              "min-h-*",
+              "max-h-*",
+              "size-*"
+            ]
+          },
+          {
+            "pattern": "^TabsList$",
+            "allow": [
+              "layout"
+            ],
+            "deny": [
+              "h-*",
+              "min-h-*",
+              "max-h-*",
+              "size-*"
+            ]
+          }
+        ]
       }
     ]
   },
   "overrides": [
     {
-      "files": ["src/components/ui/**", "src/app/lab/**"],
-      "rules": { "shadcn/no-restyle": "off" }
+      "files": [
+        "src/components/ui/**",
+        "src/app/lab/**"
+      ],
+      "rules": {
+        "shadcn/no-restyle": "off"
+      }
     }
   ]
 }

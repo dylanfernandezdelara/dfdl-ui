@@ -38,7 +38,7 @@ Next 16 (App Router, Turbopack), React 19, Tailwind v4, Base UI via shadcn (`bas
 | `src/styles/tokens.hsl.css` | Generated. The same semantics as HSL channel triples for Tailwind v3 consumers (`hsl(var(--hsl-bg-page) / <alpha-value>)`). `npm run tokens` regenerates everything. |
 | `design-system.lint.json` | The `@shadcn/lint` policy. Consumers extend it. Contracts are added per component. |
 | `.agents/skills/` | Vendored reference skills (Emil, Jakub, Figma). Hand off to them; never copy their rules into the dfdl skill. |
-| `skills/dfdl-ui/` | The dfdl skill (not yet written; drafted after Phase 5 from `decisions.md`). |
+| `skills/dfdl-ui/` | The dfdl skill for agents working in Dylan's products. Drafted from `decisions.md` and `src/content/guide.ts`; keep the three in step. |
 | `research/` | Audits and standards research. |
 
 ## Rules

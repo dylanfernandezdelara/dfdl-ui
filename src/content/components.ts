@@ -15,6 +15,8 @@ export type ComponentDoc = {
   usage: string
   examples: Example[]
   props: Prop[]
+  /** Verified in the browser with getAnimations(). */
+  motion?: string
 }
 
 const baseUi = (part: string, name: string) => ({ name, href: `https://base-ui.com/react/components/${part}` })
@@ -37,6 +39,7 @@ export const COMPONENTS: ComponentDoc[] = [
     description: "Triggers an action.",
     base: baseUi("button", "Button"),
     demo: "button-demo",
+    motion: "Press scales to 0.97 over 150ms. Dropped under reduced motion.",
     usage: `import { Button } from "@/components/ui/button"
 
 <Button>Save changes</Button>`,
@@ -44,6 +47,7 @@ export const COMPONENTS: ComponentDoc[] = [
       { name: "button-variants", title: "Variants", description: "One primary per view. Danger only for destructive actions." },
       { name: "button-sizes", title: "Sizes", description: "32px by default, 28 in dense rows, 40 for touch." },
       { name: "button-with-icon", title: "With icon" },
+      { name: "button-disabled", title: "Disabled", description: "focusableWhenDisabled keeps it in the tab order, for a disabled action that needs a tooltip." },
     ],
     props: [
       { name: "variant", type: `"primary" | "secondary" | "ghost" | "danger"`, default: `"primary"`, description: "Visual weight." },
@@ -78,6 +82,7 @@ export const COMPONENTS: ComponentDoc[] = [
     description: "A modal window for a decision that interrupts the flow.",
     base: baseUi("dialog", "Dialog"),
     demo: "dialog-demo",
+    motion: "Opens in 300ms from 0.96 with the backdrop fading; closes in 225ms. Reduced motion: fade only.",
     usage: `import { Dialog, DialogContent, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 
 <Dialog>
@@ -102,7 +107,10 @@ export const COMPONENTS: ComponentDoc[] = [
     usage: `import { Input } from "@/components/ui/input"
 
 <Input placeholder="Search" />`,
-    examples: [{ name: "input-with-button", title: "With button" }],
+    examples: [
+      { name: "input-with-button", title: "With button" },
+      { name: "input-states", title: "Disabled and invalid", description: "aria-invalid draws the danger ring." },
+    ],
     props: [{ name: "…props", type: `ComponentProps<"input">`, description: "Any input attribute. aria-invalid shows the error ring." }],
   },
   {
@@ -122,6 +130,7 @@ export const COMPONENTS: ComponentDoc[] = [
     description: "A list of actions that opens from a button.",
     base: baseUi("menu", "Menu"),
     demo: "menu-demo",
+    motion: "Opens in 200ms from 0.95 at the trigger; closes in 150ms. Reduced motion: fade only.",
     usage: `import { Menu, MenuContent, MenuItem, MenuTrigger } from "@/components/ui/menu"
 
 <Menu>
@@ -130,7 +139,7 @@ export const COMPONENTS: ComponentDoc[] = [
     <MenuItem>Rename</MenuItem>
   </MenuContent>
 </Menu>`,
-    examples: [],
+    examples: [{ name: "menu-groups", title: "Groups", description: "Labels and separators for longer menus." }],
     props: [
       { name: "MenuContent align", type: `"start" | "center" | "end"`, default: `"start"`, description: "Alignment against the trigger." },
       { name: "MenuItem variant", type: `"default" | "danger"`, default: `"default"`, description: "Danger for destructive items." },
@@ -149,7 +158,7 @@ export const COMPONENTS: ComponentDoc[] = [
   <SegmentedControlItem value="all">All</SegmentedControlItem>
   <SegmentedControlItem value="house">House</SegmentedControlItem>
 </SegmentedControl>`,
-    examples: [],
+    examples: [{ name: "segmented-control-icons", title: "Icons", description: "Icon-only items need an aria-label." }],
     props: [
       { name: "value", type: "string", description: "The selected item." },
       { name: "onValueChange", type: "(value: string) => void", description: "Called with the new value." },
@@ -162,10 +171,11 @@ export const COMPONENTS: ComponentDoc[] = [
     description: "Turns a setting on or off, effective immediately.",
     base: baseUi("switch", "Switch"),
     demo: "switch-demo",
+    motion: "Thumb slides 12px in 150ms; track color changes with it.",
     usage: `import { Switch } from "@/components/ui/switch"
 
 <Switch defaultChecked />`,
-    examples: [],
+    examples: [{ name: "switch-disabled", title: "Disabled" }],
     props: [
       { name: "checked", type: "boolean", description: "Controlled state." },
       { name: "onCheckedChange", type: "(checked: boolean) => void", description: "Called when toggled." },
@@ -178,6 +188,7 @@ export const COMPONENTS: ComponentDoc[] = [
     description: "Switches between views in the same place.",
     base: baseUi("tabs", "Tabs"),
     demo: "tabs-demo",
+    motion: "Indicator moves and resizes in 200ms with transform only. Instant under reduced motion.",
     compact: true,
     usage: `import { Tabs, TabsList, TabsPanel, TabsTab } from "@/components/ui/tabs"
 
@@ -187,7 +198,7 @@ export const COMPONENTS: ComponentDoc[] = [
   </TabsList>
   <TabsPanel value="overview">…</TabsPanel>
 </Tabs>`,
-    examples: [],
+    examples: [{ name: "tabs-disabled", title: "Disabled tab" }],
     props: [
       { name: "value", type: "string", description: "The active tab." },
       { name: "onValueChange", type: "(value: string) => void", description: "Called when the tab changes." },
@@ -200,6 +211,7 @@ export const COMPONENTS: ComponentDoc[] = [
     description: "Labels a control that has no visible text.",
     base: baseUi("tooltip", "Tooltip"),
     demo: "tooltip-demo",
+    motion: "Opens in 100ms from 0.97; closes in 75ms. Instant when moving between tooltips.",
     usage: `import { Tooltip } from "@/components/ui/tooltip"
 
 <Tooltip content="Notifications">

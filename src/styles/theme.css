@@ -301,9 +301,9 @@
     transition-property: translate, scale;
     transition-duration: var(--motion-normal);
     transition-timing-function: var(--motion-ease-in-out);
-  }
-  @media (prefers-reduced-motion: reduce) {
-    transition-duration: 0ms;
+    @media (prefers-reduced-motion: reduce) {
+      transition-duration: 0ms;
+    }
   }
 }
 

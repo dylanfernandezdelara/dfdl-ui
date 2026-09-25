@@ -1,6 +1,12 @@
 import type { ComponentType } from "react"
 
 import BadgeDemo from "./badge-demo"
+import ButtonDisabled from "./button-disabled"
+import InputStates from "./input-states"
+import SwitchDisabled from "./switch-disabled"
+import SegmentedControlIcons from "./segmented-control-icons"
+import TabsDisabled from "./tabs-disabled"
+import MenuGroups from "./menu-groups"
 import ButtonDemo from "./button-demo"
 import ButtonSizes from "./button-sizes"
 import ButtonVariants from "./button-variants"
@@ -18,6 +24,12 @@ import TooltipDemo from "./tooltip-demo"
 
 /** Example name (file name) to component. The source shown beside each is read from the same file at build. */
 export const EXAMPLES: Record<string, ComponentType> = {
+  "button-disabled": ButtonDisabled,
+  "input-states": InputStates,
+  "switch-disabled": SwitchDisabled,
+  "segmented-control-icons": SegmentedControlIcons,
+  "tabs-disabled": TabsDisabled,
+  "menu-groups": MenuGroups,
   "badge-demo": BadgeDemo,
   "button-demo": ButtonDemo,
   "button-sizes": ButtonSizes,
