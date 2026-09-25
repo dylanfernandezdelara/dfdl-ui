@@ -24,7 +24,7 @@
         "contrast": {
           "fgOnPage": 10.08,
           "fgSecondaryOnPage": 4.73,
-          "fgTertiaryOnPage": 2.48,
+          "fgTertiaryOnPage": 3.56,
           "fgStrongOnPage": 19.84,
           "fgOnSurface": 10.08
         }
@@ -76,7 +76,7 @@
         "contrast": {
           "fgOnPage": 10.07,
           "fgSecondaryOnPage": 4.72,
-          "fgTertiaryOnPage": 2.48,
+          "fgTertiaryOnPage": 3.56,
           "fgStrongOnPage": 19.84,
           "fgOnSurface": 10.07
         }
@@ -112,7 +112,7 @@
         "contrast": {
           "fgOnPage": 10.08,
           "fgSecondaryOnPage": 4.73,
-          "fgTertiaryOnPage": 2.48,
+          "fgTertiaryOnPage": 3.56,
           "fgStrongOnPage": 19.84,
           "fgOnSurface": 10.08
         }

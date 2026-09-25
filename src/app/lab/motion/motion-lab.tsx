@@ -127,7 +127,7 @@ function Decide({ selection, load }: { selection: Selection<Axis>; load: (s: Sel
           onClick={() => load(RECOMMENDED)}
           disabled={isRec}
           className={cn(
-            "ml-auto h-8 rounded-sm bg-accent-solid px-3 text-ui font-medium text-fg-on-accent transition-interactive duration-fast ease-out press disabled:opacity-60",
+            "ml-auto h-control rounded-sm bg-accent-solid px-3 text-ui font-medium text-fg-on-accent transition-interactive duration-fast ease-out press disabled:opacity-60",
             "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus",
           )}
         >

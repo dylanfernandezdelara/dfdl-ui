@@ -10,7 +10,7 @@
   --bg-raised: oklch(100.00% 0.0042 80.00);
   --fg: oklch(37.30% 0.0196 80.00);
   --fg-secondary: oklch(55.10% 0.0196 80.00);
-  --fg-tertiary: oklch(71.40% 0.0196 80.00);
+  --fg-tertiary: oklch(62.00% 0.0196 80.00);
   --fg-strong: oklch(12.00% 0.0196 80.00);
   --fg-disabled: oklch(77.70% 0.0133 80.00);
   --fg-inverse: oklch(99.20% 0.0072 80.00);
@@ -50,7 +50,7 @@
   --bg-raised: oklch(100.00% 0.0009 80.00);
   --fg: oklch(37.30% 0.0042 80.00);
   --fg-secondary: oklch(55.10% 0.0042 80.00);
-  --fg-tertiary: oklch(71.40% 0.0042 80.00);
+  --fg-tertiary: oklch(62.00% 0.0042 80.00);
   --fg-strong: oklch(12.00% 0.0042 80.00);
   --fg-disabled: oklch(77.70% 0.0029 80.00);
   --fg-inverse: oklch(99.20% 0.0018 80.00);

@@ -10,7 +10,7 @@ export const config = {
   neutral: { hue: 80, chroma: 0.014 },
   /* Text lightness structure carried over from dylanfdl.com: soft body, ink headings. */
   text: {
-    light: { fg: 0.373, fgSecondary: 0.551, fgTertiary: 0.714, fgStrong: 0.12 },
+    light: { fg: 0.373, fgSecondary: 0.551, fgTertiary: 0.62, fgStrong: 0.12 },
     dark: { fg: 0.885, fgSecondary: 0.68, fgTertiary: 0.58, fgStrong: 0.935 },
   },
   /* Approved accents. One per product, chosen at the root with data-accent; the first is the default.

@@ -46,11 +46,8 @@ const baseline = {
 }
 
 /* ---------- Neutral candidates ---------- */
-/** Text lightness is held at dylanfdl's structure so temperature is the only variable. */
-const TEXT_L = {
-  light: { fg: 0.373, fgSecondary: 0.551, fgTertiary: 0.714, fgStrong: 0.12 },
-  dark: { fg: 0.885, fgSecondary: 0.68, fgTertiary: 0.58, fgStrong: 0.935 },
-}
+/** Text lightness is held at the approved structure so temperature is the only variable. */
+const TEXT_L = config.text
 
 type NeutralCandidate = { id: "b" | "c"; name: string; note: string; hue: number; chroma: number }
 const neutrals: NeutralCandidate[] = [

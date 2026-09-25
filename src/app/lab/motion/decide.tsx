@@ -129,7 +129,7 @@ export function SyncRow<A extends string>({
           onClick={play}
           disabled={playing}
           className={cn(
-            "flex h-8 items-center gap-1.5 rounded-sm bg-accent-solid px-3 text-ui font-medium text-fg-on-accent transition-interactive duration-fast ease-out press disabled:opacity-60",
+            "flex h-control items-center gap-1.5 rounded-sm bg-accent-solid px-3 text-ui font-medium text-fg-on-accent transition-interactive duration-fast ease-out press disabled:opacity-60",
             "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus",
           )}
         >
