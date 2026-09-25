@@ -28,7 +28,7 @@ export const config = {
     darkFactor: 0.85,
     solidL: { light: 0.524, dark: 0.72 },
   },
-  /* Status hues kept more than 15 degrees from the accent (48). */
+  /* Status hues kept 30 degrees or more from the accent (48); better-colors' floor is 15. */
   status: {
     danger: { hue: 18, proportion: 0.55 },
     success: { hue: 150, proportion: 0.45 },

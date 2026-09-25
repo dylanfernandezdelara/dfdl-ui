@@ -23,7 +23,7 @@ export default function GuidePage() {
           ))}
         </nav>
         {GUIDE.map((s) => (
-          <section key={s.id} id={s.id} className="py-12 hairline-t">
+          <section key={s.id} id={s.id} className="scroll-mt-12 py-12 hairline-t">
             <h2 className="font-heading text-title text-fg-strong">{s.title}</h2>
             <div className="mt-minor max-w-reading space-y-minor">
               {s.body.map((p, i) => (

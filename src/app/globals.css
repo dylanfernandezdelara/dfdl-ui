@@ -16,8 +16,8 @@
     status     {danger,success,warning}: bg-*-bg border-*-border bg-* text-*-text
     rounded    rounded-xs rounded-sm rounded-md rounded-lg rounded-xl rounded-full (concentric: outer = inner + padding)
     type       text-display text-title text-heading text-body text-ui text-caption (size + leading + weight); font-display font-heading font-sans font-mono; h-control
-    elevation  elevation-raised elevation-floating; hairline hairline-t hairline-b (1px lines that do not take layout space)
-    motion     ease-out ease-in-out ease-drawer, duration-instant/fast/normal/slow, transition-interactive, transition-icon, press
+    elevation  elevation-raised elevation-floating; hairline hairline-t hairline-b hairline-r (1px lines that do not take layout space); hairline-l (2px quote bar)
+    motion     ease-out ease-in-out ease-drawer, duration-instant/fast/normal/slow/slower, transition-interactive, transition-icon, press
     measure    max-w-reading max-w-content
     rhythm     p-minor p-major gap-minor gap-major (8px / 24px)
 
@@ -220,6 +220,11 @@
 @layer base {
   * {
     @apply border-line outline-focus/50;
+  }
+  /* Every focus stop gets a visible ring. Zero specificity, so a component's own focus-visible classes still win. */
+  :where(:focus-visible) {
+    outline: 2px solid var(--border-focus);
+    outline-offset: 2px;
   }
   html {
     color-scheme: light;

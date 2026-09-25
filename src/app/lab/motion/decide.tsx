@@ -3,6 +3,7 @@
 import { Play } from "lucide-react"
 import { useEffect, useRef, useState, type ReactNode } from "react"
 
+import { radioGroupKeys } from "@/lib/radio-group"
 import { cn } from "@/lib/utils"
 
 import { CandidateScope, IDS, type AxisDef, type CandidateId, type Selection } from "../_shared/candidates"
@@ -14,16 +15,17 @@ import { CandidateScope, IDS, type AxisDef, type CandidateId, type Selection } f
 */
 
 type Axis = "curve" | "exit" | "press"
+const SPEEDS = ["normal", "quarter", "slow"] as const
 
 export const RECOMMENDED: Selection<Axis> = { curve: "a", exit: "a", press: "a" }
 
 export const WHY: Record<Axis, string> = {
   curve:
-    "A, approved. Emil's curve spends most of the distance in the first third, so the menu is already where it is going by the time you look; B (Fork's previous `ease`) starts slow, which reads as lag. C is a softer version of A. Every reference site in the audit uses a strong ease-out.",
+    "A, approved. Emil's curve spends most of the distance in the first third, so the menu is already where it is going by the time you look; B (Fork's previous `ease`) starts slow, which reads as lag. C is a softer version of A. gooey and beautifului, the two reference sites with deliberate curves, use near-identical strong ease-outs.",
   exit:
     "A, approved. Leaving should be quicker than arriving: the user has already decided. 75% keeps the path symmetric so a menu closes into its trigger. C's fade-only exit is what you want for toasts, and it is the reduced-motion behaviour, but as the default it loses the sense of where things went.",
   press:
-    "A, approved. 0.97 is the smallest scale that still registers as a press; most people cannot name it but miss it when it is gone. 0.94 is visible on icon buttons, which is too much for something that fires tens of times a day. None is fine, but 0.97 is the whole audit's consensus.",
+    "A, approved. 0.97 is the smallest scale that still registers as a press; most people cannot name it but miss it when it is gone. 0.94 is visible on icon buttons, which is too much for something that fires tens of times a day. None is fine, but 0.97 is Emil's recipe value.",
 }
 
 /** Cubic bezier sampled for an SVG path. */
@@ -66,7 +68,7 @@ export function CurvePlot({ id }: { id: CandidateId }) {
   )
 }
 
-/** Fires open on all three at once, holds, then closes. Repeats while the row is playing. */
+/** Fires open on all three at once, holds, then closes. One cycle per press of Play. */
 export function useSyncPlay(holdMs: number, cycleMs: number) {
   const [open, setOpen] = useState(false)
   const [playing, setPlaying] = useState(false)
@@ -127,19 +129,20 @@ export function SyncRow<A extends string>({
           onClick={play}
           disabled={playing}
           className={cn(
-            "flex h-control items-center gap-1.5 rounded-sm bg-accent-solid px-3 text-ui font-medium text-fg-on-accent transition-interactive duration-fast ease-out press disabled:opacity-60",
+            "flex h-8 items-center gap-1.5 rounded-sm bg-accent-solid px-3 text-ui font-medium text-fg-on-accent transition-interactive duration-fast ease-out press disabled:opacity-60",
             "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus",
           )}
         >
           <Play className="size-3.5" strokeWidth={2} aria-hidden /> {playing ? "Playing…" : playLabel}
         </button>
-        <div role="radiogroup" aria-label="Speed" className="flex h-8 rounded-md bg-sunken p-1 hairline">
-          {(["normal", "quarter", "slow"] as const).map((v) => (
+        <div role="radiogroup" aria-label="Speed" onKeyDown={radioGroupKeys(SPEEDS, speed, onSpeed)} className="flex h-8 rounded-md bg-sunken p-1 hairline">
+          {SPEEDS.map((v) => (
             <button
               key={v}
               type="button"
               role="radio"
               aria-checked={speed === v}
+              tabIndex={speed === v ? 0 : -1}
               onClick={() => onSpeed(v)}
               className={cn(
                 "h-6 rounded-sm px-2 text-caption transition-interactive duration-fast ease-out press",

@@ -4,13 +4,13 @@
     "shadcn/no-raw-colors": [
       "error",
       {
-        "message": "Use a dfdl semantic color (bg-surface, text-secondary, border-default, accent-solid, ...) from {{file}}. Primitives and Tailwind palette colors are not allowed in components."
+        "message": "Use a dfdl semantic color (bg-surface, text-fg-secondary, border-line, bg-accent-solid, ...) from {{file}}. Primitives and Tailwind palette colors are not allowed in components."
       }
     ],
     "shadcn/no-arbitrary-values": [
       "error",
       {
-        "message": "Stay on the dfdl scale. Spacing is multiples of 8 (minor) and 24 (major); radii are radius-sm/md/lg/xl/full; add a token if a value is genuinely missing."
+        "message": "Stay on the dfdl scale. Spacing is multiples of 8 (minor) and 24 (major); radii are rounded-xs/sm/md/lg/xl/full; add a token if a value is genuinely missing."
       }
     ],
     "shadcn/no-inline-styles": "error",

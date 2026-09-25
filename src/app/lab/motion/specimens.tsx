@@ -42,8 +42,8 @@ export type Controlled = { open?: boolean }
 export function PopoverSpec({ open: controlled }: Controlled) {
   const { open, toggle, set } = useOpen(controlled)
   return (
-    <div className="relative inline-block">
-      <button type="button" onClick={toggle} aria-expanded={open} className={cn(control, "bg-surface text-fg elevation-raised hover:bg-surface-hover")}>
+    <div className="relative inline-block" onKeyDown={(e) => e.key === "Escape" && set(false)}>
+      <button type="button" onClick={toggle} aria-haspopup="menu" aria-expanded={open} className={cn(control, "bg-surface text-fg elevation-raised hover:bg-surface-hover")}>
         Chat options <ChevronDown className="size-4 text-fg-tertiary" strokeWidth={1.5} aria-hidden />
       </button>
       <div role="menu" data-state={open ? "open" : "closed"} className="spec-popover absolute top-full left-0 z-10 mt-minor w-52 rounded-md bg-raised p-1 elevation-floating">
@@ -91,15 +91,16 @@ export function TooltipSpec() {
 export function DialogSpec({ open: controlled }: Controlled) {
   const { open, toggle, set } = useOpen(controlled)
   return (
-    <div className="relative h-56 overflow-hidden rounded-lg bg-page hairline">
+    <div className="relative h-56 overflow-hidden rounded-lg bg-page hairline" onKeyDown={(e) => e.key === "Escape" && set(false)}>
       <div className="p-major">
         <p className="text-ui text-fg-secondary">Workspace · Settings</p>
-        <button type="button" onClick={toggle} className={cn(control, "mt-minor bg-surface text-fg elevation-raised hover:bg-surface-hover")}>
+        <button type="button" onClick={toggle} aria-haspopup="dialog" aria-expanded={open} className={cn(control, "mt-minor bg-surface text-fg elevation-raised hover:bg-surface-hover")}>
           Delete workspace
         </button>
       </div>
       <div data-state={open ? "open" : "closed"} className="spec-backdrop absolute inset-0 bg-overlay" onClick={() => set(false)} />
-      <div role="dialog" aria-modal="true" data-state={open ? "open" : "closed"} className="spec-dialog absolute inset-x-8 top-1/2 -translate-y-1/2 rounded-lg bg-raised p-major elevation-floating">
+      {/* A motion specimen: Escape closes it, but focus is not trapped, so it does not claim aria-modal. */}
+      <div role="dialog" aria-label="Delete this workspace?" data-state={open ? "open" : "closed"} className="spec-dialog absolute inset-x-8 top-1/2 -translate-y-1/2 rounded-lg bg-raised p-major elevation-floating">
         <h3 className="font-heading text-heading text-fg-strong">Delete this workspace?</h3>
         <p className="mt-minor text-ui text-fg-secondary">All 128 chats and their forks go with it. This cannot be undone.</p>
         <div className="mt-minor flex justify-end gap-2">
@@ -115,15 +116,15 @@ export function DialogSpec({ open: controlled }: Controlled) {
 export function DrawerSpec({ open: controlled }: Controlled) {
   const { open, toggle, set } = useOpen(controlled)
   return (
-    <div className="relative h-72 w-44 overflow-hidden rounded-xl bg-page hairline">
+    <div className="relative h-72 w-44 overflow-hidden rounded-xl bg-page hairline" onKeyDown={(e) => e.key === "Escape" && set(false)}>
       <div className="p-minor">
         <p className="text-caption text-fg-tertiary">Fork</p>
-        <button type="button" onClick={toggle} className={cn(control, "mt-minor w-full bg-surface text-fg elevation-raised hover:bg-surface-hover")}>
+        <button type="button" onClick={toggle} aria-haspopup="dialog" aria-expanded={open} className={cn(control, "mt-minor w-full bg-surface text-fg elevation-raised hover:bg-surface-hover")}>
           Model
         </button>
       </div>
       <div data-state={open ? "open" : "closed"} className="spec-backdrop absolute inset-0 bg-overlay" onClick={() => set(false)} />
-      <div role="dialog" data-state={open ? "open" : "closed"} className="spec-drawer absolute inset-x-0 bottom-0 rounded-t-lg bg-raised p-minor elevation-floating">
+      <div role="dialog" aria-label="Model" data-state={open ? "open" : "closed"} className="spec-drawer absolute inset-x-0 bottom-0 rounded-t-lg bg-raised p-minor elevation-floating">
         <div className="mx-auto mb-minor h-1 w-8 rounded-full bg-line-strong" data-grid-ignore />
         {["Muse Spark 1.3", "GPT-5.6 Luna"].map((m, i) => (
           <button key={m} type="button" onClick={() => set(false)} className="flex h-8 w-full items-center justify-between rounded-xs px-2 text-ui text-fg hover:bg-surface-hover">
@@ -144,13 +145,25 @@ export function TabsSpec() {
     const el = refs.current[active]
     if (el) setInd({ x: el.offsetLeft, w: el.offsetWidth })
   }, [active])
+  const row = useRef<HTMLDivElement>(null)
   useEffect(() => {
     measure()
-    window.addEventListener("resize", measure)
-    return () => window.removeEventListener("resize", measure)
+    // Webfonts swap in after mount and change every tab's width; re-measure when they land and on any resize.
+    document.fonts.ready.then(measure)
+    const ro = new ResizeObserver(measure)
+    if (row.current) ro.observe(row.current)
+    return () => ro.disconnect()
   }, [measure])
+  const onKeyDown = (e: React.KeyboardEvent) => {
+    const last = tabs.length - 1
+    const next = { ArrowRight: active === last ? 0 : active + 1, ArrowLeft: active === 0 ? last : active - 1, Home: 0, End: last }[e.key]
+    if (next === undefined) return
+    e.preventDefault()
+    setActive(next)
+    refs.current[next]?.focus()
+  }
   return (
-    <div className="relative flex gap-1 hairline-b">
+    <div ref={row} role="tablist" aria-label="Sections" onKeyDown={onKeyDown} className="relative flex gap-1 hairline-b">
       {tabs.map((t, i) => (
         <button
           key={t}
@@ -160,6 +173,7 @@ export function TabsSpec() {
           type="button"
           role="tab"
           aria-selected={i === active}
+          tabIndex={i === active ? 0 : -1}
           onClick={() => setActive(i)}
           className={cn("h-8 px-2 text-ui transition-interactive duration-fast ease-out", i === active ? "text-fg-strong" : "text-fg-secondary hover:text-fg")}
         >
@@ -167,7 +181,7 @@ export function TabsSpec() {
         </button>
       ))}
       {/* Rendered only once measured, so the first paint does not animate the bar in from zero. */}
-      {ind ? <span aria-hidden data-grid-ignore className="spec-tab-indicator absolute bottom-0 left-0 h-0.5 rounded-full bg-fg-strong" style={{ "--tab-x": `${ind.x}px`, "--tab-w": `${ind.w}px` } as React.CSSProperties} /> : null}
+      {ind ? <span aria-hidden data-grid-ignore className="spec-tab-indicator absolute bottom-0 left-0 h-0.5 bg-fg-strong" style={{ "--tab-x": `${ind.x}px`, "--tab-w": ind.w } as React.CSSProperties} /> : null}
     </div>
   )
 }

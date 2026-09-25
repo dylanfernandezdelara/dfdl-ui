@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 
+import { radioGroupKeys } from "@/lib/radio-group"
 import { cn } from "@/lib/utils"
 
 import { DialogSpec, DrawerSpec, PopoverSpec, PressRow, SwitchSpec, TabsSpec, ToastSpec, TooltipSpec } from "@/app/lab/motion/specimens"
@@ -9,19 +10,22 @@ import { DialogSpec, DrawerSpec, PopoverSpec, PressRow, SwitchSpec, TabsSpec, To
 import "@/styles/lab/motion-candidates.css"
 
 /** The motion lab's specimens on the approved tokens, with a speed control. */
+const SPEEDS = ["normal", "quarter", "slow"] as const
+
 export function MotionDemos() {
   const [speed, setSpeed] = useState<"normal" | "quarter" | "slow">("normal")
   return (
     <div data-speed={speed}>
       <div className="mb-major flex items-center gap-minor">
         <span className="w-16 font-mono text-caption uppercase tracking-wider text-fg-tertiary">Speed</span>
-        <div role="radiogroup" aria-label="Speed" className="flex h-8 rounded-md bg-sunken p-1 hairline">
-          {(["normal", "quarter", "slow"] as const).map((v) => (
+        <div role="radiogroup" aria-label="Speed" onKeyDown={radioGroupKeys(SPEEDS, speed, setSpeed)} className="flex h-8 rounded-md bg-sunken p-1 hairline">
+          {SPEEDS.map((v) => (
             <button
               key={v}
               type="button"
               role="radio"
               aria-checked={speed === v}
+              tabIndex={speed === v ? 0 : -1}
               onClick={() => setSpeed(v)}
               className={cn(
                 "h-6 rounded-sm px-2 text-caption transition-interactive duration-fast ease-out press",

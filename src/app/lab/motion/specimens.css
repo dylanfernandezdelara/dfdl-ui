@@ -105,23 +105,29 @@
   --enter: var(--motion-slower);
   translate: 0 0;
   opacity: 1;
+  visibility: visible;
   transition:
     translate var(--enter) var(--lab-drawer-ease, var(--motion-ease-drawer)),
-    opacity var(--enter) var(--motion-ease-out);
+    opacity var(--enter) var(--motion-ease-out),
+    visibility var(--enter);
 }
+/* visibility flips at the end of the exit, so the closed drawer leaves the tab order and the accessibility tree. */
 .spec-drawer[data-state="closed"] {
+  visibility: hidden;
   translate: var(--lab-drawer-closed, 0 100%);
   opacity: var(--lab-drawer-closed-opacity, 1);
   transition-duration: calc(var(--enter) * var(--motion-exit-factor));
 }
 
-/* ---- Tabs: indicator moves with transform, never left/width ---- */
+/* ---- Tabs: indicator moves with transform, never left/width. A 1px bar scaled to the tab's width. ---- */
 .spec-tab-indicator {
+  width: 1px;
+  transform-origin: left;
   translate: var(--tab-x, 0) 0;
-  width: var(--tab-w, 0);
+  scale: var(--tab-w, 0) 1;
   transition:
     translate var(--lab-tab-duration, var(--motion-normal)) var(--motion-ease-in-out),
-    width var(--lab-tab-duration, var(--motion-normal)) var(--motion-ease-in-out);
+    scale var(--lab-tab-duration, var(--motion-normal)) var(--motion-ease-in-out);
 }
 
 /* ---- Switch ---- */

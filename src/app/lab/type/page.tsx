@@ -19,7 +19,7 @@ export default function TypeLabPage() {
           <h1 className="mt-minor font-display text-display text-fg-strong">Type, rhythm and shape</h1>
           <p className="mt-minor max-w-reading text-body text-fg-secondary">
             Three decisions: how hierarchy is built, where the serif is allowed, and the radius family. A on every axis is
-            the current sites. Pick with the controls; the URL carries the selection.
+            the approved set; the previous sites are kept as alternatives. Pick with the controls; the URL carries the selection.
           </p>
         </div>
         <Suspense fallback={null}>

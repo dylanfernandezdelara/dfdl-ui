@@ -60,7 +60,7 @@ export default function OverviewPage() {
             {[
               ["Tokens", "tokens.css for Tailwind v4, tokens.hsl.css for v3. OKLCH, two tiers, light and dark, generated.", "/foundations/color"],
               ["Foundations", "Color, type, shape and rhythm, motion. Live pages rendered from the tokens.", "/foundations/type"],
-              ["Components", "shadcn registry on Base UI. Each ships with a restyle contract, every state, and a probe-verified motion spec.", "/components/button"],
+              ["Components", "shadcn registry on Base UI. Each ships with a restyle contract, every state, and a probe-verified motion spec. The first land in Phase 7.", "/guide"],
               ["Skill", "skills/dfdl-ui: what agents read. Values, anti-patterns, verification steps, the adoption recipe.", "/guide"],
               ["Lint policy", "@shadcn/lint: no raw colors, no arbitrary values, no restyling components. Mechanical rules, enforced.", "/guide"],
               ["Figma library", "Variables with modes, one component per page, generated from code. Code is the source of truth.", "/guide"],

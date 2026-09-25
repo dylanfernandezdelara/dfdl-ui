@@ -23,17 +23,16 @@ Dylan's design standard as one installable package, so any future project starts
 - GitHub: `dylanfernandezdelara/dfdl-ui`, public. Commit and push at the end of every phase, lab, and component.
 - Figma: remote MCP connected in Devin CLI at user scope (`figma`, `https://mcp.figma.com/mcp`). Team `DFDL Studio`, Pro tier, Full seat. All files in that team. Agents write to the scratch file only. Lab captures go to `dfdl — lab` (`slkV1ZgOSG2hBKNI3dBsU5`); the root layout loads Figma's capture script in development so any page can be pushed with `generate_figma_design`. Do not add Figma's desktop server (`127.0.0.1:3845`) to the CLI; it shadows the remote write tools.
 - agent-browser installed for browser-side verification. Animation probe: `document.getAnimations()` after interaction.
-- Not set up on purpose: Cloudflare deploy (waits for Dylan), Code Connect (Organization plan; revisit only if Phase 8 fails on component recognition).
+- Not set up on purpose: Code Connect (Organization plan; revisit only if Phase 8 fails on component recognition).
 
 ## Rules
 
-- Bounded choices, not descriptions. Every lab shows three candidates: Dylan's current values as the baseline, labeled, plus two alternatives. "Keep mine" is always valid.
+- Bounded choices, not descriptions. Every lab shows three candidates: at decision time, Dylan's current values as the baseline, labeled, plus two alternatives. "Keep mine" is always valid. Once decided, A is relabeled to the approved set.
 - Static work can be reviewed in Figma or the browser. Motion and states are reviewed in the browser only, at 10% speed, probe-verified.
 - Every accepted correction lands in the narrowest holder: linter if mechanical, skill if judgment, `decisions.md` always.
 - If code and Figma disagree, code wins and Figma is regenerated.
 - No component enters the registry without a consumer. Build what the three restyle sites need; future projects pull the rest.
 - No raw color values anywhere, including the lab. Lint is on from the first commit.
-- Interim motion until the motion lab: `cubic-bezier(0.23, 1, 0.32, 1)`, 150ms hover, `scale(0.97)` press. Recorded as unreviewed.
 - Accepted gap: `system-ui` has no Figma equivalent. The library renders body text in Inter; code ships the system stack. Noted on the library cover and in the skill.
 
 ## Phases
@@ -44,8 +43,8 @@ Dylan's design standard as one installable package, so any future project starts
 | 0 | Scaffold: Next 16, Tailwind v4, Base UI, shadcn CLI, Lora + Geist Mono, 8/24 grid overlay, `@shadcn/lint` on, reference skills installed, `/lab` route, `decisions.md` | none | running localhost, first push | done |
 | 1 | Color and surfaces lab: neutral ramp with roles, three accents at matched OKLCH L/C shown in context, three shadow recipes; accent revisited after dark-mode shadows. Baseline = dylanfdl.com tokens | ~45 min | `tokens.css` colors | done (accent vividness confirmed in 1b) |
 | 1b | Fork mini before/after with candidate tokens | ~15 min | screenshot pair in `research/` | done: ember 60%, indigo kept as a second approved accent |
-| 2 | Type, rhythm and shape lab: role scale vs weight-carries-hierarchy, serif scope, radius with concentric nesting, article and dense panel under each. Baseline = current sites | ~45 min | `tokens.css` type, radius | done: weight-led 15px, Lora on all headings, round radius |
-| 3 | Motion lab, browser only: two curves at 10% speed, symmetric vs 75% exits, press 0.96/0.97/none, pop-in origin, spring vs curve on drawer, reduced-motion variants, all probe-verified. Baseline = Fork's current motion | ~60 min | `--ease-*`, `--duration-*` | done: strong ease-out, exits 75%, press 0.97 |
+| 2 | Type, rhythm and shape lab: role scale vs weight-carries-hierarchy, serif scope, radius with concentric nesting, article and dense panel under each. Baseline = current sites | ~45 min | `tokens.css` type, radius | done: weight-led (body raised to 16 on 2026-09-25), Lora on all headings, round radius |
+| 3 | Motion lab, browser only: two curves at 10% speed, symmetric vs 75% exits, press none/0.97/0.94, pop-in origin, spring vs curve on drawer, reduced-motion variants, all probe-verified. Baseline = Fork's current motion | ~60 min | `--motion-*` | done: strong ease-out, exits 75%, press 0.97 |
 | 3b | Fork mini before/after with motion tokens | ~15 min | screenshot pair | done: probe table + filmstrip in `research/fork-3b/`, Phase 5 motion fixes listed |
 | 5 | Before/after on trackcongress, then dylanfdl (Fork deferred by Dylan, 2026-09-24). Branch in a worktree, tokens and first components only, captured before/after into Figma. Loop back to the lab that is off. Nothing merges. Then first draft of `SKILL.md` and lint contracts from `decisions.md`. trackcongress is React 18 + Tailwind v3.4 + Vite with its own `DESIGN_LANGUAGE.md` and `qa:web` viewport checks; tokens apply as CSS variables through a v3 config extension, no migration | one longer review per site | skill v0, lint policy v0 | both sites retokened in worktrees; trackcongress ruled (quiet mode); dylanfdl boards awaiting Dylan |
 | 6 | Docs site shell first (Dylan, 2026-09-24): overview, foundations (color, type, shape, motion), guide, llms.txt, `@dfdl/tokens` registry item; Cloudflare Workers at ui.dylanfdl.com. Then Figma library via `figma-generate-library` into scratch; review; promote to `dfdl` and publish | review the site | deliverables 1, 6 | docs shell built; deploy next |
@@ -61,6 +60,8 @@ Populated after Phase 5 from what the restyles actually needed. Until then the c
 Google `DESIGN.md`. Code Connect on Pro. Cloudflare deploy until asked. Copying Emil, Jakub or Figma skills into the dfdl skill (hand off by name). Framework migrations on the three sites. 150 components or multiple themes. Pushing to any repo other than `dfdl-ui`.
 
 ## Log
+
+- 2026-09-25: Body, heading and title raised to 16px after the dylanfdl preview read small (PR #107 updated). Then a three-agent audit (attributions, internal consistency, code review) and its fixes: eleven false or loose attributions corrected (see `decisions.md`, Attributions); stale names and statuses across AGENTS, PLAN, lint messages and lab copy; `tokens.json` elevation carried the dark recipes under `light` (export now reads each appearance); color lab candidate A still showed the pre-Lab-1 ember vividness; the tab indicator animated `width`; the closed drawer stayed focusable; specimens ignored the real `prefers-reduced-motion`; lab radio groups had no arrow keys; no visible focus on links; no skip link; a dead `/components/button` link on the overview. Every page audits at zero grid offenders (the motion lab had four, from 28px controls centered in 32px rows). Open for Dylan: light `fg-tertiary` is 2.48:1 on the page, and the default control height is 28 in tokens but 32 in the docs.
 
 - 2026-09-24: Deployed to Cloudflare Workers with OpenNext (`@opennextjs/cloudflare` 1.20.6; vinext skipped as a one-day-old beta): https://dfdl-ui.fernandezdelaradylan.workers.dev. Fully static build, verified in workerd locally first. `ui.dylanfdl.com` blocked on DNS: dylanfdl.com's nameservers are Vercel's, and a Workers custom domain needs the zone on Cloudflare.
 

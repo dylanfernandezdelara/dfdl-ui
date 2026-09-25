@@ -47,7 +47,7 @@ export function Paragraph() {
   return (
     <p className="max-w-reading text-body text-fg">
       I currently work on post-training and build RL environments for frontier coding agents. We recently launched{" "}
-      <a href="#" className="text-accent-text underline decoration-accent-border underline-offset-2 hover:decoration-accent-solid">
+      <a href="/foundations/color" className="text-accent-text underline decoration-accent-border underline-offset-2 hover:decoration-accent-solid">
         Muse Spark 1.3
       </a>{" "}
       and Muse Code. <span className="text-fg-secondary">Previously, I scaled crash infrastructure for Meta Glasses.</span>{" "}

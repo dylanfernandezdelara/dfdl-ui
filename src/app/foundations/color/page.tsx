@@ -71,7 +71,7 @@ export default function ColorPage() {
         <PageTitle
           eyebrow="Foundations"
           title="Color"
-          lede={`One warm neutral (hue ${tokens.neutral.hue}, chroma ${tokens.neutral.chroma}) carries surfaces and text in both appearances. One accent per product marks the primary action and selection. Status hues sit more than 30 degrees from either accent. Everything is OKLCH, generated, and contrast is measured.`}
+          lede={`One warm neutral (hue ${tokens.neutral.hue}, chroma ${tokens.neutral.chroma}) carries surfaces and text in both appearances. One accent per product marks the primary action and selection. Status hues sit at least 30 degrees from either accent. Everything is OKLCH, generated, and contrast is measured.`}
         />
 
         <Section title="Neutral" lede="Twelve steps on Radix's lightness spine, tint held across the light steps so the warmth survives on the page background. Text is not a step of the ramp: body sits at 37% lightness, headings at 12%, so a page reads soft with ink headings.">
@@ -104,7 +104,7 @@ export default function ColorPage() {
           <Code>{`<html data-accent="ember">   <!-- default -->\n<html data-accent="indigo">  <!-- a product that already owns blue -->\n<html data-quiet>            <!-- data-dense product: sans headings, no accent -->`}</Code>
         </Section>
 
-        <Section title="Status" lede="Danger, success and warning, each a full ramp with bg (3), border (6), solid (9) and text (11) steps. Hues 18, 150 and 88: all more than 30 degrees from ember and from indigo, so a red button never reads as the primary action.">
+        <Section title="Status" lede="Danger, success and warning, each a full ramp with bg (3), border (6), solid (9) and text (11) steps. Hues 18, 150 and 88: all at least 30 degrees from ember and from indigo, so a red button never reads as the primary action.">
           <div className="grid gap-major lg:grid-cols-3">
             {Object.entries(L.status).map(([k, s]) => (
               <Ramp key={k} steps={s.ramp} name={`${k} · hue ${s.hue}`} roles={false} />

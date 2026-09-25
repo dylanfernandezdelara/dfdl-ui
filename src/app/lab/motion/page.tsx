@@ -18,7 +18,7 @@ export default function MotionLabPage() {
           <p className="flex h-6 items-center font-mono text-caption uppercase tracking-wider text-fg-tertiary">Lab 3</p>
           <h1 className="mt-minor font-display text-display text-fg-strong">Motion</h1>
           <p className="mt-minor max-w-reading text-body text-fg-secondary">
-            Three decisions: the curve, how exits relate to enters, and press feedback. A is Fork today. Durations follow
+            Three decisions: the curve, how exits relate to enters, and press feedback. A is the approved set; Fork&apos;s previous motion is B. Durations follow
             frequency and are not up for debate here: 100ms tooltips, 150ms press and hover, 200ms menus, 300ms dialogs,
             500ms drawers. Everything on this page is a real transition; nothing is a video.
           </p>

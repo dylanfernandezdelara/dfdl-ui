@@ -3,6 +3,7 @@
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { useCallback, useState } from "react"
 
+import { radioGroupKeys } from "@/lib/radio-group"
 import { cn } from "@/lib/utils"
 
 import { CandidateScope, Compare, IDS, PinButton, Section, Segmented, Shortlist, Toolbar, describe, encode, useSelection, type AxisDef, type CandidateId, type Selection } from "../_shared/candidates"
@@ -23,14 +24,14 @@ const meta: Record<Axis, Record<CandidateId, { name: string; note: string }>> = 
     c: { name: "Decelerate", note: "Material's cubic-bezier(0, 0, 0.2, 1): decelerating but gentler than B. Drawers on the same curve." },
   },
   exit: {
-    a: { name: "Shorter", note: "Approved. Exits at 75% of the enter duration, same path. The audit found most reference sites run exits a quarter shorter." },
+    a: { name: "Shorter", note: "Approved. Exits at 75% of the enter duration, same path. No reference site shortens its exits; Emil and Jakub recommend it." },
     b: { name: "Symmetric", note: "Exits take as long as enters and reverse the same path." },
     c: { name: "Fade out", note: "Exits at 50%, opacity only. Nothing scales or moves on the way out; enters are unchanged." },
   },
   press: {
     a: { name: "0.97", note: "Approved. Emil's default. Reads as a physical press without looking like a toy." },
     b: { name: "None", note: "Color change only on press. Fork before." },
-    c: { name: "0.94", note: "Deeper press, kitze-like. Noticeable on large buttons, heavy on icon buttons." },
+    c: { name: "0.94", note: "Deeper press. Noticeable on large buttons, heavy on icon buttons." },
   },
 }
 
@@ -62,13 +63,14 @@ function Knob({ label, value, options, onChange }: { label: string; value: strin
   return (
     <div className="flex items-center gap-minor">
       <span className="w-16 font-mono text-caption uppercase tracking-wider text-fg-tertiary">{label}</span>
-      <div role="radiogroup" aria-label={label} className="flex h-8 rounded-md bg-sunken p-1 hairline">
+      <div role="radiogroup" aria-label={label} onKeyDown={radioGroupKeys(options.map(([v]) => v), value, onChange)} className="flex h-8 rounded-md bg-sunken p-1 hairline">
         {options.map(([v, name]) => (
           <button
             key={v}
             type="button"
             role="radio"
             aria-checked={v === value}
+            tabIndex={v === value ? 0 : -1}
             onClick={() => onChange(v)}
             className={cn(
               "h-6 rounded-sm px-2 text-ui transition-interactive duration-fast ease-out press focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus",
@@ -115,9 +117,9 @@ function Decide({ selection, load }: { selection: Selection<Axis>; load: (s: Sel
   const [speed, setSpeed] = useState<"normal" | "quarter" | "slow">("quarter")
   const isRec = encode(axes, selection) === encode(axes, RECOMMENDED)
   return (
-    <Section title="Decide" lede="Three questions, each with all three answers firing at once. If you cannot tell them apart at ¼×, that is itself the answer: take the recommendation. It is the audit's consensus and every value is measured, not guessed.">
+    <Section title="Decide" lede="Three questions, each with all three answers firing at once. If you cannot tell them apart at ¼×, that is itself the answer: take the recommendation. It follows Emil's published recipe, and gooey and beautifului ship the same curve.">
       <div className="mb-12 flex min-h-12 flex-wrap items-center gap-major rounded-lg bg-accent-bg px-major py-minor">
-        <p className="text-ui text-accent-text">
+        <p className="flex min-h-8 items-center text-ui text-accent-text">
           Recommended: <span className="font-medium">{describe(axes, RECOMMENDED, meta)}</span>, popover from the trigger, drawer on the curve, spring reserved for gestures.
         </p>
         <button
@@ -125,7 +127,7 @@ function Decide({ selection, load }: { selection: Selection<Axis>; load: (s: Sel
           onClick={() => load(RECOMMENDED)}
           disabled={isRec}
           className={cn(
-            "ml-auto h-control rounded-sm bg-accent-solid px-3 text-ui font-medium text-fg-on-accent transition-interactive duration-fast ease-out press disabled:opacity-60",
+            "ml-auto h-8 rounded-sm bg-accent-solid px-3 text-ui font-medium text-fg-on-accent transition-interactive duration-fast ease-out press disabled:opacity-60",
             "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus",
           )}
         >

@@ -36,7 +36,7 @@ export function Sidebar() {
                       {inner}
                     </span>
                   ) : external ? (
-                    <a href={item.href} className={cls} target="_blank" rel="noreferrer">
+                    <a href={item.href} className={cls} target="_blank" rel="noreferrer" aria-label={`${item.label} (opens in a new tab)`}>
                       {inner}
                     </a>
                   ) : (

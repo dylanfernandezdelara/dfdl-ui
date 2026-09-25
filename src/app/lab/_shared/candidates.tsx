@@ -4,6 +4,7 @@ import { Pin, X } from "lucide-react"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { useCallback, type ReactNode } from "react"
 
+import { radioGroupKeys } from "@/lib/radio-group"
 import { cn } from "@/lib/utils"
 
 export type CandidateId = "a" | "b" | "c"
@@ -163,7 +164,7 @@ export function Segmented({ label, value, options, onChange }: { label: string; 
   return (
     <div className="flex items-center gap-minor">
       <span className="w-16 font-mono text-caption uppercase tracking-wider text-fg-tertiary">{label}</span>
-      <div role="radiogroup" aria-label={label} className="flex h-8 rounded-md bg-sunken p-1 hairline">
+      <div role="radiogroup" aria-label={label} onKeyDown={radioGroupKeys(options.map((o) => o.id), value, onChange)} className="flex h-8 rounded-md bg-sunken p-1 hairline">
         {options.map((o) => {
           const active = o.id === value
           return (
@@ -172,6 +173,7 @@ export function Segmented({ label, value, options, onChange }: { label: string; 
               type="button"
               role="radio"
               aria-checked={active}
+              tabIndex={active ? 0 : -1}
               title={o.note}
               onClick={() => onChange(o.id)}
               className={cn(

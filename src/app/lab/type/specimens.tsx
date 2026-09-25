@@ -59,7 +59,7 @@ export function DensePanel() {
         <span className="font-mono text-caption tabular-nums text-fg-tertiary">128 bills</span>
       </header>
       <div className="flex h-12 items-center gap-2 px-major hairline-b">
-        <div role="radiogroup" className="flex h-8 rounded-sm bg-sunken p-1 hairline">
+        <div className="flex h-8 rounded-sm bg-sunken p-1 hairline">
           {["All", "House", "Senate"].map((o, i) => (
             <span key={o} className={cn("flex h-6 items-center rounded-xs px-2 text-ui", i === 0 ? "bg-surface text-fg-strong elevation-raised" : "text-fg-secondary")}>
               {o}

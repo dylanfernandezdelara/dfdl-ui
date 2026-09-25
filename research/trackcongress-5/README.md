@@ -2,6 +2,8 @@
 
 Worktree `../congress-tracker-dfdl` on branch `agent/dfdl-tokens` from `origin/main` (never pushed). Stack: React 18, Tailwind v3.4, Vite 7, its own `--twc-*` HSL-channel tokens and a `DESIGN_LANGUAGE.md`. Driven with the repo's `verify-congress-tracker` skill against the seeded isolated stack (5174/8788).
 
+> Note (2026-09-25): these boards ran with the Lab 2 body/heading size of 15px. The role is now 16px.
+
 ## What changed (mapping only, no component edits)
 
 - `web/src/dfdl/tokens.css` and `tokens.hsl.css` copied in; `tokens.hsl.css` is new: the same semantics exported as HSL channel triples for Tailwind v3 (`scripts/color/export-legacy.mts`, now part of `npm run tokens`).

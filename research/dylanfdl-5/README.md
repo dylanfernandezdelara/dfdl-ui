@@ -2,6 +2,8 @@
 
 Worktree `../dylanfdl_website-dfdl` on branch `agent/dfdl-tokens` from `origin/main`. **Not pushed, no PR.** Dylan reviews the boards before anything moves. Stack: Next 15, React 19, Tailwind v3.4 (not v4 as first assumed), full-color CSS variables (`--bg0..4`, `--fg0..4`, gruvbox-ish hues, shadcn aliases, `--article-*` scoped to `.article-shell`).
 
+> Note (2026-09-25): these boards ran with the Lab 2 body/heading size of 15px. The role is now 16px.
+
 ## What changed (mapping only, no component edits)
 
 `src/styles/dfdl/tokens.css` copied in; `src/styles/dfdl/map.css` loaded last:

@@ -33,7 +33,12 @@ function appearance(a: Appearance) {
 
 /* Hand-authored tokens read straight from tokens.css so the docs cannot drift from the file. */
 const css = readFileSync(resolve(root, "src/styles/tokens.css"), "utf8")
-const read = (prefix: string) => Object.fromEntries([...css.matchAll(new RegExp(`--(${prefix}[a-z0-9-]*):\\s*([^;]+);`, "g"))].map((m) => [m[1], m[2].trim()]))
+/* Light values live in the `:root` blocks, dark in `.dark`; reading the whole file lets dark overwrite light. */
+const darkAt = css.search(/^\.dark \{/m)
+const lightCss = css.slice(0, darkAt)
+const darkCss = css.slice(darkAt, css.indexOf("}", darkAt))
+const readIn = (src: string, prefix: string) => Object.fromEntries([...src.matchAll(new RegExp(`--(${prefix}[a-z0-9-]*):\\s*([^;]+);`, "g"))].map((m) => [m[1], m[2].trim()]))
+const read = (prefix: string) => readIn(css, prefix)
 
 const out = {
   generatedAt: new Date().toISOString().slice(0, 10),
@@ -45,7 +50,7 @@ const out = {
   motion: read("motion-"),
   space: read("space-"),
   measure: read("measure-"),
-  elevation: { light: read("elevation-") },
+  elevation: { light: readIn(lightCss, "elevation-"), dark: readIn(darkCss, "elevation-") },
 }
 mkdirSync(resolve(root, "src/generated"), { recursive: true })
 writeFileSync(resolve(root, "src/generated/tokens.json"), JSON.stringify(out, null, 2) + "\n")

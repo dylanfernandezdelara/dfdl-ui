@@ -118,7 +118,7 @@ Captured by driving each site with `agent-browser` and reading `document.getAnim
 
 ### jakub.kr
 - **Button at rest** (light): `bg lab(96.75)`, 40px tall, 16px weight 500, pill. Shadow `0 0 0 1px black/6%, 0 1px 2px -1px black/6%, 0 2px 4px black/4%`. Transition list is `color, background-color, border-color, box-shadow, scale` at 200ms `ease-out`.
-- **Press**: background goes to white over 200ms `ease-out`. Scale is in the transition list but this particular demo button did not scale on mousedown in headless Chrome; treat the 0.96 press as a convention of his skill rather than a measurement here.
+- **Press**: background goes to white over 200ms `ease-out`. Scale is in the transition list but this particular demo button did not scale on mousedown in headless Chrome; treat the 0.97 press as a convention of his skill rather than a measurement here.
 - Read: the three-layer light shadow is the one to adopt. It reads as a hairline plus a hint of lift, never as a drop shadow.
 
 ### beautifului.dev
@@ -143,7 +143,7 @@ Captured by driving each site with `agent-browser` and reading `document.getAnim
 
 ### Cross-cutting, motion
 - **Enter/exit pairs** are symmetric everywhere except beautifului, whose exits are plain. Nobody makes the exit faster than the enter, which is what Emil and Jakub both recommend. That is an opportunity, not a convention to copy.
-- **Scale-from** is 0.95 in every measured case (kitze dialog and menu, beautifului pop-in, dialkit enter uses 0.9). 0.96 on press is the skills' number, not something the sites measured here do.
+- **Scale-from** is 0.95 in every measured case (kitze dialog and menu, beautifului pop-in, dialkit enter uses 0.9). 0.97 on press is the skills' number (0.96 is Emil's modal scale-from), not something the sites measured here do.
 - **Durations by frequency**: 78–150ms for item highlight and hover, 150ms menus, 200ms dialogs, 300ms drawers, 300–600ms for one-time section entrances. Only dialkit's marketing enter exceeds 600ms.
 - **Curves**: the three that matter are Tailwind's `(0,0,0.2,1)` (kitze, dylanfdl), gooey's `(0.22,1,0.36,1)`, and beautifului's `(0.23,1,0.32,1)`. The last two are nearly identical strong ease-outs. The lab should compare `(0,0,0.2,1)` against `(0.22,1,0.36,1)` and be done.
 - **Blur as a transition channel** appears on gooey's icons (2px) and interfacecraft's hero (`filter: blur`). Cheap on small elements, expensive on large ones.

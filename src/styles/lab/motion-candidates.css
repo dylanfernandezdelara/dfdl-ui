@@ -11,7 +11,7 @@
 
   press  a Approved     0.97
          b None         color change only (Fork before)
-         c 0.94         deeper press, kitze-like
+         c 0.94         deeper press
 
   Lab-only controls, not decisions:
     data-speed="slow"   every duration x10, for judging curves
@@ -74,15 +74,27 @@
   --motion-slower: 5000ms;
 }
 
-/* Reduced motion preview: keep opacity and color, drop movement and scale. */
+/* Reduced motion: keep opacity and color, drop movement and scale. The knob previews it; the media query applies it
+   to the specimens for anyone who has it set. Keep the two lists in step. */
 [data-reduced="on"] {
   --motion-press: 1;
   --motion-pop-scale: 1;
   --motion-exit-scale: 0;
-  --lab-drawer-closed: translateY(0);
+  --lab-drawer-closed: 0 0;
   --lab-drawer-closed-opacity: 0;
   --lab-dialog-scale: 1;
   --lab-tab-duration: 0ms;
+}
+@media (prefers-reduced-motion: reduce) {
+  :where(.spec-popover, .spec-tooltip, .spec-dialog, .spec-drawer, .spec-tab-indicator, .spec-press, .spec-toast) {
+    --motion-press: 1;
+    --motion-pop-scale: 1;
+    --motion-exit-scale: 0;
+    --lab-drawer-closed: 0 0;
+    --lab-drawer-closed-opacity: 0;
+    --lab-dialog-scale: 1;
+    --lab-tab-duration: 0ms;
+  }
 }
 
 [data-origin="center"] {

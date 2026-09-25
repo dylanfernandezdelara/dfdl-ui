@@ -13,7 +13,7 @@ const axes: AxisDef<Axis>[] = [
 const meta: Record<Axis, Record<CandidateId, { name: string; note: string }>> = {
   scale: {
     a: { name: "Weight-led", note: "Approved in Lab 2, body raised to 16 after the dylanfdl preview. Body, headings and titles share 16px; hierarchy from weight 550, family and color. UI 13px at 450. Display 32 serif." },
-    b: { name: "Roles", note: "Jakub's role scale: Display 36, Title 24, Heading 18, Body 16, UI 14, Caption 13. Hierarchy comes from size; headings at 600 with negative tracking." },
+    b: { name: "Roles", note: "Jakub's role scale: Display 36, Title 24, Heading 18, Body 16, Caption 13, plus a UI 14 row we added. Hierarchy comes from size; headings at 600 with negative tracking." },
     c: { name: "Previous", note: "dylanfdl.com before Lab 2: 16/24 body, 14/20 UI, Lora 24 display at weight 400, one heading size at 500." },
   },
   serif: {
@@ -22,8 +22,8 @@ const meta: Record<Axis, Record<CandidateId, { name: string; note: string }>> = 
     c: { name: "None", note: "Sans everywhere, including the title. Lora survives only as italic emphasis inside a sentence." },
   },
   radius: {
-    a: { name: "Round", note: "Approved in Lab 2. xs 8 · sm 10 · md 12 · lg 16 · xl 24. Fork's 0.625rem family; closest to ChatGPT and Linear." },
-    b: { name: "Soft", note: "xs 6 · sm 8 · md 10 · lg 14 · xl 20. Kitze's family." },
+    a: { name: "Round", note: "Approved in Lab 2. xs 8 · sm 10 · md 12 · lg 16 · xl 24. Values Fork already uses literally (8, 10, 12, 24)." },
+    b: { name: "Soft", note: "xs 6 · sm 8 · md 10 · lg 14 · xl 20. Fork's derived shadcn scale." },
     c: { name: "Previous", note: "xs 4 · sm 6 · md 8 · lg 12 · xl 16. The interim values before Lab 2." },
   },
 }

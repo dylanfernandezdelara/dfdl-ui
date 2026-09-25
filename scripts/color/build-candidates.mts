@@ -3,7 +3,7 @@
  *
  *   node scripts/color/build-candidates.mts
  *
- * Candidate A for every axis is the current tokens.css (dylanfdl.com values) and needs no override;
+ * Candidate A for every axis is the approved tokens.css and needs no override;
  * the lab renders it by leaving the data attribute at "a". B and C are computed here so the only
  * thing varying inside an axis is the thing being decided.
  */
@@ -12,6 +12,7 @@ import { dirname, resolve } from "node:path"
 import { fileURLToPath } from "node:url"
 
 import { buildRamp, contrast, maxChroma, parse, pinSolid, toCss, toHex, type Appearance, type Ramp } from "./ramps.mts"
+import { config } from "./system.mts"
 
 const here = dirname(fileURLToPath(import.meta.url))
 const root = resolve(here, "../..")
@@ -56,7 +57,7 @@ const neutrals: NeutralCandidate[] = [
   {
     id: "b",
     name: "Unified warm",
-    note: "Surfaces and text share one warm hue (kitze's approach, but warm instead of green). Text stops being cool slate.",
+    note: "Surfaces and text share one warm hue (kitze keeps a warm page but tints its text green; here both are one hue). Text stops being cool slate.",
     hue: 80,
     chroma: 0.014,
   },
@@ -109,15 +110,15 @@ function neutralVars(c: NeutralCandidate, appearance: Appearance) {
 const brand = baseline.light.accentSolid
 const brandProportion = brand.c! / maxChroma(brand.l, brand.h!)
 
-type AccentCandidate = { id: "a" | "b" | "c"; name: string; note: string; hue: number }
+type AccentCandidate = { id: "a" | "b" | "c"; name: string; note: string; hue: number; proportion?: Record<Appearance, number> }
 const accents: AccentCandidate[] = [
-  { id: "a", name: "Ember", note: "Approved in Lab 1. Hue 48 at the previous indigo\u2019s relative vividness.", hue: 48 },
+  { id: "a", name: "Ember", note: "Approved in Lab 1. Hue 48 at 60% of its gamut ceiling in light, 55% in dark.", hue: 48, proportion: config.accents[0].proportion },
   { id: "b", name: "Indigo", note: "The previous dylanfdl.com blue, for reference.", hue: brand.h! },
   { id: "c", name: "Moss", note: "A calm green near kitze's lime family, desaturated to match. Same lightness, same relative vividness.", hue: 150 },
 ]
 
 function accentVars(c: AccentCandidate, appearance: Appearance, neutralPage: string) {
-  const proportion = appearance === "light" ? brandProportion : brandProportion * 0.85
+  const proportion = c.proportion?.[appearance] ?? (appearance === "light" ? brandProportion : brandProportion * 0.85)
   const solidL = appearance === "light" ? brand.l : baseline.dark.accentSolid.l
   let ramp: Ramp = buildRamp({ kind: "accent", appearance, hue: c.hue, chroma: proportion, solidL })
   if (c.id === "b" && appearance === "light") ramp = pinSolid(ramp, brand)

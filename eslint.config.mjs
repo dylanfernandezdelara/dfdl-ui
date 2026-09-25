@@ -14,7 +14,7 @@ const eslintConfig = defineConfig([
     settings: {
       shadcn: {
         // Theme and components are discovered from components.json.
-        note: "Design rules and the reason behind every token live in skills/dfdl-ui/SKILL.md and decisions.md.",
+        note: "Design rules and the reason behind every token live in decisions.md; the dfdl skill will be drafted from it.",
       },
     },
     rules: policy.rules,

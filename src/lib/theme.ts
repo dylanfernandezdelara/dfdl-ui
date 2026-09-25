@@ -26,10 +26,21 @@ export function applyTheme(theme: Theme) {
   emit()
 }
 
+/* With no stored choice the page follows the system, including when it changes while the page is open. */
+function onSystemChange(e: MediaQueryListEvent) {
+  if (window.localStorage.getItem(STORAGE_KEY)) return
+  document.documentElement.classList.toggle("dark", e.matches)
+  document.documentElement.classList.toggle("light", !e.matches)
+  emit()
+}
+
 export function subscribeTheme(listener: () => void) {
+  const system = window.matchMedia("(prefers-color-scheme: dark)")
+  if (listeners.size === 0) system.addEventListener("change", onSystemChange)
   listeners.add(listener)
   return () => {
     listeners.delete(listener)
+    if (listeners.size === 0) system.removeEventListener("change", onSystemChange)
   }
 }
 

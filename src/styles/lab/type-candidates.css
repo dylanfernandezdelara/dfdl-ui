@@ -1,17 +1,17 @@
 /*
-  Lab 2 candidates. A on every axis is tokens.css itself (current sites). Hand-authored; small enough not to generate.
+  Lab 2 candidates. A on every axis is tokens.css itself (the approved set). Hand-authored; small enough not to generate.
 
   Approved 2026-09-24 (now A = tokens.css): scale weight-led, serif on all headings, radius round.
 
-  scale   a Approved   weight-led: body, heading and title 15px, weight 550 carries hierarchy; UI 13 at 450; display 32
-          b Roles      Jakub's role scale: Display 36, Title 24, Heading 18, Body 16, UI 14, Caption 13. Hierarchy from size.
+  scale   a Approved   weight-led: body, heading and title 16px, weight 550 carries hierarchy; UI 13 at 450; display 32
+          b Roles      Jakub's role scale: Display 36, Title 24, Heading 18, Body 16, Caption 13, plus a UI 14 row we added. Hierarchy from size.
           c Previous   dylanfdl.com before Lab 2: 16/24 body, 14/20 UI, Lora 24 display, one heading size
 
   serif   a Approved   serif on every heading level
           b Display    serif on the page title and pull quotes only (previous)
           c None       sans everywhere; serif only for italic emphasis words
 
-  radius  a Approved   xs 8 · sm 10 · md 12 · lg 16 · xl 24 (Fork's 0.625rem family)
+  radius  a Approved   xs 8 · sm 10 · md 12 · lg 16 · xl 24 (values Fork uses literally)
           b Soft       xs 6 · sm 8 · md 10 · lg 14 · xl 20
           c Previous   xs 4 · sm 6 · md 8 · lg 12 · xl 16
 */

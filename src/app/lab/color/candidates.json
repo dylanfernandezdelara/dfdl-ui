@@ -3,7 +3,7 @@
   "neutrals": {
     "b": {
       "name": "Unified warm",
-      "note": "Surfaces and text share one warm hue (kitze's approach, but warm instead of green). Text stops being cool slate.",
+      "note": "Surfaces and text share one warm hue (kitze keeps a warm page but tints its text green; here both are one hue). Text stops being cool slate.",
       "hue": 80,
       "chroma": 0.014,
       "light": {
@@ -131,50 +131,50 @@
   "accents": {
     "a": {
       "name": "Ember",
-      "note": "Approved in Lab 1. Hue 48 at the previous indigo’s relative vividness.",
+      "note": "Approved in Lab 1. Hue 48 at 60% of its gamut ceiling in light, 55% in dark.",
       "hue": 48,
       "light": {
-        "solid": "oklch(52.40% 0.0645 48.00)",
+        "solid": "oklch(52.40% 0.0856 48.00)",
         "ramp": [
           "#fffcfb",
-          "#fdf7f4",
-          "#f9ece6",
-          "#f4e0d6",
-          "#edd2c5",
-          "#e3c1b0",
-          "#d4ac98",
-          "#bb907a",
-          "#895f49",
-          "#7d533e",
-          "#65422f",
-          "#26140a"
+          "#fef6f2",
+          "#fcebe3",
+          "#f9dfd2",
+          "#f4d0be",
+          "#ebbea8",
+          "#dda88e",
+          "#c58c6e",
+          "#925a3d",
+          "#864f31",
+          "#6d3d24",
+          "#2a1105"
         ],
         "contrast": {
-          "onAccentOnSolid": 5.48,
-          "accentTextOnAccentBg": 7.68,
-          "accentTextOnPage": 8.77
+          "onAccentOnSolid": 5.53,
+          "accentTextOnAccentBg": 7.73,
+          "accentTextOnPage": 8.84
         }
       },
       "dark": {
-        "solid": "oklch(72.00% 0.0725 48.00)",
+        "solid": "oklch(72.00% 0.1038 48.00)",
         "ramp": [
-          "#1d100a",
-          "#28170e",
-          "#3a2215",
-          "#482a1a",
-          "#563320",
-          "#673f2a",
-          "#7e513a",
-          "#98674f",
-          "#cb977d",
-          "#d6a48b",
-          "#f7ceb9",
+          "#210e05",
+          "#2d1407",
+          "#411e0a",
+          "#50250b",
+          "#602d0e",
+          "#723816",
+          "#8a4a26",
+          "#a5603b",
+          "#da906a",
+          "#e59e79",
+          "#ffcab0",
           "#fff2ec"
         ],
         "contrast": {
-          "onAccentOnSolid": 6.8,
-          "accentTextOnAccentBg": 10.15,
-          "accentTextOnPage": 11.84
+          "onAccentOnSolid": 6.72,
+          "accentTextOnAccentBg": 10.17,
+          "accentTextOnPage": 11.79
         }
       }
     },
