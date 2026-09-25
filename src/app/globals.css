@@ -16,7 +16,7 @@
     status     {danger,success,warning}: bg-*-bg border-*-border bg-* text-*-text
     rounded    rounded-xs rounded-sm rounded-md rounded-lg rounded-xl rounded-full (concentric: outer = inner + padding)
     type       text-display text-title text-heading text-body text-ui text-caption (size + leading + weight); font-display font-heading font-sans font-mono; h-control
-    elevation  elevation-raised elevation-floating
+    elevation  elevation-raised elevation-floating; hairline hairline-t hairline-b (1px lines that do not take layout space)
     motion     ease-out ease-in-out ease-drawer, duration-instant/fast/normal/slow, transition-interactive, transition-icon, press
     measure    max-w-reading max-w-content
     rhythm     p-minor p-major gap-minor gap-major (8px / 24px)
@@ -178,6 +178,17 @@
 }
 @utility elevation-floating {
   box-shadow: var(--elevation-floating);
+}
+/* Hairlines that do not take layout space. A 1px border pushes everything below it off the grid; a shadow does not.
+   Use these for dividers and framed groups; use `border` only where the box height already accounts for it. */
+@utility hairline-b {
+  box-shadow: inset 0 -1px 0 var(--color-separator);
+}
+@utility hairline-t {
+  box-shadow: inset 0 1px 0 var(--color-separator);
+}
+@utility hairline {
+  box-shadow: inset 0 0 0 1px var(--color-line);
 }
 /* Press feedback. Scale is movement, so it is dropped under reduced motion; color and shadow changes still carry the state. */
 @utility press {

@@ -121,7 +121,7 @@ export function SyncRow<A extends string>({
   void axes
   return (
     <div data-speed={speed}>
-      <div className="mb-minor flex flex-wrap items-center gap-major">
+      <div className="mb-minor flex min-h-8 flex-wrap items-center gap-major">
         <button
           type="button"
           onClick={play}
@@ -133,7 +133,7 @@ export function SyncRow<A extends string>({
         >
           <Play className="size-3.5" strokeWidth={2} aria-hidden /> {playing ? "Playing…" : playLabel}
         </button>
-        <div role="radiogroup" aria-label="Speed" className="flex rounded-md border border-line bg-sunken p-0.5">
+        <div role="radiogroup" aria-label="Speed" className="flex h-8 rounded-md bg-sunken p-1 hairline">
           {(["normal", "quarter", "slow"] as const).map((v) => (
             <button
               key={v}
@@ -159,16 +159,16 @@ export function SyncRow<A extends string>({
           const isSel = selection[axis as unknown as A] === id
           return (
             <div key={id} className="min-w-0">
-              <div className="mb-2 flex items-baseline gap-2">
+              <div className="mb-minor flex h-6 items-center gap-2">
                 <span className="font-mono text-caption text-fg-tertiary">{id.toUpperCase()}</span>
                 <span className="text-ui font-medium text-fg-strong">{meta[id].name}</span>
                 {isRec ? <span className="rounded-full bg-accent-bg px-1.5 font-mono text-caption uppercase tracking-wider text-accent-text">recommended</span> : null}
                 {isSel ? <span className="font-mono text-caption uppercase tracking-wider text-fg-tertiary">selected</span> : null}
               </div>
-              <CandidateScope selection={s} className={cn("rounded-lg border bg-page p-major text-fg", isSel ? "border-accent-border" : "border-line")}>
+              <CandidateScope selection={s} className={cn("rounded-lg bg-page p-major text-fg", isSel ? "outline outline-1 -outline-offset-1 outline-accent-border" : "hairline")}>
                 {children(s, open)}
               </CandidateScope>
-              <p className="mt-2 text-caption leading-5 text-fg-secondary">{meta[id].note}</p>
+              <p className="mt-minor text-caption text-fg-secondary">{meta[id].note}</p>
             </div>
           )
         })}

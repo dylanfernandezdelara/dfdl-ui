@@ -12,7 +12,7 @@ export const cn = createCn({
     classGroups: {
       "font-size": [{ text: ["display", "title", "heading", "body", "ui", "caption"] }],
       "font-family": [{ font: ["display", "heading"] }],
-      shadow: ["elevation-raised", "elevation-floating"],
+      shadow: ["elevation-raised", "elevation-floating", "hairline", "hairline-t", "hairline-b"],
       "transition-property": ["transition-interactive", "transition-icon"],
       duration: ["duration-instant", "duration-fast", "duration-normal", "duration-slow", "duration-slower"],
       ease: [{ ease: ["spring", "drawer"] }],

@@ -90,9 +90,9 @@ export function PinButton({ pinned, onPin }: { pinned: boolean; onPin: () => voi
       onClick={onPin}
       disabled={pinned}
       className={cn(
-        "ml-auto flex h-7 items-center gap-1.5 rounded-sm border px-2.5 text-ui transition-interactive duration-fast ease-out press",
+        "ml-auto flex h-8 items-center gap-1.5 rounded-sm px-3 text-ui transition-interactive duration-fast ease-out press hairline",
         "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus",
-        pinned ? "border-accent-border bg-accent-bg text-accent-text" : "border-line bg-surface text-fg hover:bg-surface-hover",
+        pinned ? "bg-accent-bg text-accent-text" : "bg-surface text-fg hover:bg-surface-hover",
       )}
     >
       <Pin className="size-3.5" strokeWidth={1.5} aria-hidden />
@@ -113,7 +113,7 @@ export function Shortlist<A extends string>({ axes, pins, meta, current, onLoad,
 }) {
   if (pins.length === 0) {
     return (
-      <p className="rounded-lg border border-dashed border-line px-major py-minor text-ui text-fg-secondary">
+      <p className="rounded-lg px-major py-minor text-ui text-fg-secondary hairline">
         Nothing pinned yet. Set the controls above to a combination you like and press <span className="text-fg-strong">Pin this combination</span>. Pinned
         combinations render here in full, one after another, and travel with the URL.
       </p>
@@ -127,20 +127,20 @@ export function Shortlist<A extends string>({ axes, pins, meta, current, onLoad,
         const active = code === currentCode
         return (
           <div key={code}>
-            <div className="mb-2 flex items-center gap-major">
+            <div className="mb-minor flex h-8 items-center gap-major">
               <span className="font-mono text-caption uppercase tracking-wider text-fg-tertiary">{code}</span>
               <span className="text-ui text-fg-strong">{describe(axes, s, meta)}</span>
               {active ? <span className="font-mono text-caption uppercase tracking-wider text-accent-text">current</span> : null}
-              <button type="button" onClick={() => onLoad(s)} className="ml-auto h-7 rounded-sm border border-line px-2.5 text-ui text-fg hover:bg-surface-hover transition-interactive duration-fast ease-out press">
+              <button type="button" onClick={() => onLoad(s)} className="ml-auto h-8 rounded-sm px-3 text-ui text-fg hairline hover:bg-surface-hover transition-interactive duration-fast ease-out press">
                 Load into controls
               </button>
-              <button type="button" onClick={() => onUnpin(code)} aria-label="Unpin" className="flex size-7 items-center justify-center rounded-sm text-fg-secondary hover:bg-surface-hover hover:text-fg transition-interactive duration-fast ease-out press">
+              <button type="button" onClick={() => onUnpin(code)} aria-label="Unpin" className="flex size-8 items-center justify-center rounded-sm text-fg-secondary hover:bg-surface-hover hover:text-fg transition-interactive duration-fast ease-out press">
                 <X className="size-4" strokeWidth={1.5} aria-hidden />
               </button>
             </div>
             <div className="grid grid-cols-2 gap-major">
-              <CandidateScope selection={s} className="rounded-xl border border-line bg-page p-major text-fg">{children(s, false)}</CandidateScope>
-              <CandidateScope selection={s} dark className="rounded-xl border border-line bg-page p-major text-fg">{children(s, true)}</CandidateScope>
+              <CandidateScope selection={s} className="rounded-xl bg-page p-major text-fg hairline">{children(s, false)}</CandidateScope>
+              <CandidateScope selection={s} dark className="rounded-xl bg-page p-major text-fg hairline">{children(s, true)}</CandidateScope>
             </div>
           </div>
         )
@@ -163,7 +163,7 @@ export function Segmented({ label, value, options, onChange }: { label: string; 
   return (
     <div className="flex items-center gap-minor">
       <span className="w-16 font-mono text-caption uppercase tracking-wider text-fg-tertiary">{label}</span>
-      <div role="radiogroup" aria-label={label} className="flex rounded-md border border-line bg-sunken p-0.5">
+      <div role="radiogroup" aria-label={label} className="flex h-8 rounded-md bg-sunken p-1 hairline">
         {options.map((o) => {
           const active = o.id === value
           return (
@@ -175,7 +175,7 @@ export function Segmented({ label, value, options, onChange }: { label: string; 
               title={o.note}
               onClick={() => onChange(o.id)}
               className={cn(
-                "h-7 rounded-sm px-2.5 text-ui transition-interactive duration-fast ease-out press",
+                "h-6 rounded-sm px-2 text-ui transition-interactive duration-fast ease-out press",
                 "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus",
                 active ? "bg-surface text-fg-strong elevation-raised" : "text-fg-secondary hover:text-fg",
               )}
@@ -190,13 +190,13 @@ export function Segmented({ label, value, options, onChange }: { label: string; 
 }
 
 export function Toolbar({ children }: { children: ReactNode }) {
-  return <div className="sticky top-0 z-10 -mx-major flex flex-wrap items-center gap-major border-b border-separator bg-page/90 px-major py-minor backdrop-blur">{children}</div>
+  return <div className="sticky top-0 z-10 -mx-major flex min-h-12 flex-wrap items-center gap-x-major gap-y-minor bg-page/90 px-major py-minor backdrop-blur hairline-b">{children}</div>
 }
 
 export function Section({ title, lede, children }: { title: string; lede: string; children: ReactNode }) {
   return (
-    <section className="border-t border-separator py-12">
-      <div className="mb-major flex items-baseline gap-major">
+    <section className="py-12 hairline-t">
+      <div className="mb-major flex items-start gap-major">
         <h2 className="w-48 shrink-0 font-display text-title text-fg-strong">{title}</h2>
         <p className="max-w-reading text-ui text-fg-secondary">{lede}</p>
       </div>
@@ -214,20 +214,20 @@ export function Compare<A extends string>({ axis, selection, meta, children, bot
         const m = meta[id]
         return (
           <div key={id} className="min-w-0">
-            <div className="mb-2 flex items-baseline gap-2">
+            <div className="mb-minor flex h-6 items-center gap-2">
               <span className="font-mono text-caption text-fg-tertiary">{id.toUpperCase()}</span>
               <span className="text-ui font-medium text-fg-strong">{m.name}</span>
               {id === "a" ? <span className="font-mono text-caption uppercase tracking-wider text-fg-tertiary">baseline</span> : null}
             </div>
-            <CandidateScope selection={s} className="rounded-lg border border-line bg-page p-major text-fg">
+            <CandidateScope selection={s} className="rounded-lg bg-page p-major text-fg hairline">
               {children(s)}
             </CandidateScope>
             {both ? (
-              <CandidateScope selection={s} dark className="mt-2 rounded-lg border border-line bg-page p-major text-fg">
+              <CandidateScope selection={s} dark className="mt-minor rounded-lg bg-page p-major text-fg hairline">
                 {children(s)}
               </CandidateScope>
             ) : null}
-            <p className="mt-2 text-caption leading-5 text-fg-secondary">{m.note}</p>
+            <p className="mt-minor text-caption text-fg-secondary">{m.note}</p>
           </div>
         )
       })}

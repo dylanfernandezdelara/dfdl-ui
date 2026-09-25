@@ -42,11 +42,11 @@ Next 16 (App Router, Turbopack), React 19, Tailwind v4, Base UI via shadcn (`bas
 - Source tokens in `tokens.css` (`--bg-*`, `--fg-*`, `--border-*`, `--rounded-*`, `--motion-*`, `--elevation-*`) never share a name with a Tailwind theme key (`--color-*`, `--radius-*`, `--ease-*`, `--shadow-*`). A shared name compiles to a self-referential variable; check compiled CSS, not the source, when in doubt.
 - Type is set with role utilities: `text-display`, `text-title`, `text-heading`, `text-body`, `text-ui`, `text-caption` (each carries size, leading and weight). Never combine `text-sm` with `leading-*` by hand.
 - `cn` (`src/lib/utils.ts`) is configured with the dfdl vocabulary so custom `text-<role>`, `font-<family>`, elevation and motion classes merge correctly. Add any new custom utility there too, or a later `text-fg` will silently drop it.
-- Everything lands on the 8/24 grid. Check with `g`.
+- Everything lands on the 8/24 grid, and it is measured, not eyeballed. `g` shows the grid; `Shift+G` runs the audit and outlines every block whose top, height or left edge misses the 4px half-step, with the reason on hover. Agents run `agent-browser eval "$(cat scripts/probes/grid.js)"` and fix until strict offenders are 0 before a component page ships. Rules that keep you on grid: control heights 24/28/32/40/48; line-heights in px, multiples of 4; `mt-minor`/`mt-major` not `mt-1`/`mt-2`; `items-center` not `items-baseline` in rows; `hairline-*` instead of `border` where a 1px line would shift content.
 - Shadows are `elevation-raised` / `elevation-floating` utilities (convention; `@shadcn/lint` 0.1.0 misread `shadow-<name>` as a color, fixed in 0.2.0, but the names stayed).
 - Transition only what changes: `transition-interactive` for controls, `transition-icon` for icon swaps. Never `transition-all`. Press feedback is `press` (scale `var(--press-scale)`).
 - Reduced motion is handled per component (keep opacity and color, drop movement). There is no blanket kill switch.
-- Motion is verified in the browser, at 10% speed, with `document.getAnimations()` after the interaction, not by reading CSS.
+- Motion is verified in the browser, at 10% speed, with `document.getAnimations()` after the interaction (`scripts/probes/animations.js`), not by reading CSS.
 - Every accepted correction lands in the narrowest holder: linter if mechanical, skill if judgment, `decisions.md` always. Update `PLAN.md` status in the same commit as the work.
 - Interim values (motion curves, radius, the neutral ramp) are marked in `tokens.css` and `decisions.md`; do not treat them as final before their lab.
 

@@ -52,7 +52,7 @@ function Panel({ selection, dark }: { selection: Selection; dark: boolean }) {
   const nc = (dark ? n.dark : n.light)?.contrast ?? {}
   const ac = (dark ? a.dark : a.light)?.contrast ?? {}
   return (
-    <CandidateScope selection={selection} dark={dark} className="rounded-xl border border-line bg-page p-major text-fg">
+    <CandidateScope selection={selection} dark={dark} className="rounded-xl bg-page p-major text-fg hairline">
       <div className="mb-major flex items-center justify-between">
         <span className="font-mono text-xs uppercase tracking-wider text-fg-tertiary">{dark ? "Dark" : "Light"}</span>
         <span className="font-mono text-xs text-fg-tertiary">{(dark ? a.dark : a.light)?.solid}</span>

@@ -62,6 +62,8 @@ Google `DESIGN.md`. Code Connect on Pro. Cloudflare deploy until asked. Copying 
 
 ## Log
 
+- 2026-09-24: Grid alignment made mechanical at Dylan's request. `scripts/probes/grid.js` and `src/lib/grid-audit.ts` measure every block against the 8px grid (4px half-step tolerated); `Shift+G` outlines offenders in the overlay. `hairline-*` utilities replace rhythm-breaking borders. Dogfooded on the lab chrome: a 2px section-header error was cascading down whole pages; fixed. Home page audits at 0. Lab specimen internals still carry offenders (backlog; labs are exempt, component pages are not). Run against dylanfdl: header 2px off, TOC unitless line-height 16.8px, recorded for the real adoption.
+
 - 2026-09-24: Phase 5, dylanfdl before/after in worktree `../dylanfdl_website-dfdl` (Tailwind v3.4, correcting the earlier v4 assumption). Mapping layer over `bg/fg`, gruvbox hues, shadcn aliases and the `.article-shell` type variables. `npm run check` green (234 tests). Boards in `research/dylanfdl-5/`, article before/after in Figma. Not pushed, no PR, per Dylan.
 
 - 2026-09-24: Dylan ruled on the trackcongress conflicts: sans headings and no accent for data-dense products. Implemented as `data-quiet` on the root in both `tokens.css` and `tokens.hsl.css`; trackcongress worktree switched to quiet mode and re-captured. Boards now show before / dfdl full / dfdl quiet.

@@ -16,7 +16,7 @@ export default function TypeLabPage() {
       <main className="mx-auto w-full max-w-content px-major pb-12">
         <div className="py-12">
           <p className="font-mono text-caption uppercase tracking-wider text-fg-tertiary">Lab 2</p>
-          <h1 className="mt-1 font-display text-display text-fg-strong">Type, rhythm and shape</h1>
+          <h1 className="mt-minor font-display text-display text-fg-strong">Type, rhythm and shape</h1>
           <p className="mt-minor max-w-reading text-body text-fg-secondary">
             Three decisions: how hierarchy is built, where the serif is allowed, and the radius family. A on every axis is
             the current sites. Pick with the controls; the URL carries the selection.

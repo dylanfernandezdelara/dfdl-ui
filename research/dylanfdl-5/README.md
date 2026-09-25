@@ -32,3 +32,8 @@ Worktree `../dylanfdl_website-dfdl` on branch `agent/dfdl-tokens` from `origin/m
 - The site's `--article-*` variables already form a type-role layer; a real adoption would point them at dfdl roles in `shell.css` and delete the mapping file.
 - `text-2xl` etc. overrides are a stopgap; the real version uses dfdl role utilities once the site is on Tailwind v4.
 - Link underline color and the accent on the tab indicator are the only places ember appears; the site is nearly quiet-mode by nature, which is right for a portfolio.
+
+## Grid audit (scripts/probes/grid.js) on the retokened site
+
+- Home: 72 of 101 blocks off the 4px grid, almost all inside the animated "optimist" word (char slots at fractional tops; by design) and the card grid.
+- Article: header row lands at top 98 (2px off); TOC label uses unitless `line-height: 1.4` (16.8px); TOC list height fractional. Small, real, and exactly the class of defect the audit exists for. Fix list for the real adoption.

@@ -62,7 +62,7 @@ function Knob({ label, value, options, onChange }: { label: string; value: strin
   return (
     <div className="flex items-center gap-minor">
       <span className="w-16 font-mono text-caption uppercase tracking-wider text-fg-tertiary">{label}</span>
-      <div role="radiogroup" aria-label={label} className="flex rounded-md border border-line bg-sunken p-0.5">
+      <div role="radiogroup" aria-label={label} className="flex h-8 rounded-md bg-sunken p-1 hairline">
         {options.map(([v, name]) => (
           <button
             key={v}
@@ -71,7 +71,7 @@ function Knob({ label, value, options, onChange }: { label: string; value: strin
             aria-checked={v === value}
             onClick={() => onChange(v)}
             className={cn(
-              "h-7 rounded-sm px-2.5 text-ui transition-interactive duration-fast ease-out press focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus",
+              "h-6 rounded-sm px-2 text-ui transition-interactive duration-fast ease-out press focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus",
               v === value ? "bg-surface text-fg-strong elevation-raised" : "text-fg-secondary hover:text-fg",
             )}
           >
@@ -116,7 +116,7 @@ function Decide({ selection, load }: { selection: Selection<Axis>; load: (s: Sel
   const isRec = encode(axes, selection) === encode(axes, RECOMMENDED)
   return (
     <Section title="Decide" lede="Three questions, each with all three answers firing at once. If you cannot tell them apart at ¼×, that is itself the answer: take the recommendation. It is the audit's consensus and every value is measured, not guessed.">
-      <div className="mb-12 flex flex-wrap items-center gap-major rounded-lg border border-accent-border bg-accent-bg px-major py-minor">
+      <div className="mb-12 flex min-h-12 flex-wrap items-center gap-major rounded-lg bg-accent-bg px-major py-minor">
         <p className="text-ui text-accent-text">
           Recommended: <span className="font-medium">{describe(axes, RECOMMENDED, meta)}</span>, popover from the trigger, drawer on the curve, spring reserved for gestures.
         </p>
@@ -177,7 +177,7 @@ export function MotionLab() {
           <Segmented key={axis} label={label} value={selection[axis]} options={IDS.map((id) => ({ id, name: meta[axis][id].name, note: meta[axis][id].note }))} onChange={(id) => set(axis, id)} />
         ))}
         <PinButton pinned={isPinned} onPin={pin} />
-        <div className="flex w-full flex-wrap items-center gap-major border-t border-separator pt-minor">
+        <div className="flex w-full flex-wrap items-center gap-major pt-minor hairline-t">
           <Knob label="Speed" value={knobs.speed} options={[["normal", "1×"], ["slow", "0.1×"]]} onChange={(v) => setKnob("speed", v, "normal")} />
           <Knob label="Origin" value={knobs.origin} options={[["trigger", "Trigger"], ["center", "Center"]]} onChange={(v) => setKnob("origin", v, "trigger")} />
           <Knob label="Drawer" value={knobs.drawer} options={[["curve", "Curve"], ["spring", "Spring"]]} onChange={(v) => setKnob("drawer", v, "curve")} />
@@ -190,7 +190,7 @@ export function MotionLab() {
       <Section title="Together" lede={`Current selection: ${describe(axes, selection, meta)}. Click everything. Set speed to 0.1× to see the curve; at 1× judge only how it feels. The bottom row of knobs are questions, not candidates: popover origin, drawer physics, and what reduced motion should keep.`}>
         <div className="grid grid-cols-2 gap-major">
           {[false, true].map((dark) => (
-            <CandidateScope key={String(dark)} selection={selection} dark={dark} className="rounded-xl border border-line bg-page p-major text-fg">
+            <CandidateScope key={String(dark)} selection={selection} dark={dark} className="rounded-xl bg-page p-major text-fg hairline">
               <Everything dark={dark} />
             </CandidateScope>
           ))}

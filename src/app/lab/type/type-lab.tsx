@@ -59,7 +59,7 @@ export function TypeLab() {
       <Section title="Together" lede={`Current selection: ${describe(axes, selection, meta)}. Hover a control for what each candidate changes. Press g to check the rhythm.`}>
         <div className="grid grid-cols-2 gap-major">
           {[false, true].map((dark) => (
-            <CandidateScope key={String(dark)} selection={selection} dark={dark} className="rounded-xl border border-line bg-page p-major text-fg">
+            <CandidateScope key={String(dark)} selection={selection} dark={dark} className="rounded-xl bg-page p-major text-fg hairline">
               <Everything dark={dark} />
             </CandidateScope>
           ))}

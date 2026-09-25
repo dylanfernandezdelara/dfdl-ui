@@ -57,3 +57,24 @@
     display: none;
   }
 }
+
+/* Grid audit: offenders outlined, reason in the title attribute. */
+[data-grid-offender] {
+  outline: 1px solid var(--status-danger) !important;
+  outline-offset: -1px;
+}
+[data-grid-offender]:hover::after {
+  content: attr(data-grid-offender);
+  position: absolute;
+  z-index: 42;
+  padding: 2px 6px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  line-height: 1.4;
+  color: var(--bg-page);
+  background: var(--status-danger);
+  pointer-events: none;
+}
+[data-layout-grid-legend][data-audit] {
+  color: var(--status-danger);
+}

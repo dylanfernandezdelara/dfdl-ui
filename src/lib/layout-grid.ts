@@ -27,7 +27,14 @@ export function isTypingTarget(target: EventTarget | null): boolean {
 }
 
 export function isLayoutGridHotkey(event: KeyboardEvent): boolean {
-  if (event.defaultPrevented || event.altKey || event.ctrlKey || event.metaKey) return false
+  if (event.defaultPrevented || event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return false
+  if (event.key.toLowerCase() !== LAYOUT_GRID_HOTKEY) return false
+  return !isTypingTarget(event.target)
+}
+
+/** Shift+G: audit the page against the grid and outline offenders. */
+export function isGridAuditHotkey(event: KeyboardEvent): boolean {
+  if (event.defaultPrevented || event.altKey || event.ctrlKey || event.metaKey || !event.shiftKey) return false
   if (event.key.toLowerCase() !== LAYOUT_GRID_HOTKEY) return false
   return !isTypingTarget(event.target)
 }
