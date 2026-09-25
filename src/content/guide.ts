@@ -85,7 +85,7 @@ ${addCommand("button")}   # any component
     id: "adopt",
     title: "Adopt an outside component",
     body: [
-      "1. Bring the source in (npx shadcn add <url>, or copy). 2. Retoken: replace every color, radius, spacing and motion value with a semantic token until the linter is quiet. 3. Write the no-restyle contract: what callers may override (controls deny h-* and size-*). 4. Write the motion spec: purpose, curve, duration, exit, reduced-motion; verify with the probe. 5. Add it to registry.json with its dependencies and provenance. 6. Docs page with every state. Controls also get a height contract in design-system.lint.json.",
+      "0. On a Tailwind v3 site, upgrade to v4 first, in its own PR: run @tailwindcss/upgrade for the config and class renames, but keep the site's component CSS as plain CSS in @layer components (the tool's @utility conversion drops class names built at runtime), and prove no visual change by pixel-diffing screenshots against the v3 build. 1. Bring the source in (npx shadcn add <url>, or copy). 2. Retoken: replace every color, radius, spacing and motion value with a semantic token until the linter is quiet. 3. Write the no-restyle contract: what callers may override (controls deny h-* and size-*). 4. Write the motion spec: purpose, curve, duration, exit, reduced-motion; verify with the probe. 5. Add it to registry.json with its dependencies and provenance. 6. Docs page with every state. Controls also get a height contract in design-system.lint.json.",
     ],
   },
   {

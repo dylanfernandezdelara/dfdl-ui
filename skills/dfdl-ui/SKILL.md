@@ -55,6 +55,8 @@ Add the probes the Verify steps use (they land in `scripts/probes/`):
 npx shadcn@latest add https://dfdl-ui.fernandezdelaradylan.workers.dev/r/probes.json
 ```
 
+On a Tailwind v3 site, upgrade to v4 first in its own PR: `@tailwindcss/upgrade` for the config and renames, but keep the site's component CSS as plain CSS in `@layer components` (the tool's `@utility` conversion silently drops class names built at runtime), and pixel-diff screenshots against the v3 build before claiming no visual change.
+
 Load Lora with next/font as `--font-lora`. Set `<html data-accent="ember">` (default) or `"indigo"` for products that already own blue. Tailwind v3 projects use the `tokens` item and `tokens.hsl.css` instead.
 
 ## Values

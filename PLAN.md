@@ -61,6 +61,8 @@ Google `DESIGN.md`. Code Connect on Pro. Cloudflare deploy until asked. Copying 
 
 ## Log
 
+- 2026-09-25: trackcongress adoption, PR A of 3 (congress-tracker#192): Tailwind v3 → v4 with no visual change, proven by pixel diff of full pages and interactive states at the qa:web viewports. The upgrade tool's @utility conversion dropped runtime-built class names; kept component CSS as plain @layer components instead. Found a production bug the upgrade fixes (party bars transparent: v3 purged runtime-built class names). npm test and qa:web pass; preview uploaded. Next: PR B (dfdl tokens + quiet mode), PR C (components).
+
 - 2026-09-25: Eight components for trackcongress's needs: Avatar, Collapsible, Combobox, Input group, Popover, Separator, Sheet (Base UI Drawer: bottom, swipe, nested stacking), Toast (stacked, swipe, fade exit). 19 in the registry. New motion utilities sheet-popup/-backdrop, motion-reveal, toast-root/-content, all transform and opacity only; Collapsible opens without animating height. Motion verified with getAnimations: sheet 500ms drawer curve in, 375 out; popover 150 out; toast 16px in over 200, fade out 150; reveal 150. Grid audit zero. Decided with Dylan: dfdl stays Tailwind v4; v3 sites upgrade in their adoption PR.
 
 - 2026-09-25: Dylan chose his site's type structure over Lab 2's: Lora on titles only (new `headline` 28/32 for articles, `display` 24/32 for pages), sans headings at 600 (`title` 20/32, `heading` 17/24), UI 14/20. Weight-led and Lora-on-every-heading superseded. Future (very end): buy a domain on Cloudflare (e.g. dfdl-ui.com) instead of moving dylanfdl.com's DNS.
