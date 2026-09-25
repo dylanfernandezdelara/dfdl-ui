@@ -3,6 +3,8 @@
   For every inline box that sits inside running text (an animated word, a badge, a kbd, an icon label), compares
   the bottom of its text to the bottom of the sentence text on the same line. Same font and size only, so the
   glyph boxes are comparable. An offset of half a pixel is already a bug: it becomes a visible pixel at a larger size.
+  Run it in WebKit too (Playwright's webkit): Safari computes the baseline of an inline-block with hidden or clip
+  overflow from its bottom edge, so a page can pass in Chromium and sit 3.5px high in Safari.
 */
 (() => {
   const textRect = (node) => {

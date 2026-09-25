@@ -42,7 +42,7 @@ ${addCommand("button")}   # any component
     body: [
       "Seven roles carry size, leading and weight together: text-display (24/32/400 Lora, page titles), text-title (15/24/550 Lora, over reading text), text-heading (14/24/550 Lora, over body text), text-body (14/24/450, page prose and the default), text-reading (15/24/400, long-form articles), text-ui (13/20/450), text-caption (12/16/450). Set text only through a role. text-sm with leading-6 by hand is a defect.",
       "tabular-nums on anything that lines up. text-balance on titles, text-pretty on paragraphs. Do not invent sizes between roles.",
-      "An inline box inside a sentence (an animated word, a badge, a kbd) aligns with vertical-align: baseline. text-bottom and middle leave an offset that is invisible at 14px and a visible pixel at 16. scripts/probes/baseline.js measures it.",
+      "An inline box inside a sentence (an animated word, a badge, a kbd) aligns with vertical-align: baseline and never has overflow: hidden or clip, which makes Safari take its baseline from the bottom edge; mask with clip-path. text-bottom and middle leave an offset that is invisible at 14px and a visible pixel at 16. scripts/probes/baseline.js measures it; run it in WebKit as well as Chromium.",
       "When restyling an existing product, measure its rendered paragraphs with getComputedStyle, never the <body> element, and compare after. The <body> default is not the text people read.",
     ],
   },

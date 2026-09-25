@@ -76,7 +76,7 @@ Use utilities, never raw values. The linter rejects palette colors, arbitrary va
 - **One primary button per view.** The accent marks the primary action and the current selection, nothing else: no accent headings, icons or decorative fills.
 - **Hierarchy from weight and family, not size.** A heading is the size of the text under it; Lora at 550 and `text-fg-strong` make it a heading. Only a page title uses `text-display`.
 - **Text size is 14, not 16.** Page prose is `text-body` (14/24). Use `text-reading` (15) only for long-form articles. Do not bump prose to 16 because it "looks small" in isolation; 14/24 at weight 450 is the measured size of Dylan's site.
-- **Inline boxes sit on the baseline.** A word with its own box inside a sentence (an animated word, a badge, a kbd) uses `vertical-align: baseline`. `text-bottom` or `middle` leave an offset that is invisible at one size and a visible pixel at the next.
+- **Inline boxes sit on the baseline.** A word with its own box inside a sentence (an animated word, a badge, a kbd) uses `vertical-align: baseline`. `text-bottom` or `middle` leave an offset that is invisible at one size and a visible pixel at the next. Never give such a box `overflow: hidden` or `clip`: Safari then takes its baseline from the bottom edge and lifts the text by its descender. Mask with `clip-path` instead.
 - **Quiet mode** (`<html data-quiet>`) for data-dense products where color already carries data: headings go sans, the accent collapses into the neutrals. trackcongress runs quiet.
 - **Density:** 32px controls by default; 28 (`size="sm"`) in dense rows and tables; 40 for touch-first surfaces.
 - **Should it animate?** Not if it is keyboard-triggered or happens hundreds of times a day. Hover and press are near-imperceptible. Menus, dialogs and drawers get the standard treatment. If you can describe the animation, it is too much.
@@ -87,7 +87,7 @@ Use utilities, never raw values. The linter rejects palette colors, arbitrary va
 
 1. `npm run lint`. Zero errors; each message says what to use instead.
 2. Grid: run `scripts/probes/grid.js` in the page (`agent-browser eval "$(cat scripts/probes/grid.js)"`) and fix until offenders are 0. One 2px slip shifts every row below it; fix the first cause.
-3. Baseline: run `scripts/probes/baseline.js` on any page with inline boxes in running text. Zero offenders; half a pixel counts.
+3. Baseline: run `scripts/probes/baseline.js` on any page with inline boxes in running text, in Chromium and in WebKit (Playwright's `webkit`; engines disagree on inline baselines). Zero offenders; half a pixel counts. Dylan uses Safari: a Chromium-only check is not a check.
 4. Motion: trigger the interaction, then read `document.getAnimations()` (`scripts/probes/animations.js`). Check property, duration and curve against the spec. Reading the CSS is not proof.
 5. Look at it in light and dark, and at 390px wide with no horizontal scroll.
 6. Restyling an existing product: measure its rendered text first (`getComputedStyle` on the paragraphs, never on `<body>`) and compare after. A size that changes by more than a pixel needs Dylan's sign-off.
