@@ -373,4 +373,18 @@
   --accent-solid-hover: var(--indigo-dark-10);
   --accent-text: var(--indigo-dark-11);
 }
+
+/* ---- Quiet mode: data-quiet on the root for data-dense products. Headings go sans, the accent role collapses
+   into the neutrals so selection is carried by weight and hairlines. Same neutrals, type roles, radius, motion. ---- */
+[data-quiet] {
+  --font-heading-family: ui-sans-serif, system-ui, sans-serif;
+  --font-display-family: ui-sans-serif, system-ui, sans-serif;
+  --border-focus: var(--fg-strong);
+  --accent-bg: var(--bg-surface-active);
+  --accent-border: var(--border-strong);
+  --accent-solid: var(--fg-strong);
+  --accent-solid-hover: var(--fg);
+  --accent-text: var(--fg-strong);
+  --fg-on-accent: var(--bg-page);
+}
 /* ==== END GENERATED ==== */

@@ -14,7 +14,11 @@ Worktree `../congress-tracker-dfdl` on branch `agent/dfdl-tokens` from `origin/m
 - Boards: `desktop-light.png`, `desktop-light-expanded.png`, `desktop-dark.png`, `mobile.png`. Figma: `dfdl — lab` → page "Phase 5 · trackcongress", before and after side by side.
 - Radii already matched dfdl's round family (8 / 12 / 16 / pill). Motion curves were within a hair of dfdl's (`0.16, 1, 0.3, 1` vs `0.23, 1, 0.32, 1`); the sheet curve was identical.
 
-## Where the two systems disagree (for Dylan to rule on)
+## Ruling (2026-09-24)
+
+Dylan chose sans headings and no accent for trackcongress. Implemented as dfdl **quiet mode** (`<html data-quiet>`), which is now part of the token set. The boards show three columns: before, dfdl full, dfdl quiet (chosen). Warm charcoal dark and the 15px heading role stand.
+
+## Where the two systems disagreed
 
 1. **Typeface.** `DESIGN_LANGUAGE.md` forbids a second family. dfdl puts Lora on every heading. The after shows what that does to a dense feed: row headlines and section titles go serif at 15/550, everything else stays 13px sans.
 2. **Accent.** The app removed its orange on purpose; dfdl says one accent for primary action and selection. The app has almost nothing wired to `--twc-accent`, so adopting dfdl fully would mean deciding what the ember touches (active tab underline, selected chamber radio, send button, link underlines).

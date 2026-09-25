@@ -83,6 +83,18 @@ const css = [
     block(`[data-accent="${a.name}"]`, accentOnly(semantics("light", a))),
     block(`.dark[data-accent="${a.name}"], [data-theme="dark"][data-accent="${a.name}"], [data-accent="${a.name}"] .dark, [data-accent="${a.name}"] [data-theme="dark"]`, accentOnly(semantics("dark", a))),
   ]),
+  [
+    "/* Quiet mode: data-quiet on the root. Accent roles collapse into the neutrals. */",
+    "[data-quiet] {",
+    "  --hsl-border-focus: var(--hsl-fg-strong);",
+    "  --hsl-accent-bg: var(--hsl-bg-surface-active);",
+    "  --hsl-accent-border: var(--hsl-border-strong);",
+    "  --hsl-accent-solid: var(--hsl-fg-strong);",
+    "  --hsl-accent-solid-hover: var(--hsl-fg);",
+    "  --hsl-accent-text: var(--hsl-fg-strong);",
+    "  --hsl-fg-on-accent: var(--hsl-bg-page);",
+    "}",
+  ].join("\n"),
 ].join("\n\n")
 
 writeFileSync(out, css + "\n")

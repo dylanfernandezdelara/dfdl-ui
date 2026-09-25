@@ -115,3 +115,14 @@
   --hsl-accent-solid-hover: 237 84.8% 80.8%;
   --hsl-accent-text: 235 99.9% 90.8%;
 }
+
+/* Quiet mode: data-quiet on the root. Accent roles collapse into the neutrals. */
+[data-quiet] {
+  --hsl-border-focus: var(--hsl-fg-strong);
+  --hsl-accent-bg: var(--hsl-bg-surface-active);
+  --hsl-accent-border: var(--hsl-border-strong);
+  --hsl-accent-solid: var(--hsl-fg-strong);
+  --hsl-accent-solid-hover: var(--hsl-fg);
+  --hsl-accent-text: var(--hsl-fg-strong);
+  --hsl-fg-on-accent: var(--hsl-bg-page);
+}
