@@ -62,6 +62,8 @@ Google `DESIGN.md`. Code Connect on Pro. Cloudflare deploy until asked. Copying 
 
 ## Log
 
+- 2026-09-24: Deployed to Cloudflare Workers with OpenNext (`@opennextjs/cloudflare` 1.20.6; vinext skipped as a one-day-old beta): https://dfdl-ui.fernandezdelaradylan.workers.dev. Fully static build, verified in workerd locally first. `ui.dylanfdl.com` blocked on DNS: dylanfdl.com's nameservers are Vercel's, and a Workers custom domain needs the zone on Cloudflare.
+
 - 2026-09-24: Docs site shell built in the kitze pattern (sidebar, overview, four live foundations pages rendered from `src/generated/tokens.json`, guide, `/llms.txt`), labs moved under it. First registry item `tokens` (`public/r/tokens.json`, `npm run registry`). Every page audits at zero strict grid offenders; getting there fixed the lab specimens and found that inline serif emphasis inflates a line box by a pixel (base rule added). Hosting decided: Cloudflare Workers at ui.dylanfdl.com. dylanfdl PR #107 open with Vercel preview, awaiting Dylan.
 
 - 2026-09-24: Grid alignment made mechanical at Dylan's request. `scripts/probes/grid.js` and `src/lib/grid-audit.ts` measure every block against the 8px grid (4px half-step tolerated); `Shift+G` outlines offenders in the overlay. `hairline-*` utilities replace rhythm-breaking borders. Dogfooded on the lab chrome: a 2px section-header error was cascading down whole pages; fixed. Home page audits at 0. Lab specimen internals still carry offenders (backlog; labs are exempt, component pages are not). Run against dylanfdl: header 2px off, TOC unitless line-height 16.8px, recorded for the real adoption.

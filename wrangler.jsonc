@@ -1,0 +1,12 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "dfdl-ui",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2026-09-22",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "assets": { "directory": ".open-next/assets", "binding": "ASSETS" },
+  "services": [{ "binding": "WORKER_SELF_REFERENCE", "service": "dfdl-ui" }],
+  "observability": { "enabled": true },
+  "workers_dev": true
+  // ui.dylanfdl.com: add { "routes": [{ "pattern": "ui.dylanfdl.com", "custom_domain": true }] } once dylanfdl.com is a zone on this Cloudflare account (its DNS is on Vercel today).
+}

@@ -11,6 +11,8 @@ Dylan's design standard as an installable package: tokens, components, a skill, 
 | Typecheck | `npm run typecheck` (needs `.next/types`; run `dev` or `build` once first) |
 | Both | `npm run check` |
 | Build | `npm run build` |
+| Preview in workerd | `npm run preview` (OpenNext build + `wrangler dev`) |
+| Deploy | `npm run deploy` → https://dfdl-ui.fernandezdelaradylan.workers.dev (Cloudflare Workers via `@opennextjs/cloudflare`; `wrangler.jsonc`). `ui.dylanfdl.com` needs the zone on Cloudflare first. |
 
 After making changes, run `npm run check` and fix all errors. The design-system lint errors carry their own fix instructions.
 
