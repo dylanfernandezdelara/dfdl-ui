@@ -2,7 +2,7 @@ import { GUIDE } from "@/content/guide"
 import { NAV } from "@/components/docs/nav"
 import { COMPONENTS } from "@/content/components"
 import tokens from "@/generated/tokens.json"
-import { addCommand, GITHUB_URL, SITE_URL } from "@/lib/site"
+import { addCommand, GITHUB_URL, SITE_URL, SKILL_COMMAND } from "@/lib/site"
 
 export const dynamic = "force-static"
 
@@ -18,6 +18,8 @@ export function GET() {
     "",
     `Install the theme: ${addCommand("theme")}`,
     `Add a component: ${addCommand("button")}`,
+    `Agent skill: ${SKILL_COMMAND}`,
+    `Probes: ${addCommand("probes")}`,
     "",
   ]
   for (const s of GUIDE) {

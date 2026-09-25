@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 
 import { CodeBlock, Command } from "@/components/docs/code"
 import { DocsShell, PageTitle, type TocItem } from "@/components/docs/shell"
-import { addCommand } from "@/lib/site"
+import { addCommand, SKILL_COMMAND } from "@/lib/site"
 
 export const metadata: Metadata = { title: "Installation" }
 
@@ -11,6 +11,7 @@ const toc: TocItem[] = [
   { id: "theme", label: "Add the theme" },
   { id: "components", label: "Add components" },
   { id: "accent", label: "Pick an accent" },
+  { id: "agents", label: "For agents" },
 ]
 
 export default function InstallationPage() {
@@ -66,6 +67,12 @@ export default function Page() {
         <Step id="accent" n={4} title="Pick an accent">
           <p className="text-body text-fg-secondary">Ember is the default. Set it once on the root; add data-quiet for data-dense tools.</p>
           <CodeBlock className="mt-major" code={`<html data-accent="indigo">`} />
+        </Step>
+
+        <Step id="agents" n={5} title="For agents">
+          <p className="text-body text-fg-secondary">The skill tells coding agents how to build with dfdl. The probes let them measure the grid and motion.</p>
+          <Command className="mt-major">{SKILL_COMMAND}</Command>
+          <Command className="mt-minor">{addCommand("probes")}</Command>
         </Step>
       </article>
     </DocsShell>
