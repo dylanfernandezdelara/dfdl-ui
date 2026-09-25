@@ -27,6 +27,7 @@ Next 16 (App Router, Turbopack), React 19, Tailwind v4, Base UI via shadcn (`bas
 | `src/components/ui/` | Registry components (`@dfdl/*`). Empty until Phase 7. |
 | `src/components/layout-grid/` | 8/24 baseline grid overlay. Toggle with `g`, the corner button, or `?grid=1`. |
 | `src/app/lab/` | Labs where foundations are decided. Each lab shows Dylan's current values beside two alternatives. |
+| `src/styles/tokens.hsl.css` | Generated. The same semantics as HSL channel triples for Tailwind v3 consumers (`hsl(var(--hsl-bg-page) / <alpha-value>)`). `npm run tokens` regenerates everything. |
 | `design-system.lint.json` | The `@shadcn/lint` policy. Consumers extend it. Contracts are added per component. |
 | `.agents/skills/` | Vendored reference skills (Emil, Jakub, Figma). Hand off to them; never copy their rules into the dfdl skill. |
 | `skills/dfdl-ui/` | The dfdl skill (not yet written; drafted after Phase 5 from `decisions.md`). |

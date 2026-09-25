@@ -62,6 +62,8 @@ Google `DESIGN.md`. Code Connect on Pro. Cloudflare deploy until asked. Copying 
 
 ## Log
 
+- 2026-09-24: Phase 5, trackcongress before/after done in worktree `../congress-tracker-dfdl` through a mapping layer only. `tokens.hsl.css` added (HSL channel export for Tailwind v3 consumers, `scripts/color/export-legacy.mts`; color scripts refactored around `system.mts`). `qa:web` 8/8 with the tokens on. Boards in `research/trackcongress-5/`, before/after side by side in Figma (`dfdl — lab`, page “Phase 5 · trackcongress”). Four disagreements between the app’s design language and dfdl recorded for Dylan: second typeface, accent presence, dark surface lightness, headline size.
+
 - 2026-09-24: Scope change from Dylan: Phase 5 applies to trackcongress and dylanfdl only; Fork is deferred. Indigo remains an approved accent for when Fork or another product claims it; the Fork worktree stays as reference. Component scope follows the consumers. trackcongress stack recorded: React 18, Tailwind v3.4, Vite 7, `DESIGN_LANGUAGE.md`, `qa:web` across four viewports in both themes.
 
 - 2026-09-24: 3b done. Fork motion retokened in the worktree (ten CSS declarations to tokens, menu pop-in and press added through the mapping file). Probe: before, the chat menu and buttons had no animation at all; after, menu pops in 200ms on the approved curve from its trigger and presses scale 0.97 at 150ms. Five motion defects logged for Phase 5 (sidebar animates width, `transition-all` on buttons, keyframe dialog, unmounting menu, animated `top`).
