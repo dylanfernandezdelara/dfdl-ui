@@ -2,7 +2,7 @@
 
 Worktree `../congress-tracker-dfdl` on branch `agent/dfdl-tokens` from `origin/main` (never pushed). Stack: React 18, Tailwind v3.4, Vite 7, its own `--twc-*` HSL-channel tokens and a `DESIGN_LANGUAGE.md`. Driven with the repo's `verify-congress-tracker` skill against the seeded isolated stack (5174/8788).
 
-> Note (2026-09-25): these boards ran with the Lab 2 body/heading size of 15px. The role is now 16px.
+> Note (2026-09-25): these boards ran with the Lab 2 body/heading size of 15px. Body is now 14/24 at 450 (page prose) and reading 15/24 (articles), measured from dylanfdl.com; see decisions.md, Type sizes (measured).
 
 ## What changed (mapping only, no component edits)
 

@@ -11,10 +11,11 @@ export const metadata: Metadata = { title: "Type" }
 const px = (rem: string) => `${parseFloat(rem) * 16}px`
 
 const roles: [string, string, string][] = [
-  ["display", "Page titles. Lora, 32/40, weight 400.", "font-display text-display"],
-  ["title", "Section titles. Lora, 16/24, weight 550.", "font-heading text-title"],
-  ["heading", "Card and row titles. Lora, 16/24, weight 550.", "font-heading text-heading"],
-  ["body", "Reading text. System sans, 16/24, weight 400.", "text-body"],
+  ["display", "Page titles. Lora, 24/32, weight 400.", "font-display text-display"],
+  ["title", "Headings over reading text. Lora, 15/24, weight 550.", "font-heading text-title"],
+  ["heading", "Headings over body text: cards, rows, sections. Lora, 14/24, weight 550.", "font-heading text-heading"],
+  ["body", "Page prose and default text. System sans, 14/24, weight 450.", "text-body"],
+  ["reading", "Long-form articles. System sans, 15/24, weight 400.", "text-reading"],
   ["ui", "Interface text: rows, labels, buttons. 13/20, weight 450.", "text-ui"],
   ["caption", "Metadata, timestamps. 12/16, weight 450. Mono for identifiers.", "text-caption"],
 ]
@@ -27,7 +28,7 @@ export default function TypePage() {
         <PageTitle
           eyebrow="Foundations"
           title="Type"
-          lede="Hierarchy from weight, family and color. Body, headings and titles share 16px."
+          lede="Hierarchy from weight, family and color. A heading is the size of the text under it."
         />
 
         <Section title="Roles" lede="Six roles, each with its size, leading and weight.">

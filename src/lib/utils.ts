@@ -10,7 +10,7 @@ import { createCn } from "cn/config"
 export const cn = createCn({
   extend: {
     classGroups: {
-      "font-size": [{ text: ["display", "title", "heading", "body", "ui", "caption"] }],
+      "font-size": [{ text: ["display", "title", "heading", "body", "reading", "ui", "caption"] }],
       "font-family": [{ font: ["display", "heading"] }],
       shadow: ["elevation-raised", "elevation-floating", "hairline", "hairline-t", "hairline-b", "hairline-r", "hairline-l"],
       h: ["h-below-header"],

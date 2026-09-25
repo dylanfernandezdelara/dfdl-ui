@@ -3,7 +3,7 @@
   "name": "probes",
   "title": "dfdl probes",
   "author": "Dylan Fernandez de Lara",
-  "description": "Browser probes that measure the result: grid alignment and running animations. Paste into the console or run with agent-browser eval.",
+  "description": "Browser probes that measure the result: grid alignment, inline baseline alignment, and running animations. Paste into the console or run with agent-browser eval.",
   "files": [
     {
       "path": "scripts/probes/grid.js",
@@ -16,6 +16,12 @@
       "content": "(() => {\n  const anims = document.getAnimations().filter(a => a.playState !== 'finished' || (a.currentTime !== null && a.currentTime < 50));\n  return JSON.stringify(anims.map(a => {\n    const e = a.effect; const t = e && e.target; const k = e.getKeyframes ? e.getKeyframes() : [];\n    const tm = e.getTiming();\n    const prop = a.transitionProperty || (k[0] && Object.keys(k[0]).filter(x=>!['offset','computedOffset','easing','composite'].includes(x))[0]);\n    return { type: a.constructor.name, prop, target: t && (t.className || '').toString().split(' ').find(c=>c.startsWith('spec-')) || (t && t.tagName), dur: tm.duration, ease: tm.easing, from: k[0] && k[0][prop], to: k[k.length-1] && k[k.length-1][prop] };\n  }));\n})()\n",
       "type": "registry:file",
       "target": "~/scripts/probes/animations.js"
+    },
+    {
+      "path": "scripts/probes/baseline.js",
+      "content": "/*\n  Baseline audit. Paste or eval in the page (agent-browser eval \"$(cat scripts/probes/baseline.js)\").\n  For every inline box that sits inside running text (an animated word, a badge, a kbd, an icon label), compares\n  the bottom of its text to the bottom of the sentence text on the same line. Same font and size only, so the\n  glyph boxes are comparable. An offset of half a pixel is already a bug: it becomes a visible pixel at a larger size.\n*/\n(() => {\n  const textRect = (node) => {\n    const r = document.createRange()\n    r.selectNodeContents(node)\n    const rects = [...r.getClientRects()].filter((x) => x.width > 0)\n    return rects[0]\n  }\n  const firstText = (el) => {\n    const w = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, { acceptNode: (n) => (n.textContent.trim() ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT) })\n    return w.nextNode()\n  }\n  const offenders = []\n  let checked = 0\n  for (const block of document.querySelectorAll('p, li, dd, td, h1, h2, h3, h4, figcaption, blockquote, label')) {\n    const sentence = [...block.childNodes].find((n) => n.nodeType === 3 && n.textContent.trim())\n    if (!sentence) continue\n    const base = textRect(sentence)\n    if (!base) continue\n    const bcs = getComputedStyle(block)\n    for (const el of block.querySelectorAll('*')) {\n      const cs = getComputedStyle(el)\n      if (!/^inline-(block|flex|grid)$/.test(cs.display)) continue\n      // Report the innermost box only; a wrapper inherits its child's offset.\n      if ([...el.querySelectorAll('*')].some((c) => /^inline-(block|flex|grid)$/.test(getComputedStyle(c).display))) continue\n      const t = firstText(el)\n      if (!t) continue\n      const tcs = getComputedStyle(t.parentElement)\n      if (tcs.fontSize !== bcs.fontSize || tcs.fontFamily !== bcs.fontFamily) continue\n      const r = textRect(t)\n      if (!r || Math.abs(r.top - base.top) > base.height) continue // different line\n      checked++\n      const off = +(r.bottom - base.bottom).toFixed(2)\n      if (Math.abs(off) >= 0.5) {\n        offenders.push({ text: el.textContent.trim().slice(0, 24), cls: String(el.className).slice(0, 60), offset: off, why: `text sits ${Math.abs(off)}px ${off < 0 ? 'above' : 'below'} the sentence baseline (vertical-align: ${cs.verticalAlign})` })\n      }\n    }\n  }\n  return JSON.stringify({ summary: `${offenders.length} of ${checked} inline boxes off the text baseline`, offenders })\n})()\n",
+      "type": "registry:file",
+      "target": "~/scripts/probes/baseline.js"
     }
   ],
   "categories": [

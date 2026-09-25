@@ -66,7 +66,7 @@ Use utilities, never raw values. The linter rejects palette colors, arbitrary va
 - **Lines:** `hairline` `hairline-t` `hairline-b` `hairline-r` (shadows, take no space), `border-line` only where the box already accounts for 1px.
 - **Accent:** `bg-accent-solid` `bg-accent-bg` `text-accent-text` `border-accent-border`. **Status:** `bg-danger` `bg-danger-bg` `text-danger-text`, same for `success`, `warning`.
 - **Depth:** `elevation-raised` (cards, secondary buttons), `elevation-floating` (menus, dialogs).
-- **Type roles:** `text-display` 32/40, `text-title` and `text-heading` 16/24 at 550 in Lora, `text-body` 16/24, `text-ui` 13/20 at 450, `text-caption` 12/16. Pair a role with `font-heading` or `font-display` for Lora. Never a size class plus a leading class.
+- **Type roles:** `text-display` 24/32 (page title, Lora), `text-body` 14/24 at 450 (page prose, the default), `text-reading` 15/24 (long-form articles), `text-heading` 14/24 at 550 and `text-title` 15/24 at 550 (Lora; headings over body and reading text), `text-ui` 13/20 at 450, `text-caption` 12/16. Pair a role with `font-heading` or `font-display` for Lora. Never a size class plus a leading class.
 - **Radius:** `rounded-xs` 8 (chips), `rounded-sm` 10 (controls), `rounded-md` 12 (fields, popovers), `rounded-lg` 16 (cards), `rounded-xl` 24 (sheets). Nested corners: inner = outer − padding.
 - **Space:** `gap-minor`/`p-minor` 8, `gap-major`/`p-major` 24. Control heights 24, 28, 32 (default), 40, 48.
 - **Motion:** `transition-interactive` for controls, `transition-icon` for icon swaps, `press` for press feedback, `duration-fast` (150) and friends, `ease-out`. Popups use `motion-pop`, `motion-dialog`, `motion-tooltip`, `motion-fade`.
@@ -74,7 +74,9 @@ Use utilities, never raw values. The linter rejects palette colors, arbitrary va
 ## Judgment (what the linter cannot check)
 
 - **One primary button per view.** The accent marks the primary action and the current selection, nothing else: no accent headings, icons or decorative fills.
-- **Hierarchy from weight and family, not size.** Headings are the same 16px as body; Lora at 550 and `text-fg-strong` make them headings. Only a page title uses `text-display`.
+- **Hierarchy from weight and family, not size.** A heading is the size of the text under it; Lora at 550 and `text-fg-strong` make it a heading. Only a page title uses `text-display`.
+- **Text size is 14, not 16.** Page prose is `text-body` (14/24). Use `text-reading` (15) only for long-form articles. Do not bump prose to 16 because it "looks small" in isolation; 14/24 at weight 450 is the measured size of Dylan's site.
+- **Inline boxes sit on the baseline.** A word with its own box inside a sentence (an animated word, a badge, a kbd) uses `vertical-align: baseline`. `text-bottom` or `middle` leave an offset that is invisible at one size and a visible pixel at the next.
 - **Quiet mode** (`<html data-quiet>`) for data-dense products where color already carries data: headings go sans, the accent collapses into the neutrals. trackcongress runs quiet.
 - **Density:** 32px controls by default; 28 (`size="sm"`) in dense rows and tables; 40 for touch-first surfaces.
 - **Should it animate?** Not if it is keyboard-triggered or happens hundreds of times a day. Hover and press are near-imperceptible. Menus, dialogs and drawers get the standard treatment. If you can describe the animation, it is too much.
@@ -85,8 +87,10 @@ Use utilities, never raw values. The linter rejects palette colors, arbitrary va
 
 1. `npm run lint`. Zero errors; each message says what to use instead.
 2. Grid: run `scripts/probes/grid.js` in the page (`agent-browser eval "$(cat scripts/probes/grid.js)"`) and fix until offenders are 0. One 2px slip shifts every row below it; fix the first cause.
-3. Motion: trigger the interaction, then read `document.getAnimations()` (`scripts/probes/animations.js`). Check property, duration and curve against the spec. Reading the CSS is not proof.
-4. Look at it in light and dark, and at 390px wide with no horizontal scroll.
+3. Baseline: run `scripts/probes/baseline.js` on any page with inline boxes in running text. Zero offenders; half a pixel counts.
+4. Motion: trigger the interaction, then read `document.getAnimations()` (`scripts/probes/animations.js`). Check property, duration and curve against the spec. Reading the CSS is not proof.
+5. Look at it in light and dark, and at 390px wide with no horizontal scroll.
+6. Restyling an existing product: measure its rendered text first (`getComputedStyle` on the paragraphs, never on `<body>`) and compare after. A size that changes by more than a pixel needs Dylan's sign-off.
 
 ## Adopt a component
 

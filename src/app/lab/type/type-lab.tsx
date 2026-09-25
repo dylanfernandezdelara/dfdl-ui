@@ -12,9 +12,9 @@ const axes: AxisDef<Axis>[] = [
 
 const meta: Record<Axis, Record<CandidateId, { name: string; note: string }>> = {
   scale: {
-    a: { name: "Weight-led", note: "Approved in Lab 2, body raised to 16 after the dylanfdl preview. Body, headings and titles share 16px; hierarchy from weight 550, family and color. UI 13px at 450. Display 32 serif." },
+    a: { name: "Weight-led", note: "Approved in Lab 2; sizes corrected to dylanfdl.com's measured text on 2026-09-25. Headings take their text's size (body 14, reading 15); hierarchy from weight 550, family and color. UI 13 at 450. Display 24 serif." },
     b: { name: "Roles", note: "Jakub's role scale: Display 36, Title 24, Heading 18, Body 16, Caption 13, plus a UI 14 row we added. Hierarchy comes from size; headings at 600 with negative tracking." },
-    c: { name: "Previous", note: "dylanfdl.com before Lab 2: 16/24 body, 14/20 UI, Lora 24 display at weight 400, one heading size at 500." },
+    c: { name: "Previous", note: "dylanfdl.com before Lab 2, measured from its paragraphs: prose 14/24 at 450, UI 14, Lora 24 display at 400, sans headings. (Showed 16/24 until 2026-09-25, read from <body> by mistake.)" },
   },
   serif: {
     a: { name: "All headings", note: "Approved in Lab 2. Lora on every heading level, including section headers inside app panels." },

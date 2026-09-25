@@ -5,7 +5,8 @@ Measured 2026-09-15 by rendering each site at 1440x900 in Chromium, light and da
 ## Per site
 
 ### dylanfdl.com (the starting point)
-- Body: system-ui 16px/24px, weight 400 with 450 for emphasis. Headings: Lora 24px/32px weight 400. Only one serif element on the page.
+- Text: system-ui 14px/24px at weight 450 for page prose; list items 14/24 at 400; tabs 14 at 500; dates 12/16. Articles: 15/24 body, sans headings at 600 (20 and 17), Lora 28/32 title. Page title: Lora 24px/32px weight 400. Only one serif element on the homepage.
+  - Corrected 2026-09-25. This line first read "Body: 16px/24px", taken from the `<body>` element's default rather than the paragraphs (the raw `p` entry in `inspo/computed-styles.json` always said 14/24 at 450). That error became the dfdl body size until Dylan saw the result.
 - Light: page `oklch(99.6% 0.008 99)`, text `oklch(37% 0.03 260)`. Warm cream surface, cool slate text. Dark: page `oklch(22% 0.007 75)`, text `oklch(88.5% 0.014 85)`, both warm.
 - Links: underlined, underline color at 22% alpha, offset 2px. Accent orange used once, as a word.
 - Radii: 6px and 4px only. One shadow on the whole page (a 1px ring). Cards are hairline-bordered surfaces one step darker than the page.

@@ -61,7 +61,7 @@
       "name": "probes",
       "type": "registry:item",
       "title": "dfdl probes",
-      "description": "Browser probes that measure the result: grid alignment and running animations. Paste into the console or run with agent-browser eval.",
+      "description": "Browser probes that measure the result: grid alignment, inline baseline alignment, and running animations. Paste into the console or run with agent-browser eval.",
       "author": "Dylan Fernandez de Lara",
       "categories": [
         "tooling"
@@ -76,6 +76,11 @@
           "path": "scripts/probes/animations.js",
           "type": "registry:file",
           "target": "~/scripts/probes/animations.js"
+        },
+        {
+          "path": "scripts/probes/baseline.js",
+          "type": "registry:file",
+          "target": "~/scripts/probes/baseline.js"
         }
       ]
     },
