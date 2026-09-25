@@ -16,7 +16,7 @@ Dylan's design standard as one installable package, so any future project starts
 | 4 | `skills/dfdl-ui/SKILL.md` + references, including the adoption recipe; installable via `npx skills add`, also served at a public URL | agents |
 | 5 | `@shadcn/lint` policy: no raw colors, no arbitrary values, per-component restyle contracts | CI, agent loop |
 | 6 | Docs site: live demos of every state, slow-motion toggle, copy for agents, `llms.txt` | done: docs site live at dfdl-ui.fernandezdelaradylan.workers.dev as a component library; Figma library not needed for the site (Dylan, 2026-09-25), kept only as an open question |
-| 7 | `decisions.md` and `research/` | in progress: 11 components shipped with pages, registry items, height contracts, state examples and probe-verified motion; next Drawer, Table/Data row, search |
+| 7 | `decisions.md` and `research/` | in progress: 19 components with pages, registry items, contracts and probe-verified motion; trackcongress adoption next, then Command palette |
 
 ## Infrastructure
 
@@ -48,7 +48,7 @@ Dylan's design standard as one installable package, so any future project starts
 | 3b | Fork mini before/after with motion tokens | ~15 min | screenshot pair | done: probe table + filmstrip in `research/fork-3b/`, Phase 5 motion fixes listed |
 | 5 | Before/after on trackcongress, then dylanfdl (Fork deferred by Dylan, 2026-09-24). Branch in a worktree, tokens and first components only, captured before/after into Figma. Loop back to the lab that is off. Nothing merges. Then first draft of `SKILL.md` and lint contracts from `decisions.md`. trackcongress is React 18 + Tailwind v3.4 + Vite with its own `DESIGN_LANGUAGE.md` and `qa:web` viewport checks; tokens apply as CSS variables through a v3 config extension, no migration | one longer review per site | skill v0, lint policy v0 | both sites retokened in worktrees; trackcongress ruled (quiet mode); dylanfdl boards awaiting Dylan |
 | 6 | Docs site shell first (Dylan, 2026-09-24): overview, foundations (color, type, shape, motion), guide, llms.txt, `@dfdl/tokens` registry item; Cloudflare Workers at ui.dylanfdl.com. Then Figma library via `figma-generate-library` into scratch; review; promote to `dfdl` and publish | review the site | deliverables 1, 6 | done: docs site live at dfdl-ui.fernandezdelaradylan.workers.dev as a component library; Figma library not needed for the site (Dylan, 2026-09-25), kept only as an open question |
-| 7 | Components, one per unit: source, registry item, contract, docs page with every state and slow-motion toggle, motion spec verified by probe, Figma component. The docs site is the first consumer (Dylan, 2026-09-24): Button, Segmented, Card, Command, Kbd, Table, Swatch, then Tabs, Menu, Dialog, Drawer; the docs are rewritten onto each as it lands. trackcongress and dylanfdl needs come next. AI-native (Fork's pieces) is backlog | review each like a PR | deliverables 3, 6 | in progress: 11 components shipped with pages, registry items, height contracts, state examples and probe-verified motion; next Drawer, Table/Data row, search |
+| 7 | Components, one per unit: source, registry item, contract, docs page with every state and slow-motion toggle, motion spec verified by probe, Figma component. The docs site is the first consumer (Dylan, 2026-09-24): Button, Segmented, Card, Command, Kbd, Table, Swatch, then Tabs, Menu, Dialog, Drawer; the docs are rewritten onto each as it lands. trackcongress and dylanfdl needs come next. AI-native (Fork's pieces) is backlog | review each like a PR | deliverables 3, 6 | in progress: 19 components with pages, registry items, contracts and probe-verified motion; trackcongress adoption next, then Command palette |
 | 8 | Sanity check, once: (a) fresh agent with and without the skill, (b) a Figma mockup built from the library handed to an agent, (c) adopt one outside component via the recipe | ~20 min | pass/fail notes | pending |
 
 ## Component backlog
@@ -60,6 +60,8 @@ Populated after Phase 5 from what the restyles actually needed. Until then the c
 Google `DESIGN.md`. Code Connect on Pro. Cloudflare deploy until asked. Copying Emil, Jakub or Figma skills into the dfdl skill (hand off by name). Framework migrations on the three sites. 150 components or multiple themes. Pushing to any repo other than `dfdl-ui`.
 
 ## Log
+
+- 2026-09-25: Eight components for trackcongress's needs: Avatar, Collapsible, Combobox, Input group, Popover, Separator, Sheet (Base UI Drawer: bottom, swipe, nested stacking), Toast (stacked, swipe, fade exit). 19 in the registry. New motion utilities sheet-popup/-backdrop, motion-reveal, toast-root/-content, all transform and opacity only; Collapsible opens without animating height. Motion verified with getAnimations: sheet 500ms drawer curve in, 375 out; popover 150 out; toast 16px in over 200, fade out 150; reveal 150. Grid audit zero. Decided with Dylan: dfdl stays Tailwind v4; v3 sites upgrade in their adoption PR.
 
 - 2026-09-25: Dylan chose his site's type structure over Lab 2's: Lora on titles only (new `headline` 28/32 for articles, `display` 24/32 for pages), sans headings at 600 (`title` 20/32, `heading` 17/24), UI 14/20. Weight-led and Lora-on-every-heading superseded. Future (very end): buy a domain on Cloudflare (e.g. dfdl-ui.com) instead of moving dylanfdl.com's DNS.
 

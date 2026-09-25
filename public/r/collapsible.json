@@ -1,0 +1,25 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "collapsible",
+  "title": "Collapsible",
+  "author": "Dylan Fernandez de Lara",
+  "description": "Shows and hides a section in place.",
+  "dependencies": [
+    "@base-ui/react",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "https://dfdl-ui.fernandezdelaradylan.workers.dev/r/theme.json"
+  ],
+  "files": [
+    {
+      "path": "src/components/ui/collapsible.tsx",
+      "content": "\"use client\"\n\nimport { Collapsible as BaseCollapsible } from \"@base-ui/react/collapsible\"\nimport { ChevronRight } from \"lucide-react\"\nimport type { ComponentProps } from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\nconst Collapsible = BaseCollapsible.Root\n\n/** Trigger with a chevron that turns when open. Pass children for the label. */\nfunction CollapsibleTrigger({ className, children, ...props }: ComponentProps<typeof BaseCollapsible.Trigger>) {\n  return (\n    <BaseCollapsible.Trigger\n      data-slot=\"collapsible-trigger\"\n      className={cn(\n        \"group inline-flex h-8 items-center gap-1.5 rounded-sm px-2 text-ui text-fg-secondary transition-interactive duration-fast ease-out hover:bg-surface-hover hover:text-fg-strong\",\n        className,\n      )}\n      {...props}\n    >\n      <ChevronRight className=\"size-4 transition-icon duration-fast ease-out group-data-panel-open:rotate-90\" strokeWidth={1.5} aria-hidden />\n      {children}\n    </BaseCollapsible.Trigger>\n  )\n}\n\n/** Opens at once (height never animates); its content fades in. */\nfunction CollapsibleContent({ className, ...props }: ComponentProps<typeof BaseCollapsible.Panel>) {\n  return <BaseCollapsible.Panel data-slot=\"collapsible-content\" className={cn(\"motion-reveal\", className)} {...props} />\n}\n\nexport { Collapsible, CollapsibleContent, CollapsibleTrigger }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "categories": [
+    "components"
+  ],
+  "type": "registry:ui"
+}

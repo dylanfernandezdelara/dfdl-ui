@@ -17,7 +17,8 @@
     type       text-headline text-display text-title text-heading text-body text-reading text-ui text-caption (size + leading + weight); font-display font-heading font-sans font-mono; h-control
     elevation  elevation-raised elevation-floating; hairline hairline-t hairline-b hairline-r (1px lines that do not take layout space); hairline-l (2px quote bar)
     motion     ease-out ease-in-out ease-drawer, duration-instant/fast/normal/slow/slower, transition-interactive, transition-icon, press;
-               motion-pop motion-tooltip motion-dialog motion-fade (Base UI popups), tabs-indicator
+               motion-pop motion-tooltip motion-dialog motion-fade motion-reveal (Base UI popups), sheet-popup sheet-backdrop,
+               toast-root toast-content, tabs-indicator
     measure    max-w-reading max-w-content
     rhythm     p-minor p-major gap-minor gap-major (8px / 24px)
 
@@ -69,6 +70,7 @@
   --container-reading: var(--measure-reading);
   --container-content: var(--measure-content);
   --container-site: 104rem;
+  --spacing-toast: 22.5rem;
 
   --radius-xs: var(--rounded-xs);
   --radius-sm: var(--rounded-sm);
@@ -294,6 +296,140 @@
   &[data-ending-style] {
     transition-duration: calc(var(--motion-slow) * var(--motion-exit-factor));
   }
+}
+
+/* Sheet (Base UI Drawer, bottom). Translates by its own height on the drawer curve; follows the finger while swiped;
+   exits at 75%, or faster after a strong swipe. A sheet with a nested sheet open steps back: lifted and scaled. */
+@utility sheet-popup {
+  transform: translateY(var(--drawer-swipe-movement-y, 0px));
+  transition-property: transform;
+  transition-duration: var(--motion-slower);
+  transition-timing-function: var(--motion-ease-drawer);
+  &[data-swiping] {
+    transition-duration: 0ms;
+    user-select: none;
+  }
+  &[data-starting-style],
+  &[data-ending-style] {
+    transform: translateY(100%);
+  }
+  &[data-ending-style] {
+    transition-duration: calc(var(--motion-slower) * var(--motion-exit-factor) * var(--drawer-swipe-strength, 1));
+  }
+  &[data-nested-drawer-open] {
+    transform: translateY(calc(var(--drawer-swipe-movement-y, 0px) - 1rem)) scale(0.96);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    transition-property: opacity;
+    &[data-starting-style],
+    &[data-ending-style],
+    &[data-nested-drawer-open] {
+      transform: none;
+    }
+    &[data-starting-style],
+    &[data-ending-style] {
+      opacity: 0;
+    }
+  }
+}
+@utility sheet-backdrop {
+  opacity: calc(1 - var(--drawer-swipe-progress, 0));
+  transition-property: opacity;
+  transition-duration: var(--motion-slower);
+  transition-timing-function: var(--motion-ease-drawer);
+  &[data-swiping] {
+    transition-duration: 0ms;
+  }
+  &[data-starting-style],
+  &[data-ending-style] {
+    opacity: 0;
+  }
+  &[data-ending-style] {
+    transition-duration: calc(var(--motion-slower) * var(--motion-exit-factor));
+  }
+}
+
+/* Collapsible: the panel opens at once (height never animates); its content fades in. */
+@utility motion-reveal {
+  transition-property: opacity;
+  transition-duration: var(--motion-fast);
+  transition-timing-function: var(--motion-ease-out);
+  &[data-starting-style],
+  &[data-ending-style] {
+    opacity: 0;
+  }
+  &[data-ending-style] {
+    transition-duration: calc(var(--motion-fast) * var(--motion-exit-factor));
+  }
+}
+
+/* Toast (Base UI). Enters 16px from below; leaves by fading (or along the swipe). Stacked toasts peek and shrink
+   behind the front one and spread out on hover. Only transform and opacity move. */
+@utility toast-root {
+  --toast-gap: 0.5rem;
+  --toast-peek: 0.5rem;
+  --toast-scale: calc(max(0, 1 - (var(--toast-index) * 0.05)));
+  --toast-shrink-y: calc((1 - var(--toast-scale)) * var(--toast-frontmost-height, var(--toast-height)));
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: calc(1000 - var(--toast-index));
+  transform-origin: bottom center;
+  user-select: none;
+  transform: translateX(var(--toast-swipe-movement-x)) translateY(calc(var(--toast-swipe-movement-y) - var(--toast-index) * var(--toast-peek) - var(--toast-shrink-y))) scale(var(--toast-scale));
+  transition-property: transform, opacity;
+  transition-duration: var(--motion-normal);
+  transition-timing-function: var(--motion-ease-out);
+  &::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: calc(var(--toast-gap) + 1px);
+  }
+  &[data-expanded] {
+    transform: translateX(var(--toast-swipe-movement-x)) translateY(calc(var(--toast-offset-y) * -1 - var(--toast-index) * var(--toast-gap) + var(--toast-swipe-movement-y)));
+  }
+  &[data-starting-style] {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  &[data-ending-style] {
+    opacity: 0;
+    transition-duration: calc(var(--motion-normal) * var(--motion-exit-factor));
+  }
+  &[data-limited] {
+    opacity: 0;
+  }
+  &[data-ending-style][data-swipe-direction="right"] {
+    transform: translateX(calc(var(--toast-swipe-movement-x) + 100%)) translateY(calc(var(--toast-offset-y) * -1 - var(--toast-index) * var(--toast-gap)));
+  }
+  &[data-ending-style][data-swipe-direction="down"] {
+    transform: translateY(calc(var(--toast-swipe-movement-y) + 100%));
+  }
+  @media (prefers-reduced-motion: reduce) {
+    &[data-starting-style] {
+      transform: none;
+    }
+  }
+}
+@utility toast-content {
+  transition-property: opacity;
+  transition-duration: var(--motion-normal);
+  transition-timing-function: var(--motion-ease-out);
+  &[data-behind] {
+    opacity: 0;
+  }
+  &[data-expanded] {
+    opacity: 1;
+  }
+}
+
+/* A popup as wide as the control it opens from (Base UI sets --anchor-width on the positioner). */
+@utility w-anchor {
+  width: var(--anchor-width);
 }
 
 /* Tabs indicator: a 1px bar scaled to the active tab (see ui/tabs.tsx). Transform only; appears once measured. */

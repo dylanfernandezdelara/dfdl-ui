@@ -124,6 +124,31 @@
               "max-h-*",
               "size-*"
             ]
+          },
+          {
+            "pattern": "^Avatar$",
+            "allow": [
+              "layout"
+            ],
+            "deny": [
+              "h-*",
+              "min-h-*",
+              "max-h-*",
+              "size-*",
+              "w-*"
+            ]
+          },
+          {
+            "pattern": "^(ComboboxInput|CollapsibleTrigger)$",
+            "allow": [
+              "layout"
+            ],
+            "deny": [
+              "h-*",
+              "min-h-*",
+              "max-h-*",
+              "size-*"
+            ]
           }
         ]
       }

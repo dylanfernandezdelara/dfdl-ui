@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "separator",
+  "title": "Separator",
+  "author": "Dylan Fernandez de Lara",
+  "description": "A 1px rule between rows or items.",
+  "dependencies": [
+    "@base-ui/react"
+  ],
+  "registryDependencies": [
+    "https://dfdl-ui.fernandezdelaradylan.workers.dev/r/theme.json"
+  ],
+  "files": [
+    {
+      "path": "src/components/ui/separator.tsx",
+      "content": "import { Separator as BaseSeparator } from \"@base-ui/react/separator\"\nimport type { ComponentProps } from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\n/** A 1px rule. Horizontal by default; data-orientation=\"vertical\" stands it up inside a row. */\nfunction Separator({ className, orientation = \"horizontal\", ...props }: ComponentProps<typeof BaseSeparator>) {\n  return (\n    <BaseSeparator\n      data-slot=\"separator\"\n      orientation={orientation}\n      className={cn(\"shrink-0 bg-separator\", orientation === \"horizontal\" ? \"h-px w-full\" : \"w-px self-stretch\", className)}\n      {...props}\n    />\n  )\n}\n\nexport { Separator }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "categories": [
+    "components"
+  ],
+  "type": "registry:ui"
+}

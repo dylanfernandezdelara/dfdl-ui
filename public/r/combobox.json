@@ -1,0 +1,25 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "combobox",
+  "title": "Combobox",
+  "author": "Dylan Fernandez de Lara",
+  "description": "A text field that filters a list and picks one item.",
+  "dependencies": [
+    "@base-ui/react",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "https://dfdl-ui.fernandezdelaradylan.workers.dev/r/theme.json"
+  ],
+  "files": [
+    {
+      "path": "src/components/ui/combobox.tsx",
+      "content": "\"use client\"\n\nimport { Combobox as BaseCombobox } from \"@base-ui/react/combobox\"\nimport { Check, ChevronDown, X } from \"lucide-react\"\nimport type { ComponentProps } from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\n/** Pass `items` to the root; filtering is built in. Render the list with a function child: {(item) => <ComboboxItem …/>}. */\nconst Combobox = BaseCombobox.Root\n\nfunction ComboboxInput({ className, placeholder, clearable = true, ...props }: ComponentProps<typeof BaseCombobox.Input> & { clearable?: boolean }) {\n  return (\n    <BaseCombobox.InputGroup\n      data-slot=\"combobox-input\"\n      className={cn(\n        \"relative flex h-control w-full items-center rounded-sm bg-page hairline transition-interactive duration-fast ease-out\",\n        \"focus-within:outline-2 focus-within:outline-offset-0 focus-within:outline-focus\",\n        className,\n      )}\n    >\n      <BaseCombobox.Input placeholder={placeholder} className=\"h-full min-w-0 flex-1 bg-transparent pl-2.5 text-ui text-fg outline-none placeholder:text-fg-tertiary\" {...props} />\n      <div className=\"flex items-center pr-1 text-fg-tertiary\">\n        {clearable ? (\n          <BaseCombobox.Clear aria-label=\"Clear\" className=\"flex size-6 items-center justify-center rounded-xs hover:text-fg-strong\">\n            <X className=\"size-4\" strokeWidth={1.5} aria-hidden />\n          </BaseCombobox.Clear>\n        ) : null}\n        <BaseCombobox.Trigger aria-label=\"Show options\" className=\"flex size-6 items-center justify-center rounded-xs hover:text-fg-strong\">\n          <ChevronDown className=\"size-4\" strokeWidth={1.5} aria-hidden />\n        </BaseCombobox.Trigger>\n      </div>\n    </BaseCombobox.InputGroup>\n  )\n}\n\nfunction ComboboxContent({ className, children, empty = \"No results.\", ...props }: ComponentProps<typeof BaseCombobox.List> & { empty?: string }) {\n  return (\n    <BaseCombobox.Portal>\n      <BaseCombobox.Positioner sideOffset={6} className=\"z-50\">\n        <BaseCombobox.Popup data-slot=\"combobox\" className=\"motion-pop w-anchor rounded-md bg-raised p-1 elevation-floating outline-none\">\n          <BaseCombobox.Empty className=\"px-2 py-2 text-ui text-fg-tertiary empty:hidden\">{empty}</BaseCombobox.Empty>\n          <BaseCombobox.List className={cn(\"max-h-72 overflow-y-auto overscroll-contain outline-none data-empty:hidden\", className)} {...props}>\n            {children}\n          </BaseCombobox.List>\n        </BaseCombobox.Popup>\n      </BaseCombobox.Positioner>\n    </BaseCombobox.Portal>\n  )\n}\n\nfunction ComboboxItem({ className, children, ...props }: ComponentProps<typeof BaseCombobox.Item>) {\n  return (\n    <BaseCombobox.Item\n      data-slot=\"combobox-item\"\n      className={cn(\"flex h-8 cursor-default items-center gap-2 rounded-xs px-2 text-ui text-fg outline-none select-none data-highlighted:bg-surface-hover\", className)}\n      {...props}\n    >\n      <span className=\"min-w-0 flex-1 truncate\">{children}</span>\n      <BaseCombobox.ItemIndicator>\n        <Check className=\"size-4 text-accent-text\" strokeWidth={2} aria-hidden />\n      </BaseCombobox.ItemIndicator>\n    </BaseCombobox.Item>\n  )\n}\n\nexport { Combobox, ComboboxContent, ComboboxInput, ComboboxItem }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "categories": [
+    "components"
+  ],
+  "type": "registry:ui"
+}

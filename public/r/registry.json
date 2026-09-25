@@ -85,6 +85,29 @@
       ]
     },
     {
+      "name": "avatar",
+      "type": "registry:ui",
+      "title": "Avatar",
+      "description": "A person's photo, with initials while it loads or if it fails.",
+      "author": "Dylan Fernandez de Lara",
+      "categories": [
+        "components"
+      ],
+      "registryDependencies": [
+        "https://dfdl-ui.fernandezdelaradylan.workers.dev/r/theme.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/avatar.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority"
+      ]
+    },
+    {
       "name": "badge",
       "type": "registry:ui",
       "title": "Badge",
@@ -149,6 +172,52 @@
       ]
     },
     {
+      "name": "collapsible",
+      "type": "registry:ui",
+      "title": "Collapsible",
+      "description": "Shows and hides a section in place.",
+      "author": "Dylan Fernandez de Lara",
+      "categories": [
+        "components"
+      ],
+      "registryDependencies": [
+        "https://dfdl-ui.fernandezdelaradylan.workers.dev/r/theme.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/collapsible.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react",
+        "lucide-react"
+      ]
+    },
+    {
+      "name": "combobox",
+      "type": "registry:ui",
+      "title": "Combobox",
+      "description": "A text field that filters a list and picks one item.",
+      "author": "Dylan Fernandez de Lara",
+      "categories": [
+        "components"
+      ],
+      "registryDependencies": [
+        "https://dfdl-ui.fernandezdelaradylan.workers.dev/r/theme.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/combobox.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react",
+        "lucide-react"
+      ]
+    },
+    {
       "name": "dialog",
       "type": "registry:ui",
       "title": "Dialog",
@@ -193,6 +262,26 @@
       ]
     },
     {
+      "name": "input-group",
+      "type": "registry:ui",
+      "title": "Input group",
+      "description": "An input with a leading icon and an optional trailing hint or action.",
+      "author": "Dylan Fernandez de Lara",
+      "categories": [
+        "components"
+      ],
+      "registryDependencies": [
+        "https://dfdl-ui.fernandezdelaradylan.workers.dev/r/theme.json",
+        "https://dfdl-ui.fernandezdelaradylan.workers.dev/r/input.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/input-group.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "kbd",
       "type": "registry:ui",
       "title": "Kbd",
@@ -234,6 +323,28 @@
       ]
     },
     {
+      "name": "popover",
+      "type": "registry:ui",
+      "title": "Popover",
+      "description": "Floating content anchored to a button: filters, details, small forms.",
+      "author": "Dylan Fernandez de Lara",
+      "categories": [
+        "components"
+      ],
+      "registryDependencies": [
+        "https://dfdl-ui.fernandezdelaradylan.workers.dev/r/theme.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/popover.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react"
+      ]
+    },
+    {
       "name": "segmented-control",
       "type": "registry:ui",
       "title": "Segmented control",
@@ -248,6 +359,50 @@
       "files": [
         {
           "path": "src/components/ui/segmented-control.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react"
+      ]
+    },
+    {
+      "name": "separator",
+      "type": "registry:ui",
+      "title": "Separator",
+      "description": "A 1px rule between rows or items.",
+      "author": "Dylan Fernandez de Lara",
+      "categories": [
+        "components"
+      ],
+      "registryDependencies": [
+        "https://dfdl-ui.fernandezdelaradylan.workers.dev/r/theme.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/separator.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react"
+      ]
+    },
+    {
+      "name": "sheet",
+      "type": "registry:ui",
+      "title": "Sheet",
+      "description": "A panel that slides up from the bottom: profiles, details, share.",
+      "author": "Dylan Fernandez de Lara",
+      "categories": [
+        "components"
+      ],
+      "registryDependencies": [
+        "https://dfdl-ui.fernandezdelaradylan.workers.dev/r/theme.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/sheet.tsx",
           "type": "registry:ui"
         }
       ],
@@ -297,6 +452,29 @@
       ],
       "dependencies": [
         "@base-ui/react"
+      ]
+    },
+    {
+      "name": "toast",
+      "type": "registry:ui",
+      "title": "Toast",
+      "description": "A brief message confirming something happened.",
+      "author": "Dylan Fernandez de Lara",
+      "categories": [
+        "components"
+      ],
+      "registryDependencies": [
+        "https://dfdl-ui.fernandezdelaradylan.workers.dev/r/theme.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/toast.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react",
+        "lucide-react"
       ]
     },
     {

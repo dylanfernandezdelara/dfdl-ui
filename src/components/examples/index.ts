@@ -1,6 +1,15 @@
 import type { ComponentType } from "react"
 
 import BadgeDemo from "./badge-demo"
+import AvatarDemo from "./avatar-demo"
+import CollapsibleDemo from "./collapsible-demo"
+import ComboboxDemo from "./combobox-demo"
+import InputGroupDemo from "./input-group-demo"
+import PopoverDemo from "./popover-demo"
+import SeparatorDemo from "./separator-demo"
+import SheetDemo from "./sheet-demo"
+import SheetNested from "./sheet-nested"
+import ToastDemo from "./toast-demo"
 import ButtonDisabled from "./button-disabled"
 import InputStates from "./input-states"
 import SwitchDisabled from "./switch-disabled"
@@ -24,6 +33,15 @@ import TooltipDemo from "./tooltip-demo"
 
 /** Example name (file name) to component. The source shown beside each is read from the same file at build. */
 export const EXAMPLES: Record<string, ComponentType> = {
+  "avatar-demo": AvatarDemo,
+  "collapsible-demo": CollapsibleDemo,
+  "combobox-demo": ComboboxDemo,
+  "input-group-demo": InputGroupDemo,
+  "popover-demo": PopoverDemo,
+  "separator-demo": SeparatorDemo,
+  "sheet-demo": SheetDemo,
+  "sheet-nested": SheetNested,
+  "toast-demo": ToastDemo,
   "button-disabled": ButtonDisabled,
   "input-states": InputStates,
   "switch-disabled": SwitchDisabled,

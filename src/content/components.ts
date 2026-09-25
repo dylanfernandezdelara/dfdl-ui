@@ -23,6 +23,23 @@ const baseUi = (part: string, name: string) => ({ name, href: `https://base-ui.c
 
 export const COMPONENTS: ComponentDoc[] = [
   {
+    slug: "avatar",
+    name: "Avatar",
+    description: "A person's photo, with initials while it loads or if it fails.",
+    base: baseUi("avatar", "Avatar"),
+    demo: "avatar-demo",
+    usage: `import { Avatar } from "@/components/ui/avatar"
+
+<Avatar src="/pelosi.jpg" alt="Nancy Pelosi" fallback="NP" />`,
+    examples: [],
+    props: [
+      { name: "src", type: "string", description: "Image URL. The fallback shows until it loads." },
+      { name: "alt", type: "string", description: "The person's name." },
+      { name: "fallback", type: "string", description: "Initials, one or two letters." },
+      { name: "size", type: `"sm" | "md" | "lg"`, default: `"md"`, description: "24, 32 or 40px." },
+    ],
+  },
+  {
     slug: "badge",
     name: "Badge",
     description: "A short status label.",
@@ -77,6 +94,49 @@ export const COMPONENTS: ComponentDoc[] = [
     ],
   },
   {
+    slug: "collapsible",
+    name: "Collapsible",
+    description: "Shows and hides a section in place.",
+    base: baseUi("collapsible", "Collapsible"),
+    demo: "collapsible-demo",
+    usage: `import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
+
+<Collapsible>
+  <CollapsibleTrigger>Summary</CollapsibleTrigger>
+  <CollapsibleContent>…</CollapsibleContent>
+</Collapsible>`,
+    examples: [],
+    motion: "Opens at once, since height never animates; the content fades in over 150ms and out over 112ms. The chevron turns 90 degrees.",
+    props: [
+      { name: "open", type: "boolean", description: "Controlled state." },
+      { name: "onOpenChange", type: "(open: boolean) => void", description: "Called when it opens or closes." },
+      { name: "defaultOpen", type: "boolean", default: "false", description: "Initial state when uncontrolled." },
+    ],
+  },
+  {
+    slug: "combobox",
+    name: "Combobox",
+    description: "A text field that filters a list and picks one item.",
+    base: baseUi("combobox", "Combobox"),
+    demo: "combobox-demo",
+    usage: `import { Combobox, ComboboxContent, ComboboxInput, ComboboxItem } from "@/components/ui/combobox"
+
+<Combobox items={members}>
+  <ComboboxInput placeholder="Filter by sponsor" />
+  <ComboboxContent>
+    {(name) => <ComboboxItem key={name} value={name}>{name}</ComboboxItem>}
+  </ComboboxContent>
+</Combobox>`,
+    examples: [],
+    motion: "The list opens in 200ms from 0.95 at the field and closes in 150ms. Reduced motion: fade only.",
+    props: [
+      { name: "items", type: "T[]", description: "Everything that can be picked. Filtering is built in." },
+      { name: "value", type: "T | null", description: "Controlled selection." },
+      { name: "onValueChange", type: "(value: T | null) => void", description: "Called with the new selection." },
+      { name: "ComboboxContent empty", type: "string", default: `"No results."`, description: "Shown when nothing matches." },
+    ],
+  },
+  {
     slug: "dialog",
     name: "Dialog",
     description: "A modal window for a decision that interrupts the flow.",
@@ -114,6 +174,24 @@ export const COMPONENTS: ComponentDoc[] = [
     props: [{ name: "…props", type: `ComponentProps<"input">`, description: "Any input attribute. aria-invalid shows the error ring." }],
   },
   {
+    slug: "input-group",
+    name: "Input group",
+    description: "An input with a leading icon and an optional trailing hint or action.",
+    demo: "input-group-demo",
+    usage: `import { Input } from "@/components/ui/input"
+import { InputGroup } from "@/components/ui/input-group"
+
+<InputGroup icon={<Search />}>
+  <Input placeholder="Search bills" />
+</InputGroup>`,
+    examples: [],
+    props: [
+      { name: "icon", type: "ReactNode", description: "Leading icon, 16px, tertiary." },
+      { name: "trailing", type: "ReactNode", description: "A Kbd hint or a small button." },
+      { name: "children", type: "Input", description: "The input; its padding makes room for both." },
+    ],
+  },
+  {
     slug: "kbd",
     name: "Kbd",
     description: "A keyboard key or shortcut.",
@@ -147,6 +225,26 @@ export const COMPONENTS: ComponentDoc[] = [
     ],
   },
   {
+    slug: "popover",
+    name: "Popover",
+    description: "Floating content anchored to a button: filters, details, small forms.",
+    base: baseUi("popover", "Popover"),
+    demo: "popover-demo",
+    usage: `import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
+
+<Popover>
+  <PopoverTrigger>Filters</PopoverTrigger>
+  <PopoverContent>…</PopoverContent>
+</Popover>`,
+    examples: [],
+    motion: "Opens in 200ms from 0.95 at the trigger; closes in 150ms. Reduced motion: fade only.",
+    props: [
+      { name: "PopoverContent side", type: `"top" | "bottom" | "left" | "right"`, default: `"bottom"`, description: "Where it opens." },
+      { name: "PopoverContent align", type: `"start" | "center" | "end"`, default: `"start"`, description: "Alignment against the trigger." },
+      { name: "open / onOpenChange", type: "boolean / (open) => void", description: "Controlled state." },
+    ],
+  },
+  {
     slug: "segmented-control",
     name: "Segmented control",
     description: "One choice from a few options, all visible.",
@@ -163,6 +261,40 @@ export const COMPONENTS: ComponentDoc[] = [
       { name: "value", type: "string", description: "The selected item." },
       { name: "onValueChange", type: "(value: string) => void", description: "Called with the new value." },
       { name: "defaultValue", type: "string", description: "Initial selection when uncontrolled." },
+    ],
+  },
+  {
+    slug: "separator",
+    name: "Separator",
+    description: "A 1px rule between rows or items.",
+    base: baseUi("separator", "Separator"),
+    demo: "separator-demo",
+    usage: `import { Separator } from "@/components/ui/separator"
+
+<Separator />`,
+    examples: [],
+    props: [{ name: "orientation", type: `"horizontal" | "vertical"`, default: `"horizontal"`, description: "Vertical stretches to the row's height." }],
+  },
+  {
+    slug: "sheet",
+    name: "Sheet",
+    description: "A panel that slides up from the bottom: profiles, details, share.",
+    base: baseUi("drawer", "Drawer"),
+    demo: "sheet-demo",
+    usage: `import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
+
+<Sheet>
+  <SheetTrigger>Open</SheetTrigger>
+  <SheetContent>
+    <SheetTitle>Nancy Pelosi</SheetTitle>
+  </SheetContent>
+</Sheet>`,
+    examples: [{ name: "sheet-nested", title: "Nested", description: "A sheet opened from a sheet; the one behind steps back." }],
+    motion: "Slides up by its own height in 500ms on the drawer curve and follows a swipe; closes in 375ms, faster after a strong swipe. Reduced motion: fade only.",
+    props: [
+      { name: "open / onOpenChange", type: "boolean / (open) => void", description: "Controlled state." },
+      { name: "modal", type: `boolean | "trap-focus"`, default: "true", description: "Traps focus and locks page scroll." },
+      { name: "swipeDirection", type: `"down" | …`, default: `"down"`, description: "The direction that dismisses it." },
     ],
   },
   {
@@ -203,6 +335,28 @@ export const COMPONENTS: ComponentDoc[] = [
       { name: "value", type: "string", description: "The active tab." },
       { name: "onValueChange", type: "(value: string) => void", description: "Called when the tab changes." },
       { name: "defaultValue", type: "string", description: "Initial tab when uncontrolled." },
+    ],
+  },
+  {
+    slug: "toast",
+    name: "Toast",
+    description: "A brief message confirming something happened.",
+    base: baseUi("toast", "Toast"),
+    demo: "toast-demo",
+    usage: `import { Toaster, useToast } from "@/components/ui/toast"
+
+// Once, near the root:
+<Toaster>{children}</Toaster>
+
+// Anywhere below it:
+const toast = useToast()
+toast.add({ title: "Saved", description: "…" })`,
+    examples: [],
+    motion: "Enters 16px from below in 200ms; leaves by fading in 150ms, or along a swipe. Stacked toasts spread out on hover.",
+    props: [
+      { name: "Toaster limit", type: "number", default: "3", description: "How many show at once." },
+      { name: "Toaster timeout", type: "number", default: "5000", description: "Milliseconds before a toast dismisses itself." },
+      { name: "toast.add", type: "({ title, description, timeout }) => id", description: "Shows a toast." },
     ],
   },
   {
