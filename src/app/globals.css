@@ -15,13 +15,11 @@
   height: calc(100dvh - 3rem);
 }
 
-/* Docs chrome sets headings in sans. Previews and type specimens opt back into the product default (Lora). */
+/* Docs chrome sets page titles in sans too. Previews and type specimens opt back into the product default (Lora titles). */
 .docs-chrome {
-  --font-heading-family: ui-sans-serif, system-ui, sans-serif;
   --font-display-family: ui-sans-serif, system-ui, sans-serif;
 }
 .docs-chrome [data-product-type] {
-  --font-heading-family: var(--font-lora), ui-serif, Georgia, serif;
   --font-display-family: var(--font-lora), ui-serif, Georgia, serif;
 }
 

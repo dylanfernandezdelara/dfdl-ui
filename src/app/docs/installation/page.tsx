@@ -40,7 +40,7 @@ export default function InstallationPage() {
 @import "../styles/dfdl/tokens.css";
 @import "../styles/dfdl/theme.css";`}
           />
-          <p className="mt-major text-body text-fg-secondary">Headings use Lora. Load it with next/font as the --font-lora variable:</p>
+          <p className="mt-major text-body text-fg-secondary">Titles use Lora. Load it with next/font as the --font-lora variable:</p>
           <CodeBlock
             className="mt-major"
             code={`import { Lora } from "next/font/google"
@@ -83,7 +83,7 @@ function Step({ id, n, title, children }: { id: string; n: number; title: string
   return (
     <section id={id} className="relative mt-12 scroll-mt-12 pl-12 first-of-type:mt-0">
       <span className="absolute top-0 left-0 flex size-8 items-center justify-center rounded-full bg-sunken text-ui font-medium text-fg-strong">{n}</span>
-      <h2 className="flex h-8 items-center text-title font-semibold text-fg-strong">{title}</h2>
+      <h2 className="flex h-8 items-center text-title text-fg-strong">{title}</h2>
       <div className="mt-minor">{children}</div>
     </section>
   )

@@ -126,10 +126,12 @@ export function ConcentricCard() {
 
 export function TypeSpecimen() {
   const rows: [string, string, string][] = [
-    ["display", "font-display text-display", "Display"],
+    ["headline", "font-display text-headline", "Headline, article title"],
+    ["display", "font-display text-display", "Display, page title"],
     ["title", "font-heading text-title", "Title, section heading"],
     ["heading", "font-heading text-heading", "Heading, card title"],
-    ["body", "text-body", "Body copy for reading"],
+    ["body", "text-body", "Body, page prose"],
+    ["reading", "text-reading", "Reading, article prose"],
     ["ui", "text-ui", "Interface text, rows, labels"],
     ["caption", "text-caption", "Caption, metadata"],
   ]

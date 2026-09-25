@@ -61,6 +61,8 @@ Google `DESIGN.md`. Code Connect on Pro. Cloudflare deploy until asked. Copying 
 
 ## Log
 
+- 2026-09-25: Dylan chose his site's type structure over Lab 2's: Lora on titles only (new `headline` 28/32 for articles, `display` 24/32 for pages), sans headings at 600 (`title` 20/32, `heading` 17/24), UI 14/20. Weight-led and Lora-on-every-heading superseded. Future (very end): buy a domain on Cloudflare (e.g. dfdl-ui.com) instead of moving dylanfdl.com's DNS.
+
 - 2026-09-25: The first "optimist." fix (baseline + overflow-y: clip) passed in Chromium and was 3.5px high in Safari; Dylan caught it on the preview. WebKit takes an overflow-clipped inline-block's baseline from its bottom edge. Fixed with a clip-path mask (dylanfdl PR #109), measured by ink pixels on a production build in Chromium, WebKit and Firefox. Skill, guide, probe and decisions now require clip-path for inline masks and a WebKit check for text alignment.
 
 - 2026-09-25: Type sizes corrected from measurement after Dylan found dylanfdl.com's prose too big and "optimist." sitting high. Root cause in Phase R: the audit summary read dylanfdl.com's `<body>` default (16/24) as its body text; the paragraphs render 14/24 at 450 (articles 15/24). That propagated into the Lab 2 "Previous" candidate, the 16px body decision and the 16px blurb in PR #107. Tokens now: body 14/24/450, new reading 15/24, heading 14 and title 15 at 550 (weight-led kept), display Lora 24/32. The optimist offset is slot-text cells aligned text-bottom (0.5px at 14, 1px at 16); new `scripts/probes/baseline.js` catches it, and the skill and guide require baseline alignment and measuring paragraphs rather than `<body>`.

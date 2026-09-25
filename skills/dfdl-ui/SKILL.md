@@ -8,7 +8,7 @@ description: Build or restyle UI in Dylan Fernandez de Lara's products (dylanfdl
 Dylan's design system: tokens, React components on Base UI, a lint policy, and probes that measure the result.
 Docs: https://dfdl-ui.fernandezdelaradylan.workers.dev · Plain text for agents: /llms.txt · Source: github.com/dylanfernandezdelara/dfdl-ui
 
-The feel, in one line: warm and quiet. One neutral family, one accent, hierarchy from weight, round corners, motion you do not notice, everything on an 8px grid.
+The feel, in one line: warm and quiet. One neutral family, one accent, a Lora title over small sans prose, round corners, motion you do not notice, everything on an 8px grid.
 If a screen looks like a competent generic dashboard, it is wrong.
 
 ## Before you write UI
@@ -66,7 +66,7 @@ Use utilities, never raw values. The linter rejects palette colors, arbitrary va
 - **Lines:** `hairline` `hairline-t` `hairline-b` `hairline-r` (shadows, take no space), `border-line` only where the box already accounts for 1px.
 - **Accent:** `bg-accent-solid` `bg-accent-bg` `text-accent-text` `border-accent-border`. **Status:** `bg-danger` `bg-danger-bg` `text-danger-text`, same for `success`, `warning`.
 - **Depth:** `elevation-raised` (cards, secondary buttons), `elevation-floating` (menus, dialogs).
-- **Type roles:** `text-display` 24/32 (page title, Lora), `text-body` 14/24 at 450 (page prose, the default), `text-reading` 15/24 (long-form articles), `text-heading` 14/24 at 550 and `text-title` 15/24 at 550 (Lora; headings over body and reading text), `text-ui` 13/20 at 450, `text-caption` 12/16. Pair a role with `font-heading` or `font-display` for Lora. Never a size class plus a leading class.
+- **Type roles:** `text-headline` 28/32 (article title) and `text-display` 24/32 (page title), both with `font-display` (Lora); `text-title` 20/32 and `text-heading` 17/24 at 600 in sans (section and sub-section headings, card and dialog titles); `text-body` 14/24 at 450 (page prose, the default); `text-reading` 15/24 (long-form articles); `text-ui` 14/20 at 450; `text-caption` 12/16. Never a size class plus a leading class.
 - **Radius:** `rounded-xs` 8 (chips), `rounded-sm` 10 (controls), `rounded-md` 12 (fields, popovers), `rounded-lg` 16 (cards), `rounded-xl` 24 (sheets). Nested corners: inner = outer − padding.
 - **Space:** `gap-minor`/`p-minor` 8, `gap-major`/`p-major` 24. Control heights 24, 28, 32 (default), 40, 48.
 - **Motion:** `transition-interactive` for controls, `transition-icon` for icon swaps, `press` for press feedback, `duration-fast` (150) and friends, `ease-out`. Popups use `motion-pop`, `motion-dialog`, `motion-tooltip`, `motion-fade`.
@@ -74,10 +74,10 @@ Use utilities, never raw values. The linter rejects palette colors, arbitrary va
 ## Judgment (what the linter cannot check)
 
 - **One primary button per view.** The accent marks the primary action and the current selection, nothing else: no accent headings, icons or decorative fills.
-- **Hierarchy from weight and family, not size.** A heading is the size of the text under it; Lora at 550 and `text-fg-strong` make it a heading. Only a page title uses `text-display`.
+- **Lora is for titles only.** The page title (`text-display`) and an article title (`text-headline`). Headings are sans at 600 and step down by size.
 - **Text size is 14, not 16.** Page prose is `text-body` (14/24). Use `text-reading` (15) only for long-form articles. Do not bump prose to 16 because it "looks small" in isolation; 14/24 at weight 450 is the measured size of Dylan's site.
 - **Inline boxes sit on the baseline.** A word with its own box inside a sentence (an animated word, a badge, a kbd) uses `vertical-align: baseline`. `text-bottom` or `middle` leave an offset that is invisible at one size and a visible pixel at the next. Never give such a box `overflow: hidden` or `clip`: Safari then takes its baseline from the bottom edge and lifts the text by its descender. Mask with `clip-path` instead.
-- **Quiet mode** (`<html data-quiet>`) for data-dense products where color already carries data: headings go sans, the accent collapses into the neutrals. trackcongress runs quiet.
+- **Quiet mode** (`<html data-quiet>`) for data-dense products where color already carries data: titles go sans, the accent collapses into the neutrals. trackcongress runs quiet.
 - **Density:** 32px controls by default; 28 (`size="sm"`) in dense rows and tables; 40 for touch-first surfaces.
 - **Should it animate?** Not if it is keyboard-triggered or happens hundreds of times a day. Hover and press are near-imperceptible. Menus, dialogs and drawers get the standard treatment. If you can describe the animation, it is too much.
 - **Copy:** short and plain. One line per description. No marketing voice, no mono or uppercase labels for decoration.

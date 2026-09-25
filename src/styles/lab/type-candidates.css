@@ -3,12 +3,12 @@
 
   Approved 2026-09-24 (now A = tokens.css): scale weight-led, serif on all headings, radius round.
 
-  scale   a Approved   weight-led: headings take the size of their text (body 14, reading 15), weight 550 carries hierarchy; UI 13 at 450; display 24
+  scale   a Current    size-led, as dylanfdl.com ships it: Lora titles 24/28, sans headings 20/17 at 600, prose 14, UI 14 (2026-09-25)
           b Roles      Jakub's role scale: Display 36, Title 24, Heading 18, Body 16, Caption 13, plus a UI 14 row we added. Hierarchy from size.
           c Previous   dylanfdl.com before Lab 2, as measured 2026-09-25: prose 14/24 at 450, UI 14, Lora 24 display, sans headings.
                        (Until 2026-09-25 this candidate showed 16/24 body, read from <body> instead of the paragraphs.)
 
-  serif   a Approved   serif on every heading level
+  serif   a Current    serif on titles only (2026-09-25; Lab 2 had picked every heading level)
           b Display    serif on the page title and pull quotes only (previous)
           c None       sans everywhere; serif only for italic emphasis words
 

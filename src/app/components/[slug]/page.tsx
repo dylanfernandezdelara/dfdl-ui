@@ -59,7 +59,7 @@ export default async function ComponentPage({ params }: PageProps<"/components/[
             <div className="flex flex-col gap-12">
               {doc.examples.map((e) => (
                 <div key={e.name} id={e.name} className="scroll-mt-12">
-                  <h3 className="text-heading font-semibold text-fg-strong">{e.title}</h3>
+                  <h3 className="text-heading text-fg-strong">{e.title}</h3>
                   {e.description ? <p className="mt-1 text-ui text-fg-secondary">{e.description}</p> : null}
                   <div className="mt-major">
                     <ComponentPreview name={e.name} />
@@ -87,7 +87,7 @@ export default async function ComponentPage({ params }: PageProps<"/components/[
 function DocSection({ id, title, children }: { id: string; title: string; children: React.ReactNode }) {
   return (
     <section id={id} className="mt-12 scroll-mt-12">
-      <h2 className="mb-major text-title font-semibold text-fg-strong">{title}</h2>
+      <h2 className="mb-major text-title text-fg-strong">{title}</h2>
       {children}
     </section>
   )

@@ -12,12 +12,12 @@ const axes: AxisDef<Axis>[] = [
 
 const meta: Record<Axis, Record<CandidateId, { name: string; note: string }>> = {
   scale: {
-    a: { name: "Weight-led", note: "Approved in Lab 2; sizes corrected to dylanfdl.com's measured text on 2026-09-25. Headings take their text's size (body 14, reading 15); hierarchy from weight 550, family and color. UI 13 at 450. Display 24 serif." },
+    a: { name: "Current", note: "Size-led, as dylanfdl.com ships it (chosen 2026-09-25, superseding the Lab 2 weight-led pick): Lora titles 24 and 28, sans headings 20 and 17 at 600, prose 14/24 at 450, UI 14." },
     b: { name: "Roles", note: "Jakub's role scale: Display 36, Title 24, Heading 18, Body 16, Caption 13, plus a UI 14 row we added. Hierarchy comes from size; headings at 600 with negative tracking." },
     c: { name: "Previous", note: "dylanfdl.com before Lab 2, measured from its paragraphs: prose 14/24 at 450, UI 14, Lora 24 display at 400, sans headings. (Showed 16/24 until 2026-09-25, read from <body> by mistake.)" },
   },
   serif: {
-    a: { name: "All headings", note: "Approved in Lab 2. Lora on every heading level, including section headers inside app panels." },
+    a: { name: "Titles only", note: "Current (2026-09-25, superseding Lab 2's all-headings pick): Lora on page and article titles; headings are sans." },
     b: { name: "Display only", note: "Lora on the page title, pull quotes and italic emphasis. Headings inside content are sans. The previous scope." },
     c: { name: "None", note: "Sans everywhere, including the title. Lora survives only as italic emphasis inside a sentence." },
   },

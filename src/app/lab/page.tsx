@@ -23,7 +23,7 @@ export default function LabIndexPage() {
             <li key={lab.slug} className="flex items-start gap-major py-major hairline-t">
               <span className="flex h-6 w-24 shrink-0 items-center text-ui text-fg-tertiary">{lab.status}</span>
               <div className="flex-1">
-                <h2 className="text-heading font-semibold text-fg-strong">{lab.title}</h2>
+                <h2 className="text-heading text-fg-strong">{lab.title}</h2>
                 <p className="text-ui text-fg-secondary">{lab.summary}</p>
               </div>
               <Link href={`/lab/${lab.slug}`} className="flex h-6 items-center text-ui text-accent-text underline decoration-accent-border underline-offset-2">/lab/{lab.slug}</Link>

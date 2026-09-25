@@ -14,7 +14,7 @@
     accent     bg-accent-bg border-accent-border bg-accent-solid hover:bg-accent-solid-hover text-accent-text
     status     {danger,success,warning}: bg-*-bg border-*-border bg-* text-*-text
     rounded    rounded-xs rounded-sm rounded-md rounded-lg rounded-xl rounded-full (concentric: outer = inner + padding)
-    type       text-display text-title text-heading text-body text-reading text-ui text-caption (size + leading + weight); font-display font-heading font-sans font-mono; h-control
+    type       text-headline text-display text-title text-heading text-body text-reading text-ui text-caption (size + leading + weight); font-display font-heading font-sans font-mono; h-control
     elevation  elevation-raised elevation-floating; hairline hairline-t hairline-b hairline-r (1px lines that do not take layout space); hairline-l (2px quote bar)
     motion     ease-out ease-in-out ease-drawer, duration-instant/fast/normal/slow/slower, transition-interactive, transition-icon, press;
                motion-pop motion-tooltip motion-dialog motion-fade (Base UI popups), tabs-indicator
@@ -33,7 +33,11 @@
   --font-heading: var(--font-heading-family);
   --font-display: var(--font-display-family);
 
-  /* Type roles. text-display / text-title / text-heading / text-body / text-reading / text-ui / text-caption set size, leading and weight together. */
+  /* Type roles. text-headline / text-display / text-title / text-heading / text-body / text-reading / text-ui / text-caption set size, leading and weight together. */
+  --text-headline: var(--type-headline-size);
+  --text-headline--line-height: var(--type-headline-leading);
+  --text-headline--font-weight: var(--type-headline-weight);
+  --text-headline--letter-spacing: var(--type-headline-tracking);
   --text-display: var(--type-display-size);
   --text-display--line-height: var(--type-display-leading);
   --text-display--font-weight: var(--type-display-weight);

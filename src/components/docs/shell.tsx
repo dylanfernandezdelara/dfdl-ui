@@ -96,7 +96,7 @@ export function Section({ id, title, lede, children }: { id?: string; title: str
   return (
     <section id={id} className="scroll-mt-12 pb-12">
       <div className="mb-major">
-        <h2 className="font-heading text-title font-semibold text-fg-strong">{title}</h2>
+        <h2 className="font-heading text-title text-fg-strong">{title}</h2>
         {lede ? <p className="mt-minor max-w-reading text-body text-fg-secondary">{lede}</p> : null}
       </div>
       {children}

@@ -11,7 +11,7 @@ export const GUIDE: GuideSection[] = [
     id: "identity",
     title: "Identity in one paragraph",
     body: [
-      "Warm and quiet. One neutral family carries surfaces and text: cream in light, charcoal in dark, never pure white or black. Hierarchy comes from weight and family, not size: a heading is the size of the text under it (14 over body, 15 over reading), and Lora at 550 marks it. One accent per product marks the primary action and selection and nothing else. Corners are round and concentric. Motion is strong ease-out, short, and never something you would describe. Everything lands on an 8px grid, and the grid is measured.",
+      "Warm and quiet. One neutral family carries surfaces and text: cream in light, charcoal in dark, never pure white or black. Lora marks titles only; headings are sans at 600 and step down by size; prose is 14. One accent per product marks the primary action and selection and nothing else. Corners are round and concentric. Motion is strong ease-out, short, and never something you would describe. Everything lands on an 8px grid, and the grid is measured.",
       "If a screen looks like a competent generic dashboard, it is wrong. If a screen looks like a personal site that happens to be an app, it is right.",
     ],
   },
@@ -40,7 +40,7 @@ ${addCommand("button")}   # any component
     id: "type",
     title: "Type through roles",
     body: [
-      "Seven roles carry size, leading and weight together: text-display (24/32/400 Lora, page titles), text-title (15/24/550 Lora, over reading text), text-heading (14/24/550 Lora, over body text), text-body (14/24/450, page prose and the default), text-reading (15/24/400, long-form articles), text-ui (13/20/450), text-caption (12/16/450). Set text only through a role. text-sm with leading-6 by hand is a defect.",
+      "Eight roles carry size, leading and weight together: text-headline (28/32/400 Lora, article titles), text-display (24/32/400 Lora, page titles), text-title (20/32/600 sans, section headings), text-heading (17/24/600 sans, sub-sections, card and dialog titles), text-body (14/24/450, page prose and the default), text-reading (15/24/400, long-form articles), text-ui (14/20/450), text-caption (12/16/450). Set text only through a role. text-sm with leading-6 by hand is a defect.",
       "tabular-nums on anything that lines up. text-balance on titles, text-pretty on paragraphs. Do not invent sizes between roles.",
       "An inline box inside a sentence (an animated word, a badge, a kbd) aligns with vertical-align: baseline and never has overflow: hidden or clip, which makes Safari take its baseline from the bottom edge; mask with clip-path. text-bottom and middle leave an offset that is invisible at 14px and a visible pixel at 16. scripts/probes/baseline.js measures it; run it in WebKit as well as Chromium.",
       "When restyling an existing product, measure its rendered paragraphs with getComputedStyle, never the <body> element, and compare after. The <body> default is not the text people read.",
@@ -78,7 +78,7 @@ ${addCommand("button")}   # any component
     id: "quiet",
     title: "Quiet mode",
     body: [
-      "Data-dense products, where color already carries data and headlines stack in lists, run with data-quiet on the root: headings and display go system sans, and the accent roles collapse into the neutrals so selection is carried by weight and hairlines. Neutrals, type sizes, radius, elevation and motion are unchanged. trackcongress.org is the reference.",
+      "Data-dense products, where color already carries data and headlines stack in lists, run with data-quiet on the root: titles go system sans, and the accent roles collapse into the neutrals so selection is carried by weight and hairlines. Neutrals, type sizes, radius, elevation and motion are unchanged. trackcongress.org is the reference.",
     ],
   },
   {
@@ -92,7 +92,7 @@ ${addCommand("button")}   # any component
     id: "never",
     title: "Never",
     body: [
-      "Pure white or pure black surfaces. A second accent in one product. A heading larger than the text it heads, other than the page title. transition: all. ease-in on anything. Animating width, height, top or left. Borders that push content off the grid. Unitless line-heights. A value that is not a token. Copying Emil's or Jakub's skills into this one; hand off to them instead.",
+      "Pure white or pure black surfaces. A second accent in one product. Lora on anything but a title. A size between roles. transition: all. ease-in on anything. Animating width, height, top or left. Borders that push content off the grid. Unitless line-heights. A value that is not a token. Copying Emil's or Jakub's skills into this one; hand off to them instead.",
     ],
   },
 ]
