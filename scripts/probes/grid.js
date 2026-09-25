@@ -11,7 +11,7 @@
 (() => {
   const MINOR = 8, HALF = 4, TOL = 0.51
   const off = (v, step) => { const r = Math.abs(v % step); return Math.min(r, step - r) > TOL }
-  const skip = new Set(['SCRIPT','STYLE','SVG','PATH','BR','WBR','TEMPLATE','NOSCRIPT','HTML','HEAD'])
+  const skip = new Set(['SCRIPT','STYLE','SVG','PATH','IMG','BR','WBR','TEMPLATE','NOSCRIPT','HTML','HEAD'])
   const isVisible = (el, cs) => cs.display !== 'none' && cs.visibility !== 'hidden' && parseFloat(cs.opacity) > 0
   const root = document.querySelector('[data-grid-audit-root]') || document.body
   const offenders = []
@@ -27,8 +27,14 @@
     checked++
     const top = r.top + window.scrollY
     const why = []
-    if (off(top, HALF)) why.push(`top ${top.toFixed(1)} off 4px grid`)
-    else if (off(top, MINOR)) why.push(`top ${top.toFixed(1)} on half-step`)
+    // A text leaf centered inside a flex row is placed by the row; the row's box is what must sit on the grid.
+    const parentCs = el.parentElement ? getComputedStyle(el.parentElement) : null
+    const leafText = el.children.length === 0 && el.textContent.trim().length > 0
+    const centeredInRow = leafText && parentCs && /flex/.test(parentCs.display) && parentCs.alignItems === 'center'
+    if (!centeredInRow) {
+      if (off(top, HALF)) why.push(`top ${top.toFixed(1)} off 4px grid`)
+      else if (off(top, MINOR)) why.push(`top ${top.toFixed(1)} on half-step`)
+    }
     // Heights: controls and rows must be multiples of 4; text blocks are judged by line-height.
     const lh = parseFloat(cs.lineHeight)
     const isText = el.childNodes.length && [...el.childNodes].some(n => n.nodeType === 3 && n.textContent.trim())
@@ -39,7 +45,7 @@
     // variable-width text land wherever the text ends; that is not a grid question.
     const parent = el.parentElement
     const pd = parent ? getComputedStyle(parent) : null
-    const inRow = pd && ((/flex/.test(pd.display) && !/column/.test(pd.flexDirection)) || /grid/.test(pd.display))
+    const inRow = pd && ((/flex/.test(pd.display) && !/column/.test(pd.flexDirection)) || /grid/.test(pd.display) || /table/.test(pd.display))
     if (parent && pd && !inRow && cs.position !== 'absolute' && cs.position !== 'fixed') {
       const left = r.left - parent.getBoundingClientRect().left - parseFloat(pd.borderLeftWidth) - parseFloat(pd.paddingLeft)
       if (Math.abs(left) > TOL && off(left, HALF)) why.push(`left ${left.toFixed(1)} off 4px`)

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "dfdl",
+  "homepage": "https://ui.dylanfdl.com",
+  "items": [
+    {
+      "name": "tokens",
+      "type": "registry:item",
+      "title": "dfdl tokens",
+      "description": "The dfdl design tokens: OKLCH primitives and semantics, light and dark, two approved accents, quiet mode. tokens.css for Tailwind v4 projects; tokens.hsl.css (HSL channel triples) for Tailwind v3. Generated from decisions in dylanfernandezdelara/dfdl-ui.",
+      "author": "Dylan Fernandez de Lara",
+      "categories": ["foundations"],
+      "files": [
+        { "path": "src/styles/tokens.css", "type": "registry:file", "target": "~/styles/dfdl/tokens.css" },
+        { "path": "src/styles/tokens.hsl.css", "type": "registry:file", "target": "~/styles/dfdl/tokens.hsl.css" }
+      ],
+      "css": {
+        "@import './styles/dfdl/tokens.css'": {}
+      },
+      "docs": "Set the accent once on the root: <html data-accent=\"ember\"> (default) or \"indigo\". Add data-quiet for data-dense products. Tailwind v4: map the semantics into @theme inline as in https://github.com/dylanfernandezdelara/dfdl-ui/blob/main/src/app/globals.css. Tailwind v3: point your theme colors at hsl(var(--hsl-bg-page) / <alpha-value>) from tokens.hsl.css. Guide: https://ui.dylanfdl.com/guide"
+    }
+  ]
+}

@@ -7,9 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
+    "registry": "shadcn build",
     "typecheck": "tsc --noEmit && tsc --noEmit -p scripts/tsconfig.json",
     "check": "npm run lint && npm run typecheck",
-    "tokens": "node scripts/color/build-tokens.mts && node scripts/color/export-legacy.mts && node scripts/color/build-candidates.mts"
+    "tokens": "node scripts/color/build-tokens.mts && node scripts/color/export-legacy.mts && node scripts/color/export-docs.mts && node scripts/color/build-candidates.mts"
   },
   "dependencies": {
     "@base-ui/react": "^1.8.0",

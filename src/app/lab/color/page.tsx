@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import { Suspense } from "react"
 
-import { SiteHeader } from "@/components/site-header"
+import { DocsShell } from "@/components/docs/shell"
 
 import "@/styles/lab/candidates.css"
 
@@ -12,8 +12,8 @@ export const metadata: Metadata = { title: "Lab · Color and surfaces" }
 export default function ColorLabPage() {
   return (
     <>
-      <SiteHeader />
-      <main className="mx-auto w-full max-w-content px-major pb-12">
+      <DocsShell>
+      <div className="max-w-site pb-12">
         <div className="py-12">
           <p className="font-mono text-xs uppercase tracking-wider text-fg-tertiary">Lab 1</p>
           <h1 className="mt-1 font-serif text-2xl leading-8 text-fg-strong">Color and surfaces</h1>
@@ -26,7 +26,8 @@ export default function ColorLabPage() {
         <Suspense fallback={null}>
           <ColorLab />
         </Suspense>
-      </main>
+      </div>
+    </DocsShell>
     </>
   )
 }

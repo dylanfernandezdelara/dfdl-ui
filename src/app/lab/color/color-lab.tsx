@@ -39,7 +39,7 @@ function Ratio({ value, floor = 4.5 }: { value?: number; floor?: number }) {
   if (value === undefined) return null
   const ok = value >= floor
   return (
-    <span className={cn("font-mono text-xs tabular-nums", ok ? "text-fg-tertiary" : "text-danger")} title={ok ? `${value}:1` : `${value}:1, below ${floor}:1`}>
+    <span className={cn("font-mono text-caption tabular-nums", ok ? "text-fg-tertiary" : "text-danger")} title={ok ? `${value}:1` : `${value}:1, below ${floor}:1`}>
       {value.toFixed(1)}
     </span>
   )
@@ -54,11 +54,11 @@ function Panel({ selection, dark }: { selection: Selection; dark: boolean }) {
   return (
     <CandidateScope selection={selection} dark={dark} className="rounded-xl bg-page p-major text-fg hairline">
       <div className="mb-major flex items-center justify-between">
-        <span className="font-mono text-xs uppercase tracking-wider text-fg-tertiary">{dark ? "Dark" : "Light"}</span>
-        <span className="font-mono text-xs text-fg-tertiary">{(dark ? a.dark : a.light)?.solid}</span>
+        <span className="font-mono text-caption uppercase tracking-wider text-fg-tertiary">{dark ? "Dark" : "Light"}</span>
+        <span className="font-mono text-caption text-fg-tertiary">{(dark ? a.dark : a.light)?.solid}</span>
       </div>
 
-      <div className="grid grid-cols-8 gap-2">
+      <div className="grid grid-cols-8 gap-minor">
         <Swatch className="bg-page" label="page" />
         <Swatch className="bg-subtle" label="subtle" />
         <Swatch className="bg-surface" label="surf" />
@@ -103,19 +103,19 @@ function Panel({ selection, dark }: { selection: Selection; dark: boolean }) {
         <DataRow />
       </div>
 
-      <dl className="mt-major grid grid-cols-4 gap-x-major gap-y-1 font-mono text-xs text-fg-secondary">
-        <dt>fg on page</dt>
-        <dd><Ratio value={nc.fgOnPage} /></dd>
-        <dt>secondary on page</dt>
-        <dd><Ratio value={nc.fgSecondaryOnPage} /></dd>
-        <dt>tertiary on page</dt>
-        <dd><Ratio value={nc.fgTertiaryOnPage} floor={3} /></dd>
-        <dt>on-accent on solid</dt>
-        <dd><Ratio value={ac.onAccentOnSolid} /></dd>
-        <dt>accent text on accent bg</dt>
-        <dd><Ratio value={ac.accentTextOnAccentBg} /></dd>
-        <dt>accent text on page</dt>
-        <dd><Ratio value={ac.accentTextOnPage} /></dd>
+      <dl className="mt-major grid grid-cols-4 gap-x-major font-mono text-caption text-fg-secondary">
+        <dt className="flex h-6 items-center">fg on page</dt>
+        <dd className="flex h-6 items-center"><Ratio value={nc.fgOnPage} /></dd>
+        <dt className="flex h-6 items-center">secondary on page</dt>
+        <dd className="flex h-6 items-center"><Ratio value={nc.fgSecondaryOnPage} /></dd>
+        <dt className="flex h-6 items-center">tertiary on page</dt>
+        <dd className="flex h-6 items-center"><Ratio value={nc.fgTertiaryOnPage} floor={3} /></dd>
+        <dt className="flex h-6 items-center">on-accent on solid</dt>
+        <dd className="flex h-6 items-center"><Ratio value={ac.onAccentOnSolid} /></dd>
+        <dt className="flex h-6 items-center">accent text on accent bg</dt>
+        <dd className="flex h-6 items-center"><Ratio value={ac.accentTextOnAccentBg} /></dd>
+        <dt className="flex h-6 items-center">accent text on page</dt>
+        <dd className="flex h-6 items-center"><Ratio value={ac.accentTextOnPage} /></dd>
       </dl>
     </CandidateScope>
   )
@@ -130,20 +130,20 @@ function Compare({ axis, selection, children, both }: { axis: Axis; selection: S
         const m = byAxis[axis][id]
         return (
           <div key={id} className="min-w-0">
-            <div className="mb-2 flex items-baseline gap-2">
-              <span className="font-mono text-xs text-fg-tertiary">{id.toUpperCase()}</span>
-              <span className="text-sm font-medium text-fg-strong">{m.name}</span>
-              {id === "a" ? <span className="font-mono text-xs uppercase tracking-wider text-fg-tertiary">baseline</span> : null}
+            <div className="mb-minor flex h-6 items-center gap-2">
+              <span className="font-mono text-caption text-fg-tertiary">{id.toUpperCase()}</span>
+              <span className="text-ui font-medium text-fg-strong">{m.name}</span>
+              {id === "a" ? <span className="font-mono text-caption uppercase tracking-wider text-fg-tertiary">baseline</span> : null}
             </div>
-            <CandidateScope selection={s} className="rounded-lg border border-line bg-page p-major text-fg">
+            <CandidateScope selection={s} className="rounded-lg bg-page p-major text-fg hairline">
               {children(s)}
             </CandidateScope>
             {both ? (
-              <CandidateScope selection={s} dark className="mt-2 rounded-lg border border-line bg-page p-major text-fg">
+              <CandidateScope selection={s} dark className="mt-minor rounded-lg bg-page p-major text-fg hairline">
                 {children(s)}
               </CandidateScope>
             ) : null}
-            <p className="mt-2 text-xs leading-5 text-fg-secondary">{m.note}</p>
+            <p className="mt-minor text-caption text-fg-secondary">{m.note}</p>
           </div>
         )
       })}

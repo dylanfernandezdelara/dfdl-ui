@@ -5,7 +5,7 @@
 const MINOR = 8
 const HALF = 4
 const TOL = 0.51
-const SKIP = new Set(["SCRIPT", "STYLE", "SVG", "PATH", "BR", "WBR", "TEMPLATE", "NOSCRIPT", "HTML", "HEAD"])
+const SKIP = new Set(["SCRIPT", "STYLE", "SVG", "PATH", "IMG", "BR", "WBR", "TEMPLATE", "NOSCRIPT", "HTML", "HEAD"])
 
 export type Offender = { el: Element; top: number; height: number; why: string[] }
 
@@ -26,15 +26,20 @@ export function auditGrid(root: ParentNode = document.body): { checked: number; 
     checked++
     const top = r.top + window.scrollY
     const why: string[] = []
-    if (off(top, HALF)) why.push(`top ${top.toFixed(1)} off 4px grid`)
-    else if (off(top, MINOR)) why.push(`top ${top.toFixed(1)} on half-step`)
+    const parentCs = el.parentElement ? getComputedStyle(el.parentElement) : null
+    const leafText = el.children.length === 0 && (el.textContent?.trim().length ?? 0) > 0
+    const centeredInRow = leafText && parentCs && /flex/.test(parentCs.display) && parentCs.alignItems === "center"
+    if (!centeredInRow) {
+      if (off(top, HALF)) why.push(`top ${top.toFixed(1)} off 4px grid`)
+      else if (off(top, MINOR)) why.push(`top ${top.toFixed(1)} on half-step`)
+    }
     const lh = parseFloat(cs.lineHeight)
     const isText = Array.from(el.childNodes).some((n) => n.nodeType === 3 && n.textContent?.trim())
     if (isText && lh && off(lh, HALF)) why.push(`line-height ${lh} off 4px`)
     if (!isText && r.height <= 600 && off(r.height, HALF)) why.push(`height ${r.height.toFixed(1)} off 4px`)
     const parent = el.parentElement
     const pd = parent ? getComputedStyle(parent) : null
-    const inRow = pd && ((/flex/.test(pd.display) && !/column/.test(pd.flexDirection)) || /grid/.test(pd.display))
+    const inRow = pd && ((/flex/.test(pd.display) && !/column/.test(pd.flexDirection)) || /grid/.test(pd.display) || /table/.test(pd.display))
     if (parent && pd && !inRow && cs.position !== "absolute" && cs.position !== "fixed") {
       const left = r.left - parent.getBoundingClientRect().left - parseFloat(pd.borderLeftWidth) - parseFloat(pd.paddingLeft)
       if (Math.abs(left) > TOL && off(left, HALF)) why.push(`left ${left.toFixed(1)} off 4px`)

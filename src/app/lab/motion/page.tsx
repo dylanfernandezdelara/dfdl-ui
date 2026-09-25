@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import { Suspense } from "react"
 
-import { SiteHeader } from "@/components/site-header"
+import { DocsShell } from "@/components/docs/shell"
 
 import "@/styles/lab/motion-candidates.css"
 
@@ -12,10 +12,10 @@ export const metadata: Metadata = { title: "Lab · Motion" }
 export default function MotionLabPage() {
   return (
     <>
-      <SiteHeader />
-      <main className="mx-auto w-full max-w-content px-major pb-12">
-        <div className="py-12">
-          <p className="font-mono text-caption uppercase tracking-wider text-fg-tertiary">Lab 3</p>
+      <DocsShell>
+      <div className="max-w-site pb-12">
+        <div className="pb-12">
+          <p className="flex h-6 items-center font-mono text-caption uppercase tracking-wider text-fg-tertiary">Lab 3</p>
           <h1 className="mt-minor font-display text-display text-fg-strong">Motion</h1>
           <p className="mt-minor max-w-reading text-body text-fg-secondary">
             Three decisions: the curve, how exits relate to enters, and press feedback. A is Fork today. Durations follow
@@ -26,7 +26,8 @@ export default function MotionLabPage() {
         <Suspense fallback={null}>
           <MotionLab />
         </Suspense>
-      </main>
+      </div>
+    </DocsShell>
     </>
   )
 }

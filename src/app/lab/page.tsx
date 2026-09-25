@@ -1,6 +1,6 @@
 import Link from "next/link"
 
-import { SiteHeader } from "@/components/site-header"
+import { DocsShell } from "@/components/docs/shell"
 
 /**
  * Lab index. Each lab is a route under /lab. Labs show bounded candidates side by side;
@@ -15,26 +15,28 @@ const labs = [
 export default function LabIndexPage() {
   return (
     <>
-      <SiteHeader />
-      <main className="mx-auto w-full max-w-content px-major py-12">
-        <h1 className="font-serif text-2xl leading-8 text-fg-strong">Lab</h1>
-        <p className="mt-minor max-w-reading text-base leading-6 text-fg-secondary">
+      <DocsShell>
+      <div className="max-w-content">
+        <p className="flex h-6 items-center font-mono text-caption uppercase tracking-wider text-fg-tertiary">Process</p>
+        <h1 className="mt-minor font-display text-display text-fg-strong">Labs</h1>
+        <p className="mt-minor max-w-reading text-body text-fg-secondary">
           Where the foundations get decided. Every lab shows the current values as a baseline beside two alternatives.
-          Press <kbd className="rounded-sm border border-line bg-sunken px-1 font-mono text-xs">g</kbd> for the grid.
+          Press <kbd className="rounded-xs bg-sunken px-1 font-mono text-caption hairline">g</kbd> for the grid.
         </p>
-        <ul className="mt-12 divide-y divide-separator border-y border-separator">
+        <ul className="mt-12">
           {labs.map((lab) => (
-            <li key={lab.slug} className="flex items-baseline gap-major py-major">
-              <span className="w-24 shrink-0 font-mono text-xs uppercase tracking-wider text-fg-tertiary">{lab.status}</span>
+            <li key={lab.slug} className="flex items-start gap-major py-major hairline-t">
+              <span className="flex h-6 w-24 shrink-0 items-center font-mono text-caption uppercase tracking-wider text-fg-tertiary">{lab.status}</span>
               <div className="flex-1">
-                <h2 className="text-base font-medium leading-6 text-fg-strong">{lab.title}</h2>
-                <p className="mt-1 text-sm leading-6 text-fg-secondary">{lab.summary}</p>
+                <h2 className="font-heading text-heading text-fg-strong">{lab.title}</h2>
+                <p className="text-ui text-fg-secondary">{lab.summary}</p>
               </div>
-              <Link href={`/lab/${lab.slug}`} className="text-sm text-accent-text underline decoration-accent-border underline-offset-2">/lab/{lab.slug}</Link>
+              <Link href={`/lab/${lab.slug}`} className="flex h-6 items-center text-ui text-accent-text underline decoration-accent-border underline-offset-2">/lab/{lab.slug}</Link>
             </li>
           ))}
         </ul>
-      </main>
+      </div>
+    </DocsShell>
     </>
   )
 }

@@ -61,6 +61,7 @@
   --spacing-major: var(--space-major);
   --container-reading: var(--measure-reading);
   --container-content: var(--measure-content);
+  --container-site: 104rem;
 
   --radius-xs: var(--rounded-xs);
   --radius-sm: var(--rounded-sm);
@@ -187,8 +188,22 @@
 @utility hairline-t {
   box-shadow: inset 0 1px 0 var(--color-separator);
 }
+@utility hairline-l {
+  box-shadow: inset 2px 0 0 var(--color-line);
+}
+@utility hairline-r {
+  box-shadow: inset -1px 0 0 var(--color-separator);
+}
 @utility hairline {
   box-shadow: inset 0 0 0 1px var(--color-line);
+}
+/* Docs swatch: paints whatever color the --swatch custom property carries (set inline from generated token data). */
+@utility swatch {
+  background-color: var(--swatch);
+}
+/* Sidebar that fills the viewport under the 48px header. */
+@utility h-below-header {
+  height: calc(100dvh - 3rem);
 }
 /* Press feedback. Scale is movement, so it is dropped under reduced motion; color and shadow changes still carry the state. */
 @utility press {
@@ -218,6 +233,16 @@
   }
   ::selection {
     background: var(--accent-bg);
+  }
+  /* Inline runs never change the line box. A serif <em> or a padded <code> inside 15px sans has taller metrics
+     and would stretch one line to 25px, shifting everything below it off the grid. */
+  :where(p, li, dd, td, th, figcaption, blockquote) :where(em, i, strong, b, code, kbd, sup, sub) {
+    line-height: 1;
+  }
+  :where(sup, sub) {
+    vertical-align: baseline;
+    position: relative;
+    top: -0.4em;
   }
   /* Reduced motion is handled per component: keep opacity and color, drop movement. No blanket kill switch. */
 }
