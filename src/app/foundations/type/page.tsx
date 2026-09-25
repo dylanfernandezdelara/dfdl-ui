@@ -12,9 +12,9 @@ const px = (rem: string) => `${parseFloat(rem) * 16}px`
 
 const roles: [string, string, string][] = [
   ["display", "Page titles. Lora, 32/40, weight 400.", "font-display text-display"],
-  ["title", "Section titles. Lora, 15/24, weight 550.", "font-heading text-title"],
-  ["heading", "Card and row titles. Lora, 15/24, weight 550.", "font-heading text-heading"],
-  ["body", "Reading text. System sans, 15/24, weight 400.", "text-body"],
+  ["title", "Section titles. Lora, 16/24, weight 550.", "font-heading text-title"],
+  ["heading", "Card and row titles. Lora, 16/24, weight 550.", "font-heading text-heading"],
+  ["body", "Reading text. System sans, 16/24, weight 400.", "text-body"],
   ["ui", "Interface text: rows, labels, buttons. 13/20, weight 450.", "text-ui"],
   ["caption", "Metadata, timestamps. 12/16, weight 450. Mono for identifiers.", "text-caption"],
 ]
@@ -27,7 +27,7 @@ export default function TypePage() {
         <PageTitle
           eyebrow="Foundations"
           title="Type"
-          lede="Hierarchy comes from weight, family and color, not size. Body, headings and titles share 15px; Lora at weight 550 marks a heading, system sans at 400 is prose, 13px at 450 is interface. Every role carries its size, leading and weight together, so there is exactly one way to set text."
+          lede="Hierarchy comes from weight, family and color, not size. Body, headings and titles share 16px; Lora at weight 550 marks a heading, system sans at 400 is prose, 13px at 450 is interface. Every role carries its size, leading and weight together, so there is exactly one way to set text."
         />
 
         <Section title="Roles" lede="Six roles. Use the utility; never combine a size class with a leading class by hand.">
@@ -84,7 +84,7 @@ export default function TypePage() {
             <li>Line-heights are pixel multiples of 4 (24, 20, 16, 40). Never unitless.</li>
             <li>`tabular-nums` on anything that lines up in a column: dates, tallies, prices.</li>
             <li>`text-balance` on titles, `text-pretty` on paragraphs.</li>
-            <li>Do not invent a size between roles. If 15 is too small for a heading in a given place, the answer is display, not 18.</li>
+            <li>Do not invent a size between roles. If 16 is too small for a heading in a given place, the answer is display, not 20.</li>
             <li>Under `data-quiet`, headings fall back to system sans; sizes and weights do not change.</li>
           </ul>
         </Section>

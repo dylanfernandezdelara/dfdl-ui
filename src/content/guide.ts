@@ -9,7 +9,7 @@ export const GUIDE: GuideSection[] = [
     id: "identity",
     title: "Identity in one paragraph",
     body: [
-      "Warm and quiet. One neutral family carries surfaces and text: cream in light, charcoal in dark, never pure white or black. Hierarchy comes from weight and family, not size: body, headings and titles share 15px, Lora at 550 marks a heading. One accent per product marks the primary action and selection and nothing else. Corners are round and concentric. Motion is strong ease-out, short, and never something you would describe. Everything lands on an 8px grid, and the grid is measured.",
+      "Warm and quiet. One neutral family carries surfaces and text: cream in light, charcoal in dark, never pure white or black. Hierarchy comes from weight and family, not size: body, headings and titles share 16px, Lora at 550 marks a heading. One accent per product marks the primary action and selection and nothing else. Corners are round and concentric. Motion is strong ease-out, short, and never something you would describe. Everything lands on an 8px grid, and the grid is measured.",
       "If a screen looks like a competent generic dashboard, it is wrong. If a screen looks like a personal site that happens to be an app, it is right.",
     ],
   },
@@ -38,7 +38,7 @@ npx skills add dylanfernandezdelara/dfdl-ui              # the skill, for agents
     id: "type",
     title: "Type through roles",
     body: [
-      "Six roles carry size, leading and weight together: text-display (32/40/400 Lora), text-title and text-heading (15/24/550 Lora), text-body (15/24/400), text-ui (13/20/450), text-caption (12/16/450). Set text only through a role. text-sm with leading-6 by hand is a defect.",
+      "Six roles carry size, leading and weight together: text-display (32/40/400 Lora), text-title and text-heading (16/24/550 Lora), text-body (16/24/400), text-ui (13/20/450), text-caption (12/16/450). Set text only through a role. text-sm with leading-6 by hand is a defect.",
       "tabular-nums on anything that lines up. text-balance on titles, text-pretty on paragraphs. Do not invent sizes between roles.",
     ],
   },
@@ -88,7 +88,7 @@ npx skills add dylanfernandezdelara/dfdl-ui              # the skill, for agents
     id: "never",
     title: "Never",
     body: [
-      "Pure white or pure black surfaces. A second accent in one product. A heading larger than 15px that is not display. transition: all. ease-in on anything. Animating width, height, top or left. Borders that push content off the grid. Unitless line-heights. A value that is not a token. Copying Emil's or Jakub's skills into this one; hand off to them instead.",
+      "Pure white or pure black surfaces. A second accent in one product. A heading larger than 16px that is not display. transition: all. ease-in on anything. Animating width, height, top or left. Borders that push content off the grid. Unitless line-heights. A value that is not a token. Copying Emil's or Jakub's skills into this one; hand off to them instead.",
     ],
   },
 ]

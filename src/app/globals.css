@@ -234,7 +234,7 @@
   ::selection {
     background: var(--accent-bg);
   }
-  /* Inline runs never change the line box. A serif <em> or a padded <code> inside 15px sans has taller metrics
+  /* Inline runs never change the line box. A serif <em> or a padded <code> inside 16px sans has taller metrics
      and would stretch one line to 25px, shifting everything below it off the grid. */
   :where(p, li, dd, td, th, figcaption, blockquote) :where(em, i, strong, b, code, kbd, sup, sub) {
     line-height: 1;

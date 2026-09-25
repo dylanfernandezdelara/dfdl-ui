@@ -12,7 +12,7 @@ const axes: AxisDef<Axis>[] = [
 
 const meta: Record<Axis, Record<CandidateId, { name: string; note: string }>> = {
   scale: {
-    a: { name: "Weight-led", note: "Approved in Lab 2. Body, headings and titles share 15px; hierarchy from weight 550, family and color. UI 13px at 450. Display 32 serif." },
+    a: { name: "Weight-led", note: "Approved in Lab 2, body raised to 16 after the dylanfdl preview. Body, headings and titles share 16px; hierarchy from weight 550, family and color. UI 13px at 450. Display 32 serif." },
     b: { name: "Roles", note: "Jakub's role scale: Display 36, Title 24, Heading 18, Body 16, UI 14, Caption 13. Hierarchy comes from size; headings at 600 with negative tracking." },
     c: { name: "Previous", note: "dylanfdl.com before Lab 2: 16/24 body, 14/20 UI, Lora 24 display at weight 400, one heading size at 500." },
   },

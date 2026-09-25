@@ -7,7 +7,7 @@ import tokens from "@/generated/tokens.json"
 
 const principles: [string, string][] = [
   ["One warm family", "Surfaces and text share one hue. Cream in light, charcoal in dark. Nothing pure white or pure black."],
-  ["Hierarchy from weight", "Body, headings and titles share 15px. Weight 550, Lora and color separate them, not size."],
+  ["Hierarchy from weight", "Body, headings and titles share 16px. Weight 550, Lora and color separate them, not size."],
   ["One accent, chosen once", "Ember by default, indigo where a product already owns blue. It marks the primary action and selection and nothing else."],
   ["Motion you do not notice", "Strong ease-out, 100 to 500ms by how often it happens, exits at 75%. If you can describe the animation, it is too much."],
   ["Everything on the grid", "8px minor, 24px major, measured by a probe. One 2px slip in a header shifts every row under it."],

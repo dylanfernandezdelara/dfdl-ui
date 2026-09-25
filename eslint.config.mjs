@@ -20,7 +20,7 @@ const eslintConfig = defineConfig([
     rules: policy.rules,
   },
   ...policy.overrides,
-  globalIgnores([".next/**", "out/**", "build/**", "next-env.d.ts", "public/r/**", ".agents/**"]),
+  globalIgnores([".next/**", ".open-next/**", "out/**", "build/**", "next-env.d.ts", "public/r/**", ".agents/**"]),
 ])
 
 export default eslintConfig
