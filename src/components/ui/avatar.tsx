@@ -6,7 +6,7 @@ import type { ComponentProps } from "react"
 
 import { cn } from "@/lib/utils"
 
-const avatarVariants = cva("relative inline-flex shrink-0 overflow-hidden rounded-full bg-sunken align-middle select-none", {
+const avatarVariants = cva("relative inline-flex shrink-0 overflow-hidden rounded-full bg-surface-active align-middle select-none", {
   variants: { size: { sm: "size-6 text-caption", md: "size-8 text-ui", lg: "size-10 text-ui" } },
   defaultVariants: { size: "md" },
 })
