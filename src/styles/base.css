@@ -3,7 +3,7 @@
   An existing app adopting dfdl components can skip this file and keep its own base styles; the components
   do not depend on it.
 */
-@custom-variant dark (&:is(.dark *));
+@custom-variant dark (&:is(.dark *, [data-theme="dark"] *));
 
 @layer base {
   * {
@@ -17,7 +17,8 @@
   html {
     color-scheme: light;
   }
-  html.dark {
+  html.dark,
+  html[data-theme="dark"] {
     color-scheme: dark;
   }
   body {

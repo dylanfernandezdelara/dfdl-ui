@@ -50,7 +50,7 @@ Replace the global CSS with these imports. shadcn init's own theme block overrid
 @import "../styles/dfdl/base.css";
 ```
 
-In an existing app, import `tokens.css` and `theme.css` after Tailwind and before the app's own `@theme`, and skip `base.css` (page defaults: body color, focus ring, `dark:` on `.dark`). The components do not depend on it.
+In an existing app, import `tokens.css` and `theme.css` after Tailwind and before the app's own `@theme`, and skip `base.css` (page defaults: body color, focus ring, `dark:` on `.dark`). The components do not depend on it. Dark mode switches on either `.dark` or `data-theme="dark"` on the root; an app on some other convention adds its selector to the dark blocks.
 
 Add the probes the Verify steps use (they land in `scripts/probes/`):
 
