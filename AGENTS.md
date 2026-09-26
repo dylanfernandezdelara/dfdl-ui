@@ -26,6 +26,7 @@ Next 16 (App Router, Turbopack), React 19, Tailwind v4, Base UI via shadcn (`bas
 | --- | --- |
 | `src/styles/tokens.css` | The single source of truth for values. Primitives (by hue and step) and semantics (by role), light and dark. Never used directly in components; `styles/theme.css` exposes semantics as Tailwind utilities. |
 | `src/styles/theme.css` | Tailwind `@theme` surface for the tokens, shadcn compatibility aliases, motion utilities (`duration-fast`, `transition-interactive`, `press`, `motion-pop`/`-dialog`/`-tooltip`/`-fade` for Base UI popups, `tabs-indicator`). Shipped as the `theme` registry item. |
+| `src/styles/base.css` | Page defaults for apps built on dfdl from the start (body, focus ring, inline runs, `dark:` on `.dark`). Also in the `theme` item; existing apps adopting components skip it. |
 | `src/app/globals.css` | Imports tokens and theme, plus docs-only CSS: sans headings in the docs chrome (`[data-product-type]` restores Lora in previews and specimens) and the shiki color mapping. |
 | `src/components/ui/` | Registry components (`@dfdl/*`) on Base UI: badge, button, card, dialog, input, kbd, menu, segmented-control, switch, tabs, tooltip. |
 | `src/components/examples/` + `src/content/components.ts` | Each component page's demos (rendered live and shown as source, read at build) and its docs data. A new component needs a ui file, an example, an entry here, and a registry item. |

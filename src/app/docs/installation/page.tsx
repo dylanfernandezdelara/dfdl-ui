@@ -38,8 +38,13 @@ export default function InstallationPage() {
             code={`@import "tailwindcss";
 @import "tw-animate-css";
 @import "../styles/dfdl/tokens.css";
-@import "../styles/dfdl/theme.css";`}
+@import "../styles/dfdl/theme.css";
+@import "../styles/dfdl/base.css";`}
           />
+          <p className="mt-major text-body text-fg-secondary">
+            Adding dfdl to an existing app? Import tokens.css and theme.css after Tailwind and before your own theme, and skip
+            base.css: the components do not need it, and your page defaults stay yours.
+          </p>
           <p className="mt-major text-body text-fg-secondary">Titles use Lora. Load it with next/font as the --font-lora variable:</p>
           <CodeBlock
             className="mt-major"

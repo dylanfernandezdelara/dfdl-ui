@@ -51,11 +51,16 @@
           "target": "styles/dfdl/theme.css"
         },
         {
+          "path": "src/styles/base.css",
+          "type": "registry:file",
+          "target": "styles/dfdl/base.css"
+        },
+        {
           "path": "src/lib/utils.ts",
           "type": "registry:lib"
         }
       ],
-      "docs": "Replace the contents of your global CSS with: @import \"tailwindcss\"; @import \"tw-animate-css\"; @import \"../styles/dfdl/tokens.css\"; @import \"../styles/dfdl/theme.css\"; The theme maps shadcn's color names, and the block shadcn init wrote would override it. Load Lora with next/font as --font-lora. Set the accent on <html data-accent=\"ember\"> or \"indigo\"."
+      "docs": "New app: replace the contents of your global CSS with @import \"tailwindcss\"; @import \"tw-animate-css\"; @import \"../styles/dfdl/tokens.css\"; @import \"../styles/dfdl/theme.css\"; @import \"../styles/dfdl/base.css\"; (shadcn init's own theme block would override the theme). Existing app: import tokens.css and theme.css after tailwindcss and before your own @theme, and skip base.css to keep your page defaults. Load Lora with next/font as --font-lora. Set the accent on <html data-accent=\"ember\"> or \"indigo\"."
     },
     {
       "name": "probes",

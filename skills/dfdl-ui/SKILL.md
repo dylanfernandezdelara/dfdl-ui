@@ -47,7 +47,10 @@ Replace the global CSS with these imports. shadcn init's own theme block overrid
 @import "tw-animate-css";
 @import "../styles/dfdl/tokens.css";
 @import "../styles/dfdl/theme.css";
+@import "../styles/dfdl/base.css";
 ```
+
+In an existing app, import `tokens.css` and `theme.css` after Tailwind and before the app's own `@theme`, and skip `base.css` (page defaults: body color, focus ring, `dark:` on `.dark`). The components do not depend on it.
 
 Add the probes the Verify steps use (they land in `scripts/probes/`):
 
