@@ -61,6 +61,7 @@ Google `DESIGN.md`. Code Connect on Pro. Cloudflare deploy until asked. Copying 
 
 ## Log
 
+- 2026-09-26: trackcongress PR #198 (stacked on #197): one-tap share, a new link card (Dylan picked "minimal B1" from a review page: headline, outcome, yes/no counts over party-colored bars, 2/3 tick), and quote sharing removed along with the full-text ingest that only served it. D1 quote/text tables left pending Dylan's call.
 - 2026-09-26: trackcongress PR C3 open: shared-quote toast on Toast pill (createToastManager, so rows render without a provider), feed row details on Collapsible expand, Avatar and Separator on dfdl (Radix avatar and separator removed). Avatar fill moved to surface-active (sunken equals raised in dark). Follow-up: neutral Badge has the same sunken-on-raised problem.
 - 2026-09-26: trackcongress PR C2 (#196) merged and live: toolbar on SegmentedControl and Input (underline), filters panel on Collapsible expand, dark sheets fixed. qa:sheets 12/12 against trackcongress.org in Chromium and WebKit. Next: C3 (Toast, Collapsible feed rows, Avatar, Separator).
 - 2026-09-26: Collapsible gains `expand` (height plus fade, `motion-expand`) for panels that push the page down; the trackcongress desktop filters use it (PR #196).
