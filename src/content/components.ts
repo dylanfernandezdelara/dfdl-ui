@@ -252,7 +252,7 @@ import { InputGroup } from "@/components/ui/input-group"
     slug: "segmented-control",
     name: "Segmented control",
     description: "One choice from a few options, all visible.",
-    base: baseUi("toggle-group", "Toggle Group"),
+    base: baseUi("radio-group", "Radio Group"),
     demo: "segmented-control-demo",
     usage: `import { SegmentedControl, SegmentedControlItem } from "@/components/ui/segmented-control"
 
@@ -269,6 +269,7 @@ import { InputGroup } from "@/components/ui/input-group"
       { name: "value", type: "string", description: "The selected item." },
       { name: "onValueChange", type: "(value: string) => void", description: "Called with the new value." },
       { name: "defaultValue", type: "string", description: "Initial selection when uncontrolled." },
+      { name: "SegmentedControlItem value", type: "string", description: "The value this choice selects. Arrow keys move between items." },
     ],
   },
   {
