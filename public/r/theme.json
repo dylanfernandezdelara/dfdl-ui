@@ -5,7 +5,8 @@
   "author": "Dylan Fernandez de Lara",
   "description": "Tokens, the Tailwind v4 mapping and motion utilities, and cn configured with the dfdl vocabulary. Install this before any component.",
   "dependencies": [
-    "cn",
+    "tailwind-merge",
+    "clsx",
     "tw-animate-css"
   ],
   "files": [
@@ -29,7 +30,7 @@
     },
     {
       "path": "src/lib/utils.ts",
-      "content": "import { createCn } from \"cn/config\"\n\n/**\n * `cn` with the dfdl vocabulary registered, so class merging knows which custom utilities belong to\n * which group. Without this, `cn(\"text-ui\", \"text-fg\")` drops `text-ui` because a merger that has\n * never heard of a `ui` font size assumes any `text-*` it does not recognize is a color.\n *\n * Keep this list in step with `@theme` and `@utility` declarations in `src/app/globals.css`.\n */\nexport const cn = createCn({\n  extend: {\n    classGroups: {\n      \"font-size\": [{ text: [\"headline\", \"display\", \"title\", \"heading\", \"body\", \"reading\", \"ui\", \"caption\"] }],\n      \"font-family\": [{ font: [\"display\", \"heading\"] }],\n      shadow: [\"elevation-raised\", \"elevation-floating\", \"hairline\", \"hairline-t\", \"hairline-b\", \"hairline-r\", \"hairline-l\"],\n      h: [\"h-below-header\"],\n      w: [\"w-anchor\"],\n      \"transition-property\": [\"transition-interactive\", \"transition-icon\", \"motion-pop\", \"motion-tooltip\", \"motion-dialog\", \"motion-fade\", \"motion-reveal\", \"sheet-popup\", \"sheet-backdrop\", \"toast-root\", \"toast-content\"],\n      duration: [\"duration-instant\", \"duration-fast\", \"duration-normal\", \"duration-slow\", \"duration-slower\"],\n      ease: [{ ease: [\"spring\", \"drawer\"] }],\n      blur: [{ blur: [\"icon\"] }],\n    },\n  },\n})\n",
+      "content": "import { clsx, type ClassValue } from \"clsx\"\nimport { extendTailwindMerge } from \"tailwind-merge\"\n\n/**\n * `cn` with the dfdl vocabulary registered, so class merging knows which custom utilities belong to\n * which group. Without this, `cn(\"text-ui\", \"text-fg\")` drops `text-ui` because a merger that has\n * never heard of a `ui` font size assumes any `text-*` it does not recognize is a color.\n *\n * Keep this list in step with `@theme` and `@utility` declarations in `src/styles/theme.css`.\n */\nconst twMerge = extendTailwindMerge({\n  extend: {\n    classGroups: {\n      \"font-size\": [{ text: [\"headline\", \"display\", \"title\", \"heading\", \"body\", \"reading\", \"ui\", \"caption\"] }],\n      \"font-family\": [{ font: [\"display\", \"heading\"] }],\n      shadow: [\"elevation-raised\", \"elevation-floating\", \"hairline\", \"hairline-t\", \"hairline-b\", \"hairline-r\", \"hairline-l\"],\n      h: [\"h-below-header\"],\n      w: [\"w-anchor\"],\n      transition: [\n        \"transition-interactive\",\n        \"transition-icon\",\n        \"motion-pop\",\n        \"motion-tooltip\",\n        \"motion-dialog\",\n        \"motion-fade\",\n        \"motion-reveal\",\n        \"sheet-popup\",\n        \"sheet-backdrop\",\n        \"toast-root\",\n        \"toast-content\",\n      ],\n      duration: [\"duration-instant\", \"duration-fast\", \"duration-normal\", \"duration-slow\", \"duration-slower\"],\n      ease: [{ ease: [\"spring\", \"drawer\"] }],\n      blur: [{ blur: [\"icon\"] }],\n    },\n  },\n})\n\nexport function cn(...inputs: ClassValue[]) {\n  return twMerge(clsx(inputs))\n}\n",
       "type": "registry:lib"
     }
   ],

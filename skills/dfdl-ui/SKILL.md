@@ -95,7 +95,9 @@ Use utilities, never raw values. The linter rejects palette colors, arbitrary va
 3. Baseline: run `scripts/probes/baseline.js` on any page with inline boxes in running text, in Chromium and in WebKit (Playwright's `webkit`; engines disagree on inline baselines). Zero offenders; half a pixel counts. Dylan uses Safari: a Chromium-only check is not a check.
 4. Motion: trigger the interaction, then read `document.getAnimations()` (`scripts/probes/animations.js`). Check property, duration and curve against the spec. Reading the CSS is not proof.
 5. Look at it in light and dark, and at 390px wide with no horizontal scroll.
-6. Restyling an existing product: measure its rendered text first (`getComputedStyle` on the paragraphs, never on `<body>`) and compare after. A size that changes by more than a pixel needs Dylan's sign-off.
+6. Tests: do not treat a green suite as proof. Run it shuffled; break the behavior you changed and confirm a test fails; make sure every "not shown" assertion runs after the thing could have appeared; hold async states (pending fetch, held exit animation) rather than racing resolved mocks. Sheets, dialogs and anything animated also get a real-browser check in Chromium and WebKit.
+7. Sheets opened from code: the dfdl Sheet animates in even when mounted open; pass `finalFocus` on SheetContent so focus returns to the opener, and restore it yourself before unmounting the sheet in onClose.
+8. Restyling an existing product: measure its rendered text first (`getComputedStyle` on the paragraphs, never on `<body>`) and compare after. A size that changes by more than a pixel needs Dylan's sign-off.
 
 ## Adopt a component
 

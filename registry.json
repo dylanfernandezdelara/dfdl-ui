@@ -36,7 +36,8 @@
         "foundations"
       ],
       "dependencies": [
-        "cn",
+        "tailwind-merge",
+        "clsx",
         "tw-animate-css"
       ],
       "files": [

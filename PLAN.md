@@ -61,6 +61,8 @@ Google `DESIGN.md`. Code Connect on Pro. Cloudflare deploy until asked. Copying 
 
 ## Log
 
+- 2026-09-26: trackcongress PR C1 (#195): all sheets on the dfdl Sheet. At Dylan's prompt the web tests were reviewed rather than trusted: shuffled runs, mutation checks (one gap found and covered), vacuous assertions fixed, and a real-browser `qa:sheets` (Chromium + WebKit) added, which caught two regressions jsdom missed. Upstream in dfdl: Sheet animates in when mounted open; `cn` moved off the young `cn` package to tailwind-merge; theme split into theme.css + base.css; Sheet centered from 640px.
+
 - 2026-09-26: trackcongress: Tailwind v4 PR (#192) merged and live. At Dylan's request the bill chat was removed (#193, built by two subagents in separate worktrees, integrated and verified here: fresh installs, npm test, qa:web 8/8, share-quote end to end) and its Cloudflare leftovers deleted: `chat_usage` dropped in production and preview D1, `CHAT_HMAC_SECRET` deleted from both workers; the rate-limit binding went with the deploy. Bill-text ingestion kept: share-quote still verifies against it. dylanfdl #110 merged (articles back to the site's own type). Next: trackcongress PR B, dfdl tokens and quiet mode.
 
 - 2026-09-25: trackcongress adoption, PR A of 3 (congress-tracker#192): Tailwind v3 → v4 with no visual change, proven by pixel diff of full pages and interactive states at the qa:web viewports. The upgrade tool's @utility conversion dropped runtime-built class names; kept component CSS as plain @layer components instead. Found a production bug the upgrade fixes (party bars transparent: v3 purged runtime-built class names). npm test and qa:web pass; preview uploaded. Next: PR B (dfdl tokens + quiet mode), PR C (components).
