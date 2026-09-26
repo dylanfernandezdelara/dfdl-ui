@@ -61,6 +61,7 @@ Google `DESIGN.md`. Code Connect on Pro. Cloudflare deploy until asked. Copying 
 
 ## Log
 
+- 2026-09-26: Collapsible gains `expand` (height plus fade, `motion-expand`) for panels that push the page down; the trackcongress desktop filters use it (PR #196).
 - 2026-09-26: Dark tokens now apply on `.dark` or `[data-theme="dark"]` (tokens.css generator, `dark:` variant in base.css, skill). trackcongress switches on data-theme, so the C1 Sheet shipped light on dark pages; caught in the C2 toolbar screenshots, now guarded by a dark check in its qa:sheets. trackcongress PR C2 (toolbar: chamber and sponsor filters on SegmentedControl underline, search on Input underline) is open for review.
 
 - 2026-09-26: trackcongress PR C1 (#195): all sheets on the dfdl Sheet. At Dylan's prompt the web tests were reviewed rather than trusted: shuffled runs, mutation checks (one gap found and covered), vacuous assertions fixed, and a real-browser `qa:sheets` (Chromium + WebKit) added, which caught two regressions jsdom missed. Upstream in dfdl: Sheet animates in when mounted open; `cn` moved off the young `cn` package to tailwind-merge; theme split into theme.css + base.css; Sheet centered from 640px.

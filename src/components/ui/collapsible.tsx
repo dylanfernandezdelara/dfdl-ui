@@ -2,7 +2,7 @@
 
 import { Collapsible as BaseCollapsible } from "@base-ui/react/collapsible"
 import { ChevronRight } from "lucide-react"
-import type { ComponentProps } from "react"
+import { useCallback, useState, type ComponentProps } from "react"
 
 import { cn } from "@/lib/utils"
 
@@ -25,9 +25,43 @@ function CollapsibleTrigger({ className, children, ...props }: ComponentProps<ty
   )
 }
 
-/** Opens at once (height never animates); its content fades in. */
-function CollapsibleContent({ className, ...props }: ComponentProps<typeof BaseCollapsible.Panel>) {
-  return <BaseCollapsible.Panel data-slot="collapsible-content" className={cn("motion-reveal", className)} {...props} />
+/**
+ * By default the panel opens at once and its content fades in: right for rows in a list, where the list itself
+ * should not slide. `expand` animates the height as well, for a panel that pushes the page down (a filter panel
+ * under a toolbar). It clips only while the height moves, so a popup inside the open panel is not cut off.
+ */
+function CollapsibleContent({ className, expand = false, ...props }: ComponentProps<typeof BaseCollapsible.Panel> & { expand?: boolean }) {
+  const [moving, setMoving] = useState(false)
+  // The panel unmounts when closed, so listen from a ref callback: it attaches each time the panel mounts.
+  const watchHeight = useCallback(
+    (el: HTMLDivElement | null) => {
+      if (!expand || !el) return
+      const onHeight = (next: boolean) => (e: TransitionEvent) => {
+        if (e.target === el && e.propertyName === "height") setMoving(next)
+      }
+      const start = onHeight(true)
+      const stop = onHeight(false)
+      el.addEventListener("transitionrun", start)
+      el.addEventListener("transitionend", stop)
+      el.addEventListener("transitioncancel", stop)
+      return () => {
+        el.removeEventListener("transitionrun", start)
+        el.removeEventListener("transitionend", stop)
+        el.removeEventListener("transitioncancel", stop)
+        setMoving(false)
+      }
+    },
+    [expand],
+  )
+  return (
+    <BaseCollapsible.Panel
+      ref={watchHeight}
+      data-slot="collapsible-content"
+      data-moving={moving || undefined}
+      className={cn(expand ? "motion-expand" : "motion-reveal", className)}
+      {...props}
+    />
+  )
 }
 
 export { Collapsible, CollapsibleContent, CollapsibleTrigger }

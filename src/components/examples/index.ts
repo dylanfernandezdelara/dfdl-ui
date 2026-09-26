@@ -5,6 +5,7 @@ import SegmentedControlUnderline from "./segmented-control-underline"
 import InputUnderline from "./input-underline"
 import AvatarDemo from "./avatar-demo"
 import CollapsibleDemo from "./collapsible-demo"
+import CollapsibleExpand from "./collapsible-expand"
 import ComboboxDemo from "./combobox-demo"
 import InputGroupDemo from "./input-group-demo"
 import PopoverDemo from "./popover-demo"
@@ -39,6 +40,7 @@ export const EXAMPLES: Record<string, ComponentType> = {
   "input-underline": InputUnderline,
   "avatar-demo": AvatarDemo,
   "collapsible-demo": CollapsibleDemo,
+  "collapsible-expand": CollapsibleExpand,
   "combobox-demo": ComboboxDemo,
   "input-group-demo": InputGroupDemo,
   "popover-demo": PopoverDemo,

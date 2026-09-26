@@ -105,9 +105,12 @@ export const COMPONENTS: ComponentDoc[] = [
   <CollapsibleTrigger>Summary</CollapsibleTrigger>
   <CollapsibleContent>…</CollapsibleContent>
 </Collapsible>`,
-    examples: [],
-    motion: "Opens at once, since height never animates; the content fades in over 150ms and out over 112ms. The chevron turns 90 degrees.",
+    examples: [
+      { name: "collapsible-expand", title: "Expand", description: "For a panel that pushes the page down, like filters under a toolbar. The height animates with the fade." },
+    ],
+    motion: "By default it opens at once and the content fades in over 150ms and out over 112ms; rows in a list should not slide. With expand, the height animates too, over 200ms in and 150ms out, clipping only while it moves. Reduced motion keeps the fade. The chevron turns 90 degrees.",
     props: [
+      { name: "expand", type: "boolean", default: "false", description: "On CollapsibleContent: animate the height as well as the fade." },
       { name: "open", type: "boolean", description: "Controlled state." },
       { name: "onOpenChange", type: "(open: boolean) => void", description: "Called when it opens or closes." },
       { name: "defaultOpen", type: "boolean", default: "false", description: "Initial state when uncontrolled." },
