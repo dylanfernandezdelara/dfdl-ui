@@ -13,6 +13,7 @@ import SeparatorDemo from "./separator-demo"
 import SheetDemo from "./sheet-demo"
 import SheetNested from "./sheet-nested"
 import ToastDemo from "./toast-demo"
+import ToastPill from "./toast-pill"
 import ButtonDisabled from "./button-disabled"
 import InputStates from "./input-states"
 import SwitchDisabled from "./switch-disabled"
@@ -48,6 +49,7 @@ export const EXAMPLES: Record<string, ComponentType> = {
   "sheet-demo": SheetDemo,
   "sheet-nested": SheetNested,
   "toast-demo": ToastDemo,
+  "toast-pill": ToastPill,
   "button-disabled": ButtonDisabled,
   "input-states": InputStates,
   "switch-disabled": SwitchDisabled,

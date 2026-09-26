@@ -4,21 +4,42 @@ import { Toast as BaseToast } from "@base-ui/react/toast"
 import { X } from "lucide-react"
 import type { ReactNode } from "react"
 
+type ToasterVariant = "card" | "pill"
+
 /**
  * Toasts. Put <Toaster> once near the root; call useToast().add({ title, description }) anywhere under it.
- * Bottom right on wide screens, bottom center on narrow ones. Swipe right or down to dismiss; F6 reaches them by keyboard.
+ * card (default): title, description and a close button; bottom right on wide screens, bottom center on narrow
+ * ones; swipe right or down. pill: one short line (the title), bottom center, swipe down; for a status that needs
+ * no action, like "Link copied". F6 reaches either by keyboard.
  */
-function Toaster({ children, limit = 3, timeout = 5000 }: { children: ReactNode; limit?: number; timeout?: number }) {
+function Toaster({ children, limit = 3, timeout = 5000, variant = "card" }: { children: ReactNode; limit?: number; timeout?: number; variant?: ToasterVariant }) {
   return (
     <BaseToast.Provider limit={limit} timeout={timeout}>
       {children}
       <BaseToast.Portal>
-        <BaseToast.Viewport className="fixed right-4 bottom-4 left-4 z-50 sm:right-major sm:bottom-major sm:left-auto sm:w-toast">
-          <ToastList />
+        <BaseToast.Viewport
+          className={
+            variant === "pill"
+              ? "fixed right-4 bottom-major left-4 z-50"
+              : "fixed right-4 bottom-4 left-4 z-50 sm:right-major sm:bottom-major sm:left-auto sm:w-toast"
+          }
+        >
+          {variant === "pill" ? <PillList /> : <ToastList />}
         </BaseToast.Viewport>
       </BaseToast.Portal>
     </BaseToast.Provider>
   )
+}
+
+function PillList() {
+  const { toasts } = BaseToast.useToastManager()
+  return toasts.map((toast) => (
+    <BaseToast.Root key={toast.id} toast={toast} swipeDirection="down" data-slot="toast" data-variant="pill" className="toast-root rounded-full bg-raised elevation-floating outline-none">
+      <BaseToast.Content className="toast-content flex h-control items-center px-3">
+        <BaseToast.Title className="text-caption font-medium text-fg-strong" />
+      </BaseToast.Content>
+    </BaseToast.Root>
+  ))
 }
 
 function ToastList() {

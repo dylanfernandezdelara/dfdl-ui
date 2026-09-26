@@ -363,9 +363,12 @@ import { InputGroup } from "@/components/ui/input-group"
 // Anywhere below it:
 const toast = useToast()
 toast.add({ title: "Saved", description: "…" })`,
-    examples: [],
+    examples: [
+      { name: "toast-pill", title: "Pill", description: "One short line, bottom center, no close button. For a status that needs no action." },
+    ],
     motion: "Enters 16px from below in 200ms; leaves by fading in 150ms, or along a swipe. Stacked toasts spread out on hover.",
     props: [
+      { name: "Toaster variant", type: '"card" | "pill"', default: '"card"', description: "pill shows the title alone, centered." },
       { name: "Toaster limit", type: "number", default: "3", description: "How many show at once." },
       { name: "Toaster timeout", type: "number", default: "5000", description: "Milliseconds before a toast dismisses itself." },
       { name: "toast.add", type: "({ title, description, timeout }) => id", description: "Shows a toast." },
