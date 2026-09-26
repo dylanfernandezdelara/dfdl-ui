@@ -397,7 +397,7 @@
       "name": "sheet",
       "type": "registry:ui",
       "title": "Sheet",
-      "description": "A panel that slides up from the bottom: profiles, details, share.",
+      "description": "A panel for profiles, details and share: docked to the bottom on phones, centered on wider screens.",
       "author": "Dylan Fernandez de Lara",
       "categories": [
         "components"

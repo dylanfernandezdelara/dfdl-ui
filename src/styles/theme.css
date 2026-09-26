@@ -300,6 +300,7 @@
 /* Sheet (Base UI Drawer, bottom). Translates by its own height on the drawer curve; follows the finger while swiped;
    exits at 75%, or faster after a strong swipe. A sheet with a nested sheet open steps back: lifted and scaled. */
 @utility sheet-popup {
+  max-height: min(88dvh, 40rem);
   transform: translateY(var(--drawer-swipe-movement-y, 0px));
   transition-property: transform;
   transition-duration: var(--motion-slower);
@@ -314,6 +315,14 @@
   }
   &[data-ending-style] {
     transition-duration: calc(var(--motion-slower) * var(--motion-exit-factor) * var(--drawer-swipe-strength, 1));
+  }
+  /* From 640px the sheet floats centered; it still enters from below, so it travels half the viewport plus half itself. */
+  @media (min-width: 40rem) {
+    max-height: min(85dvh, 36rem);
+    &[data-starting-style],
+    &[data-ending-style] {
+      transform: translateY(calc(50vh + 50%));
+    }
   }
   &[data-nested-drawer-open] {
     transform: translateY(calc(var(--drawer-swipe-movement-y, 0px) - 1rem)) scale(0.96);

@@ -278,7 +278,7 @@ import { InputGroup } from "@/components/ui/input-group"
   {
     slug: "sheet",
     name: "Sheet",
-    description: "A panel that slides up from the bottom: profiles, details, share.",
+    description: "A panel for profiles, details and share: docked to the bottom on phones, centered on wider screens.",
     base: baseUi("drawer", "Drawer"),
     demo: "sheet-demo",
     usage: `import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
@@ -290,7 +290,7 @@ import { InputGroup } from "@/components/ui/input-group"
   </SheetContent>
 </Sheet>`,
     examples: [{ name: "sheet-nested", title: "Nested", description: "A sheet opened from a sheet; the one behind steps back." }],
-    motion: "Slides up by its own height in 500ms on the drawer curve and follows a swipe; closes in 375ms, faster after a strong swipe. Reduced motion: fade only.",
+    motion: "Slides up in 500ms on the drawer curve (by its own height on phones, from below the screen when centered) and follows a swipe; closes in 375ms, faster after a strong swipe. Reduced motion: fade only.",
     props: [
       { name: "open / onOpenChange", type: "boolean / (open) => void", description: "Controlled state." },
       { name: "modal", type: `boolean | "trap-focus"`, default: "true", description: "Traps focus and locks page scroll." },

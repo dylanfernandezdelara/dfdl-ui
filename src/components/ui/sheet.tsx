@@ -10,23 +10,23 @@ const SheetTrigger = Drawer.Trigger
 const SheetClose = Drawer.Close
 
 /**
- * Bottom sheet: slides up on the drawer curve, swipe down to dismiss, stacks when nested, traps focus and locks
- * scroll. Centered and capped at 32rem on wide screens.
+ * Sheet: docked to the bottom on phones, a centered floating panel from 640px. Slides up on the drawer curve, swipe
+ * down to dismiss, stacks when nested, traps focus and locks scroll. Capped at 32rem wide.
  */
 function SheetContent({ className, children, ...props }: ComponentProps<typeof Drawer.Popup>) {
   return (
     <Drawer.Portal>
       <Drawer.Backdrop className="sheet-backdrop fixed inset-0 z-50 bg-overlay" />
-      <Drawer.Viewport className="fixed inset-0 z-50 flex items-end justify-center">
+      <Drawer.Viewport className="fixed inset-0 z-50 flex items-end justify-center sm:items-center sm:p-major">
         <Drawer.Popup
           data-slot="sheet"
           className={cn(
-            "sheet-popup flex max-h-dvh w-full max-w-lg flex-col overflow-y-auto overscroll-contain rounded-t-xl bg-raised px-major pt-minor pb-major elevation-floating outline-none",
+            "sheet-popup flex w-full max-w-lg flex-col overflow-y-auto overscroll-contain rounded-t-xl bg-raised px-major pt-minor pb-major elevation-floating outline-none sm:rounded-xl",
             className,
           )}
           {...props}
         >
-          <div aria-hidden className="mx-auto mb-minor h-1 w-10 shrink-0 rounded-full bg-line-strong" />
+          <div aria-hidden className="mx-auto mb-minor h-1 w-10 shrink-0 rounded-full bg-line-strong sm:hidden" />
           <Drawer.Content className="flex flex-col gap-major">{children}</Drawer.Content>
         </Drawer.Popup>
       </Drawer.Viewport>
