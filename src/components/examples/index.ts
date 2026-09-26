@@ -1,6 +1,8 @@
 import type { ComponentType } from "react"
 
 import BadgeDemo from "./badge-demo"
+import SegmentedControlUnderline from "./segmented-control-underline"
+import InputUnderline from "./input-underline"
 import AvatarDemo from "./avatar-demo"
 import CollapsibleDemo from "./collapsible-demo"
 import ComboboxDemo from "./combobox-demo"
@@ -33,6 +35,8 @@ import TooltipDemo from "./tooltip-demo"
 
 /** Example name (file name) to component. The source shown beside each is read from the same file at build. */
 export const EXAMPLES: Record<string, ComponentType> = {
+  "segmented-control-underline": SegmentedControlUnderline,
+  "input-underline": InputUnderline,
   "avatar-demo": AvatarDemo,
   "collapsible-demo": CollapsibleDemo,
   "combobox-demo": ComboboxDemo,

@@ -13,7 +13,7 @@ const twMerge = extendTailwindMerge({
     classGroups: {
       "font-size": [{ text: ["headline", "display", "title", "heading", "body", "reading", "ui", "caption"] }],
       "font-family": [{ font: ["display", "heading"] }],
-      shadow: ["elevation-raised", "elevation-floating", "hairline", "hairline-t", "hairline-b", "hairline-r", "hairline-l"],
+      shadow: ["elevation-raised", "elevation-floating", "hairline", "hairline-t", "hairline-b", "hairline-r", "hairline-l", "hairline-b-strong"],
       h: ["h-below-header"],
       w: ["w-anchor"],
       transition: [

@@ -170,8 +170,12 @@ export const COMPONENTS: ComponentDoc[] = [
     examples: [
       { name: "input-with-button", title: "With button" },
       { name: "input-states", title: "Disabled and invalid", description: "aria-invalid draws the danger ring." },
+      { name: "input-underline", title: "Underline", description: "A bare line that darkens on focus, for dense toolbars." },
     ],
-    props: [{ name: "…props", type: `ComponentProps<"input">`, description: "Any input attribute. aria-invalid shows the error ring." }],
+    props: [
+      { name: "variant", type: `"box" | "underline"`, default: `"box"`, description: "Bordered field, or a line under the text." },
+      { name: "…props", type: `ComponentProps<"input">`, description: "Any input attribute. aria-invalid shows the error ring." },
+    ],
   },
   {
     slug: "input-group",
@@ -256,8 +260,12 @@ import { InputGroup } from "@/components/ui/input-group"
   <SegmentedControlItem value="all">All</SegmentedControlItem>
   <SegmentedControlItem value="house">House</SegmentedControlItem>
 </SegmentedControl>`,
-    examples: [{ name: "segmented-control-icons", title: "Icons", description: "Icon-only items need an aria-label." }],
+    examples: [
+      { name: "segmented-control-icons", title: "Icons", description: "Icon-only items need an aria-label." },
+      { name: "segmented-control-underline", title: "Underline", description: "A bare row with a line under the choice, for dense toolbars." },
+    ],
     props: [
+      { name: "variant", type: `"pill" | "underline"`, default: `"pill"`, description: "Sunken track, or a line under the choice." },
       { name: "value", type: "string", description: "The selected item." },
       { name: "onValueChange", type: "(value: string) => void", description: "Called with the new value." },
       { name: "defaultValue", type: "string", description: "Initial selection when uncontrolled." },
