@@ -11,10 +11,24 @@ type ToasterVariant = "card" | "pill"
  * card (default): title, description and a close button; bottom right on wide screens, bottom center on narrow
  * ones; swipe right or down. pill: one short line (the title), bottom center, swipe down; for a status that needs
  * no action, like "Link copied". F6 reaches either by keyboard.
+ * To add toasts from outside React, or from components rendered without the Toaster (isolated tests), pass a
+ * manager from createToastManager() and call its add() directly.
  */
-function Toaster({ children, limit = 3, timeout = 5000, variant = "card" }: { children: ReactNode; limit?: number; timeout?: number; variant?: ToasterVariant }) {
+function Toaster({
+  children,
+  limit = 3,
+  timeout = 5000,
+  variant = "card",
+  toastManager,
+}: {
+  children?: ReactNode
+  limit?: number
+  timeout?: number
+  variant?: ToasterVariant
+  toastManager?: ReturnType<typeof BaseToast.createToastManager>
+}) {
   return (
-    <BaseToast.Provider limit={limit} timeout={timeout}>
+    <BaseToast.Provider limit={limit} timeout={timeout} toastManager={toastManager}>
       {children}
       <BaseToast.Portal>
         <BaseToast.Viewport
@@ -60,5 +74,6 @@ function ToastList() {
 }
 
 const useToast = BaseToast.useToastManager
+const createToastManager = BaseToast.createToastManager
 
-export { Toaster, useToast }
+export { Toaster, createToastManager, useToast }
