@@ -18,16 +18,24 @@ If a screen looks like a competent generic dashboard, it is wrong.
 
 | Need | Component | Add |
 | --- | --- | --- |
-| Action | Button (`primary` `secondary` `ghost` `danger`; `sm` 28, `md` 32, `lg` 40, `icon`) | `button` |
+| Action | Button (`primary` `secondary` `ghost` `danger`; `sm` 28, `md` 32, `lg` 40, `icon`). A link that looks like a button is an `<a>` with `buttonVariants(...)` | `button` |
 | Status label | Badge | `badge` |
+| A person's photo or initials | Avatar (`sm` 24, `md` 32, `lg` 40) | `avatar` |
 | Grouped content | Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter | `card` |
+| Show and hide a section in place | Collapsible (`expand` on the content for a panel that pushes the page) | `collapsible` |
+| Pick one item from a filtered list | Combobox | `combobox` |
 | Decision that interrupts | Dialog | `dialog` |
-| Text field | Input | `input` |
+| Text field | Input (`box`, `underline` for dense toolbars) | `input` |
+| Text field with an icon or trailing hint | InputGroup | `input-group` |
 | Shortcut | Kbd | `kbd` |
 | List of actions | Menu | `menu` |
-| One of a few, all visible | SegmentedControl | `segmented-control` |
+| Floating content from a button: filters, details, small forms | Popover | `popover` |
+| One of a few, all visible | SegmentedControl (`pill`, `underline`) | `segmented-control` |
+| A 1px rule between rows | Separator | `separator` |
+| Panel for details, profiles, share | Sheet (bottom-docked on phones, centered from 640px) | `sheet` |
 | Setting on/off | Switch | `switch` |
 | Views in one place | Tabs | `tabs` |
+| Confirmation that something happened | Toast (`card`, `pill`) | `toast` |
 | Label for an icon-only control | Tooltip | `tooltip` |
 
    `npx shadcn@latest add https://dfdl-ui.fernandezdelaradylan.workers.dev/r/<name>.json`
