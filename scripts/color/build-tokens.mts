@@ -52,6 +52,8 @@ function semantics(appearance: Appearance) {
     `  --bg-surface-active: ${nk(4)};`,
     `  --bg-sunken: ${nk(3)};`,
     `  --bg-raised: ${raised};`,
+    // Hover and highlight inside raised surfaces (menus, popovers, palettes): in dark, surface-hover is the raised step itself.
+    `  --bg-raised-hover: ${light ? nk(3) : nk(4)};`,
     `  --bg-overlay: ${light ? "oklch(20% 0.01 80 / 0.12)" : "oklch(0% 0 0 / 0.5)"};`,
     "",
     `  --fg: ${toCss(x.n.fg)};`,

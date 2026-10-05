@@ -53,7 +53,7 @@ function ComboboxItem({ className, children, ...props }: ComponentProps<typeof B
   return (
     <BaseCombobox.Item
       data-slot="combobox-item"
-      className={cn("flex h-8 cursor-default items-center gap-2 rounded-xs px-2 text-ui text-fg outline-none select-none data-highlighted:bg-surface-hover", className)}
+      className={cn("flex h-8 cursor-default items-center gap-2 rounded-xs px-2 text-ui text-fg outline-none select-none data-highlighted:bg-raised-hover", className)}
       {...props}
     >
       <span className="min-w-0 flex-1 truncate">{children}</span>

@@ -7,7 +7,7 @@
   Tailwind surface for dfdl tokens.
 
   Components use only these utilities:
-    surfaces   bg-page bg-subtle bg-surface bg-surface-hover bg-surface-active bg-sunken bg-raised bg-overlay
+    surfaces   bg-page bg-subtle bg-surface bg-surface-hover bg-surface-active bg-sunken bg-raised bg-raised-hover bg-overlay
     text       text-fg text-fg-secondary text-fg-tertiary text-fg-strong text-fg-disabled text-fg-inverse text-fg-on-accent
     borders    border-line border-line-subtle border-line-strong divide-separator, outline-focus / ring-focus
     accent     bg-accent-bg border-accent-border bg-accent-solid hover:bg-accent-solid-hover text-accent-text
@@ -91,6 +91,7 @@
   --color-surface-active: var(--bg-surface-active);
   --color-sunken: var(--bg-sunken);
   --color-raised: var(--bg-raised);
+  --color-raised-hover: var(--bg-raised-hover);
   --color-overlay: var(--bg-overlay);
 
   --color-fg: var(--fg);

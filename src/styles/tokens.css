@@ -260,6 +260,7 @@
   --bg-surface-active: var(--neutral-light-4);
   --bg-sunken: var(--neutral-light-3);
   --bg-raised: oklch(100.00% 0.0042 80.00);
+  --bg-raised-hover: var(--neutral-light-3);
   --bg-overlay: oklch(20% 0.01 80 / 0.12);
 
   --fg: oklch(37.30% 0.0196 80.00);
@@ -309,6 +310,7 @@
   --bg-surface-active: var(--neutral-dark-4);
   --bg-sunken: var(--neutral-dark-3);
   --bg-raised: var(--neutral-dark-3);
+  --bg-raised-hover: var(--neutral-dark-4);
   --bg-overlay: oklch(0% 0 0 / 0.5);
 
   --fg: oklch(88.50% 0.0154 80.00);

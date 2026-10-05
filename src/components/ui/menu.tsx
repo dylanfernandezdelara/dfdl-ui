@@ -25,7 +25,7 @@ function MenuItem({ className, variant = "default", ...props }: ComponentProps<t
       data-slot="menu-item"
       className={cn(
         "flex h-8 cursor-default items-center gap-2 rounded-xs px-2 text-ui outline-none select-none [&_svg]:size-4 [&_svg]:text-fg-tertiary",
-        variant === "danger" ? "text-danger-text data-highlighted:bg-danger-bg [&_svg]:text-danger-text" : "text-fg data-highlighted:bg-surface-hover",
+        variant === "danger" ? "text-danger-text data-highlighted:bg-danger-bg [&_svg]:text-danger-text" : "text-fg data-highlighted:bg-raised-hover",
         "data-disabled:opacity-50",
         className,
       )}

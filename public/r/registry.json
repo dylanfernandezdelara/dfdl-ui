@@ -250,6 +250,29 @@
       ]
     },
     {
+      "name": "command",
+      "type": "registry:ui",
+      "title": "Command",
+      "description": "A palette that filters pages and actions as you type: search, jump to, run.",
+      "author": "Dylan Fernandez de Lara",
+      "categories": [
+        "components"
+      ],
+      "registryDependencies": [
+        "https://dfdl-ui.fernandezdelaradylan.workers.dev/r/theme.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/command.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react",
+        "lucide-react"
+      ]
+    },
+    {
       "name": "dialog",
       "type": "registry:ui",
       "title": "Dialog",

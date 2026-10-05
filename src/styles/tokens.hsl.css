@@ -10,6 +10,7 @@
   --hsl-bg-surface-active: 37 28.4% 90.1%;
   --hsl-bg-sunken: 37 37.8% 93.3%;
   --hsl-bg-raised: 300 50% 100%;
+  --hsl-bg-raised-hover: 37 37.8% 93.3%;
   --hsl-fg: 37 13.9% 24.1%;
   --hsl-fg-secondary: 37 8.5% 43.4%;
   --hsl-fg-tertiary: 37 7.7% 51.3%;
@@ -49,6 +50,7 @@
   --hsl-bg-surface-active: 37 13.6% 15.6%;
   --hsl-bg-sunken: 37 14.5% 12.7%;
   --hsl-bg-raised: 37 14.5% 12.7%;
+  --hsl-bg-raised-hover: 37 13.6% 15.6%;
   --hsl-fg: 37 20.2% 84%;
   --hsl-fg-secondary: 37 7.3% 58.7%;
   --hsl-fg-tertiary: 37 6.2% 47%;

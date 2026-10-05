@@ -140,6 +140,35 @@ export const COMPONENTS: ComponentDoc[] = [
     ],
   },
   {
+    slug: "command",
+    name: "Command",
+    description: "A palette that filters pages and actions as you type: search, jump to, run.",
+    base: baseUi("autocomplete", "Autocomplete"),
+    demo: "command-demo",
+    usage: `import { Command, CommandDialog, CommandInput, CommandItem, CommandList } from "@/components/ui/command"
+
+<CommandDialog open={open} onOpenChange={setOpen}>
+  <Command items={pages}>
+    <CommandInput placeholder="Search" />
+    <CommandList>
+      {(page) => <CommandItem key={page} value={page} onClick={() => go(page)}>{page}</CommandItem>}
+    </CommandList>
+  </Command>
+</CommandDialog>`,
+    examples: [
+      { name: "command-dialog", title: "Dialog", description: "Opened by a button or a shortcut, near the top of the screen. Focus returns to the opener on close." },
+    ],
+    motion: "None. It opens and closes at once and the highlight follows the keys without a transition: a palette is keyboard-triggered and used many times a day.",
+    props: [
+      { name: "items", type: "T[] | { items: T[] }[]", description: "Everything that can match, flat or in groups. Filtering is built in; the first match is highlighted." },
+      { name: "onValueChange", type: "(query: string) => void", description: "Called as the query changes." },
+      { name: "CommandItem onClick", type: "() => void", description: "Runs on click or Enter. Close the dialog here." },
+      { name: "CommandDialog open / onOpenChange", type: "boolean / (open) => void", description: "Controlled state; Escape and the backdrop close it." },
+      { name: "CommandDialog title", type: "string", default: `"Search"`, description: "Read by screen readers; not shown." },
+      { name: "CommandEmpty children", type: "ReactNode", default: `"No results."`, description: "Shown when nothing matches." },
+    ],
+  },
+  {
     slug: "dialog",
     name: "Dialog",
     description: "A modal window for a decision that interrupts the flow.",

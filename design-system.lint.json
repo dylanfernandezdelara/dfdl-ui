@@ -114,7 +114,7 @@
             ]
           },
           {
-            "pattern": "^(MenuItem|MenuLabel)$",
+            "pattern": "^(MenuItem|MenuLabel|CommandItem|CommandGroupLabel|CommandInput)$",
             "allow": [
               "layout",
               "m*-minor",

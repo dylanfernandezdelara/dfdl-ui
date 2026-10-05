@@ -29,7 +29,7 @@ Next 16 (App Router, Turbopack), React 19, Tailwind v4, Base UI via shadcn (`bas
 | `src/styles/base.css` | Page defaults for apps built on dfdl from the start (body, focus ring, inline runs, `dark:` on `.dark`). Also in the `theme` item; existing apps adopting components skip it. |
 | `src/app/globals.css` | Imports tokens and theme, plus docs-only CSS: sans headings in the docs chrome (`[data-product-type]` restores Lora in previews and specimens) and the shiki color mapping. |
 | `src/components/ui/` | Registry components (`@dfdl/*`) on Base UI: badge, button, card, dialog, input, kbd, menu, segmented-control, switch, tabs, tooltip. |
-| `src/components/examples/` + `src/content/components.ts` | Each component page's demos (rendered live and shown as source, read at build) and its docs data. A new component needs a ui file, an example, an entry here, and a registry item. |
+| `src/components/examples/` + `src/content/components.ts` | Each component page's demos (rendered live and shown as source, read at build) and its docs data. A new component needs a ui file, an example registered in `src/components/examples/index.ts` (a missing one is a 500, not a type error), an entry here, and a registry item. |
 | `src/components/layout-grid/` | 8/24 baseline grid overlay. Toggle with `g`, the corner button, or `?grid=1`. |
 | `src/app/` | The docs site: `/` overview, `/foundations/*`, `/guide`, `/llms.txt` (route), `/lab/*`. Shell in `src/components/docs/`; nav in `nav.ts` feeds the sidebar, overview and llms.txt. |
 | `src/content/guide.ts` | The guide as data; rendered at `/guide` and serialized into `/llms.txt`. The skill is drafted from it. |

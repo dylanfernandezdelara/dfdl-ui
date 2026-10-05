@@ -42,6 +42,7 @@ function semantics(appearance: Appearance, def: AccentDef): [string, string][] {
     ["bg-surface-active", r[4]],
     ["bg-sunken", r[3]],
     ["bg-raised", raised],
+    ["bg-raised-hover", light ? r[3] : r[4]],
     ["fg", n.fg],
     ["fg-secondary", n.fgSecondary],
     ["fg-tertiary", n.fgTertiary],

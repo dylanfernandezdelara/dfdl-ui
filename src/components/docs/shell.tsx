@@ -1,6 +1,7 @@
 import Link from "next/link"
 import type { ReactNode } from "react"
 
+import { DocsSearch } from "@/components/docs/search"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { GITHUB_URL } from "@/lib/site"
 import { cn } from "@/lib/utils"
@@ -31,6 +32,7 @@ export function DocsShell({ children, toc }: { children: ReactNode; toc?: TocIte
             <HeaderLink href="/foundations/color">Foundations</HeaderLink>
           </nav>
           <div className="ml-auto flex items-center gap-1">
+            <DocsSearch />
             <a
               href={GITHUB_URL}
               target="_blank"

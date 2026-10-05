@@ -7,6 +7,8 @@ import AvatarDemo from "./avatar-demo"
 import CollapsibleDemo from "./collapsible-demo"
 import CollapsibleExpand from "./collapsible-expand"
 import ComboboxDemo from "./combobox-demo"
+import CommandDemo from "./command-demo"
+import CommandDialogExample from "./command-dialog"
 import InputGroupDemo from "./input-group-demo"
 import PopoverDemo from "./popover-demo"
 import SeparatorDemo from "./separator-demo"
@@ -43,6 +45,8 @@ export const EXAMPLES: Record<string, ComponentType> = {
   "collapsible-demo": CollapsibleDemo,
   "collapsible-expand": CollapsibleExpand,
   "combobox-demo": ComboboxDemo,
+  "command-demo": CommandDemo,
+  "command-dialog": CommandDialogExample,
   "input-group-demo": InputGroupDemo,
   "popover-demo": PopoverDemo,
   "separator-demo": SeparatorDemo,

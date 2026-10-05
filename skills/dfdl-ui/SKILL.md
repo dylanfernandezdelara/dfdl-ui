@@ -24,6 +24,7 @@ If a screen looks like a competent generic dashboard, it is wrong.
 | Grouped content | Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter | `card` |
 | Show and hide a section in place | Collapsible (`expand` on the content for a panel that pushes the page) | `collapsible` |
 | Pick one item from a filtered list | Combobox | `combobox` |
+| Search, jump to, run (⌘K) | Command, CommandDialog | `command` |
 | Decision that interrupts | Dialog | `dialog` |
 | Text field | Input (`box`, `underline` for dense toolbars) | `input` |
 | Text field with an icon or trailing hint | InputGroup | `input-group` |
@@ -79,7 +80,7 @@ Load Lora with next/font as `--font-lora`. Set `<html data-accent="ember">` (def
 
 Use utilities, never raw values. The linter rejects palette colors, arbitrary values, inline styles and restyled components.
 
-- **Surfaces:** `bg-page` `bg-subtle` `bg-surface` `bg-surface-hover` `bg-surface-active` `bg-sunken` `bg-raised` `bg-overlay`. A fill that has to show inside a sheet, dialog or popover takes `bg-surface-active`, or `bg-sunken` plus a `hairline`: in dark, sunken and raised are the same step.
+- **Surfaces:** `bg-page` `bg-subtle` `bg-surface` `bg-surface-hover` `bg-surface-active` `bg-sunken` `bg-raised` `bg-raised-hover` `bg-overlay`. Inside a sheet, dialog, menu or popover, in dark, sunken and surface-hover are the raised step itself: a fill takes `bg-surface-active` (or `bg-sunken` plus a `hairline`), and a hover or highlighted row takes `bg-raised-hover`.
 - **Text:** `text-fg` (body) `text-fg-secondary` `text-fg-tertiary` `text-fg-strong` (headings) `text-fg-on-accent`. `text-primary` is shadcn's accent fill, never body text.
 - **Lines:** `hairline` `hairline-t` `hairline-b` `hairline-r` (shadows, take no space), `border-line` only where the box already accounts for 1px.
 - **Accent:** `bg-accent-solid` `bg-accent-bg` `text-accent-text` `border-accent-border`. **Status:** `bg-danger` `bg-danger-bg` `text-danger-text`, same for `success`, `warning`.
@@ -117,8 +118,9 @@ Use utilities, never raw values. The linter rejects palette colors, arbitrary va
 1. Bring the source in (a shadcn registry URL, or copy), on Base UI if it has a matching part.
 2. Retoken every color, radius, space and motion value until the linter is quiet.
 3. Add a height contract in `design-system.lint.json` if it is a control.
-4. Motion spec: curve, duration, exit at 75%, reduced motion keeps opacity and drops movement. Verify with the probe.
-5. Registry item with dependencies; docs page with every state.
+4. Motion: first decide whether it animates at all (see "Should it animate?"; a keyboard-triggered palette does not). If it does: curve, duration, exit at 75%, reduced motion keeps opacity and drops movement. Verify with the probe either way.
+5. Check it in dark inside a raised surface: highlights take `bg-raised-hover`, fills `bg-surface-active`.
+6. Registry item with dependencies; docs page with every state.
 
 ## Never
 
