@@ -45,6 +45,8 @@ If a screen looks like a competent generic dashboard, it is wrong.
 ## Setup (once per project)
 
 ```bash
+npx shadcn@latest init -d     # writes components.json; the installs below need it
+npm uninstall cn              # init adds it; the dfdl theme replaces lib/utils.ts, which was its only user
 npx shadcn@latest add https://dfdl-ui.fernandezdelaradylan.workers.dev/r/theme.json
 ```
 
@@ -60,11 +62,14 @@ Replace the global CSS with these imports. shadcn init's own theme block overrid
 
 In an existing app, import `tokens.css` and `theme.css` after Tailwind and before the app's own `@theme`, and skip `base.css` (page defaults: body color, focus ring, `dark:` on `.dark`). The components do not depend on it. Dark mode switches on either `.dark` or `data-theme="dark"` on the root; an app on some other convention adds its selector to the dark blocks.
 
-Add the probes the Verify steps use (they land in `scripts/probes/`):
+Add the lint policy and the probes the Verify steps use (the probes land in `scripts/probes/`):
 
 ```bash
+npx shadcn@latest add https://dfdl-ui.fernandezdelaradylan.workers.dev/r/lint.json
 npx shadcn@latest add https://dfdl-ui.fernandezdelaradylan.workers.dev/r/probes.json
 ```
+
+Then spread the policy into `eslint.config.mjs`: `import dfdl from "./eslint.dfdl.mjs"` and `...dfdl` after your own config. Without this, `npm run lint` checks nothing dfdl-specific.
 
 On a Tailwind v3 site, upgrade to v4 first in its own PR: `@tailwindcss/upgrade` for the config and renames, but keep the site's component CSS as plain CSS in `@layer components` (the tool's `@utility` conversion silently drops class names built at runtime), and pixel-diff screenshots against the v3 build before claiming no visual change.
 

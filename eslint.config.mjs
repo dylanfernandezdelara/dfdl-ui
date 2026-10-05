@@ -1,25 +1,15 @@
-import { plugin as shadcn } from "@shadcn/lint"
 import { defineConfig, globalIgnores } from "eslint/config"
 import nextVitals from "eslint-config-next/core-web-vitals"
 import nextTs from "eslint-config-next/typescript"
 
-import policy from "./design-system.lint.json" with { type: "json" }
+import dfdl from "./eslint.dfdl.mjs"
 
 const eslintConfig = defineConfig([
   ...nextVitals,
   ...nextTs,
-  {
-    files: ["**/*.{js,jsx,ts,tsx}"],
-    plugins: { shadcn },
-    settings: {
-      shadcn: {
-        // Theme and components are discovered from components.json.
-        note: "Design rules and the reason behind every token live in decisions.md; the dfdl skill will be drafted from it.",
-      },
-    },
-    rules: policy.rules,
-  },
-  ...policy.overrides,
+  ...dfdl,
+  // The labs show rejected alternatives next to the approved values.
+  { files: ["src/app/lab/**"], rules: { "shadcn/no-restyle": "off" } },
   globalIgnores([".next/**", ".open-next/**", "out/**", "build/**", "next-env.d.ts", "public/r/**", ".agents/**"]),
 ])
 

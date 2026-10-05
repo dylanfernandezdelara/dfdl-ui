@@ -5,6 +5,8 @@
 const MINOR = 8
 const HALF = 4
 const TOL = 0.51
+/** A control is judged as one block; its parts (a thumb, a segment inset in its track) are its own design. */
+const CONTROL = "[data-slot=switch],[data-slot=segmented-control],[data-slot=button],[data-slot=badge],[data-slot=kbd],[data-slot=avatar],[data-slot=input]"
 const SKIP = new Set(["SCRIPT", "STYLE", "SVG", "PATH", "IMG", "BR", "WBR", "TEMPLATE", "NOSCRIPT", "HTML", "HEAD"])
 
 export type Offender = { el: Element; top: number; height: number; why: string[] }
@@ -18,7 +20,7 @@ export function auditGrid(root: ParentNode = document.body): { checked: number; 
   const offenders: Offender[] = []
   let checked = 0
   for (const el of Array.from(root.querySelectorAll("*"))) {
-    if (SKIP.has(el.tagName.toUpperCase()) || el.closest("[data-layout-grid-overlay],[data-layout-grid-toolbar],[data-grid-ignore]")) continue
+    if (SKIP.has(el.tagName.toUpperCase()) || el.closest("[data-layout-grid-overlay],[data-layout-grid-toolbar],[data-grid-ignore]") || el.parentElement?.closest(CONTROL)) continue
     const cs = getComputedStyle(el)
     if (cs.display === "none" || cs.display === "inline" || cs.visibility === "hidden" || parseFloat(cs.opacity) === 0) continue
     // Decoration placed out of flow (an aria-hidden absolute indicator) cannot shift anything.

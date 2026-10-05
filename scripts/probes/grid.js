@@ -14,10 +14,12 @@
   const skip = new Set(['SCRIPT','STYLE','SVG','PATH','IMG','BR','WBR','TEMPLATE','NOSCRIPT','HTML','HEAD'])
   const isVisible = (el, cs) => cs.display !== 'none' && cs.visibility !== 'hidden' && parseFloat(cs.opacity) > 0
   const root = document.querySelector('[data-grid-audit-root]') || document.body
+  // A control is judged as one block; its parts (a thumb, a segment inset in its track) are its own design.
+  const CONTROL = '[data-slot=switch],[data-slot=segmented-control],[data-slot=button],[data-slot=badge],[data-slot=kbd],[data-slot=avatar],[data-slot=input]'
   const offenders = []
   let checked = 0
   for (const el of root.querySelectorAll('*')) {
-    if (skip.has(el.tagName.toUpperCase()) || el.closest('[data-layout-grid-overlay],[data-layout-grid-toolbar],[data-grid-ignore]')) continue
+    if (skip.has(el.tagName.toUpperCase()) || el.closest('[data-layout-grid-overlay],[data-layout-grid-toolbar],[data-grid-ignore]') || el.parentElement?.closest(CONTROL)) continue
     const cs = getComputedStyle(el)
     if (!isVisible(el, cs)) continue
     const r = el.getBoundingClientRect()

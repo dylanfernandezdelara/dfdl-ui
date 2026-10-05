@@ -11,6 +11,7 @@ const toc: TocItem[] = [
   { id: "theme", label: "Add the theme" },
   { id: "components", label: "Add components" },
   { id: "accent", label: "Pick an accent" },
+  { id: "lint", label: "Turn on the lint" },
   { id: "agents", label: "For agents" },
 ]
 
@@ -23,6 +24,10 @@ export default function InstallationPage() {
         <Step id="requirements" n={1} title="Requirements">
           <p className="text-body text-fg-secondary">A project set up for shadcn with Tailwind v4. Starting fresh:</p>
           <Command className="mt-major">npx shadcn@latest init</Command>
+          <p className="mt-major text-body text-fg-secondary">
+            Init installs a package called cn for its class merger. The dfdl theme replaces that file, so remove it:
+          </p>
+          <Command className="mt-major">npm uninstall cn</Command>
         </Step>
 
         <Step id="theme" n={2} title="Add the theme">
@@ -74,7 +79,19 @@ export default function Page() {
           <CodeBlock className="mt-major" code={`<html data-accent="indigo">`} />
         </Step>
 
-        <Step id="agents" n={5} title="For agents">
+        <Step id="lint" n={5} title="Turn on the lint">
+          <p className="text-body text-fg-secondary">The policy rejects raw colors, arbitrary values, inline styles and restyled components, and says what to use instead.</p>
+          <Command className="mt-major">{addCommand("lint")}</Command>
+          <p className="mt-major text-body text-fg-secondary">Then spread it into your ESLint config:</p>
+          <CodeBlock
+            className="mt-major"
+            code={`import dfdl from "./eslint.dfdl.mjs"
+
+export default defineConfig([...yourConfig, ...dfdl])`}
+          />
+        </Step>
+
+        <Step id="agents" n={6} title="For agents">
           <p className="text-body text-fg-secondary">The skill tells coding agents how to build with dfdl. The probes let them measure the grid and motion.</p>
           <Command className="mt-major">{SKILL_COMMAND}</Command>
           <Command className="mt-minor">{addCommand("probes")}</Command>

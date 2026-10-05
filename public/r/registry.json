@@ -64,6 +64,32 @@
       "docs": "New app: replace the contents of your global CSS with @import \"tailwindcss\"; @import \"tw-animate-css\"; @import \"../styles/dfdl/tokens.css\"; @import \"../styles/dfdl/theme.css\"; @import \"../styles/dfdl/base.css\"; (shadcn init's own theme block would override the theme). Existing app: import tokens.css and theme.css after tailwindcss and before your own @theme, and skip base.css to keep your page defaults. Load Lora with next/font as --font-lora. Set the accent on <html data-accent=\"ember\"> or \"indigo\"."
     },
     {
+      "name": "lint",
+      "type": "registry:item",
+      "title": "dfdl lint",
+      "description": "The design-system lint policy: no raw colors, no arbitrary values, no inline styles, and per-component contracts. Spread eslint.dfdl.mjs into your ESLint config.",
+      "author": "Dylan Fernandez de Lara",
+      "categories": [
+        "tooling"
+      ],
+      "devDependencies": [
+        "@shadcn/lint@0.2.0"
+      ],
+      "files": [
+        {
+          "path": "design-system.lint.json",
+          "type": "registry:file",
+          "target": "~/design-system.lint.json"
+        },
+        {
+          "path": "eslint.dfdl.mjs",
+          "type": "registry:file",
+          "target": "~/eslint.dfdl.mjs"
+        }
+      ],
+      "docs": "Add to eslint.config.mjs: import dfdl from \"./eslint.dfdl.mjs\" and spread ...dfdl into defineConfig after your own config. Then npm run lint; each error says what to use instead."
+    },
+    {
       "name": "probes",
       "type": "registry:item",
       "title": "dfdl probes",

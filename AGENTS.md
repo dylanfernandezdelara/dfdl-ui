@@ -37,7 +37,7 @@ Next 16 (App Router, Turbopack), React 19, Tailwind v4, Base UI via shadcn (`bas
 | `registry.json` → `public/r/` | shadcn registry. `npm run registry` builds it. Items: `tokens`, `theme`, one per component. Install URLs come from `src/lib/site.ts`. |
 | `src/app/lab/` | Labs where foundations were decided. Each lab shows the approved values beside the alternatives. |
 | `src/styles/tokens.hsl.css` | Generated. The same semantics as HSL channel triples for Tailwind v3 consumers (`hsl(var(--hsl-bg-page) / <alpha-value>)`). `npm run tokens` regenerates everything. |
-| `design-system.lint.json` | The `@shadcn/lint` policy. Consumers extend it. Contracts are added per component. |
+| `design-system.lint.json` + `eslint.dfdl.mjs` | The `@shadcn/lint` policy and the flat-config block that applies it. Shipped to consumers as the `lint` registry item; dfdl-ui's `eslint.config.mjs` spreads the same file. Contracts are added per component. |
 | `.agents/skills/` | Vendored reference skills (Emil, Jakub, Figma). Hand off to them; never copy their rules into the dfdl skill. |
 | `skills/dfdl-ui/` | The dfdl skill for agents working in Dylan's products. Drafted from `decisions.md` and `src/content/guide.ts`; keep the three in step. |
 | `research/` | Audits and standards research. |

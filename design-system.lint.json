@@ -1,5 +1,5 @@
 {
-  "$comment": "dfdl design-system lint policy. Mechanical rules live here; judgment lives in the skill. Consumers extend this file. Contracts: controls keep the height scale (24/28/32/40/48); pick a size instead of setting a height.",
+  "$comment": "dfdl design-system lint policy. Mechanical rules live here; judgment lives in the skill. Consumers extend this file. Contracts: controls keep the height scale (24/28/32/40/48); pick a size instead of setting a height. Margins on the dfdl rhythm (m*-minor, m*-major) are allowed by name: @shadcn/lint 0.2.0 reads custom color names from the theme but not custom spacing names, so without them it calls mt-minor unrecognized.",
   "rules": {
     "shadcn/no-raw-colors": [
       "error",
@@ -18,7 +18,11 @@
       "error",
       {
         "allow": [
-          "layout"
+          "layout",
+          "m*-minor",
+          "m*-major",
+          "-m*-minor",
+          "-m*-major"
         ],
         "message": {
           "spacing": "{{component}} owns its padding. Use a size ({{sizes}}) or put margin/gap on the parent.",
@@ -29,7 +33,11 @@
           {
             "pattern": "^Button$",
             "allow": [
-              "layout"
+              "layout",
+              "m*-minor",
+              "m*-major",
+              "-m*-minor",
+              "-m*-major"
             ],
             "deny": [
               "h-*",
@@ -41,7 +49,11 @@
           {
             "pattern": "^Input$",
             "allow": [
-              "layout"
+              "layout",
+              "m*-minor",
+              "m*-major",
+              "-m*-minor",
+              "-m*-major"
             ],
             "deny": [
               "h-*",
@@ -53,7 +65,11 @@
           {
             "pattern": "^(SegmentedControl|SegmentedControlItem)$",
             "allow": [
-              "layout"
+              "layout",
+              "m*-minor",
+              "m*-major",
+              "-m*-minor",
+              "-m*-major"
             ],
             "deny": [
               "h-*",
@@ -65,7 +81,11 @@
           {
             "pattern": "^Switch$",
             "allow": [
-              "layout"
+              "layout",
+              "m*-minor",
+              "m*-major",
+              "-m*-minor",
+              "-m*-major"
             ],
             "deny": [
               "h-*",
@@ -80,7 +100,11 @@
           {
             "pattern": "^TabsTab$",
             "allow": [
-              "layout"
+              "layout",
+              "m*-minor",
+              "m*-major",
+              "-m*-minor",
+              "-m*-major"
             ],
             "deny": [
               "h-*",
@@ -92,7 +116,11 @@
           {
             "pattern": "^(MenuItem|MenuLabel)$",
             "allow": [
-              "layout"
+              "layout",
+              "m*-minor",
+              "m*-major",
+              "-m*-minor",
+              "-m*-major"
             ],
             "deny": [
               "h-*",
@@ -104,7 +132,11 @@
           {
             "pattern": "^(Badge|Kbd)$",
             "allow": [
-              "layout"
+              "layout",
+              "m*-minor",
+              "m*-major",
+              "-m*-minor",
+              "-m*-major"
             ],
             "deny": [
               "h-*",
@@ -116,7 +148,11 @@
           {
             "pattern": "^TabsList$",
             "allow": [
-              "layout"
+              "layout",
+              "m*-minor",
+              "m*-major",
+              "-m*-minor",
+              "-m*-major"
             ],
             "deny": [
               "h-*",
@@ -128,7 +164,11 @@
           {
             "pattern": "^Avatar$",
             "allow": [
-              "layout"
+              "layout",
+              "m*-minor",
+              "m*-major",
+              "-m*-minor",
+              "-m*-major"
             ],
             "deny": [
               "h-*",
@@ -141,7 +181,11 @@
           {
             "pattern": "^(ComboboxInput|CollapsibleTrigger)$",
             "allow": [
-              "layout"
+              "layout",
+              "m*-minor",
+              "m*-major",
+              "-m*-minor",
+              "-m*-major"
             ],
             "deny": [
               "h-*",
@@ -157,8 +201,7 @@
   "overrides": [
     {
       "files": [
-        "src/components/ui/**",
-        "src/app/lab/**"
+        "**/components/ui/**"
       ],
       "rules": {
         "shadcn/no-restyle": "off"
