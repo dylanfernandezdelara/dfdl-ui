@@ -18,6 +18,7 @@ const semantic: [string, string, string][] = [
   ["bg-sunken", "bg-sunken", "Inset areas: code, wells, segmented control track."],
   ["bg-raised", "bg-raised", "Popovers, menus, dialogs."],
   ["bg-raised-hover", "bg-raised-hover", "Hover and highlight inside raised surfaces. In dark, surface-hover is the raised step itself."],
+  ["bg-hover", "bg-surface-hover", "A hover that follows its surface: surface-hover on the page, raised-hover inside anything raised. For controls used in both, like a ghost button."],
   ["fg", "bg-fg", "Body text. Soft, not ink."],
   ["fg-secondary", "bg-fg-secondary", "Supporting text, metadata."],
   ["fg-tertiary", "bg-fg-tertiary", "Placeholders, timestamps, disabled-adjacent."],

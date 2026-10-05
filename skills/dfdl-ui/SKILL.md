@@ -80,7 +80,7 @@ Load Lora with next/font as `--font-lora`. Set `<html data-accent="ember">` (def
 
 Use utilities, never raw values. The linter rejects palette colors, arbitrary values, inline styles and restyled components.
 
-- **Surfaces:** `bg-page` `bg-subtle` `bg-surface` `bg-surface-hover` `bg-surface-active` `bg-sunken` `bg-raised` `bg-raised-hover` `bg-overlay`. Inside a sheet, dialog, menu or popover, in dark, sunken and surface-hover are the raised step itself: a fill takes `bg-surface-active` (or `bg-sunken` plus a `hairline`), and a hover or highlighted row takes `bg-raised-hover`.
+- **Surfaces:** `bg-page` `bg-subtle` `bg-surface` `bg-surface-hover` `bg-surface-active` `bg-sunken` `bg-raised` `bg-raised-hover` `bg-hover` `bg-overlay`. Inside a sheet, dialog, menu or popover, in dark, sunken and surface-hover are the raised step itself: a fill takes `bg-surface-active` (or `bg-sunken` plus a `hairline`), and a hover or highlighted row takes `bg-raised-hover`. A control used both on the page and in raised surfaces (a ghost button) hovers with `bg-hover`, which picks the right one by itself.
 - **Text:** `text-fg` (body) `text-fg-secondary` `text-fg-tertiary` `text-fg-strong` (headings) `text-fg-on-accent`. `text-primary` is shadcn's accent fill, never body text.
 - **Lines:** `hairline` `hairline-t` `hairline-b` `hairline-r` (shadows, take no space), `border-line` only where the box already accounts for 1px.
 - **Accent:** `bg-accent-solid` `bg-accent-bg` `text-accent-text` `border-accent-border`. **Status:** `bg-danger` `bg-danger-bg` `text-danger-text`, same for `success`, `warning`.

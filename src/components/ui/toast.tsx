@@ -65,7 +65,7 @@ function ToastList() {
           <BaseToast.Title className="text-ui font-medium text-fg-strong" />
           <BaseToast.Description className="text-ui text-fg-secondary" />
         </div>
-        <BaseToast.Close aria-label="Dismiss" className="-mt-1 -mr-1 flex size-7 shrink-0 items-center justify-center rounded-sm text-fg-tertiary transition-interactive duration-fast ease-out hover:bg-surface-hover hover:text-fg-strong">
+        <BaseToast.Close aria-label="Dismiss" className="-mt-1 -mr-1 flex size-7 shrink-0 items-center justify-center rounded-sm text-fg-tertiary transition-interactive duration-fast ease-out hover:bg-hover hover:text-fg-strong">
           <X className="size-4" strokeWidth={1.5} aria-hidden />
         </BaseToast.Close>
       </BaseToast.Content>
